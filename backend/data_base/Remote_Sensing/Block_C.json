@@ -1,0 +1,120 @@
+{
+  "mission_family": "Remote Sensing",
+  "block": "MASTER_BLOCK_C_BIOLOGICAL_PAYLOADS",
+  "schema_version": "ONE_V3_PAYLOAD_DB_2.1",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Microfluidics Systems",
+      "payload_variant": "Lab-on-Chip Systems",
+      "products": [
+        {"payload_id":"RS-BIO-LOC-001","vendor":"BioCube Heritage","product_name":"Microfluidic Orbital Lab Card","mass_kg":1.40,"dimensions_mm":{"length_x":95,"width_y":95,"height_z":140},"payload_envelope_u":1.3,"mounting_face":"internal","avg_power_w":5.5,"peak_power_w":8.5,"nominal_data_rate_mbps":28,"spectral_band":"bio-electrochemical sensing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.5,"estimated_cost_usd":165000},
+        {"payload_id":"RS-BIO-LOC-002","vendor":"NASA GeneSat Heritage","product_name":"Autonomous Microfluidic Biochip","mass_kg":1.20,"dimensions_mm":{"length_x":90,"width_y":90,"height_z":130},"payload_envelope_u":1.1,"mounting_face":"internal","avg_power_w":5.0,"peak_power_w":7.8,"nominal_data_rate_mbps":24,"spectral_band":"microbial culture monitoring","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.5,"estimated_cost_usd":150000},
+        {"payload_id":"RS-BIO-LOC-003","vendor":"ESA BioLab OEM","product_name":"CubeLab Fluidics Module","mass_kg":1.55,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":145},"payload_envelope_u":1.5,"mounting_face":"internal","avg_power_w":6.0,"peak_power_w":9.0,"nominal_data_rate_mbps":30,"spectral_band":"optical+electrochemical assay","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.5,"estimated_cost_usd":175000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Microfluidics Systems",
+      "payload_variant": "Sample Handling",
+      "products": [
+        {"payload_id":"RS-BIO-SH-001","vendor":"LabSat Heritage","product_name":"Microfluidic Sample Injection Manifold","mass_kg":0.85,"dimensions_mm":{"length_x":80,"width_y":80,"height_z":70},"payload_envelope_u":0.6,"mounting_face":"internal","avg_power_w":3.2,"peak_power_w":5.0,"nominal_data_rate_mbps":12,"spectral_band":"sample dosing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.6,"estimated_cost_usd":98000},
+        {"payload_id":"RS-BIO-SH-002","vendor":"NASA Ames Heritage","product_name":"Autonomous Fluid Routing Cartridge","mass_kg":0.92,"dimensions_mm":{"length_x":82,"width_y":82,"height_z":75},"payload_envelope_u":0.7,"mounting_face":"internal","avg_power_w":3.5,"peak_power_w":5.4,"nominal_data_rate_mbps":13,"spectral_band":"fluid transfer","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.6,"estimated_cost_usd":104000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Bioreactor Systems",
+      "payload_variant": "Cell Culture Systems",
+      "products": [
+        {"payload_id":"RS-BIO-BIOR-001","vendor":"BioSentinel Heritage","product_name":"Orbital Cell Growth Bioreactor","mass_kg":2.80,"dimensions_mm":{"length_x":120,"width_y":120,"height_z":180},"payload_envelope_u":2.5,"mounting_face":"internal","avg_power_w":9.5,"peak_power_w":14.0,"nominal_data_rate_mbps":32,"spectral_band":"biological incubation","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.6,"estimated_cost_usd":240000},
+        {"payload_id":"RS-BIO-BIOR-002","vendor":"NASA PharmaSat Heritage","product_name":"Microgravity Culture Chamber","mass_kg":2.40,"dimensions_mm":{"length_x":115,"width_y":115,"height_z":170},"payload_envelope_u":2.2,"mounting_face":"internal","avg_power_w":8.8,"peak_power_w":13.2,"nominal_data_rate_mbps":28,"spectral_band":"cellular growth monitoring","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.6,"estimated_cost_usd":225000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Bioreactor Systems",
+      "payload_variant": "Culture Environment Control",
+      "products": [
+        {"payload_id":"RS-BIO-CEC-001","vendor":"ESA LifeSat OEM","product_name":"Closed Loop BioReactor Module","mass_kg":3.10,"dimensions_mm":{"length_x":125,"width_y":125,"height_z":190},"payload_envelope_u":2.8,"mounting_face":"internal","avg_power_w":10.5,"peak_power_w":15.5,"nominal_data_rate_mbps":35,"spectral_band":"biological fluidic growth","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.6,"estimated_cost_usd":255000},
+        {"payload_id":"RS-BIO-CEC-002","vendor":"ActaBio Heritage","product_name":"Miniature Bioregenerative Growth Controller","mass_kg":2.95,"dimensions_mm":{"length_x":122,"width_y":122,"height_z":185},"payload_envelope_u":2.7,"mounting_face":"internal","avg_power_w":10.0,"peak_power_w":15.0,"nominal_data_rate_mbps":34,"spectral_band":"growth environment regulation","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.6,"estimated_cost_usd":248000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Biosensor & Analysis Systems",
+      "payload_variant": "Optical Analysis",
+      "products": [
+        {"payload_id":"RS-BIO-OA-001","vendor":"MultiModal BioCube Heritage","product_name":"Electrochemical Optical BioSensor Array","mass_kg":0.95,"dimensions_mm":{"length_x":80,"width_y":80,"height_z":70},"payload_envelope_u":0.6,"mounting_face":"internal","avg_power_w":3.8,"peak_power_w":6.0,"nominal_data_rate_mbps":18,"spectral_band":"optical absorbance assay","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.7,"estimated_cost_usd":115000},
+        {"payload_id":"RS-BIO-OA-002","vendor":"Korea Univ Heritage","product_name":"27-Well Optical Detection Sensor Rack","mass_kg":1.00,"dimensions_mm":{"length_x":82,"width_y":82,"height_z":72},"payload_envelope_u":0.7,"mounting_face":"internal","avg_power_w":4.0,"peak_power_w":6.1,"nominal_data_rate_mbps":18,"spectral_band":"optical well monitoring","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.7,"estimated_cost_usd":118000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Biosensor & Analysis Systems",
+      "payload_variant": "Molecular Analysis",
+      "products": [
+        {"payload_id":"RS-BIO-MA-001","vendor":"NASA GeneSat Heritage","product_name":"Autonomous Biochemical Sensor Suite","mass_kg":1.05,"dimensions_mm":{"length_x":82,"width_y":82,"height_z":75},"payload_envelope_u":0.7,"mounting_face":"internal","avg_power_w":4.1,"peak_power_w":6.2,"nominal_data_rate_mbps":19,"spectral_band":"metabolic sensing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.7,"estimated_cost_usd":122000},
+        {"payload_id":"RS-BIO-MA-002","vendor":"ESA BioLab OEM","product_name":"Molecular Detection Sensor Rack","mass_kg":1.10,"dimensions_mm":{"length_x":85,"width_y":85,"height_z":80},"payload_envelope_u":0.7,"mounting_face":"internal","avg_power_w":4.4,"peak_power_w":6.5,"nominal_data_rate_mbps":20,"spectral_band":"molecular bio assay","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.7,"estimated_cost_usd":128000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Biosensor & Analysis Systems",
+      "payload_variant": "Flow Cytometry",
+      "products": [
+        {"payload_id":"RS-BIO-FC-001","vendor":"NASA Ames OEM","product_name":"Mini Flow Cytometry Counter","mass_kg":1.25,"dimensions_mm":{"length_x":90,"width_y":90,"height_z":90},"payload_envelope_u":0.8,"mounting_face":"internal","avg_power_w":4.8,"peak_power_w":7.0,"nominal_data_rate_mbps":22,"spectral_band":"cell counting","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.7,"estimated_cost_usd":138000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Environmental Control Systems",
+      "payload_variant": "Life Support",
+      "products": [
+        {"payload_id":"RS-BIO-ECS-001","vendor":"BioCube Heritage","product_name":"Thermal Humidity Pressure Regulation Chamber","mass_kg":1.90,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":150},"payload_envelope_u":1.5,"mounting_face":"internal","avg_power_w":7.0,"peak_power_w":11.0,"nominal_data_rate_mbps":15,"spectral_band":"environment regulation","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.8,"estimated_cost_usd":145000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Environmental Control Systems",
+      "payload_variant": "Sample Preservation",
+      "products": [
+        {"payload_id":"RS-BIO-SP-001","vendor":"NASA PharmaSat Heritage","product_name":"Closed Biological Environment Controller","mass_kg":2.10,"dimensions_mm":{"length_x":105,"width_y":105,"height_z":160},"payload_envelope_u":1.7,"mounting_face":"internal","avg_power_w":7.8,"peak_power_w":12.2,"nominal_data_rate_mbps":16,"spectral_band":"bio chamber control","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.8,"estimated_cost_usd":155000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Environmental Control Systems",
+      "payload_variant": "Centrifuge Systems",
+      "products": [
+        {"payload_id":"RS-BIO-CF-001","vendor":"ESA LifeSat OEM","product_name":"Nutrient Flow and Gas Exchange Controller","mass_kg":2.20,"dimensions_mm":{"length_x":110,"width_y":110,"height_z":165},"payload_envelope_u":1.8,"mounting_face":"internal","avg_power_w":8.2,"peak_power_w":12.8,"nominal_data_rate_mbps":17,"spectral_band":"bio support environment","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.8,"estimated_cost_usd":162000},
+        {"payload_id":"RS-BIO-CF-002","vendor":"OrbitalLab OEM","product_name":"Microgravity Mini Centrifuge Rack","mass_kg":2.35,"dimensions_mm":{"length_x":112,"width_y":112,"height_z":170},"payload_envelope_u":1.9,"mounting_face":"internal","avg_power_w":8.5,"peak_power_w":13.0,"nominal_data_rate_mbps":18,"spectral_band":"centrifugal sample conditioning","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.8,"estimated_cost_usd":168000}
+      ]
+    },
+
+    {
+      "payload_group": "Biological Payloads",
+      "payload_type": "Contamination Control",
+      "payload_variant": "Contamination Control",
+      "products": [
+        {"payload_id":"RS-BIO-CC-001","vendor":"LabSat Heritage","product_name":"Sterile Isolation BioBarrier Module","mass_kg":1.30,"dimensions_mm":{"length_x":92,"width_y":92,"height_z":120},"payload_envelope_u":1.0,"mounting_face":"internal","avg_power_w":4.5,"peak_power_w":6.5,"nominal_data_rate_mbps":10,"spectral_band":"contamination isolation","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.9,"estimated_cost_usd":120000}
+      ]
+    }
+
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": "OBC_CAPACITY_LIBRARY_1.0",
+  "generated_on": "2026-04-30",
+  "notes": [
+    "Conservative OBC/data-handling tier capacities for first-pass CubeSat optimization.",
+    "supported_ingest_mbps is a practical sustained ingest/processing pipeline proxy, not a raw interface maximum.",
+    "max_storage_gb is usable storage capacity for mission data (filesystem overhead handled elsewhere)."
+  ],
+  "obc_tiers": [
+    {
+      "obc_tier": "LOW",
+      "max_storage_gb": 64,
+      "compute_class_description": "Single MCU-class OBC (basic flight software, low-rate payload IO).",
+      "supported_ingest_mbps": 10,
+      "fault_tolerance_level": "basic",
+      "obc_avg_power_w": 2.0,
+      "obc_peak_power_w": 4.0,
+      "obc_mass_kg": 0.25,
+      "obc_volume_u": 0.12,
+      "supported_bus_min": "1U",
+      "supported_bus_max": "6U",
+      "supported_bus_range": {
+        "min": "1U",
+        "max": "6U"
+      }
+    },
+    {
+      "obc_tier": "MEDIUM",
+      "max_storage_gb": 256,
+      "compute_class_description": "Higher-performance MCU/SoC with RTOS and improved autonomy; moderate-rate payload data handling.",
+      "supported_ingest_mbps": 60,
+      "fault_tolerance_level": "enhanced",
+      "obc_avg_power_w": 4.0,
+      "obc_peak_power_w": 8.0,
+      "obc_mass_kg": 0.60,
+      "obc_volume_u": 0.30,
+      "supported_bus_min": "2U",
+      "supported_bus_max": "12U",
+      "supported_bus_range": {
+        "min": "2U",
+        "max": "12U"
+      }
+    },
+    {
+      "obc_tier": "HIGH",
+      "max_storage_gb": 1024,
+      "compute_class_description": "FPGA-assisted or high-performance compute OBC; high-rate buffering and advanced payload processing.",
+      "supported_ingest_mbps": 600,
+      "fault_tolerance_level": "high",
+      "obc_avg_power_w": 9.0,
+      "obc_peak_power_w": 18.0,
+      "obc_mass_kg": 1.50,
+      "obc_volume_u": 0.80,
+      "supported_bus_min": "3U",
+      "supported_bus_max": "27U",
+      "supported_bus_range": {
+        "min": "3U",
+        "max": "27U"
+      }
+    },
+    {
+      "obc_tier": "EXTREME",
+      "max_storage_gb": 4096,
+      "compute_class_description": "High-performance compute + robust data pipeline and fault management; supports extreme-rate payload ingest and processing.",
+      "supported_ingest_mbps": 2500,
+      "fault_tolerance_level": "very_high",
+      "obc_avg_power_w": 18.0,
+      "obc_peak_power_w": 35.0,
+      "obc_mass_kg": 3.20,
+      "obc_volume_u": 1.80,
+      "supported_bus_min": "6U",
+      "supported_bus_max": "50U+",
+      "supported_bus_range": {
+        "min": "6U",
+        "max": "50U+"
+      }
+    }
+  ],
+  "field_descriptions": {
+    "max_storage_gb": "Maximum usable onboard storage for mission data used to satisfy D_store_req_GB feasibility.",
+    "supported_ingest_mbps": "Sustained ingest/processing pipeline proxy used to screen compute/data handling feasibility.",
+    "fault_tolerance_level": "Qualitative fault tolerance / redundancy expectation for the tier."
+  }
+}

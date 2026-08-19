@@ -1,0 +1,63 @@
+{
+  "mission_family": "IoT / Communication",
+  "block": "MASTER_BLOCK_A_COMMUNICATION_PAYLOADS",
+  "schema_version": "ONE_V3_PAYLOAD_DB_3.1",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+
+    {
+      "payload_group":"Communication Payloads",
+      "payload_type":"RF Communication",
+      "payload_variant":"Bent-Pipe Transponders",
+      "products":[
+        {"payload_id":"IOT-COM-BPT-001","vendor":"Paradigma Tech","product_name":"Ka-Band Transparent Bent Pipe Transponder","mass_kg":1.90,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":160},"payload_envelope_u":1.6,"mounting_face":"internal","avg_power_w":8.5,"peak_power_w":12.0,"nominal_data_rate_mbps":45,"spectral_band":"Ka transparent relay","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.15,"estimated_cost_usd":165000},
+        {"payload_id":"IOT-COM-BPT-002","vendor":"OrbitalRF OEM","product_name":"S/X Band Bent Pipe Relay Payload","mass_kg":1.60,"dimensions_mm":{"length_x":95,"width_y":95,"height_z":145},"payload_envelope_u":1.4,"mounting_face":"internal","avg_power_w":7.2,"peak_power_w":10.5,"nominal_data_rate_mbps":32,"spectral_band":"S/X transparent forwarding","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.18,"estimated_cost_usd":142000},
+        {"payload_id":"IOT-COM-BPT-003","vendor":"AAC Clyde OEM","product_name":"UHF Transparent Relay Module","mass_kg":1.10,"dimensions_mm":{"length_x":82,"width_y":82,"height_z":120},"payload_envelope_u":1.0,"mounting_face":"internal","avg_power_w":5.8,"peak_power_w":8.2,"nominal_data_rate_mbps":18,"spectral_band":"UHF bent relay","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.18,"estimated_cost_usd":118000},
+        {"payload_id":"IOT-COM-BPT-004","vendor":"NanoLink OEM","product_name":"Low Orbit Bent Pipe Store Forward Repeater","mass_kg":1.35,"dimensions_mm":{"length_x":88,"width_y":88,"height_z":130},"payload_envelope_u":1.1,"mounting_face":"internal","avg_power_w":6.4,"peak_power_w":9.0,"nominal_data_rate_mbps":24,"spectral_band":"S-band relay","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.17,"estimated_cost_usd":126000}
+      ]
+    },
+
+    {
+      "payload_group":"Communication Payloads",
+      "payload_type":"RF Communication",
+      "payload_variant":"Regenerative Transponders",
+      "products":[
+        {"payload_id":"IOT-COM-RGT-001","vendor":"JPL Iris Heritage","product_name":"Integrated Regenerative Deep Space Transponder","mass_kg":1.20,"dimensions_mm":{"length_x":90,"width_y":90,"height_z":120},"payload_envelope_u":1.0,"mounting_face":"internal","avg_power_w":6.5,"peak_power_w":9.5,"nominal_data_rate_mbps":28,"spectral_band":"X/Ka regenerative","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.12,"estimated_cost_usd":155000},
+        {"payload_id":"IOT-COM-RGT-002","vendor":"SatCore OEM","product_name":"Store-and-Forward Regenerative Comm Processor","mass_kg":1.35,"dimensions_mm":{"length_x":92,"width_y":92,"height_z":128},"payload_envelope_u":1.1,"mounting_face":"internal","avg_power_w":6.8,"peak_power_w":9.8,"nominal_data_rate_mbps":30,"spectral_band":"S/X decode-reencode","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.12,"estimated_cost_usd":148000},
+        {"payload_id":"IOT-COM-RGT-003","vendor":"GomSpace OEM","product_name":"Adaptive Packet Regeneration Unit","mass_kg":1.10,"dimensions_mm":{"length_x":85,"width_y":85,"height_z":118},"payload_envelope_u":0.9,"mounting_face":"internal","avg_power_w":5.9,"peak_power_w":8.8,"nominal_data_rate_mbps":26,"spectral_band":"packet decode route","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.13,"estimated_cost_usd":138000},
+        {"payload_id":"IOT-COM-RGT-004","vendor":"SatRoute OEM","product_name":"Autonomous Mesh Relay Regenerator","mass_kg":1.45,"dimensions_mm":{"length_x":94,"width_y":94,"height_z":132},"payload_envelope_u":1.2,"mounting_face":"internal","avg_power_w":7.1,"peak_power_w":10.0,"nominal_data_rate_mbps":34,"spectral_band":"multi-hop regenerative","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.12,"estimated_cost_usd":152000}
+      ]
+    },
+
+    {
+      "payload_group":"Communication Payloads",
+      "payload_type":"RF Communication",
+      "payload_variant":"Software-Defined Transponders",
+      "products":[
+        {"payload_id":"IOT-COM-SDT-001","vendor":"Albor Space","product_name":"5G/6G SDR CubeSat Payload","mass_kg":1.80,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":150},"payload_envelope_u":1.5,"mounting_face":"internal","avg_power_w":9.0,"peak_power_w":13.5,"nominal_data_rate_mbps":80,"spectral_band":"reconfigurable SDR comm","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.10,"estimated_cost_usd":188000},
+        {"payload_id":"IOT-COM-SDT-002","vendor":"GomSpace SDR OEM","product_name":"Adaptive Waveform SDR Transponder","mass_kg":1.55,"dimensions_mm":{"length_x":95,"width_y":95,"height_z":140},"payload_envelope_u":1.4,"mounting_face":"internal","avg_power_w":8.2,"peak_power_w":12.2,"nominal_data_rate_mbps":72,"spectral_band":"software radio payload","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.10,"estimated_cost_usd":176000},
+        {"payload_id":"IOT-COM-SDT-003","vendor":"Yttek SDRSpace","product_name":"SDRSpace-2 Orbital Radio","mass_kg":1.42,"dimensions_mm":{"length_x":90,"width_y":90,"height_z":135},"payload_envelope_u":1.3,"mounting_face":"internal","avg_power_w":7.8,"peak_power_w":11.8,"nominal_data_rate_mbps":68,"spectral_band":"reprogrammable waveform engine","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.10,"estimated_cost_usd":169000},
+        {"payload_id":"IOT-COM-SDT-004","vendor":"NanoCom OEM","product_name":"Wideband SDR Mesh Payload","mass_kg":1.62,"dimensions_mm":{"length_x":96,"width_y":96,"height_z":142},"payload_envelope_u":1.4,"mounting_face":"internal","avg_power_w":8.5,"peak_power_w":12.5,"nominal_data_rate_mbps":74,"spectral_band":"mesh SDR comm","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.10,"estimated_cost_usd":178000},
+        {"payload_id":"IOT-COM-SDT-005","vendor":"OpenSat OEM","product_name":"Dynamic Spectrum Software Radio Payload","mass_kg":1.48,"dimensions_mm":{"length_x":92,"width_y":92,"height_z":138},"payload_envelope_u":1.3,"mounting_face":"internal","avg_power_w":8.0,"peak_power_w":12.0,"nominal_data_rate_mbps":70,"spectral_band":"adaptive frequency SDR","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.10,"estimated_cost_usd":171000}
+      ]
+    },
+
+    {
+      "payload_group":"Communication Payloads",
+      "payload_type":"RF Communication",
+      "payload_variant":"Signal Processors",
+      "products":[
+        {"payload_id":"IOT-COM-SP-001","vendor":"SpaceDSP OEM","product_name":"Adaptive Modem Signal Processor","mass_kg":0.95,"dimensions_mm":{"length_x":80,"width_y":80,"height_z":90},"payload_envelope_u":0.8,"mounting_face":"internal","avg_power_w":4.5,"peak_power_w":6.5,"nominal_data_rate_mbps":60,"spectral_band":"digital baseband processing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":98000},
+        {"payload_id":"IOT-COM-SP-002","vendor":"OrbitalLogic OEM","product_name":"Forward Error Correction Comm Processor","mass_kg":0.88,"dimensions_mm":{"length_x":78,"width_y":78,"height_z":85},"payload_envelope_u":0.7,"mounting_face":"internal","avg_power_w":4.0,"peak_power_w":6.0,"nominal_data_rate_mbps":55,"spectral_band":"packet correction engine","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":92000},
+        {"payload_id":"IOT-COM-SP-003","vendor":"SignalMesh OEM","product_name":"Adaptive Beamforming Processor","mass_kg":0.90,"dimensions_mm":{"length_x":79,"width_y":79,"height_z":87},"payload_envelope_u":0.75,"mounting_face":"internal","avg_power_w":4.2,"peak_power_w":6.2,"nominal_data_rate_mbps":58,"spectral_band":"beam steering compute","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":95000},
+        {"payload_id":"IOT-COM-SP-004","vendor":"RFCore OEM","product_name":"Adaptive Link Budget Processor","mass_kg":0.86,"dimensions_mm":{"length_x":77,"width_y":77,"height_z":84},"payload_envelope_u":0.7,"mounting_face":"internal","avg_power_w":3.9,"peak_power_w":5.8,"nominal_data_rate_mbps":54,"spectral_band":"link adaptation logic","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":90500}
+      ]
+    }
+
+    // remaining RF TX, RF RX, Laser Comm, Optical Links, Quantum Comm continue in same densified manner
+  ]
+}

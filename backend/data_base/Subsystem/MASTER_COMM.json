@@ -1,0 +1,1643 @@
+{
+  "meta": {
+    "subsystem": "Bus Communication Systems",
+    "schema_version": "ONE_V3_COMM_DB_1.0",
+    "generated_on": "2026-05-11",
+    "notes": [
+      "RF transmitters, RF receivers/transceivers, and RF antennas are kept in one master communication database but separated by domain and role.",
+      "Uploaded comms_info_v2.json was used as a seed and expanded with public web sources.",
+      "Where a product is a transceiver, it appears as a transceiver; receiver-channel-only entries are included when useful for solver matching.",
+      "Unknown public numeric values are null, not fabricated."
+    ],
+    "units": {
+      "mass": "kg",
+      "volume": "U",
+      "power": "W",
+      "frequency": "MHz",
+      "data_rate": "Mbps",
+      "gain": "dBi",
+      "dimensions": "mm"
+    },
+    "source_files": [
+      "comms_info_v2.json"
+    ]
+  },
+  "taxonomy": {
+    "domains": [
+      "ttc",
+      "payload_downlink",
+      "payload_relay",
+      "receiver",
+      "antenna"
+    ],
+    "roles": [
+      "transceiver",
+      "transmitter",
+      "receiver",
+      "transponder",
+      "antenna"
+    ],
+    "classes": {
+      "rf_transmitters": [
+        "UHF Transmitters",
+        "VHF Transmitters",
+        "S-Band Transmitters",
+        "X-Band Transmitters",
+        "Ka-Band Transmitters"
+      ],
+      "rf_receivers": [
+        "UHF Receivers",
+        "VHF Receivers",
+        "S-Band Receivers",
+        "X-Band Receivers",
+        "Ka-Band Receivers"
+      ],
+      "rf_antennas": [
+        "UHF Patch/Monopole Antennas",
+        "VHF Dipole/Turnstile Antennas",
+        "S-Band Patch/Helical Antennas",
+        "X-Band High-Gain Antennas",
+        "Ka-Band Antennas"
+      ]
+    }
+  },
+  "products": [
+    {
+      "id": "comms-ttc-isis-vhf-uhf",
+      "domain": "ttc",
+      "role": "transceiver",
+      "band": [
+        "VHF",
+        "UHF"
+      ],
+      "category_name": "Transceivers (TT&C)",
+      "class_name": "VHF/UHF Radios",
+      "option_name": "Half-Duplex Transceivers",
+      "product_name": "ISIS VHF/UHF Transceiver",
+      "vendor": "ISISpace",
+      "key_spec": "Reliable backup link, works even if tumbling",
+      "normalized": {
+        "mass_kg": 0.08,
+        "volume_U": 0.2,
+        "power_tx_W": 4,
+        "power_rx_W": 0.2,
+        "power_avg_W": 2.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 0.0096,
+        "frequency_range_MHz": [
+          145,
+          868
+        ],
+        "rf_output_power_W": 2
+      },
+      "integration": {
+        "pointing_requirement": "none",
+        "interfaces": [
+          "I2C"
+        ]
+      },
+      "tags": [
+        "ttc",
+        "safe_mode",
+        "tumbling_tolerant",
+        "deployable_antenna_compatible"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "uploaded_seed",
+        "name": "comms_info_v2.json"
+      },
+      "verification_status": "seed_unverified"
+    },
+    {
+      "id": "comms-payload-sband-endurosat-seed",
+      "domain": "payload_downlink",
+      "role": "transmitter",
+      "band": [
+        "S"
+      ],
+      "category_name": "High-Speed Transmitters",
+      "class_name": "S-Band Transmitters",
+      "option_name": "Medium Rate S-Band",
+      "product_name": "EnduroSat S-Band",
+      "vendor": "EnduroSat",
+      "key_spec": "Good for standard-resolution imaging and medium-rate payload downlink",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 0.2,
+        "power_tx_W": 6,
+        "power_avg_W": 3.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 2
+      },
+      "integration": {
+        "pointing_requirement": "coarse_nadir"
+      },
+      "tags": [
+        "medium_rate",
+        "leo_standard"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "uploaded_seed",
+        "name": "comms_info_v2.json"
+      },
+      "verification_status": "seed_unverified"
+    },
+    {
+      "id": "comms-payload-xband-syrlinks-ewc27-seed",
+      "domain": "payload_downlink",
+      "role": "transmitter",
+      "band": [
+        "X"
+      ],
+      "category_name": "High-Speed Transmitters",
+      "class_name": "X-Band Transmitters",
+      "option_name": "High Rate X-Band",
+      "product_name": "Syrlinks EWC27",
+      "vendor": "Syrlinks / Safran Data Systems",
+      "key_spec": "X-band high-data-rate transmitter for nano and CubeSat missions",
+      "normalized": {
+        "mass_kg": 0.28,
+        "volume_U": 0.3,
+        "power_tx_W": 12,
+        "power_avg_W": 12.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 140,
+        "frequency_range_MHz": [
+          8025,
+          8500
+        ],
+        "standard": "CCSDS"
+      },
+      "integration": {
+        "pointing_requirement": "fine",
+        "form_factor": "PC/104"
+      },
+      "tags": [
+        "high_rate",
+        "imaging",
+        "hyperspectral",
+        "trl9"
+      ],
+      "trl": 9,
+      "source": {
+        "type": "web",
+        "url": "https://www.safran-group.com/products-services/x-lite-x-band-transmitter-nano-satellites"
+      },
+      "verification_status": "public_source_plus_seed_mass"
+    },
+    {
+      "id": "comms-payload-kaband-safran-nkallisto",
+      "domain": "payload_downlink",
+      "role": "transmitter",
+      "band": [
+        "Ka"
+      ],
+      "category_name": "High-Speed Transmitters",
+      "class_name": "Ka-Band Transmitters",
+      "option_name": "Ultra-High Rate Ka-Band",
+      "product_name": "Safran N-KaLLISTO",
+      "vendor": "Safran Data Systems",
+      "key_spec": "Ka-band high-data-rate transmitter for nano/cube satellites",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_tx_W": 35,
+        "power_avg_W": 35.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 1000,
+        "frequency_range_MHz": [
+          25500,
+          27000
+        ],
+        "standard": [
+          "CCSDS",
+          "DVB-S2",
+          "DVB-S2X"
+        ],
+        "rf_output_power_W": 2
+      },
+      "integration": {
+        "pointing_requirement": "very_fine"
+      },
+      "tags": [
+        "ultra_high_rate",
+        "ka_band",
+        "radiation_hardened"
+      ],
+      "trl": null,
+      "source": {
+        "type": "web",
+        "url": "https://www.safran-group.com/products-services/n-kallisto-n-kallisto-ka-band-high-data-rate-transmitter-nano-cube-satellites"
+      },
+      "verification_status": "public_vendor_missing_numeric"
+    },
+    {
+      "id": "comms-antenna-isis-deployable-uhf",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "VHF",
+        "UHF"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "UHF/VHF Antennas",
+      "option_name": "Deployable Dipole/Turnstile",
+      "product_name": "ISISPACE VHF/UHF Antenna for 1U-3U",
+      "vendor": "ISISPACE",
+      "key_spec": "Omnidirectional deployable antenna system for TT&C safe-mode links",
+      "normalized": {
+        "mass_kg": 0.09,
+        "volume_U": 0.07,
+        "power_avg_W": 0.04,
+        "power_peak_W": 2.0
+      },
+      "performance": {
+        "gain_dBi": 0,
+        "frequency_range_MHz": [
+          145,
+          868
+        ],
+        "max_rf_power_W": 2,
+        "bandwidth_uhf_MHz": 50,
+        "bandwidth_vhf_MHz": 10
+      },
+      "integration": {
+        "deployment_required": true,
+        "interfaces": [
+          "I2C"
+        ],
+        "stowed_dimensions_mm": {
+          "length_mm": 98,
+          "width_mm": 98,
+          "height_mm": 7
+        }
+      },
+      "tags": [
+        "omni",
+        "ttc",
+        "safe_mode",
+        "flight_heritage"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.isispace.nl/product/vhf-uhf-antenna-for-1u-3u/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-antenna-sband-endurosat-patch",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "S"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "S-Band Antennas",
+      "option_name": "Patch Antennas",
+      "product_name": "EnduroSat S-Band Patch Antenna ISM",
+      "vendor": "EnduroSat",
+      "key_spec": "Circularly polarized S-band patch antenna for CubeSat communication",
+      "normalized": {
+        "mass_kg": 0.071,
+        "volume_U": 0.1,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "gain_dBi": 8.3,
+        "frequency_range_MHz": [
+          2400,
+          2450
+        ],
+        "beamwidth_deg": 71,
+        "max_rf_power_W": 4
+      },
+      "integration": {
+        "pointing_requirement": "coarse_nadir",
+        "mounting": "X/Y or Z CubeSat mounting"
+      },
+      "tags": [
+        "directional",
+        "patch",
+        "leo_standard"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.endurosat.com/cubesat-store/all-cubesat-modules/s-band-patch-antenna/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-antenna-xband-anywaves-compact",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "X"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "X-Band High-Gain Antennas",
+      "option_name": "Compact High-Gain Patch",
+      "product_name": "Anywaves Compact X-Band Antenna",
+      "vendor": "Anywaves",
+      "key_spec": "Ultra-thin high-gain X-band payload telemetry antenna",
+      "normalized": {
+        "mass_kg": 0.07,
+        "volume_U": 0.065,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "gain_dBi": 15.5,
+        "frequency_range_MHz": [
+          7900,
+          8500
+        ],
+        "max_rf_power_W": 20
+      },
+      "integration": {
+        "pointing_requirement": "fine",
+        "dimensions_mm": {
+          "length_mm": 100,
+          "width_mm": 100,
+          "height_mm": 6.5
+        }
+      },
+      "tags": [
+        "high_gain",
+        "x_band",
+        "payload_downlink",
+        "trl9"
+      ],
+      "trl": 9,
+      "source": {
+        "type": "web",
+        "url": "https://anywaves.com/products/compact-x-band-payload-telemetry-antenna/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-antenna-kaband-anywaves-chokering",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "Ka"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "Ka-Band Antennas",
+      "option_name": "Choke-Ring TT&C Antenna",
+      "product_name": "Anywaves Ka-band TT&C Antenna",
+      "vendor": "Anywaves",
+      "key_spec": "Compact Ka-band TT&C antenna with separate Tx/Rx models",
+      "normalized": {
+        "mass_kg": 0.14,
+        "volume_U": 0.9,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "gain_dBi": 3,
+        "frequency_tx_MHz": [
+          19700,
+          20200
+        ],
+        "frequency_rx_MHz": [
+          29500,
+          30000
+        ],
+        "polarization": [
+          "RHCP",
+          "LHCP"
+        ]
+      },
+      "integration": {
+        "pointing_requirement": "medium",
+        "dimensions_tx_mm": {
+          "length_mm": 150,
+          "width_mm": 150,
+          "height_mm": 60
+        },
+        "dimensions_rx_mm": {
+          "length_mm": 108,
+          "width_mm": 108,
+          "height_mm": 44
+        }
+      },
+      "tags": [
+        "ka_band",
+        "ttc",
+        "compact",
+        "itar_free"
+      ],
+      "trl": 8,
+      "source": {
+        "type": "web",
+        "url": "https://anywaves.com/products/choke-ring-ttc-ka-band-antenna/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-ttc-gomspace-nanocom-ax100",
+      "domain": "ttc",
+      "role": "transceiver",
+      "band": [
+        "UHF"
+      ],
+      "category_name": "Transceivers (TT&C)",
+      "class_name": "UHF Radios",
+      "option_name": "Half-Duplex Software Configurable Radio",
+      "product_name": "GomSpace NanoCom AX100",
+      "vendor": "GomSpace",
+      "key_spec": "Compact UHF radio with programmable frequency, bitrate, and modulation",
+      "normalized": {
+        "mass_kg": 0.0245,
+        "volume_U": 0.025,
+        "power_tx_W": null,
+        "power_rx_W": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "max_data_rate_Mbps": 0.0384,
+        "frequency_range_MHz": [
+          395,
+          440
+        ],
+        "tx_power_dBm": [
+          24,
+          30
+        ],
+        "sensitivity_dBm": -137
+      },
+      "integration": {
+        "interfaces": [
+          "I2C",
+          "UART",
+          "CAN-Bus",
+          "GOSH",
+          "CSP"
+        ],
+        "dimensions_mm": {
+          "length_mm": 65,
+          "width_mm": 40,
+          "height_mm": 6.5
+        },
+        "pointing_requirement": "none"
+      },
+      "tags": [
+        "uhf",
+        "ttc",
+        "configurable",
+        "low_mass"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://gomspace.com/product/nanocom-ax100/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-ttc-aac-pulsar-utrx",
+      "domain": "ttc",
+      "role": "transceiver",
+      "band": [
+        "UHF"
+      ],
+      "category_name": "Transceivers (TT&C)",
+      "class_name": "UHF Radios",
+      "option_name": "Half-Duplex UHF Transceiver",
+      "product_name": "AAC Clyde Space PULSAR-UTRX",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "UHF uplink/downlink CubeSat transceiver for reliable TT&C and backup radio",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 0.16,
+        "power_tx_W": 5.1,
+        "power_rx_W": 0.24,
+        "power_avg_W": 2.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 0.0096,
+        "frequency_range_MHz": [
+          400,
+          440
+        ],
+        "tx_power_dBm": [
+          27,
+          33
+        ],
+        "modulation": [
+          "GMSK",
+          "AFSK"
+        ],
+        "protocol": "AX.25"
+      },
+      "integration": {
+        "interfaces": [
+          "I2C"
+        ],
+        "dimensions_mm": {
+          "length_mm": 96,
+          "width_mm": 90,
+          "height_mm": 16.51
+        },
+        "pointing_requirement": "none"
+      },
+      "tags": [
+        "uhf",
+        "ttc",
+        "backup_link",
+        "pc104"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.aac-clyde.space/what-we-do/space-products-components/communications/pulsar-utrx"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-ttc-aac-pulsar-vutrx",
+      "domain": "ttc",
+      "role": "transceiver",
+      "band": [
+        "VHF",
+        "UHF"
+      ],
+      "category_name": "Transceivers (TT&C)",
+      "class_name": "VHF/UHF Radios",
+      "option_name": "Full-Duplex VHF/UHF Transceiver",
+      "product_name": "AAC Clyde Space PULSAR-VUTRX",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "Full-duplex VHF uplink / UHF downlink CubeSat transceiver",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 0.16,
+        "power_tx_W": 5.5,
+        "power_rx_W": 0.162,
+        "power_avg_W": 2.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 0.0096,
+        "frequency_vhf_MHz": [
+          140,
+          150
+        ],
+        "frequency_uhf_MHz": [
+          400,
+          440
+        ],
+        "tx_power_dBm": [
+          27,
+          33
+        ],
+        "modulation": [
+          "GMSK",
+          "AFSK"
+        ],
+        "protocol": "AX.25"
+      },
+      "integration": {
+        "interfaces": [
+          "I2C"
+        ],
+        "dimensions_mm": {
+          "length_mm": 96,
+          "width_mm": 90,
+          "height_mm": 16.51
+        },
+        "pointing_requirement": "none"
+      },
+      "tags": [
+        "vhf",
+        "uhf",
+        "full_duplex",
+        "ttc"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.aac-clyde.space/what-we-do/space-products-components/communications/pulsar-vutrx"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-ttc-endurosat-uhf-transceiver",
+      "domain": "ttc",
+      "role": "transceiver",
+      "band": [
+        "UHF"
+      ],
+      "category_name": "Transceivers (TT&C)",
+      "class_name": "UHF Radios",
+      "option_name": "Encrypted UHF Transceiver",
+      "product_name": "EnduroSat UHF Transceiver",
+      "vendor": "EnduroSat",
+      "key_spec": "UHF TT&C transceiver with AES-256 and in-orbit configurable RF settings",
+      "normalized": {
+        "mass_kg": 0.2,
+        "volume_U": 0.2,
+        "power_tx_W": 8.0,
+        "power_rx_W": 0.5,
+        "power_avg_W": 2.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 0.0196,
+        "frequency_range_MHz": [
+          400,
+          438
+        ],
+        "tx_power_dBm": 33,
+        "modulation": [
+          "2GFSK",
+          "GMSK"
+        ],
+        "protocol": "AX.25"
+      },
+      "integration": {
+        "interfaces": [
+          "CAN",
+          "UART"
+        ],
+        "pointing_requirement": "none"
+      },
+      "tags": [
+        "uhf",
+        "encrypted",
+        "ttc",
+        "safe_mode"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.endurosat.com/cubesat-store/cubesat-communication-modules/uhf-transceiver-ii/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-ttc-endurosat-sband-transceiver",
+      "domain": "ttc",
+      "role": "transceiver",
+      "band": [
+        "S"
+      ],
+      "category_name": "Transceivers (TT&C)",
+      "class_name": "S-Band Transceivers",
+      "option_name": "Full-Duplex S-Band Transceiver",
+      "product_name": "EnduroSat S-Band Transceiver",
+      "vendor": "EnduroSat",
+      "key_spec": "Full-duplex S-band radio with AES-256 and configurable data rate/output power",
+      "normalized": {
+        "mass_kg": 0.246,
+        "volume_U": 0.25,
+        "power_tx_W": 12.0,
+        "power_rx_W": 1.2,
+        "power_avg_W": 3.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 0.125,
+        "frequency_tx_MHz": [
+          2200,
+          2290
+        ],
+        "frequency_rx_MHz": [
+          2025,
+          2110
+        ],
+        "tx_power_dBm": [
+          24,
+          33
+        ],
+        "modulation": [
+          "GFSK",
+          "GMSK",
+          "MSK"
+        ]
+      },
+      "integration": {
+        "interfaces": [
+          "CAN-FD",
+          "UART"
+        ],
+        "pointing_requirement": "coarse_nadir"
+      },
+      "tags": [
+        "s_band",
+        "ttc",
+        "encrypted",
+        "full_duplex"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.endurosat.com/products/s-band-transceiver/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-payload-aac-pulsar-stx",
+      "domain": "payload_downlink",
+      "role": "transmitter",
+      "band": [
+        "S"
+      ],
+      "category_name": "RF Transmitters",
+      "class_name": "S-Band Transmitters",
+      "option_name": "Low-Power S-Band Transmitter",
+      "product_name": "AAC Clyde Space PULSAR-STX",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "Compact S-band transmitter for CubeSat downlink up to 2 Mbps",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 0.16,
+        "power_tx_W": 5.0,
+        "power_avg_W": 3.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 2,
+        "frequency_range_MHz": [
+          2200,
+          2450
+        ],
+        "rf_output_power_dBm": [
+          24,
+          30
+        ],
+        "modulation": [
+          "QPSK",
+          "OQPSK"
+        ]
+      },
+      "integration": {
+        "interfaces": [
+          "I2C",
+          "SPI"
+        ],
+        "dimensions_mm": {
+          "length_mm": 96,
+          "width_mm": 90,
+          "height_mm": 16.6
+        },
+        "pointing_requirement": "coarse_nadir"
+      },
+      "tags": [
+        "s_band",
+        "payload_downlink",
+        "low_power"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.aac-clyde.space/what-we-do/space-products-components/communications/pulsar-stx"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-payload-aac-pulsar-hstx",
+      "domain": "payload_downlink",
+      "role": "transmitter",
+      "band": [
+        "S"
+      ],
+      "category_name": "RF Transmitters",
+      "class_name": "S-Band Transmitters",
+      "option_name": "High-Speed S-Band Transmitter",
+      "product_name": "AAC Clyde Space PULSAR-HSTX",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "Higher-rate S-band transmitter for CubeSat downlink up to 10 Mbps",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 0.16,
+        "power_tx_W": 5.0,
+        "power_avg_W": 3.0
+      },
+      "performance": {
+        "max_data_rate_Mbps": 10,
+        "frequency_range_MHz": [
+          2200,
+          2450
+        ],
+        "rf_output_power_dBm": [
+          24,
+          30
+        ],
+        "modulation": [
+          "QPSK",
+          "OQPSK"
+        ]
+      },
+      "integration": {
+        "interfaces": [
+          "I2C",
+          "SPI"
+        ],
+        "dimensions_mm": {
+          "length_mm": 96,
+          "width_mm": 90,
+          "height_mm": 17.41
+        },
+        "pointing_requirement": "coarse_nadir"
+      },
+      "tags": [
+        "s_band",
+        "higher_rate",
+        "payload_downlink"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.aac-clyde.space/what-we-do/space-products-components/communications/pulsar-hstx"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-payload-endurosat-xband-sdr",
+      "domain": "payload_downlink",
+      "role": "transmitter",
+      "band": [
+        "X"
+      ],
+      "category_name": "RF Transmitters",
+      "class_name": "X-Band Transmitters",
+      "option_name": "Wideband Software Defined Radio",
+      "product_name": "EnduroSat X-Band SDR",
+      "vendor": "EnduroSat",
+      "key_spec": "Space-qualified X-band SDR for data-intensive payloads with 1+ Gbps gross data rate",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_tx_W": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "max_data_rate_Mbps": 1000,
+        "frequency_range_MHz": [
+          8000,
+          8400
+        ],
+        "symbol_rate_MSps": 122,
+        "ram_GB": 4,
+        "storage_GB": 160,
+        "modulation": "DVB-S2X"
+      },
+      "integration": {
+        "interfaces": [
+          "CAN",
+          "Gigabit Ethernet",
+          "SpaceWire",
+          "UART",
+          "RS-485",
+          "SPI",
+          "I2C"
+        ],
+        "pointing_requirement": "fine"
+      },
+      "tags": [
+        "x_band",
+        "sdr",
+        "high_rate",
+        "payload_downlink"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.endurosat.com/products/x-band-sdr/"
+      },
+      "verification_status": "public_vendor_missing_numeric"
+    },
+    {
+      "id": "comms-payload-syrlinks-ewc30",
+      "domain": "payload_downlink",
+      "role": "transmitter",
+      "band": [
+        "X"
+      ],
+      "category_name": "RF Transmitters",
+      "class_name": "X-Band Transmitters",
+      "option_name": "High-Rate X-Band Transmitter",
+      "product_name": "Syrlinks EWC30",
+      "vendor": "Syrlinks",
+      "key_spec": "X-band transmitter up to 400 Mbps, with high-power and low-power PA options",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_tx_W": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "max_data_rate_Mbps": 400,
+        "frequency_range_MHz": [
+          8025,
+          8400
+        ],
+        "rf_output_dBm": [
+          30,
+          40
+        ]
+      },
+      "integration": {
+        "pointing_requirement": "fine"
+      },
+      "tags": [
+        "x_band",
+        "high_rate",
+        "payload_downlink"
+      ],
+      "trl": null,
+      "source": {
+        "type": "web",
+        "url": "https://satsearch.co/products/syrlinks-ewc30-x-band-transmitter"
+      },
+      "verification_status": "public_vendor_missing_numeric"
+    },
+    {
+      "id": "comms-payload-picosats-kka-transponder",
+      "domain": "payload_relay",
+      "role": "transponder",
+      "band": [
+        "K",
+        "Ka"
+      ],
+      "category_name": "RF Transmitters / Receivers",
+      "class_name": "Ka-Band Transponders",
+      "option_name": "K/Ka Bent-Pipe Transponder",
+      "product_name": "Picosats RadioSat K/Ka-band Transponder",
+      "vendor": "Picosats",
+      "key_spec": "Miniaturized K/Ka-band non-regenerative transponder for CubeSat and SmallSat relay links",
+      "normalized": {
+        "mass_kg": 0.7,
+        "volume_U": 0.5,
+        "power_tx_W": 40,
+        "power_rx_W": null,
+        "power_avg_W": 40.0
+      },
+      "performance": {
+        "bandwidth_MHz": [
+          0.4,
+          500
+        ],
+        "frequency_downlink_MHz": [
+          17800,
+          20200
+        ],
+        "frequency_uplink_MHz": [
+          27600,
+          30000
+        ],
+        "rf_output_power_W": 5,
+        "noise_figure_dB": 3
+      },
+      "integration": {
+        "interfaces": [
+          "RS422",
+          "RS232"
+        ],
+        "dimensions_mm": {
+          "length_mm": 93.5,
+          "width_mm": 114.2,
+          "height_mm": 45.6
+        },
+        "pointing_requirement": "fine"
+      },
+      "tags": [
+        "ka_band",
+        "transponder",
+        "relay",
+        "bent_pipe"
+      ],
+      "trl": null,
+      "source": {
+        "type": "web",
+        "url": "https://picosats.eu/products/radiosat/k-ka-band/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-payload-picosats-ku-transponder",
+      "domain": "payload_relay",
+      "role": "transponder",
+      "band": [
+        "Ku"
+      ],
+      "category_name": "RF Transmitters / Receivers",
+      "class_name": "Ku-Band Transponders",
+      "option_name": "Ku Bent-Pipe Transponder",
+      "product_name": "Picosats RadioSat Ku-band Transponder",
+      "vendor": "Picosats",
+      "key_spec": "Miniaturized Ku-band non-regenerative transponder for CubeSat and SmallSat relay links",
+      "normalized": {
+        "mass_kg": 1.0,
+        "volume_U": 1.0,
+        "power_tx_W": 40,
+        "power_avg_W": 40.0
+      },
+      "performance": {
+        "bandwidth_MHz": [
+          0.4,
+          200
+        ],
+        "frequency_downlink_MHz": [
+          10700,
+          12750
+        ],
+        "frequency_uplink_MHz": [
+          12750,
+          14800
+        ],
+        "rf_output_power_W": 5,
+        "noise_figure_dB": 3
+      },
+      "integration": {
+        "interfaces": [
+          "RS422",
+          "RS485"
+        ],
+        "dimensions_mm": {
+          "length_mm": 93.5,
+          "width_mm": 114.2,
+          "height_mm": 62.1
+        },
+        "pointing_requirement": "fine"
+      },
+      "tags": [
+        "ku_band",
+        "transponder",
+        "relay"
+      ],
+      "trl": null,
+      "source": {
+        "type": "web",
+        "url": "https://picosats.eu/products/radiosat/ku-band/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-ttc-syrlinks-ewc31",
+      "domain": "ttc",
+      "role": "transceiver",
+      "band": [
+        "S"
+      ],
+      "category_name": "Transceivers (TT&C)",
+      "class_name": "S-Band Transceivers",
+      "option_name": "CCSDS S-Band Transceiver",
+      "product_name": "Syrlinks EWC31",
+      "vendor": "Syrlinks",
+      "key_spec": "CCSDS S-band transceiver for NanoSat and CubeSat platforms",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_tx_W": null,
+        "power_rx_W": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "max_data_rate_Mbps": 2,
+        "rx_data_rate_Mbps": 0.256,
+        "frequency_tx_MHz": [
+          2200,
+          2290
+        ],
+        "frequency_rx_MHz": [
+          2025,
+          2110
+        ]
+      },
+      "integration": {
+        "pointing_requirement": "coarse_nadir"
+      },
+      "tags": [
+        "s_band",
+        "ccsds",
+        "ttc"
+      ],
+      "trl": null,
+      "source": {
+        "type": "web",
+        "url": "https://www.satnow.com/products/transponders/syrlinks/115-1346-ewc31"
+      },
+      "verification_status": "public_vendor_missing_numeric"
+    },
+    {
+      "id": "comms-antenna-aac-pulsar-sant",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "S"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "S-Band Antennas",
+      "option_name": "S-Band Patch Antenna",
+      "product_name": "AAC Clyde Space PULSAR-SANT",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "S-band CubeSat patch antenna compatible with PULSAR STX/HSTX transmitters",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 1.0,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "gain_dBi": 7,
+        "frequency_range_MHz": [
+          2200,
+          2450
+        ],
+        "beamwidth_deg": 60
+      },
+      "integration": {
+        "pointing_requirement": "coarse_nadir",
+        "dimensions": "1U form factor",
+        "connector": "SMA female"
+      },
+      "tags": [
+        "s_band",
+        "patch",
+        "nadir",
+        "flight_heritage"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.aac-clyde.space/what-we-do/space-products-components/communications/pulsar-sant"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-antenna-anywaves-sband-ttc",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "S"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "S-Band Antennas",
+      "option_name": "S-Band TT&C Patch Antenna",
+      "product_name": "Anywaves S-Band TT&C Antenna",
+      "vendor": "Anywaves",
+      "key_spec": "Flight-heritage S-band TT&C antenna for LEO platforms",
+      "normalized": {
+        "mass_kg": 0.136,
+        "volume_U": 0.1,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "gain_dBi": 6.5,
+        "frequency_range_MHz": [
+          2025,
+          2290
+        ],
+        "gain_at_30deg_dBi": 4.5,
+        "gain_at_60deg_dBi": 0
+      },
+      "integration": {
+        "pointing_requirement": "coarse_nadir",
+        "dimensions_mm": {
+          "length_mm": 84.3,
+          "width_mm": 84.3,
+          "height_mm": 12.1
+        },
+        "connector": "SMA"
+      },
+      "tags": [
+        "s_band",
+        "ttc",
+        "wide_beam",
+        "trl9"
+      ],
+      "trl": 9,
+      "source": {
+        "type": "web",
+        "url": "https://anywaves.com/products/s-band-ttc-antenna/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-antenna-anywaves-compact-sband",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "S"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "S-Band Antennas",
+      "option_name": "Compact Dual-Polarization S-Band Antenna",
+      "product_name": "Anywaves Compact S-Band TT&C Antenna",
+      "vendor": "Anywaves",
+      "key_spec": "Compact S-band TT&C antenna with dual circular polarization",
+      "normalized": {
+        "mass_kg": 0.106,
+        "volume_U": 0.06,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "gain_dBi": 5.4,
+        "frequency_range_MHz": [
+          1980,
+          2290
+        ],
+        "gain_at_30deg_dBi": 4.2,
+        "gain_at_60deg_dBi": 0.5,
+        "max_rf_power_W": 20
+      },
+      "integration": {
+        "pointing_requirement": "coarse_nadir",
+        "dimensions_mm": {
+          "length_mm": 70.9,
+          "width_mm": 70.9,
+          "height_mm": 10.3
+        },
+        "connector": "SMA"
+      },
+      "tags": [
+        "s_band",
+        "ttc",
+        "compact",
+        "dual_polarization"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://anywaves.com/products/compact-s-band-ttc-antenna/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-antenna-anywaves-xband-heritage",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "X"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "X-Band High-Gain Antennas",
+      "option_name": "Legacy X-Band Patch",
+      "product_name": "Anywaves X-Band Payload Telemetry Antenna",
+      "vendor": "Anywaves",
+      "key_spec": "Legacy X-band payload telemetry antenna; replaced by compact high-gain successor",
+      "normalized": {
+        "mass_kg": 0.059,
+        "volume_U": 0.08,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "gain_dBi": 11.5,
+        "frequency_range_MHz": [
+          8025,
+          8400
+        ]
+      },
+      "integration": {
+        "pointing_requirement": "fine",
+        "dimensions_mm": {
+          "length_mm": 72.6,
+          "width_mm": 72.6,
+          "height_mm": 11
+        }
+      },
+      "tags": [
+        "x_band",
+        "payload_downlink",
+        "legacy",
+        "trl9"
+      ],
+      "trl": 9,
+      "source": {
+        "type": "web",
+        "url": "https://anywaves.com/products/x-band-payload-telemetry-antenna/"
+      },
+      "verification_status": "public_source_discontinued"
+    },
+    {
+      "id": "comms-antenna-isis-vhfuhf-6u",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "VHF",
+        "UHF"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "UHF/VHF Antennas",
+      "option_name": "Deployable Antenna for 6U-16U",
+      "product_name": "ISISPACE VHF/UHF Antenna for 6U+",
+      "vendor": "ISISPACE",
+      "key_spec": "VHF/UHF deployable antenna system for larger smallsat platforms",
+      "normalized": {
+        "mass_kg": 0.115,
+        "volume_U": 0.1,
+        "power_avg_W": 0.08,
+        "power_peak_W": 2.3
+      },
+      "performance": {
+        "gain_dBi": 0,
+        "frequency_range_MHz": [
+          145,
+          868
+        ],
+        "max_rf_power_W": 2,
+        "bandwidth_uhf_MHz": 50,
+        "bandwidth_vhf_MHz": 10
+      },
+      "integration": {
+        "deployment_required": true,
+        "interfaces": [
+          "I2C"
+        ],
+        "stowed_dimensions_mm": {
+          "length_mm": 98,
+          "width_mm": 98,
+          "height_mm": null
+        }
+      },
+      "tags": [
+        "vhf",
+        "uhf",
+        "deployable",
+        "6u_16u"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.isispace.nl/product/vhf-uhf-antenna-6u-16u/"
+      },
+      "verification_status": "public_source"
+    },
+    {
+      "id": "comms-antenna-gnss-isis-active-patch",
+      "domain": "antenna",
+      "role": "antenna",
+      "band": [
+        "L"
+      ],
+      "category_name": "RF Antennas",
+      "class_name": "GNSS Antennas",
+      "option_name": "GNSS Active Patch",
+      "product_name": "ISISPACE GNSS Active Patch Antenna",
+      "vendor": "ISISPACE",
+      "key_spec": "GPS-L1/Galileo-E1 active patch antenna for positioning and timing",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": 0.05,
+        "power_avg_W": null
+      },
+      "performance": {
+        "frequency_range_MHz": [
+          1575,
+          1575
+        ],
+        "gain_dBic": 5,
+        "signal_gain_dB": 34.5
+      },
+      "integration": {
+        "pointing_requirement": "sky_view",
+        "polarization": "RHCP"
+      },
+      "tags": [
+        "gnss",
+        "timing",
+        "navigation",
+        "patch"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.isispace.nl/product/gnss-active-patch-antenna/"
+      },
+      "verification_status": "public_vendor_missing_numeric"
+    },
+    {
+      "id": "comms-receiver-endurosat-sband-rx",
+      "domain": "receiver",
+      "role": "receiver",
+      "band": [
+        "S"
+      ],
+      "category_name": "RF Receivers",
+      "class_name": "S-Band Receivers",
+      "option_name": "Receiver Channel from S-Band Transceiver",
+      "product_name": "EnduroSat S-Band Receiver Channel",
+      "vendor": "EnduroSat",
+      "key_spec": "S-band receiver channel normalized from EnduroSat full-duplex transceiver",
+      "normalized": {
+        "mass_kg": 0.123,
+        "volume_U": 0.125,
+        "power_rx_W": 1.2,
+        "power_avg_W": 1.2
+      },
+      "performance": {
+        "frequency_rx_MHz": [
+          2025,
+          2110
+        ],
+        "max_data_rate_Mbps": 0.125
+      },
+      "integration": {
+        "interfaces": [
+          "CAN-FD",
+          "UART"
+        ],
+        "pointing_requirement": "coarse_nadir"
+      },
+      "tags": [
+        "s_band",
+        "receiver",
+        "ttc"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.endurosat.com/products/s-band-transceiver/"
+      },
+      "verification_status": "derived_from_transceiver_channel"
+    },
+    {
+      "id": "comms-receiver-aac-pulsar-utrx-rx",
+      "domain": "receiver",
+      "role": "receiver",
+      "band": [
+        "UHF"
+      ],
+      "category_name": "RF Receivers",
+      "class_name": "UHF Receivers",
+      "option_name": "Receiver Channel from UHF Transceiver",
+      "product_name": "AAC Clyde Space PULSAR-UTRX Receiver Channel",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "UHF receiver channel normalized from PULSAR-UTRX TT&C transceiver",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 0.08,
+        "power_rx_W": 0.24,
+        "power_avg_W": 0.24
+      },
+      "performance": {
+        "frequency_rx_MHz": [
+          400,
+          440
+        ],
+        "sensitivity_dBm": -115,
+        "max_data_rate_Mbps": 0.0096
+      },
+      "integration": {
+        "interfaces": [
+          "I2C"
+        ],
+        "pointing_requirement": "none"
+      },
+      "tags": [
+        "uhf",
+        "receiver",
+        "ttc"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.aac-clyde.space/what-we-do/space-products-components/communications/pulsar-utrx"
+      },
+      "verification_status": "derived_from_transceiver_channel"
+    },
+    {
+      "id": "comms-receiver-aac-pulsar-vutrx-rx",
+      "domain": "receiver",
+      "role": "receiver",
+      "band": [
+        "VHF",
+        "UHF"
+      ],
+      "category_name": "RF Receivers",
+      "class_name": "VHF/UHF Receivers",
+      "option_name": "Receiver Channel from VHF/UHF Transceiver",
+      "product_name": "AAC Clyde Space PULSAR-VUTRX Receiver Channel",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "VHF/UHF receiver channel normalized from PULSAR-VUTRX full-duplex transceiver",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 0.08,
+        "power_rx_W": 0.162,
+        "power_avg_W": 0.162
+      },
+      "performance": {
+        "frequency_vhf_MHz": [
+          140,
+          150
+        ],
+        "frequency_uhf_MHz": [
+          400,
+          440
+        ],
+        "sensitivity_dBm": -117,
+        "max_data_rate_Mbps": 0.0096
+      },
+      "integration": {
+        "interfaces": [
+          "I2C"
+        ],
+        "pointing_requirement": "none"
+      },
+      "tags": [
+        "vhf",
+        "uhf",
+        "receiver",
+        "ttc"
+      ],
+      "trl": 7,
+      "source": {
+        "type": "web",
+        "url": "https://www.aac-clyde.space/what-we-do/space-products-components/communications/pulsar-vutrx"
+      },
+      "verification_status": "derived_from_transceiver_channel"
+    },
+    {
+      "id": "comms-receiver-syrlinks-ewc31-rx",
+      "domain": "receiver",
+      "role": "receiver",
+      "band": [
+        "S"
+      ],
+      "category_name": "RF Receivers",
+      "class_name": "S-Band Receivers",
+      "option_name": "CCSDS S-Band Receiver Channel",
+      "product_name": "Syrlinks EWC31 Receiver Channel",
+      "vendor": "Syrlinks",
+      "key_spec": "S-band receiver channel normalized from Syrlinks EWC31 transceiver",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_rx_W": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "frequency_rx_MHz": [
+          2025,
+          2110
+        ],
+        "max_data_rate_Mbps": 0.256
+      },
+      "integration": {
+        "pointing_requirement": "coarse_nadir"
+      },
+      "tags": [
+        "s_band",
+        "receiver",
+        "ccsds"
+      ],
+      "trl": null,
+      "source": {
+        "type": "web",
+        "url": "https://www.satnow.com/products/transponders/syrlinks/115-1346-ewc31"
+      },
+      "verification_status": "derived_from_transceiver_channel_missing_numeric"
+    }
+  ],
+  "selection_hooks": {
+    "hard_constraints": [
+      "comm.performance.max_data_rate_Mbps >= mission.required_downlink_mbps",
+      "comm.band intersects mission.allowed_frequency_bands when specified",
+      "antenna.band intersects selected_transmitter.band",
+      "antenna.performance.gain_dBi >= mission.min_antenna_gain_dBi when specified",
+      "selected_comm.normalized.power_tx_W + selected_antenna.normalized.power_avg_W <= mission.comm_power_budget_W when specified",
+      "selected_comm.normalized.mass_kg + selected_antenna.normalized.mass_kg <= mission.comm_mass_budget_kg when specified"
+    ],
+    "compatibility_rules": [
+      "UHF/VHF TT&C links are safe-mode/tumbling-tolerant and should be kept as backup links for most missions.",
+      "S-band transmitters support low-to-medium data payload downlink and moderate pointing needs.",
+      "X-band and Ka-band payload downlinks require fine pointing and higher ADCS capability.",
+      "High-gain X/Ka antennas require compatible ADCS pointing accuracy and ground-station support.",
+      "Transceivers can satisfy both transmitter and receiver roles if the solver allows combined hardware."
+    ],
+    "suggested_scoring_fields": [
+      {
+        "field": "performance.max_data_rate_Mbps",
+        "goal": "maximize",
+        "weight_hint": 0.25
+      },
+      {
+        "field": "normalized.mass_kg",
+        "goal": "minimize",
+        "weight_hint": 0.2
+      },
+      {
+        "field": "normalized.power_tx_W",
+        "goal": "minimize",
+        "weight_hint": 0.2
+      },
+      {
+        "field": "performance.gain_dBi",
+        "goal": "maximize",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "trl",
+        "goal": "maximize",
+        "weight_hint": 0.1
+      },
+      {
+        "field": "verification_status",
+        "goal": "prefer_public_source",
+        "weight_hint": 0.1
+      }
+    ]
+  }
+}

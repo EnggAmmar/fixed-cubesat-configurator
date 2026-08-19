@@ -1,0 +1,37 @@
+{
+  "mission_family": "Remote Sensing",
+  "block": "MASTER_BLOCK_D_SPACE_OBSERVATION_PAYLOADS",
+  "schema_version": "ONE_V3_PAYLOAD_DB_2.1",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+
+    {
+      "payload_group": "Space Observation Payloads",
+      "payload_type": "Telescopes",
+      "payload_variant": "Optical Telescopes",
+      "products": [
+        {"payload_id":"RS-SPC-OPT-001","vendor":"ESA CubeSpec Heritage","product_name":"CubeSpec Compact Stellar Telescope","mass_kg":5.80,"dimensions_mm":{"length_x":200,"width_y":120,"height_z":300},"payload_envelope_u":6.0,"mounting_face":"zenith","avg_power_w":16.0,"peak_power_w":24.0,"nominal_data_rate_mbps":95,"spectral_band":"420-620nm optical astronomy","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.005,"estimated_cost_usd":620000},
+        {"payload_id":"RS-SPC-OPT-002","vendor":"Exoplanet CubeSat Heritage","product_name":"Compact Photometric Observation Telescope","mass_kg":2.40,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":180},"payload_envelope_u":2.0,"mounting_face":"zenith","avg_power_w":8.5,"peak_power_w":12.5,"nominal_data_rate_mbps":48,"spectral_band":"450-850nm stellar photometry","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.010,"estimated_cost_usd":245000},
+        {"payload_id":"RS-SPC-OPT-003","vendor":"CUVE Heritage","product_name":"UV/Visible Compact Space Telescope","mass_kg":3.20,"dimensions_mm":{"length_x":120,"width_y":120,"height_z":210},"payload_envelope_u":3.0,"mounting_face":"zenith","avg_power_w":10.0,"peak_power_w":14.0,"nominal_data_rate_mbps":58,"spectral_band":"190-570nm UV/VIS","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.008,"estimated_cost_usd":310000},
+        {"payload_id":"RS-SPC-OPT-004","vendor":"OrbitalView OEM","product_name":"Mini Astrophotometry Telescope","mass_kg":2.10,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":165},"payload_envelope_u":1.8,"mounting_face":"zenith","avg_power_w":7.5,"peak_power_w":11.0,"nominal_data_rate_mbps":42,"spectral_band":"VIS astronomy","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.012,"estimated_cost_usd":210000}
+      ]
+    },
+
+    {
+      "payload_group": "Space Observation Payloads",
+      "payload_type": "High-Energy Detectors",
+      "payload_variant": "High-Energy Detectors",
+      "products": [
+        {"payload_id":"RS-SPC-HED-001","vendor":"LIGHT-1 Heritage","product_name":"RAAD Gamma Flash Detector","mass_kg":1.20,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":100},"payload_envelope_u":1.0,"mounting_face":"zenith","avg_power_w":4.5,"peak_power_w":7.0,"nominal_data_rate_mbps":22,"spectral_band":"hard X-ray to soft gamma","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.08,"estimated_cost_usd":145000},
+        {"payload_id":"RS-SPC-HED-002","vendor":"HERMES Heritage","product_name":"Transient X/Gamma Detector Module","mass_kg":1.35,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":110},"payload_envelope_u":1.1,"mounting_face":"zenith","avg_power_w":4.8,"peak_power_w":7.4,"nominal_data_rate_mbps":24,"spectral_band":"3keV-2MeV","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.08,"estimated_cost_usd":152000},
+        {"payload_id":"RS-SPC-HED-003","vendor":"CUBES Heritage","product_name":"Compact X-Ray Detector Payload","mass_kg":0.95,"dimensions_mm":{"length_x":90,"width_y":90,"height_z":85},"payload_envelope_u":0.8,"mounting_face":"zenith","avg_power_w":3.8,"peak_power_w":6.0,"nominal_data_rate_mbps":18,"spectral_band":"35-800 keV","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.10,"estimated_cost_usd":128000},
+        {"payload_id":"RS-SPC-HED-004","vendor":"AstroSense OEM","product_name":"Wide Field Cosmic Event Detector","mass_kg":1.10,"dimensions_mm":{"length_x":92,"width_y":92,"height_z":90},"payload_envelope_u":0.9,"mounting_face":"zenith","avg_power_w":4.0,"peak_power_w":6.2,"nominal_data_rate_mbps":19,"spectral_band":"X-ray/gamma transient","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.09,"estimated_cost_usd":135000}
+      ]
+    }
+
+  ]
+}

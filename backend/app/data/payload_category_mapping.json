@@ -1,0 +1,76 @@
+{
+  "version": "v1",
+  "families": {
+    "remote_sensing": {
+      "hyperspectral": {
+        "status": "mapped",
+        "payload_variants": ["Hyperspectral Imagers"]
+      },
+      "vhr_optical": {
+        "status": "mapped",
+        "payload_variants": ["Visible Light Cameras", "Panchromatic Cameras"]
+      },
+      "thermal": {
+        "status": "mapped",
+        "payload_variants": ["MWIR Sensors", "LWIR Sensors"]
+      },
+      "sar": {
+        "status": "mapped",
+        "payload_variants": ["X-Band SAR", "C-Band SAR", "L-Band SAR", "P-Band SAR"]
+      },
+      "infrared_imaging": {
+        "status": "mapped",
+        "payload_variants": ["NIR Sensors", "SWIR Sensors"]
+      },
+      "my_payload": {
+        "status": "manual_frontend",
+        "payload_variants": [],
+        "notes": "My Payload is a special UI-controlled category (manual user inputs), not sourced from the full payload database."
+      }
+    },
+    "iot_communication": {
+      "iot_store_and_forward": {
+        "status": "mapped",
+        "payload_variants": ["Bent-Pipe Transponders", "Regenerative Transponders"]
+      },
+      "broadband_rf_comms": {
+        "status": "mapped",
+        "payload_variants": ["Software-Defined Transponders", "RF Transmitters", "RF Receivers", "Signal Processors"]
+      },
+      "optical_laser_comms": {
+        "status": "mapped",
+        "payload_variants": ["Laser Communication Terminals", "Optical Links"]
+      },
+      "quantum_secure_comms": {
+        "status": "mapped",
+        "payload_variants": ["Quantum Communication Systems"]
+      },
+      "my_payload": {
+        "status": "manual_frontend",
+        "payload_variants": []
+      }
+    },
+    "navigation": {
+      "pnt_augmentation": {
+        "status": "mapped",
+        "payload_variants": ["PNT Augmentation Systems"]
+      },
+      "navigation_beacons": {
+        "status": "mapped",
+        "payload_variants": ["Navigation Beacons"]
+      },
+      "rf_geolocation": {
+        "status": "mapped",
+        "payload_variants": ["Direction Finding Arrays", "RF Signal Localization"]
+      },
+      "timing_payloads": {
+        "status": "mapped",
+        "payload_variants": ["Timing Payloads"]
+      },
+      "my_payload": {
+        "status": "manual_frontend",
+        "payload_variants": []
+      }
+    }
+  }
+}

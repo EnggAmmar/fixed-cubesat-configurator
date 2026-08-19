@@ -1,0 +1,1459 @@
+{
+  "meta": {
+    "subsystem": "ADCS",
+    "full_name": "Attitude Determination and Control System",
+    "schema_version": "ONE_V3_SUBSYSTEM_DB_ADCS_1.0",
+    "created_utc": "2026-05-11",
+    "dimension_convention": {
+      "length_mm": "dominant product length in mm when public source provides dimensions",
+      "width_mm": "dominant product width in mm when public source provides dimensions",
+      "height_mm": "dominant product height / depth in mm when public source provides dimensions",
+      "volume_U": "approximate occupied CubeSat unit volume; null or absent if not confidently known"
+    },
+    "notes": [
+      "Separated into attitude_sensors and attitude_actuators domains as requested.",
+      "Public web specifications were used where available; uploaded seed data was retained where no public source was accessible in this run.",
+      "Fields marked data_confidence='public_page_plus_engineering_estimate' include engineering estimates for missing mass/power/volume needed by solver trade studies and should be replaced with datasheet values before procurement-level use.",
+      "Cold-gas and electric propulsion products are included only as attitude-control-capable actuators; they may also belong to the propulsion subsystem database later."
+    ],
+    "source_uploads": [
+      "adcs_v2.json"
+    ],
+    "ontology": {
+      "attitude_sensors": [
+        "Coarse Sun Sensors",
+        "Fine Sun Sensors",
+        "3-Axis Magnetometers",
+        "MEMS Gyroscopes",
+        "Star Trackers",
+        "Earth Horizon Sensors",
+        "GPS Receivers"
+      ],
+      "attitude_actuators": [
+        "Magnetorquers (3-Axis)",
+        "Reaction Wheels",
+        "Cold Gas Thrusters",
+        "Electrospray Thrusters",
+        "Control Moment Gyroscopes",
+        "Integrated ADCS Units"
+      ]
+    },
+    "units": {
+      "mass": "kg",
+      "power": "W",
+      "volume": "CubeSat U",
+      "torque": "mN m",
+      "momentum": "mN m s",
+      "dipole": "A m^2",
+      "accuracy": "deg",
+      "specific_impulse": "s"
+    }
+  },
+  "products": [
+    {
+      "id": "adcs-sensor-sunsensor-solarmems-ssocd60",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "fine_sun_sensor",
+      "category_name": "Attitude Sensors",
+      "class_name": "Fine Sun Sensors",
+      "option_name": "Digital fine sun sensor",
+      "product_name": "SSOC-D60",
+      "vendor": "Solar MEMS",
+      "key_spec": "Digital two-axis fine sun sensor, ±60° FOV, <0.3° accuracy.",
+      "normalized": {
+        "mass_kg": 0.035,
+        "power_avg_W": 0.35,
+        "volume_U": 0.022,
+        "voltage_V": 5.0
+      },
+      "performance": {
+        "accuracy_deg": 0.3,
+        "precision_deg": 0.05,
+        "field_of_view_deg": 120,
+        "radiation_tolerance_krad": 30
+      },
+      "integration": {
+        "interfaces": [
+          "SPI",
+          "UART",
+          "I2C",
+          "RS-422"
+        ],
+        "mounting": "external face"
+      },
+      "source": {
+        "urls": [
+          "https://solar-mems.com/space-equipment/ssoc-d60/",
+          "https://www.solar-mems.com/smt_pdf/commercial_brochure_SSOC-D.pdf"
+        ]
+      },
+      "tags": [
+        "sun_vector",
+        "fine_sun_sensor",
+        "space_grade",
+        "low_power"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-sensor-sunsensor-solarmems-nanossocd60",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "fine_sun_sensor",
+      "category_name": "Attitude Sensors",
+      "class_name": "Fine Sun Sensors",
+      "option_name": "Nano digital fine sun sensor",
+      "product_name": "nanoSSOC-D60",
+      "vendor": "Solar MEMS",
+      "key_spec": "Nano two-axis digital sun sensor for CubeSats, ±60° FOV.",
+      "normalized": {
+        "mass_kg": 0.0065,
+        "power_avg_W": 0.115,
+        "volume_U": 0.004,
+        "voltage_V": 3.3
+      },
+      "performance": {
+        "accuracy_deg": 0.5,
+        "precision_deg": 0.1,
+        "field_of_view_deg": 120,
+        "radiation_tolerance_krad": 30
+      },
+      "integration": {
+        "interfaces": [
+          "UART",
+          "I2C",
+          "SPI"
+        ],
+        "mounting": "external face"
+      },
+      "source": {
+        "urls": [
+          "https://solar-mems.com/space-equipment/nanossoc-d60/",
+          "https://www.satnow.com/products/sun-sensors/solar-mems/39-1218-nanossoc-d60"
+        ]
+      },
+      "tags": [
+        "sun_vector",
+        "nano",
+        "fine_sun_sensor",
+        "low_power"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-sensor-sunsensor-newspace-aquila-a05",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "coarse_sun_sensor",
+      "category_name": "Attitude Sensors",
+      "class_name": "Coarse Sun Sensors",
+      "option_name": "Coarse/safe-mode sun sensor",
+      "product_name": "NewSpace Systems AQUILA-A05",
+      "vendor": "NewSpace Systems",
+      "key_spec": "Compact coarse sun-angle sensor for safe mode and constellation missions.",
+      "normalized": {
+        "mass_kg": 0.015,
+        "power_avg_W": 0.05,
+        "volume_U": 0.01
+      },
+      "performance": {
+        "accuracy_deg": 1.0,
+        "field_of_view_deg": 120
+      },
+      "integration": {
+        "interfaces": [
+          "digital"
+        ],
+        "mounting": "external face"
+      },
+      "source": {
+        "urls": [
+          "https://www.newspacesystems.com/products/sun-sensors/"
+        ]
+      },
+      "tags": [
+        "safe_mode",
+        "sun_vector",
+        "coarse",
+        "heritage"
+      ],
+      "trl": 9,
+      "data_confidence": "public_page_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-sensor-sunsensor-isispace-coarse",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "coarse_sun_sensor",
+      "category_name": "Attitude Sensors",
+      "class_name": "Coarse Sun Sensors",
+      "option_name": "Photodiode coarse sun sensor",
+      "product_name": "ISISpace Coarse Sun Sensor",
+      "vendor": "ISISpace",
+      "key_spec": "Simple coarse sun vector sensing for safe-mode detumbling.",
+      "normalized": {
+        "mass_kg": 0.002,
+        "power_avg_W": 0.001,
+        "volume_U": 0.005
+      },
+      "performance": {
+        "accuracy_deg": 5.0,
+        "field_of_view_deg": 120
+      },
+      "integration": {
+        "interfaces": [
+          "analog"
+        ],
+        "mounting": "external face"
+      },
+      "source": {
+        "urls": []
+      },
+      "tags": [
+        "safe_mode",
+        "coarse",
+        "low_power"
+      ],
+      "trl": 7,
+      "data_confidence": "uploaded_seed"
+    },
+    {
+      "id": "adcs-sensor-startracker-cubespace-cubestar",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "star_tracker",
+      "category_name": "Attitude Sensors",
+      "class_name": "Star Trackers",
+      "option_name": "Compact star tracker",
+      "product_name": "CubeStar Gen 1",
+      "vendor": "CubeSpace",
+      "key_spec": "Low-power CubeSat star tracker with UART interface.",
+      "normalized": {
+        "mass_kg": 0.055,
+        "power_avg_W": 0.142,
+        "volume_U": 0.096,
+        "voltage_V": 3.3
+      },
+      "performance": {
+        "attitude_accuracy_deg": 0.02,
+        "update_rate_hz": 1.0,
+        "radiation_tolerance_krad": 24
+      },
+      "integration": {
+        "interfaces": [
+          "UART"
+        ],
+        "dimensions_mm": {
+          "length_mm": 50,
+          "width_mm": 35,
+          "height_mm": 55
+        }
+      },
+      "source": {
+        "urls": [
+          "https://www.cubespace.co.za/products/cubestar/",
+          "https://www.satnow.com/products/star-trackers/cubespace/37-1187-cubestar"
+        ]
+      },
+      "tags": [
+        "high_precision",
+        "star_tracker",
+        "earth_observation"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-sensor-startracker-sinclair-st16",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "star_tracker",
+      "category_name": "Attitude Sensors",
+      "class_name": "Star Trackers",
+      "option_name": "Heritage star tracker",
+      "product_name": "ST-16 Star Tracker",
+      "vendor": "Sinclair Interplanetary",
+      "key_spec": "Heritage star tracker for reliable attitude determination.",
+      "normalized": {
+        "mass_kg": 0.185,
+        "power_avg_W": 0.5,
+        "power_peak_W": 1.0,
+        "volume_U": 0.15
+      },
+      "performance": {
+        "attitude_accuracy_deg": 0.005
+      },
+      "integration": {
+        "interfaces": [
+          "digital"
+        ],
+        "mounting": "internal optical baffle"
+      },
+      "source": {
+        "urls": []
+      },
+      "tags": [
+        "high_precision",
+        "heritage",
+        "star_tracker"
+      ],
+      "trl": 9,
+      "data_confidence": "uploaded_seed"
+    },
+    {
+      "id": "adcs-sensor-startracker-bluecanyon-nst",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "star_tracker",
+      "category_name": "Attitude Sensors",
+      "class_name": "Star Trackers",
+      "option_name": "Miniature star tracker",
+      "product_name": "Nano Star Tracker",
+      "vendor": "Blue Canyon Technologies",
+      "key_spec": "Miniature star tracker family used in Blue Canyon ADCS configurations.",
+      "normalized": {
+        "mass_kg": 0.2,
+        "power_avg_W": 1.0,
+        "volume_U": 0.15
+      },
+      "performance": {
+        "attitude_accuracy_deg": 0.01
+      },
+      "integration": {
+        "interfaces": [
+          "RS-422"
+        ],
+        "mounting": "internal optical baffle"
+      },
+      "source": {
+        "urls": [
+          "https://www.bluecanyontech.com/wp-content/uploads/ADCS-1_2025.pdf"
+        ]
+      },
+      "tags": [
+        "star_tracker",
+        "high_precision",
+        "integrated_adcs_support"
+      ],
+      "trl": 7,
+      "data_confidence": "public_catalog_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-sensor-magnetometer-newspace-nssmag",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "magnetometer",
+      "category_name": "Attitude Sensors",
+      "class_name": "3-Axis Magnetometers",
+      "option_name": "3-axis magnetometer",
+      "product_name": "NSS Magnetometer",
+      "vendor": "NewSpace Systems",
+      "key_spec": "TRL-9 tri-axial AMR magnetometer for attitude determination and magnetorquer control.",
+      "normalized": {
+        "mass_kg": 0.085,
+        "power_avg_W": 0.75,
+        "volume_U": 0.05,
+        "voltage_V": 5.0
+      },
+      "performance": {
+        "sensitivity_nT": 8.0
+      },
+      "integration": {
+        "interfaces": [
+          "analog",
+          "digital serial"
+        ],
+        "mounting": "boom or low-magnetic-disturbance location"
+      },
+      "source": {
+        "urls": [
+          "https://www.newspacesystems.com/products/magnetometers/",
+          "https://www.cubesatshop.com/product/nss-magnetometer/"
+        ]
+      },
+      "tags": [
+        "magnetometer",
+        "detumble",
+        "bdot",
+        "trl9"
+      ],
+      "trl": 9,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-sensor-memsimu-vectornav-vn100-smd",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "mems_gyro",
+      "category_name": "Attitude Sensors",
+      "class_name": "MEMS Gyroscopes",
+      "option_name": "MEMS IMU/AHRS",
+      "product_name": "VN-100 SMD",
+      "vendor": "VectorNav",
+      "key_spec": "Industrial-grade MEMS IMU/AHRS with gyro, accelerometer, magnetometer and attitude output.",
+      "normalized": {
+        "mass_kg": 0.0035,
+        "power_avg_W": 0.185,
+        "volume_U": 0.0016,
+        "voltage_V": 3.3
+      },
+      "performance": {
+        "gyro_bias_stability_deg_h": 5.0,
+        "gyro_range_deg_s": 2000,
+        "attitude_pitch_roll_accuracy_deg": 0.5,
+        "imu_data_rate_hz": 800
+      },
+      "integration": {
+        "interfaces": [
+          "Serial TTL",
+          "SPI"
+        ],
+        "dimensions_mm": {
+          "length_mm": 24,
+          "width_mm": 22,
+          "height_mm": 3
+        }
+      },
+      "source": {
+        "urls": [
+          "https://www.vectornav.com/products/detail/vn-100"
+        ]
+      },
+      "tags": [
+        "imu",
+        "mems_gyro",
+        "low_swp",
+        "not_space_qualified"
+      ],
+      "trl": 5,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-sensor-memsimu-vectornav-vn100-rugged",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "mems_gyro",
+      "category_name": "Attitude Sensors",
+      "class_name": "MEMS Gyroscopes",
+      "option_name": "Rugged MEMS IMU/AHRS",
+      "product_name": "VN-100 Rugged",
+      "vendor": "VectorNav",
+      "key_spec": "Rugged IMU/AHRS option for development, testing, and lower-risk COTS demonstrations.",
+      "normalized": {
+        "mass_kg": 0.015,
+        "power_avg_W": 0.22,
+        "volume_U": 0.011,
+        "voltage_V": 5.0
+      },
+      "performance": {
+        "gyro_bias_stability_deg_h": 5.0,
+        "gyro_range_deg_s": 2000,
+        "attitude_pitch_roll_accuracy_deg": 0.5,
+        "imu_data_rate_hz": 800
+      },
+      "integration": {
+        "interfaces": [
+          "Serial TTL",
+          "RS-232"
+        ],
+        "dimensions_mm": {
+          "length_mm": 36,
+          "width_mm": 33,
+          "height_mm": 9
+        }
+      },
+      "source": {
+        "urls": [
+          "https://www.vectornav.com/products/detail/vn-100"
+        ]
+      },
+      "tags": [
+        "imu",
+        "mems_gyro",
+        "rugged",
+        "not_space_qualified"
+      ],
+      "trl": 5,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-sensor-memsimu-bosch-bmi088",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "mems_gyro",
+      "category_name": "Attitude Sensors",
+      "class_name": "MEMS Gyroscopes",
+      "option_name": "Chip-level MEMS gyro/accelerometer",
+      "product_name": "BMI088",
+      "vendor": "Bosch",
+      "key_spec": "Low-mass chip-level IMU suitable for low-cost CubeSat test payloads or engineering models.",
+      "normalized": {
+        "mass_kg": 0.001,
+        "power_avg_W": 0.05,
+        "volume_U": 0.001
+      },
+      "performance": {
+        "gyro_bias_stability_deg_h": 5.0
+      },
+      "integration": {
+        "interfaces": [
+          "SPI",
+          "I2C"
+        ]
+      },
+      "source": {
+        "urls": []
+      },
+      "tags": [
+        "imu",
+        "chip_level",
+        "engineering_model"
+      ],
+      "trl": 5,
+      "data_confidence": "uploaded_seed"
+    },
+    {
+      "id": "adcs-sensor-horizon-simerasense-horizon",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "earth_horizon_sensor",
+      "category_name": "Attitude Sensors",
+      "class_name": "Earth Horizon Sensors",
+      "option_name": "Horizon sensor",
+      "product_name": "Simera Sense Horizon Sensor",
+      "vendor": "Simera Sense",
+      "key_spec": "Earth horizon sensor for medium-accuracy LEO attitude determination.",
+      "normalized": {
+        "mass_kg": 0.018,
+        "power_avg_W": 0.2,
+        "volume_U": 0.1
+      },
+      "performance": {
+        "accuracy_deg": 0.2
+      },
+      "integration": {
+        "interfaces": [
+          "digital"
+        ],
+        "mounting": "nadir/limb view"
+      },
+      "source": {
+        "urls": []
+      },
+      "tags": [
+        "earth_horizon",
+        "leo",
+        "medium_precision"
+      ],
+      "trl": 7,
+      "data_confidence": "uploaded_seed"
+    },
+    {
+      "id": "adcs-sensor-gnss-novatel-oem719",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "gps_receiver",
+      "category_name": "Attitude Sensors",
+      "class_name": "GPS / GNSS Receivers",
+      "option_name": "Multi-frequency GNSS receiver board",
+      "product_name": "OEM719",
+      "vendor": "NovAtel / Hexagon",
+      "key_spec": "Multi-frequency, multi-constellation GNSS receiver board for orbit determination and precise timing.",
+      "normalized": {
+        "mass_kg": 0.031,
+        "power_avg_W": 1.8,
+        "volume_U": 0.036
+      },
+      "performance": {
+        "position_accuracy_m": 1.5,
+        "signals": [
+          "GPS",
+          "GLONASS",
+          "Galileo",
+          "BeiDou",
+          "QZSS",
+          "NavIC",
+          "SBAS"
+        ]
+      },
+      "integration": {
+        "interfaces": [
+          "UART",
+          "USB"
+        ],
+        "dimensions_mm": {
+          "length_mm": 71,
+          "width_mm": 46,
+          "height_mm": 11
+        }
+      },
+      "source": {
+        "urls": [
+          "https://novatel.com/products/receivers/gnss-gps-receiver-boards/oem719",
+          "https://docs.novatel.com/oem7/Content/Technical_Specs_Receiver/OEM719_Specifications.htm"
+        ]
+      },
+      "tags": [
+        "gnss",
+        "orbit_determination",
+        "timing"
+      ],
+      "trl": 6,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-sensor-gnss-newspace-receiver",
+      "subsystem": "ADCS",
+      "domain": "attitude_sensors",
+      "role": "gps_receiver",
+      "category_name": "Attitude Sensors",
+      "class_name": "GPS / GNSS Receivers",
+      "option_name": "Space-grade GNSS receiver",
+      "product_name": "NSS GNSS Receiver",
+      "vendor": "NewSpace Systems",
+      "key_spec": "GNSS receiver class for positioning and navigation support in ADCS/GNC chains.",
+      "normalized": {
+        "mass_kg": 0.08,
+        "power_avg_W": 1.5,
+        "volume_U": 0.07
+      },
+      "performance": {
+        "position_accuracy_m": 3.0
+      },
+      "integration": {
+        "interfaces": [
+          "digital"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://www.newspacesystems.com/"
+        ]
+      },
+      "tags": [
+        "gnss",
+        "navigation",
+        "orbit_determination"
+      ],
+      "trl": 7,
+      "data_confidence": "public_page_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-actuator-magnetorquer-isis-imtq",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "magnetorquer",
+      "category_name": "Attitude Actuators",
+      "class_name": "Magnetorquers (3-Axis)",
+      "option_name": "3-axis PCB magnetorquer board",
+      "product_name": "iMTQ Magnetorquer Board",
+      "vendor": "ISISPACE",
+      "key_spec": "PCB-based 3-axis magnetic actuation system for detumbling and wheel desaturation.",
+      "normalized": {
+        "mass_kg": 0.196,
+        "power_avg_W": 0.175,
+        "power_peak_W": 1.2,
+        "volume_U": 0.147,
+        "voltage_V": 5.0
+      },
+      "performance": {
+        "dipole_moment_Am2": 0.2
+      },
+      "integration": {
+        "interfaces": [
+          "I2C"
+        ],
+        "dimensions_mm": {
+          "length_mm": 95.9,
+          "width_mm": 90.1,
+          "height_mm": 17
+        }
+      },
+      "source": {
+        "urls": [
+          "https://satsearch.co/products/isis-isis-magnetorquer-board-i-mtq",
+          "https://www.satnow.com/products/magnetorquers/isispace/41-1233-imtq-magnetorquer-board"
+        ]
+      },
+      "tags": [
+        "magnetorquer",
+        "detumble",
+        "bdot",
+        "wheel_desaturation"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-actuator-magnetorquer-newspace-rods",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "magnetorquer",
+      "category_name": "Attitude Actuators",
+      "class_name": "Magnetorquers (3-Axis)",
+      "option_name": "Magnetorquer rods",
+      "product_name": "NSS Magnetorquer Rods",
+      "vendor": "NewSpace Systems",
+      "key_spec": "High-heritage magnetorquer rods for detumbling, magnetic control, and reaction-wheel momentum dumping.",
+      "normalized": {
+        "mass_kg": 0.12,
+        "power_avg_W": 0.5,
+        "volume_U": 0.1
+      },
+      "performance": {
+        "dipole_moment_Am2": 0.2
+      },
+      "integration": {
+        "interfaces": [
+          "switched power"
+        ],
+        "requires": [
+          "magnetometer"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://www.newspacesystems.com/products/magnetorquer-rods/"
+        ]
+      },
+      "tags": [
+        "magnetorquer",
+        "trl9",
+        "momentum_dumping"
+      ],
+      "trl": 9,
+      "data_confidence": "public_page_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-actuator-wheel-sinclair-rw003",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "reaction_wheel",
+      "category_name": "Attitude Actuators",
+      "class_name": "Reaction Wheels",
+      "option_name": "Standalone reaction wheel",
+      "product_name": "RW-0.03",
+      "vendor": "Sinclair Interplanetary",
+      "key_spec": "Heritage CubeSat reaction wheel for 6U–12U class spacecraft.",
+      "normalized": {
+        "mass_kg": 0.185,
+        "power_avg_W": 0.3,
+        "volume_U": 0.1,
+        "voltage_V": 5.0
+      },
+      "performance": {
+        "momentum_storage_mNms": 30,
+        "peak_momentum_mNms": 40,
+        "max_torque_mNm": 2.0,
+        "radiation_tolerance_krad": 20
+      },
+      "integration": {
+        "interfaces": [
+          "digital"
+        ],
+        "dimensions_mm": {
+          "length_mm": 50,
+          "width_mm": 50,
+          "height_mm": 40
+        }
+      },
+      "source": {
+        "urls": [
+          "https://www.satcatalog.com/component/rw-003/"
+        ]
+      },
+      "tags": [
+        "reaction_wheel",
+        "heritage",
+        "precision_pointing"
+      ],
+      "trl": 9,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-actuator-wheel-cubespace-cw0017",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "reaction_wheel",
+      "category_name": "Attitude Actuators",
+      "class_name": "Reaction Wheels",
+      "option_name": "Micro reaction wheel",
+      "product_name": "CubeSpace CW0017",
+      "vendor": "CubeSpace",
+      "key_spec": "Small CubeSat reaction wheel with CAN/I2C/UART/RS485 interfaces.",
+      "normalized": {
+        "mass_kg": 0.06,
+        "power_avg_W": 0.3,
+        "power_peak_W": 0.85,
+        "volume_U": 0.02,
+        "voltage_V": 6.4
+      },
+      "performance": {
+        "momentum_storage_mNms": 1.77,
+        "max_torque_mNm": 0.23,
+        "max_speed_rpm": 10000,
+        "radiation_tolerance_krad": 24
+      },
+      "integration": {
+        "interfaces": [
+          "CAN",
+          "I2C",
+          "UART",
+          "RS485"
+        ],
+        "dimensions_mm": {
+          "length_mm": 28,
+          "width_mm": 28,
+          "height_mm": 26
+        }
+      },
+      "source": {
+        "urls": [
+          "https://satsearch.co/products/cubespace-gen2-cube-wheel-cw0017"
+        ]
+      },
+      "tags": [
+        "reaction_wheel",
+        "low_mass",
+        "cube_sat"
+      ],
+      "trl": 9,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-actuator-wheel-cubespace-rwgen2",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "reaction_wheel",
+      "category_name": "Attitude Actuators",
+      "class_name": "Reaction Wheels",
+      "option_name": "Standalone reaction wheel",
+      "product_name": "CubeSpace RW Gen2",
+      "vendor": "CubeSpace",
+      "key_spec": "Reaction wheel family for custom ADCS loops and precision pointing.",
+      "normalized": {
+        "mass_kg": 0.15,
+        "power_avg_W": 0.5,
+        "volume_U": 0.1
+      },
+      "performance": {
+        "momentum_storage_mNms": 30,
+        "max_torque_mNm": 2.0
+      },
+      "integration": {
+        "interfaces": [
+          "CAN",
+          "I2C",
+          "UART",
+          "RS485"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://satsearch.co/products/cubespace-gen2-cube-wheel-cw0017"
+        ]
+      },
+      "tags": [
+        "reaction_wheel",
+        "precision_pointing"
+      ],
+      "trl": 7,
+      "data_confidence": "uploaded_seed_plus_related_public_source"
+    },
+    {
+      "id": "adcs-integrated-bluecanyon-xact15",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "integrated_adcs",
+      "category_name": "Attitude Actuators",
+      "class_name": "Integrated ADCS Units",
+      "option_name": "Integrated 3-axis ADCS",
+      "product_name": "XACT-15",
+      "vendor": "Blue Canyon Technologies",
+      "key_spec": "Turnkey ADCS including star tracker, reaction wheels, torque rods, and coarse sun sensors.",
+      "normalized": {
+        "mass_kg": 0.89,
+        "power_avg_W": 2.0,
+        "volume_U": 0.5,
+        "voltage_V": 12.0
+      },
+      "performance": {
+        "pointing_accuracy_deg": 0.003,
+        "momentum_storage_mNms": 15,
+        "max_torque_mNm": 5,
+        "slew_rate_max_deg_s": 10,
+        "radiation_tolerance_krad": 40
+      },
+      "integration": {
+        "interfaces": [
+          "RS-422"
+        ],
+        "dimensions_mm": {
+          "length_mm": 100,
+          "width_mm": 100,
+          "height_mm": 50
+        }
+      },
+      "source": {
+        "urls": [
+          "https://www.bluecanyontech.com/components/xact/",
+          "https://www.satnow.com/products/adcs-systems/blue-canyon-technologies/46-1186-xact-15"
+        ]
+      },
+      "tags": [
+        "integrated_adcs",
+        "turnkey",
+        "high_precision",
+        "flight_heritage"
+      ],
+      "trl": 9,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-integrated-bluecanyon-xact50",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "integrated_adcs",
+      "category_name": "Attitude Actuators",
+      "class_name": "Integrated ADCS Units",
+      "option_name": "Integrated 3-axis ADCS",
+      "product_name": "XACT-50",
+      "vendor": "Blue Canyon Technologies",
+      "key_spec": "Higher-capability XACT integrated ADCS variant for larger CubeSat/smallsat missions.",
+      "normalized": {
+        "mass_kg": 1.23,
+        "power_avg_W": 3.0,
+        "volume_U": 0.75,
+        "voltage_V": 12.0
+      },
+      "performance": {
+        "pointing_accuracy_deg": 0.003,
+        "slew_rate_max_deg_s": 8
+      },
+      "integration": {
+        "interfaces": [
+          "RS-422"
+        ],
+        "dimensions_mm": {
+          "length_mm": 100,
+          "width_mm": 100,
+          "height_mm": 75.4
+        }
+      },
+      "source": {
+        "urls": [
+          "https://www.bluecanyontech.com/components/xact/",
+          "https://www.bluecanyontech.com/wp-content/uploads/ADCS-1_2025.pdf"
+        ]
+      },
+      "tags": [
+        "integrated_adcs",
+        "turnkey",
+        "high_precision"
+      ],
+      "trl": 9,
+      "data_confidence": "public_spec_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-integrated-cubespace-cubeadcs",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "integrated_adcs",
+      "category_name": "Attitude Actuators",
+      "class_name": "Integrated ADCS Units",
+      "option_name": "Integrated CubeSat ADCS",
+      "product_name": "CubeADCS",
+      "vendor": "CubeSpace",
+      "key_spec": "Integrated CubeSat ADCS product family combining CubeSpace sensors, wheels, and magnetic torquers.",
+      "normalized": {
+        "mass_kg": 0.75,
+        "power_avg_W": 2.5,
+        "volume_U": 0.5
+      },
+      "performance": {
+        "pointing_accuracy_deg": 0.1
+      },
+      "integration": {
+        "interfaces": [
+          "CAN",
+          "I2C",
+          "UART"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://www.cubespace.co.za/products/cubestar/"
+        ]
+      },
+      "tags": [
+        "integrated_adcs",
+        "cube_sat",
+        "turnkey"
+      ],
+      "trl": 7,
+      "data_confidence": "public_page_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-actuator-cmg-honeybee-microsat",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "control_moment_gyroscope",
+      "category_name": "Attitude Actuators",
+      "class_name": "Control Moment Gyroscopes",
+      "option_name": "Microsat CMG",
+      "product_name": "Microsat CMG",
+      "vendor": "Honeybee Robotics",
+      "key_spec": "Control moment gyroscope for micro/nanosat high-agility pointing.",
+      "normalized": {
+        "mass_kg": 1.3,
+        "power_avg_W": 10.0,
+        "volume_U": 2.36
+      },
+      "performance": {
+        "momentum_storage_mNms": 56,
+        "max_torque_mNm": 112,
+        "enhanced_momentum_mNms": 86,
+        "enhanced_torque_mNm": 172
+      },
+      "integration": {
+        "interfaces": [
+          "RS-232",
+          "RS-422"
+        ],
+        "dimensions_mm": {
+          "length_mm": 230,
+          "width_mm": 125,
+          "height_mm": 82
+        }
+      },
+      "source": {
+        "urls": [
+          "https://www.satnow.com/products/control-moment-gyroscopes/honeybee-robotics/43-1232-microsat-cmg"
+        ]
+      },
+      "tags": [
+        "cmg",
+        "high_agility",
+        "rapid_retargeting"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-actuator-cmg-tensortech-cmg10m",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "control_moment_gyroscope",
+      "category_name": "Attitude Actuators",
+      "class_name": "Control Moment Gyroscopes",
+      "option_name": "Single-gimbal CMG for 3U",
+      "product_name": "CMG-10m",
+      "vendor": "Tensor Tech",
+      "key_spec": "Variable-speed single-gimbal CMG suitable for 3U CubeSats.",
+      "normalized": {
+        "mass_kg": 0.2,
+        "power_avg_W": 4.0,
+        "volume_U": 0.4
+      },
+      "performance": {
+        "max_torque_mNm": 10
+      },
+      "integration": {
+        "interfaces": [
+          "digital"
+        ],
+        "requires": [
+          "advanced_control_laws"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://www.cubesatshop.com/product/reaction-sphere/"
+        ]
+      },
+      "tags": [
+        "cmg",
+        "3u",
+        "high_agility"
+      ],
+      "trl": 7,
+      "data_confidence": "public_description_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-actuator-cmg-tensortech-cmg20m",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "control_moment_gyroscope",
+      "category_name": "Attitude Actuators",
+      "class_name": "Control Moment Gyroscopes",
+      "option_name": "Dual CMG for 6U",
+      "product_name": "CMG-20m",
+      "vendor": "Tensor Tech",
+      "key_spec": "Two variable-speed single-gimbal CMG system suitable for 6U CubeSats.",
+      "normalized": {
+        "mass_kg": 0.4,
+        "power_avg_W": 6.0,
+        "volume_U": 0.7
+      },
+      "performance": {
+        "max_torque_mNm": 20
+      },
+      "integration": {
+        "interfaces": [
+          "digital"
+        ],
+        "requires": [
+          "advanced_control_laws"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://www.cubesatshop.com/product/tensor-tech-cmg-20m-control-moment-gyroscope/"
+        ]
+      },
+      "tags": [
+        "cmg",
+        "6u",
+        "high_agility"
+      ],
+      "trl": 7,
+      "data_confidence": "public_description_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-actuator-coldgas-vacco-mips-standardmicro",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "cold_gas_thruster",
+      "category_name": "Attitude Actuators",
+      "class_name": "Cold Gas Thrusters",
+      "option_name": "Cold-gas ACS / delta-v module",
+      "product_name": "Standard Micro-Propulsion System MiPS",
+      "vendor": "VACCO",
+      "key_spec": "0.3U CubeSat cold-gas module with five thrusters for pitch, yaw, roll, and delta-v.",
+      "normalized": {
+        "mass_kg": 0.69,
+        "power_avg_W": 1.0,
+        "power_peak_W": 12.0,
+        "volume_U": 0.3,
+        "voltage_V": 12.0
+      },
+      "performance": {
+        "thrust_mN": 10,
+        "total_impulse_Ns": 44,
+        "minimum_impulse_firings": 880000
+      },
+      "integration": {
+        "interfaces": [
+          "RS-422"
+        ],
+        "propellant": "R134a",
+        "dimensions_class": "0.3U"
+      },
+      "source": {
+        "urls": [
+          "https://cubesat-propulsion.com/standard-micro-propulsion-system/"
+        ]
+      },
+      "tags": [
+        "cold_gas",
+        "acs_thruster",
+        "delta_v",
+        "formation_flying"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-actuator-coldgas-vacco-cusp-mips",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "cold_gas_thruster",
+      "category_name": "Attitude Actuators",
+      "class_name": "Cold Gas Thrusters",
+      "option_name": "Cold-gas ACS / delta-v module",
+      "product_name": "CuSP MiPS",
+      "vendor": "VACCO",
+      "key_spec": "0.3U cold-gas system with four 25 mN thrusters and 69.4 N-s total impulse.",
+      "normalized": {
+        "mass_kg": 0.69,
+        "dry_mass_kg": 0.513,
+        "power_avg_W": 1.0,
+        "power_peak_W": 12.0,
+        "volume_U": 0.3,
+        "voltage_V": 12.0
+      },
+      "performance": {
+        "thrust_mN": 25,
+        "total_impulse_Ns": 69.4,
+        "delta_v_mps_for_reference_spacecraft": 8.8
+      },
+      "integration": {
+        "interfaces": [
+          "RS-422"
+        ],
+        "propellant": "R236fa"
+      },
+      "source": {
+        "urls": [
+          "https://cubesat-propulsion.com/cusp-propulsion-system/"
+        ]
+      },
+      "tags": [
+        "cold_gas",
+        "acs_thruster",
+        "delta_v"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-actuator-coldgas-vacco-neascout-mips",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "cold_gas_thruster",
+      "category_name": "Attitude Actuators",
+      "class_name": "Cold Gas Thrusters",
+      "option_name": "Larger cold-gas ACS / delta-v module",
+      "product_name": "NEA Scout MiPS",
+      "vendor": "VACCO",
+      "key_spec": "2U cold-gas MiPS with six 25 mN thrusters and 500 N-s total impulse.",
+      "normalized": {
+        "mass_kg": 2.54,
+        "dry_mass_kg": 1.263,
+        "power_avg_W": 1.1,
+        "power_peak_W": 55.0,
+        "volume_U": 2.0,
+        "voltage_V": 12.0
+      },
+      "performance": {
+        "thrust_mN": 25,
+        "total_impulse_Ns": 500,
+        "delta_v_mps_for_reference_spacecraft": 37.0
+      },
+      "integration": {
+        "interfaces": [
+          "RS-422"
+        ],
+        "propellant": "R236fa"
+      },
+      "source": {
+        "urls": [
+          "https://cubesat-propulsion.com/nea-scout-propulsion-system/"
+        ]
+      },
+      "tags": [
+        "cold_gas",
+        "deep_space_cubesat",
+        "delta_v"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-actuator-electrospray-busek-betmax",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "electrospray_thruster",
+      "category_name": "Attitude Actuators",
+      "class_name": "Electrospray Thrusters",
+      "option_name": "Precision electrospray thruster",
+      "product_name": "BET-MAX Electrospray Thruster System",
+      "vendor": "Busek",
+      "key_spec": "Ionic-liquid electrospray system for ultra-precise thrust and disturbance reduction.",
+      "normalized": {
+        "mass_kg": 1.0,
+        "power_avg_W": 14.0,
+        "power_peak_W": 24.0,
+        "volume_U": 1.0
+      },
+      "performance": {
+        "thrust_min_uN": 0.0,
+        "thrust_max_uN": 150.0,
+        "specific_impulse_s_min": 850,
+        "specific_impulse_s_max": 2300,
+        "thrust_noise_uN_per_sqrtHz": 0.2
+      },
+      "integration": {
+        "propellant": "ionic liquid",
+        "requires": [
+          "high_voltage_ppu"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://www.busek.com/electrospray-thrusters"
+        ]
+      },
+      "tags": [
+        "electrospray",
+        "precision_pointing",
+        "drag_free"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_plus_engineering_estimate"
+    },
+    {
+      "id": "adcs-actuator-electric-busek-bit3",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "electrospray_thruster",
+      "category_name": "Attitude Actuators",
+      "class_name": "Electrospray / Electric Thrusters",
+      "option_name": "RF ion thruster with gimbal option",
+      "product_name": "BIT-3 RF Ion Thruster",
+      "vendor": "Busek",
+      "key_spec": "Iodine RF ion propulsion system; optional gimbal can help desaturate reaction wheels.",
+      "normalized": {
+        "mass_kg": 1.4,
+        "power_avg_W": 65.0,
+        "power_peak_W": 75.0,
+        "volume_U": 1.6
+      },
+      "performance": {
+        "thrust_mN": 1.1,
+        "specific_impulse_s": 2150,
+        "delta_v_km_s_reference": 2.39
+      },
+      "integration": {
+        "interfaces": [
+          "RS-485"
+        ],
+        "propellant": "iodine",
+        "requires": [
+          "high_power_eps"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://www.busek.com/bit3",
+          "https://www.satnow.com/products/thrusters/busek/36-1153-bit-3"
+        ]
+      },
+      "tags": [
+        "electric_propulsion",
+        "wheel_desaturation_gimbal",
+        "high_power"
+      ],
+      "trl": 7,
+      "data_confidence": "public_spec_or_catalog"
+    },
+    {
+      "id": "adcs-actuator-feep-enpulsion-nano-r3",
+      "subsystem": "ADCS",
+      "domain": "attitude_actuators",
+      "role": "electrospray_thruster",
+      "category_name": "Attitude Actuators",
+      "class_name": "Electrospray Thrusters",
+      "option_name": "FEEP micropropulsion",
+      "product_name": "Nano R³",
+      "vendor": "ENPULSION",
+      "key_spec": "Compact FEEP system for precision thrust control and spacecraft mobility.",
+      "normalized": {
+        "mass_kg": 1.0,
+        "power_avg_W": 20.0,
+        "volume_U": 1.0
+      },
+      "performance": {
+        "specific_impulse_s_min": 1500,
+        "specific_impulse_s_max": 4500
+      },
+      "integration": {
+        "propellant": "indium",
+        "requires": [
+          "high_voltage_ppu"
+        ]
+      },
+      "source": {
+        "urls": [
+          "https://www.enpulsion.com/for-cubesats/"
+        ]
+      },
+      "tags": [
+        "feep",
+        "precision_thrust",
+        "flight_proven"
+      ],
+      "trl": 7,
+      "data_confidence": "public_page_plus_engineering_estimate"
+    }
+  ],
+  "selection_hooks": {
+    "hard_constraints": [
+      "For imaging/high-pointing missions, selected sensor+actuator chain must provide performance.pointing_accuracy_deg <= mission.max_pointing_error_deg when an integrated ADCS unit is selected.",
+      "For non-integrated chains, star tracker or horizon/sun/magnetometer sensor accuracy must be compatible with mission pointing class.",
+      "reaction_wheel or CMG actuation must satisfy required agility/momentum class when precision pointing is required.",
+      "magnetorquer is required for detumbling and/or reaction-wheel momentum dumping in LEO unless another desaturation method is selected.",
+      "cold_gas_thruster/electrospray_thruster requires compatible propulsion/power budget and shall not be auto-selected for simple low-cost missions unless mission requires delta-v or ultra-fine pointing.",
+      "sum(normalized.mass_kg) <= mission.adcs_mass_budget_kg if a separate ADCS mass budget is provided.",
+      "sum(normalized.power_avg_W) <= mission.adcs_avg_power_budget_W if a separate ADCS power budget is provided."
+    ],
+    "suggested_scoring_fields": [
+      {
+        "field": "performance.pointing_accuracy_deg",
+        "goal": "minimize",
+        "weight_hint": 0.3
+      },
+      {
+        "field": "normalized.mass_kg",
+        "goal": "minimize",
+        "weight_hint": 0.18
+      },
+      {
+        "field": "normalized.power_avg_W",
+        "goal": "minimize",
+        "weight_hint": 0.18
+      },
+      {
+        "field": "trl",
+        "goal": "maximize",
+        "weight_hint": 0.14
+      },
+      {
+        "field": "performance.slew_rate_max_deg_s",
+        "goal": "maximize",
+        "weight_hint": 0.08
+      },
+      {
+        "field": "performance.momentum_storage_mNms",
+        "goal": "maximize",
+        "weight_hint": 0.07
+      },
+      {
+        "field": "data_confidence",
+        "goal": "prefer_public_spec",
+        "weight_hint": 0.05
+      }
+    ],
+    "mission_class_rules": {
+      "low_precision_iot_navigation": [
+        "coarse sun sensor + magnetometer + magnetorquer may be sufficient",
+        "avoid star tracker unless payload pointing requirement is below ~0.5 deg"
+      ],
+      "earth_observation_medium_precision": [
+        "fine sun sensor or horizon sensor plus reaction wheels recommended",
+        "star tracker recommended if pointing requirement is below ~0.1 deg"
+      ],
+      "vhr_or_hyperspectral_high_precision": [
+        "star tracker + reaction wheels or integrated XACT/CubeADCS class ADCS required",
+        "magnetorquer included for desaturation"
+      ],
+      "rapid_retargeting_or_agile_imaging": [
+        "consider CMG or high-momentum reaction wheel set",
+        "penalize power/mass strongly for small buses"
+      ],
+      "drag_free_or_ultra_precision": [
+        "consider electrospray/FEEP actuator class",
+        "requires dedicated power and propulsion compatibility checks"
+      ]
+    },
+    "trace_explanations": [
+      "Star trackers improve attitude knowledge but add cost and integration constraints.",
+      "Reaction wheels provide fine pointing; magnetorquers provide detumbling and momentum dumping.",
+      "CMGs are high-agility options for larger buses or rapid retargeting.",
+      "Cold gas and electrospray thrusters are only selected when attitude control requirements justify propulsion-like actuators."
+    ]
+  }
+}

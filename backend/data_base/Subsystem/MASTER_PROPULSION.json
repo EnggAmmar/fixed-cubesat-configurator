@@ -1,0 +1,983 @@
+{
+  "meta": {
+    "subsystem": "Propulsion Systems",
+    "schema_version": "ONE_V3_SUBSYSTEM_PROPULSION_DB_1.0",
+    "ontology": {
+      "chemical_propulsion": [
+        "Cold Gas Thrusters",
+        "Monopropellant Hydrazine",
+        "Green Propellants"
+      ],
+      "electric_propulsion": [
+        "Hall Effect Thrusters",
+        "Ion Thrusters",
+        "Electrospray Thrusters",
+        "Pulsed Plasma Thrusters"
+      ],
+      "propellant_management": [
+        "Propellant Tanks",
+        "Pressure Regulators",
+        "Flow Control Valves"
+      ]
+    },
+    "dimension_convention": {
+      "length_mm": "longest envelope axis",
+      "width_mm": "lateral envelope axis",
+      "height_mm": "stack depth / protrusion axis"
+    },
+    "units": {
+      "mass": "kg",
+      "power": "W",
+      "thrust": "mN or N as field name indicates",
+      "specific_impulse": "s",
+      "total_impulse": "N-s",
+      "pressure": "bar unless field name states psia",
+      "volume": "CubeSat U when volume_U is used"
+    },
+    "notes": [
+      "This file is solver-oriented and mixes complete propulsion systems, thrusters, and propellant-management components.",
+      "Do not combine standalone tanks/regulators/valves into the same solver domain as complete propulsion systems unless the solver explicitly models a feed-system stack.",
+      "Hydrazine is represented only as a legacy comparison placeholder because it is hazardous and not preferred for CubeSat educational trade studies.",
+      "Null values mean the public source did not expose the numeric value; they should not be treated as zero."
+    ]
+  },
+  "products": [
+    {
+      "id": "prop-elec-feep-enpulsion-nano-r3",
+      "domain": "electric_propulsion",
+      "role": "feep_thruster",
+      "category_name": "Electric Propulsion (1.6.2)",
+      "class_name": "Electrospray / FEEP Thrusters",
+      "option_name": "Indium FEEP Thrusters",
+      "product_name": "Enpulsion Nano R3",
+      "vendor": "Enpulsion",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 1.5,
+        "dry_mass_kg": 1.28,
+        "volume_U": 1.0,
+        "power_avg_W": 45.0,
+        "power_peak_W": 50.0,
+        "supply_voltage_V": 12
+      },
+      "performance": {
+        "thrust_min_mN": 0.15,
+        "thrust_max_mN": 0.35,
+        "isp_s": 2500,
+        "total_impulse_Ns": 5300,
+        "propellant": "Indium",
+        "propellant_mass_kg": 0.215
+      },
+      "dimensions_mm": {
+        "length_mm": 100.95,
+        "width_mm": 99.0,
+        "height_mm": 97.3
+      },
+      "interfaces": [
+        "RS422",
+        "RS485"
+      ],
+      "mission_fit": [
+        "station_keeping",
+        "drag_makeup",
+        "formation_flying",
+        "fine_maneuvering"
+      ],
+      "constraints": {
+        "min_eps_power_W": 50,
+        "min_sat_size_U": 3
+      },
+      "tags": [
+        "high_isp",
+        "solid_propellant",
+        "non_pressurized",
+        "flight_heritage"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "prop-elec-feep-enpulsion-micro-r3",
+      "domain": "electric_propulsion",
+      "role": "feep_thruster",
+      "category_name": "Electric Propulsion (1.6.2)",
+      "class_name": "Electrospray / FEEP Thrusters",
+      "option_name": "Scaled Indium FEEP Thrusters",
+      "product_name": "Enpulsion Micro R3",
+      "vendor": "Enpulsion",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 3.95,
+        "dry_mass_kg": 2.7,
+        "volume_U": 1.8,
+        "power_avg_W": 110.0,
+        "power_peak_W": 120.0,
+        "supply_voltage_V": 28
+      },
+      "performance": {
+        "thrust_min_mN": 0.5,
+        "thrust_max_mN": 1.0,
+        "isp_s": 2700,
+        "total_impulse_Ns": 26000,
+        "propellant": "Indium",
+        "propellant_mass_kg": 1.25
+      },
+      "dimensions_mm": {
+        "length_mm": 140,
+        "width_mm": 120,
+        "height_mm": 131.5
+      },
+      "interfaces": [
+        "RS422",
+        "RS485"
+      ],
+      "mission_fit": [
+        "station_keeping",
+        "orbit_maintenance",
+        "orbit_raising"
+      ],
+      "constraints": {
+        "min_eps_power_W": 120,
+        "min_sat_size_U": 6
+      },
+      "tags": [
+        "high_isp",
+        "large_cubesat",
+        "high_total_impulse"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "prop-elec-ion-busek-bit3",
+      "domain": "electric_propulsion",
+      "role": "ion_thruster",
+      "category_name": "Electric Propulsion (1.6.2)",
+      "class_name": "Ion Thrusters",
+      "option_name": "Iodine / Xenon RF Ion Thrusters",
+      "product_name": "Busek BIT-3 RF Ion Thruster",
+      "vendor": "Busek",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 1.4,
+        "volume_U": 1.5,
+        "power_avg_W": 65.0,
+        "power_peak_W": 80.0
+      },
+      "performance": {
+        "thrust_max_mN": 1.25,
+        "isp_s": 2300,
+        "delta_v_capability_mps_for_14kg": 2500,
+        "propellant": "Iodine / Xenon / Krypton"
+      },
+      "mission_fit": [
+        "deep_space_cubesat",
+        "orbit_raising",
+        "station_keeping"
+      ],
+      "constraints": {
+        "min_eps_power_W": 80,
+        "min_sat_size_U": 6
+      },
+      "tags": [
+        "iodine",
+        "high_isp",
+        "rf_ion",
+        "deep_space"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-elec-ion-thrustme-npt30-i2",
+      "domain": "electric_propulsion",
+      "role": "ion_thruster",
+      "category_name": "Electric Propulsion (1.6.2)",
+      "class_name": "Ion Thrusters",
+      "option_name": "Iodine Gridded Ion Thrusters",
+      "product_name": "ThrustMe NPT30-I2",
+      "vendor": "ThrustMe",
+      "source_status": "public_vendor_plus_satnow",
+      "normalized": {
+        "mass_kg": 1.2,
+        "volume_U": 1.0,
+        "power_avg_W": 50.0,
+        "power_peak_W": 65.0,
+        "supply_voltage_V": "12-28"
+      },
+      "performance": {
+        "thrust_min_mN": 0.3,
+        "thrust_max_mN": 1.1,
+        "isp_s": 2400,
+        "total_impulse_Ns": 5500,
+        "propellant": "Solid iodine",
+        "propellant_mass_kg": 1.2
+      },
+      "dimensions_mm": {
+        "length_mm": 96,
+        "width_mm": 96,
+        "height_mm": 113
+      },
+      "interfaces": [
+        "I2C",
+        "CAN"
+      ],
+      "mission_fit": [
+        "drag_compensation",
+        "lifetime_extension",
+        "collision_avoidance",
+        "orbit_adjustment"
+      ],
+      "constraints": {
+        "min_eps_power_W": 65,
+        "min_sat_size_U": 3
+      },
+      "tags": [
+        "iodine",
+        "non_pressurized",
+        "1u_propulsion",
+        "electric"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "prop-elec-hall-exotrail-spaceware-nano",
+      "domain": "electric_propulsion",
+      "role": "hall_thruster",
+      "category_name": "Electric Propulsion (1.6.2)",
+      "class_name": "Hall Effect Thrusters",
+      "option_name": "Miniature Hall Thrusters",
+      "product_name": "Exotrail spaceware nano",
+      "vendor": "Exotrail",
+      "source_status": "public_vendor_plus_test_article",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": 60.0,
+        "power_peak_W": null
+      },
+      "performance": {
+        "thrust_max_mN": 2.0,
+        "thrust_to_power_mN_per_W": 0.05,
+        "isp_s": 1000,
+        "propellant": "Xenon / Krypton class"
+      },
+      "mission_fit": [
+        "orbit_raising",
+        "collision_avoidance",
+        "station_keeping"
+      ],
+      "constraints": {
+        "min_eps_power_W": 60,
+        "min_sat_mass_kg": 10
+      },
+      "tags": [
+        "hall_effect",
+        "high_thrust_to_power",
+        "smallsat"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-elec-hall-busek-bht200",
+      "domain": "electric_propulsion",
+      "role": "hall_thruster",
+      "category_name": "Electric Propulsion (1.6.2)",
+      "class_name": "Hall Effect Thrusters",
+      "option_name": "Miniature Hall Thrusters",
+      "product_name": "Busek BHT-200",
+      "vendor": "Busek",
+      "source_status": "seed_plus_engineering_placeholder",
+      "normalized": {
+        "mass_kg": 1.5,
+        "volume_U": 4.0,
+        "power_avg_W": 200.0
+      },
+      "performance": {
+        "thrust_max_mN": 13.0,
+        "isp_s": 1390,
+        "propellant": "Xenon"
+      },
+      "mission_fit": [
+        "orbit_raising",
+        "large_cubesat_mobility"
+      ],
+      "constraints": {
+        "min_eps_power_W": 200,
+        "min_sat_size_U": 6
+      },
+      "tags": [
+        "very_high_power",
+        "orbit_raising",
+        "hall_effect"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-elec-mpt-benchmark-xantus",
+      "domain": "electric_propulsion",
+      "role": "metal_plasma_thruster",
+      "category_name": "Electric Propulsion (1.6.2)",
+      "class_name": "Pulsed Plasma / Metal Plasma Thrusters",
+      "option_name": "Solid Metal Plasma Thrusters",
+      "product_name": "Benchmark Xantus Metal Plasma Thruster",
+      "vendor": "Benchmark Space Systems",
+      "source_status": "public_vendor_datasheet",
+      "normalized": {
+        "mass_kg": 1.4,
+        "dry_mass_kg": 0.85,
+        "volume_U": 0.53,
+        "power_avg_W": 50.0,
+        "power_peak_W": 100.0,
+        "supply_voltage_V": "24-36"
+      },
+      "performance": {
+        "thrust_to_power_uN_per_W": 10,
+        "isp_s": 1764,
+        "total_impulse_Ns": 5000,
+        "minimum_impulse_bit_uNs": 10,
+        "propellant": "Solid molybdenum"
+      },
+      "dimensions_mm": {
+        "length_mm": 94,
+        "width_mm": 94,
+        "height_mm": 60
+      },
+      "mission_fit": [
+        "precision_maneuver",
+        "station_keeping",
+        "drag_makeup",
+        "fine_attitude_torque"
+      ],
+      "constraints": {
+        "min_eps_power_W": 100,
+        "min_sat_size_U": 3
+      },
+      "tags": [
+        "solid_metal_propellant",
+        "pulsed",
+        "precision_impulse",
+        "0w_standby"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-elec-ppt-mars-cua",
+      "domain": "electric_propulsion",
+      "role": "pulsed_plasma_thruster",
+      "category_name": "Electric Propulsion (1.6.2)",
+      "class_name": "Pulsed Plasma Thrusters",
+      "option_name": "Teflon PPT",
+      "product_name": "Mars Space PPT CUA",
+      "vendor": "Mars Space",
+      "source_status": "seed_engineering_estimate",
+      "normalized": {
+        "mass_kg": 0.3,
+        "volume_U": 0.25,
+        "power_avg_W": 2.0
+      },
+      "performance": {
+        "thrust_max_mN": 0.04,
+        "isp_s": 600,
+        "propellant": "PTFE / Teflon"
+      },
+      "mission_fit": [
+        "precision_pointing",
+        "drag_makeup",
+        "technology_demo"
+      ],
+      "constraints": {
+        "min_eps_power_W": 2
+      },
+      "tags": [
+        "low_power",
+        "fine_control",
+        "solid_propellant"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-chem-coldgas-vacco-standard-mips",
+      "domain": "chemical_propulsion",
+      "role": "cold_gas_system",
+      "category_name": "Chemical Propulsion (1.6.1)",
+      "class_name": "Cold Gas Thrusters",
+      "option_name": "Integrated CubeSat Cold Gas Modules",
+      "product_name": "VACCO Standard Micro Propulsion System MiPS",
+      "vendor": "VACCO",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": 0.3,
+        "power_avg_W": null
+      },
+      "performance": {
+        "thrust_max_mN": 10.0,
+        "total_impulse_Ns": 44,
+        "number_of_thrusters": 5,
+        "minimum_impulse_firings": 880000,
+        "propellant": "R134a"
+      },
+      "mission_fit": [
+        "formation_flying",
+        "attitude_control",
+        "small_delta_v"
+      ],
+      "constraints": {
+        "min_sat_size_U": 3
+      },
+      "tags": [
+        "cold_gas",
+        "integrated",
+        "safe",
+        "non_toxic"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "prop-chem-coldgas-vacco-cusp-mips",
+      "domain": "chemical_propulsion",
+      "role": "cold_gas_system",
+      "category_name": "Chemical Propulsion (1.6.1)",
+      "class_name": "Cold Gas Thrusters",
+      "option_name": "Integrated CubeSat Cold Gas Modules",
+      "product_name": "VACCO CuSP MiPS",
+      "vendor": "VACCO",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 0.69,
+        "dry_mass_kg": 0.513,
+        "volume_U": 0.3,
+        "power_avg_W": 1.0,
+        "power_peak_W": 12.0,
+        "supply_voltage_V": "9.0-12.6"
+      },
+      "performance": {
+        "thrust_max_mN": 25,
+        "total_impulse_Ns": 69.4,
+        "delta_v_mps_for_8kg": 8.8,
+        "number_of_thrusters": 4,
+        "propellant": "R236fa",
+        "propellant_mass_kg": 0.177,
+        "meop_bar": 6.89
+      },
+      "interfaces": [
+        "RS-422"
+      ],
+      "mission_fit": [
+        "attitude_control",
+        "small_delta_v",
+        "space_weather_cubesat"
+      ],
+      "constraints": {
+        "min_sat_size_U": 6
+      },
+      "tags": [
+        "cold_gas",
+        "integrated",
+        "low_power_standby"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "prop-chem-coldgas-gomspace-nanoprop-6dof",
+      "domain": "chemical_propulsion",
+      "role": "cold_gas_system",
+      "category_name": "Chemical Propulsion (1.6.1)",
+      "class_name": "Cold Gas Thrusters",
+      "option_name": "6DOF Butane Cold Gas",
+      "product_name": "GomSpace NanoProp 6DOF",
+      "vendor": "GomSpace",
+      "source_status": "public_vendor_flyer",
+      "normalized": {
+        "mass_kg": 0.682,
+        "volume_U": 1.1,
+        "power_avg_W": null,
+        "supply_voltage_V": "5 and 32"
+      },
+      "performance": {
+        "thrust_options_mN": [
+          1,
+          10
+        ],
+        "minimum_impulse_bit_uNs": 25,
+        "total_impulse_Ns": "65-100",
+        "isp_s": 50,
+        "propellant": "Butane",
+        "propellant_mass_kg": 0.122,
+        "meop_bar": 5.6
+      },
+      "dimensions_mm": {
+        "length_mm": 200,
+        "width_mm": 100,
+        "height_mm": 55
+      },
+      "interfaces": [
+        "CAN",
+        "I2C"
+      ],
+      "mission_fit": [
+        "6dof_control",
+        "drag_makeup",
+        "small_delta_v"
+      ],
+      "constraints": {
+        "min_sat_size_U": 6
+      },
+      "tags": [
+        "cold_gas",
+        "butane",
+        "6dof",
+        "integrated"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-chem-green-nanoavionics-epss",
+      "domain": "chemical_propulsion",
+      "role": "green_monoprop_system",
+      "category_name": "Chemical Propulsion (1.6.1)",
+      "class_name": "Green Propellants",
+      "option_name": "ADN Green Monopropellant",
+      "product_name": "NanoAvionics EPSS",
+      "vendor": "NanoAvionics",
+      "source_status": "public_press_release",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "thrust_avg_mN": 127,
+        "thrust_peak_mN": 300,
+        "delta_v_demonstrated_cm_s": 10,
+        "propellant": "ADN blend green monopropellant"
+      },
+      "mission_fit": [
+        "orbit_change",
+        "drag_compensation",
+        "lifetime_extension"
+      ],
+      "constraints": {
+        "min_sat_size_U": 3
+      },
+      "tags": [
+        "green_propellant",
+        "flight_tested",
+        "chemical"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-chem-green-benchmark-halcyon",
+      "domain": "chemical_propulsion",
+      "role": "green_monoprop_or_biprop_system",
+      "category_name": "Chemical Propulsion (1.6.1)",
+      "class_name": "Green Propellants",
+      "option_name": "HTP Green Propulsion",
+      "product_name": "Benchmark Halcyon Chemical Propulsion System",
+      "vendor": "Benchmark Space Systems",
+      "source_status": "public_marketplace",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": 10.0,
+        "power_standby_W": 0.1
+      },
+      "performance": {
+        "thrust_min_mN": 100,
+        "thrust_max_N": 22,
+        "isp_s_min": 140,
+        "isp_s_max": 320,
+        "minimum_impulse_bit_mNs": 50,
+        "propellant": "High-test peroxide / optional butane"
+      },
+      "mission_fit": [
+        "collision_avoidance",
+        "rapid_maneuver",
+        "deorbit",
+        "rendezvous"
+      ],
+      "constraints": {
+        "min_sat_size_U": 3
+      },
+      "tags": [
+        "green_propellant",
+        "high_thrust",
+        "modular"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "prop-chem-green-ecaps-1n-hpgp",
+      "domain": "chemical_propulsion",
+      "role": "green_monoprop_thruster",
+      "category_name": "Chemical Propulsion (1.6.1)",
+      "class_name": "Green Propellants",
+      "option_name": "LMP-103S HPGP Thrusters",
+      "product_name": "Bradford ECAPS 1N HPGP Thruster",
+      "vendor": "Bradford ECAPS",
+      "source_status": "public_datasheet_catalog",
+      "normalized": {
+        "mass_kg": 0.38,
+        "volume_U": 0.2,
+        "power_avg_W": 10.0,
+        "supply_voltage_V": "10-28"
+      },
+      "performance": {
+        "thrust_min_N": 0.25,
+        "thrust_max_N": 1.0,
+        "isp_s_min": 204,
+        "isp_s_max": 231,
+        "minimum_impulse_bit_mNs": 70,
+        "propellant": "LMP-103S",
+        "propellant_throughput_kg": 24
+      },
+      "dimensions_mm": {
+        "length_mm": 178,
+        "width_mm": null,
+        "height_mm": null
+      },
+      "mission_fit": [
+        "attitude_orbit_control",
+        "agile_maneuvers",
+        "orbit_change"
+      ],
+      "constraints": {
+        "min_sat_size_U": 6
+      },
+      "tags": [
+        "green_propellant",
+        "trl9",
+        "flight_heritage",
+        "high_thrust"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "prop-chem-green-nasa-gpim-afm315e",
+      "domain": "chemical_propulsion",
+      "role": "green_monoprop_thruster_set",
+      "category_name": "Chemical Propulsion (1.6.1)",
+      "class_name": "Green Propellants",
+      "option_name": "AF-M315E Technology Demonstrator",
+      "product_name": "NASA GPIM AF-M315E Thruster Set",
+      "vendor": "NASA / Aerojet Rocketdyne",
+      "source_status": "public_nasa_technology_demo",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "thruster_classes_N": [
+          1,
+          22
+        ],
+        "propellant": "AF-M315E",
+        "relative_tank_volume_performance": "nearly 50 percent higher than conventional hydrazine system"
+      },
+      "mission_fit": [
+        "technology_demo",
+        "green_propellant_validation",
+        "orbit_change"
+      ],
+      "constraints": {
+        "min_sat_size_U": 12
+      },
+      "tags": [
+        "green_propellant",
+        "af_m315e",
+        "technology_demonstration"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-chem-monoprop-hydrazine-legacy-1n",
+      "domain": "chemical_propulsion",
+      "role": "hydrazine_thruster",
+      "category_name": "Chemical Propulsion (1.6.1)",
+      "class_name": "Monopropellant Hydrazine",
+      "option_name": "Legacy Hydrazine Thrusters",
+      "product_name": "Legacy 1N Hydrazine Monopropellant Thruster Model",
+      "vendor": "Generic / heritage class",
+      "source_status": "ontology_placeholder_due_hazardous_procurement",
+      "normalized": {
+        "mass_kg": 0.3,
+        "volume_U": 0.2,
+        "power_avg_W": 8.0
+      },
+      "performance": {
+        "thrust_max_N": 1.0,
+        "isp_s": 220,
+        "propellant": "Hydrazine"
+      },
+      "mission_fit": [
+        "legacy_orbit_control",
+        "high_reliability_missions"
+      ],
+      "constraints": {
+        "hazardous_propellant": true,
+        "requires_special_handling": true
+      },
+      "tags": [
+        "legacy",
+        "toxic",
+        "not_preferred_for_cubesat"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "prop-mgmt-tank-custom-1u-titanium",
+      "domain": "propellant_management",
+      "role": "propellant_tank",
+      "category_name": "Propellant Management (1.6.3)",
+      "class_name": "Propellant Tanks",
+      "option_name": "Custom SmallSat Tanks",
+      "product_name": "Custom 1U Titanium Propellant Tank",
+      "vendor": "Custom / mission-specific",
+      "source_status": "seed_engineering_placeholder",
+      "normalized": {
+        "mass_kg": 0.2,
+        "volume_U": 1.0,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "pressure_max_bar": 20
+      },
+      "mission_fit": [
+        "custom_propellant_storage"
+      ],
+      "tags": [
+        "tank",
+        "custom",
+        "titanium"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "prop-mgmt-moog-pfcv-51e339",
+      "domain": "propellant_management",
+      "role": "flow_control_valve",
+      "category_name": "Propellant Management (1.6.3)",
+      "class_name": "Flow Control Valves",
+      "option_name": "Electric Propulsion Proportional Flow Control Valve",
+      "product_name": "Moog 51E339 PFCV",
+      "vendor": "Moog",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 0.115,
+        "volume_U": 0.1,
+        "power_avg_W": null
+      },
+      "performance": {
+        "inlet_pressure_range_bar": "2.8-186",
+        "flow_range_mg_s_xe_typical": "0-30",
+        "flow_range_mg_s_xe_max": 200,
+        "response_time_ms": 10,
+        "life_cycles": 1000000,
+        "external_leakage_sccs_ghe": 1e-06
+      },
+      "mission_fit": [
+        "electric_propulsion_feed_control",
+        "xenon_krypton_feed"
+      ],
+      "constraints": {
+        "compatible_propellants": [
+          "Xe",
+          "Kr",
+          "Ar",
+          "He",
+          "N2"
+        ]
+      },
+      "tags": [
+        "flow_control",
+        "xenon",
+        "flight_heritage"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "prop-mgmt-moog-fcu",
+      "domain": "propellant_management",
+      "role": "flow_control_unit",
+      "category_name": "Propellant Management (1.6.3)",
+      "class_name": "Flow Control Valves",
+      "option_name": "Electric Propulsion Feed System",
+      "product_name": "Moog Flow Control Unit",
+      "vendor": "Moog",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 1.02,
+        "volume_U": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "mass_flow_rate_mg_s": "1-14+",
+        "total_flow_accuracy_percent": 3,
+        "tank_pressure_max_psia": 4400,
+        "external_leakage_sccs_ghe": 1e-06
+      },
+      "mission_fit": [
+        "electric_propulsion_feed_system",
+        "xenon_krypton_feed"
+      ],
+      "tags": [
+        "feed_system",
+        "flow_control",
+        "electric_propulsion"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "prop-mgmt-moog-pra-50-1451",
+      "domain": "propellant_management",
+      "role": "pressure_regulator",
+      "category_name": "Propellant Management (1.6.3)",
+      "class_name": "Pressure Regulators",
+      "option_name": "Pressure Regulation Assembly",
+      "product_name": "Moog 50-1451 PRA",
+      "vendor": "Moog",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 1.4,
+        "volume_U": null,
+        "power_avg_W": null,
+        "supply_voltage_V": 28
+      },
+      "performance": {
+        "meop_bar": 186,
+        "regulated_pressure_bar_typical": 2.55,
+        "minimum_flow_rate_capacity_mg_s_gxe": 23,
+        "external_leakage_sccs_ghe": 1e-06
+      },
+      "mission_fit": [
+        "electric_propulsion_pressure_regulation",
+        "redundant_feed_control"
+      ],
+      "tags": [
+        "pressure_regulator",
+        "redundant",
+        "xenon"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "prop-mgmt-moog-pma",
+      "domain": "propellant_management",
+      "role": "pressure_management_assembly",
+      "category_name": "Propellant Management (1.6.3)",
+      "class_name": "Pressure Regulators",
+      "option_name": "Pressure Management Assembly",
+      "product_name": "Moog Pressure Management Assembly",
+      "vendor": "Moog",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 3.75,
+        "volume_U": null,
+        "power_avg_W": null,
+        "supply_voltage_V": 28
+      },
+      "performance": {
+        "flow_rate_mg_s_xe": "4-60",
+        "regulated_pressure_bar": 2.55,
+        "pressure_range_high_bar": "6-186",
+        "cycle_life": 12000,
+        "envelope_mm": {
+          "length_mm": 476,
+          "width_mm": 188,
+          "height_mm": 91
+        }
+      },
+      "mission_fit": [
+        "larger_smallsat_xenon_feed",
+        "high_reliability_electric_propulsion"
+      ],
+      "tags": [
+        "pressure_management",
+        "large_smallsat",
+        "xenon"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "prop-mgmt-moog-mechanical-regulator-single-stage",
+      "domain": "propellant_management",
+      "role": "pressure_regulator",
+      "category_name": "Propellant Management (1.6.3)",
+      "class_name": "Pressure Regulators",
+      "option_name": "Mechanical Regulators",
+      "product_name": "Moog EP Mechanical Regulator Single Stage",
+      "vendor": "Moog",
+      "source_status": "public_vendor",
+      "normalized": {
+        "mass_kg": 0.45,
+        "volume_U": null,
+        "power_avg_W": 0.0
+      },
+      "performance": {
+        "inlet_pressure_bar": "6.07-186",
+        "regulated_outlet_pressure_bar": "2.45-2.65",
+        "flow_mg_s_xe_nominal": 4,
+        "flow_mg_s_xe_max": 60,
+        "operating_cycles": 12000
+      },
+      "mission_fit": [
+        "electric_propulsion_pressure_regulation"
+      ],
+      "tags": [
+        "passive_regulator",
+        "xenon",
+        "no_power"
+      ],
+      "trl": 9
+    }
+  ],
+  "selection_hooks": {
+    "hard_constraints": [
+      "candidate.normalized.mass_kg <= mission.remaining_mass_kg",
+      "candidate.normalized.power_peak_W <= mission.available_peak_power_W when present",
+      "candidate.constraints.min_eps_power_W <= mission.available_propulsion_power_W when present",
+      "candidate.constraints.min_sat_size_U <= mission.bus_size_U when present",
+      "chemical high-thrust systems require propellant safety compatibility and launch-provider approval",
+      "electric propulsion systems require sufficient continuous EPS power and thermal rejection"
+    ],
+    "suggested_scoring_fields": [
+      {
+        "field": "performance.total_impulse_Ns",
+        "goal": "maximize",
+        "weight_hint": 0.25
+      },
+      {
+        "field": "performance.isp_s",
+        "goal": "maximize",
+        "weight_hint": 0.2
+      },
+      {
+        "field": "performance.thrust_max_mN",
+        "goal": "mission_dependent",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "normalized.power_avg_W",
+        "goal": "minimize",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "normalized.mass_kg",
+        "goal": "minimize",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "trl",
+        "goal": "maximize",
+        "weight_hint": 0.1
+      }
+    ],
+    "mission_rules": [
+      "Use cold gas for simple, safe, low-delta-v maneuvering and 6DOF control.",
+      "Use green chemical propulsion when rapid maneuver, collision avoidance, or high thrust is required.",
+      "Use FEEP/electrospray or metal plasma thrusters for fine impulse, station keeping, and precision maneuvers.",
+      "Use ion or Hall propulsion for high delta-v and orbit raising when EPS power is sufficient.",
+      "Propellant-management components are support components; complete propulsion systems already include many of these functions."
+    ]
+  }
+}

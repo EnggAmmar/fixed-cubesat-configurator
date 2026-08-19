@@ -1,0 +1,235 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>CubeSat Mission Configuration Report</title>
+  <style>{{ css }}</style>
+</head>
+<body data-report-id="{{ report.report_id }}">
+  {% macro footer() -%}
+    <div class="footer">
+      <span class="footer-brand">
+        {% if logo_small_data_uri %}<img class="footer-logo" src="{{ logo_small_data_uri }}" alt="" />{% endif %}
+        <span>CubeSat Configurator</span>
+      </span>
+      <span>{{ report.report_id }}</span>
+    </div>
+  {%- endmacro %}
+  <section class="page cover">
+    <div>
+      {% if logo_data_uri %}
+      <img class="cover-logo" src="{{ logo_data_uri }}" alt="CubeSat Mission Configurator logo" />
+      {% endif %}
+      <div class="kicker">{{ report.report_id }}</div>
+      <h1>CubeSat Mission Configuration Report</h1>
+      <div class="meta">
+        <div class="meta-row"><div class="meta-label">Mission family</div><div class="meta-value">{{ label(report.mission.family) }}</div></div>
+        <div class="meta-row"><div class="meta-label">Payload</div><div class="meta-value">{{ report.payload.name }} / {{ report.payload.source }}</div></div>
+        <div class="meta-row"><div class="meta-label">ROI</div><div class="meta-value">{{ report.mission.roi_label }}</div></div>
+        <div class="meta-row"><div class="meta-label">Bus size</div><div class="meta-value">{{ fmt(report.platform.chosen_bus_size_u, " U") }}</div></div>
+        <div class="meta-row"><div class="meta-label">Solver</div><div class="meta-value">{{ report.solver.status or "Not available" }}</div></div>
+        <div class="meta-row"><div class="meta-label">Warnings</div><div class="meta-value">{{ report.warnings | length }}</div></div>
+      </div>
+    </div>
+    <div class="diagram">{{ svg_satellite() | safe }}</div>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Executive Summary / KPIs</h2>
+    <div class="grid">
+      <div class="card"><div class="label">Revisit target</div><div class="value">{{ fmt(report.mission.revisit_time_hours, " h") }}</div></div>
+      <div class="card"><div class="label">Estimated satellites</div><div class="value">{{ fmt(report.constellation.estimated_satellites) }}</div></div>
+      <div class="card"><div class="label">Orbit family/type</div><div class="value small-value">{{ report.constellation.orbit_type }}</div></div>
+      <div class="card"><div class="label">Planes</div><div class="value">{{ fmt(report.constellation.planes) }}</div></div>
+      <div class="card"><div class="label">Satellites per plane</div><div class="value">{{ fmt(report.constellation.satellites_per_plane) }}</div></div>
+      <div class="card"><div class="label">Selected platform</div><div class="value small-value">{{ report.platform.selected_platform_name }}</div></div>
+      <div class="card"><div class="label">Annual data</div><div class="value">{{ fmt(report.data_budget.annual_generated_data_tb, " TB/year") }}</div></div>
+      <div class="card"><div class="label">Solver status</div><div class="value">{{ report.solver.status or "Not available" }}</div></div>
+      <div class="card"><div class="label">Critical/Major warnings</div><div class="value">{{ report.warnings | selectattr("severity", "in", ["Critical", "Major"]) | list | length }}</div></div>
+    </div>
+    <h3>Critical warnings</h3>
+    <ul class="note-list">{% for item in report.warnings if item.severity in ["Critical", "Major"] %}<li><span class="pill {{ item.severity }}">{{ item.severity }}</span> {{ item.message }}</li>{% else %}<li>No critical or major warnings.</li>{% endfor %}</ul>
+    <div class="diagram">{{ svg_constellation(report.constellation.planes, report.constellation.satellites_per_plane) | safe }}</div>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Mission Inputs and Derived Requirements</h2>
+    <table>
+      <thead><tr><th>Requirement</th><th>Value</th><th>Source</th></tr></thead>
+      <tbody>
+      {% for key, item in report.mission_inputs.items() if key != "constraints" %}
+        <tr><td>{{ label(key) }}</td><td>{{ item.value if item.value is not none else "Not available" }}</td><td>{{ item.source }}</td></tr>
+      {% endfor %}
+      {% for key, item in report.requirements.items() %}
+        <tr><td>{{ label(key) }}</td><td>{{ item.value if item.value is not none else "Not available" }}</td><td>{{ item.source }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Orbit / Constellation Architecture</h2>
+    <div class="grid">
+      <div class="card"><div class="label">Orbit type/family</div><div class="value small-value">{{ report.constellation.orbit_type }}</div></div>
+      <div class="card"><div class="label">Altitude</div><div class="value">{{ fmt(report.constellation.altitude_km, " km") }}</div></div>
+      <div class="card"><div class="label">Planes</div><div class="value">{{ fmt(report.constellation.planes) }}</div></div>
+      <div class="card"><div class="label">Satellites/plane</div><div class="value">{{ fmt(report.constellation.satellites_per_plane) }}</div></div>
+      <div class="card"><div class="label">Revisit basis</div><div class="value small-value">{{ report.constellation.revisit_basis }}</div></div>
+      <div class="card"><div class="label">Coverage status</div><div class="value small-value">{{ report.payload.coverage_geometry_status }}</div></div>
+    </div>
+    <h3>Assumptions</h3>
+    <ul class="note-list">{% for item in report.constellation.assumptions %}<li>{{ item }}</li>{% else %}<li>No constellation assumptions provided.</li>{% endfor %}</ul>
+    <h3>Architecture warnings</h3>
+    <ul class="note-list">{% for item in report.constellation.warnings %}<li><span class="pill {{ item.severity }}">{{ item.severity }}</span> {{ item.message }}</li>{% else %}<li>No orbit-specific warnings.</li>{% endfor %}</ul>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Data Budget</h2>
+    <div class="grid">
+      <div class="card"><div class="label">Payload data rate</div><div class="value">{{ fmt(report.data_budget.data_rate_mbps, " Mbps") }}</div></div>
+      <div class="card"><div class="label">Data per satellite/day</div><div class="value">{{ fmt(report.data_budget.data_per_day_per_satellite_gb, " GB/day") }}</div></div>
+      <div class="card"><div class="label">Constellation/day</div><div class="value">{{ fmt(report.data_budget.data_per_day_constellation_gb, " GB/day") }}</div></div>
+      <div class="card"><div class="label">Annual generated</div><div class="value">{{ fmt(report.data_budget.annual_generated_data_tb, " TB/year") }}</div></div>
+      <div class="card"><div class="label">Required storage</div><div class="value">{{ fmt(report.data_budget.required_storage_gb, " GB") }}</div></div>
+      <div class="card"><div class="label">Selected OBC storage</div><div class="value">{{ fmt(report.data_budget.selected_obc_storage_gb, " GB") }}</div></div>
+      <div class="card"><div class="label">Downlink class</div><div class="value small-value">{{ report.data_budget.downlink_class or "Not available" }}</div></div>
+      <div class="card"><div class="label">Min downlink</div><div class="value">{{ fmt(report.data_budget.min_downlink_mbps, " Mbps") }}</div></div>
+      <div class="card"><div class="label">Selected downlink</div><div class="value">{{ fmt(report.data_budget.selected_downlink_mbps, " Mbps") }}</div></div>
+    </div>
+    <div class="diagram">{{ svg_data_bar(report.data_budget) | safe }}</div>
+    <p class="muted">{{ report.data_budget.conversion_note }} Provenance: {{ report.data_budget.provenance }}. Contact assumptions: {{ report.data_budget.contact_assumptions }}.</p>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Payload Geometry / Coverage</h2>
+    <div class="grid">
+      <div class="card"><div class="label">Payload dimensions</div><div class="value small-value">{{ dimension_label(report.payload) }}</div></div>
+      <div class="card"><div class="label">Payload mass</div><div class="value">{{ fmt(report.payload.mass_kg, " kg") }}</div></div>
+      <div class="card"><div class="label">Average power</div><div class="value">{{ fmt(report.payload.avg_power_w, " W") }}</div></div>
+      <div class="card"><div class="label">Peak power</div><div class="value">{{ fmt(report.payload.peak_power_w, " W") }}</div></div>
+      <div class="card"><div class="label">FOV</div><div class="value">{{ fmt(report.payload.field_of_view_deg, " deg") }}</div></div>
+      <div class="card"><div class="label">GSD</div><div class="value">{{ fmt(report.payload.ground_resolution_m, " m") }}</div></div>
+      <div class="card"><div class="label">Swath</div><div class="value">{{ fmt(report.payload.swath_width_km, " km") }}</div></div>
+      <div class="card"><div class="label">Pointing requirement</div><div class="value">{{ fmt(report.payload.pointing_accuracy_deg, " deg") }}</div></div>
+      <div class="card"><div class="label">Geometry status</div><div class="value small-value">{{ report.payload.coverage_geometry_status }}</div></div>
+    </div>
+    <div class="diagram">{{ svg_payload_geometry(report.payload) | safe }}</div>
+    <p class="muted">Swath source: {{ report.payload.swath_provenance }}.</p>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Selected Satellite Fleet / Platform</h2>
+    <div class="grid">
+      <div class="card"><div class="label">Selected platform</div><div class="value small-value">{{ report.platform.selected_platform_name }}</div></div>
+      <div class="card"><div class="label">Bus size</div><div class="value">{{ fmt(report.platform.chosen_bus_size_u, " U") }}</div></div>
+      <div class="card"><div class="label">Max total mass</div><div class="value">{{ fmt(report.platform.max_total_mass_kg, " kg") }}</div></div>
+      <div class="card"><div class="label">Payload volume</div><div class="value">{{ fmt(report.platform.usable_payload_volume_u, " U") }}</div></div>
+      <div class="card"><div class="label">Avg power capacity</div><div class="value">{{ fmt(report.platform.avg_power_gen_w, " W") }}</div></div>
+      <div class="card"><div class="label">Peak power capacity</div><div class="value">{{ fmt(report.platform.peak_power_gen_w, " W") }}</div></div>
+    </div>
+    <p class="muted">{{ report.platform.selection_reason }}</p>
+    <table>
+      <thead><tr><th>Candidate bus</th><th>Status</th><th>Cost</th><th>Reason</th></tr></thead>
+      <tbody>{% for candidate in report.bus_candidates %}<tr><td>{{ candidate.candidate_bus }}</td><td>{{ candidate.status }}</td><td>{{ fmt(candidate.cost_kusd, " kUSD") }}</td><td>{{ candidate.reason }}</td></tr>{% endfor %}</tbody>
+    </table>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Subsystem Architecture</h2>
+    <table>
+      <thead><tr><th>Domain</th><th>Component</th><th>Mass</th><th>Avg power</th><th>Peak power</th><th>Cost</th><th>Selection reason</th></tr></thead>
+      <tbody>
+      {% for subsystem in report.subsystems %}
+        <tr><td>{{ subsystem.domain }}</td><td>{{ subsystem.name }}</td><td>{{ fmt(subsystem.mass_kg, " kg") }}</td><td>{{ fmt(subsystem.avg_power_w, " W") }}</td><td>{{ fmt(subsystem.peak_power_w, " W") }}</td><td>{{ fmt(subsystem.cost_kusd, " kUSD") }}</td><td>{{ subsystem.selection_reason or "Not available" }}</td></tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Budgets &amp; Margins <span class="status">{{ report.budgets.status }}</span></h2>
+    <div class="grid">
+      <div class="card"><div class="label">Total mass / capacity</div><div class="value small-value">{{ fmt(report.budgets.total_mass_kg, " kg") }} / {{ fmt(report.budgets.mass_capacity_kg, " kg") }}</div></div>
+      <div class="card"><div class="label">Mass margin</div><div class="value">{{ fmt(report.budgets.mass_margin_kg, " kg") }}</div></div>
+      <div class="card"><div class="label">Mass margin %</div><div class="value">{{ fmt(report.budgets.mass_margin_percent, "%") }}</div></div>
+      <div class="card"><div class="label">Avg power / capacity</div><div class="value small-value">{{ fmt(report.budgets.total_avg_power_w, " W") }} / {{ fmt(report.budgets.avg_power_capacity_w, " W") }}</div></div>
+      <div class="card"><div class="label">Avg power margin</div><div class="value">{{ fmt(report.budgets.avg_power_margin_w, " W") }}</div></div>
+      <div class="card"><div class="label">Peak power margin</div><div class="value">{{ fmt(report.budgets.peak_power_margin_w, " W") }}</div></div>
+      <div class="card"><div class="label">Volume used/capacity</div><div class="value small-value">{{ fmt(report.budgets.payload_volume_used_u, " U") }} / {{ fmt(report.budgets.payload_volume_capacity_u, " U") }}</div></div>
+      <div class="card"><div class="label">Volume margin</div><div class="value">{{ fmt(report.budgets.bus_volume_margin_u, " U") }}</div></div>
+      <div class="card"><div class="label">Indicative cost</div><div class="value">{{ fmt(report.budgets.total_cost_kusd, " kUSD") }}</div></div>
+    </div>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Cost Breakdown</h2>
+    <table>
+      <thead><tr><th>Item</th><th>Cost</th></tr></thead>
+      <tbody>
+        <tr><td>Platform</td><td>{{ fmt(report.cost_breakdown.platform_cost_kusd, " kUSD") }}</td></tr>
+        {% for item in report.cost_breakdown.subsystem_costs %}<tr><td>{{ item.domain }} - {{ item.name }}</td><td>{{ fmt(item.cost_kusd, " kUSD") }}</td></tr>{% endfor %}
+        <tr><td>Payload</td><td>{{ fmt(report.cost_breakdown.payload_cost_kusd, " kUSD") }}</td></tr>
+        <tr><td><strong>Total indicative cost</strong></td><td><strong>{{ fmt(report.cost_breakdown.total_indicative_cost_kusd, " kUSD") }}</strong></td></tr>
+      </tbody>
+    </table>
+    <p class="muted">{{ report.cost_breakdown.composition_note }}</p>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Solver Trace / Explainability</h2>
+    <div class="grid">
+      <div class="card"><div class="label">Solver route/name</div><div class="value small-value">{{ report.solver.route or "Not available" }} / {{ report.solver.name or "Not available" }}</div></div>
+      <div class="card"><div class="label">Status</div><div class="value">{{ report.solver.status or "Not available" }}</div></div>
+      <div class="card"><div class="label">Objective value</div><div class="value">{{ fmt(report.solver.objective_value) }}</div></div>
+    </div>
+    <p class="muted">{{ report.solver.objective_description }}</p>
+    <table>
+      <thead><tr><th>Constraint</th><th>Required/used</th><th>Capacity</th><th>Margin</th><th>Status</th><th>Note</th></tr></thead>
+      <tbody>{% for constraint in report.solver.constraints %}<tr><td>{{ constraint.name }}</td><td>{{ constraint.required_display or fmt(constraint.required) }}</td><td>{{ constraint.capacity_display or fmt(constraint.capacity) }}</td><td>{{ fmt(constraint.margin) }} {{ constraint.units or "" }}</td><td>{{ constraint.status }}</td><td>{{ constraint.note or "" }}</td></tr>{% endfor %}</tbody>
+    </table>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Warnings, Assumptions, and Data Completeness</h2>
+    <h3>Warnings</h3>
+    <ul class="note-list">{% for item in report.warnings %}<li><span class="pill {{ item.severity }}">{{ item.severity }}</span> {{ item.message }}</li>{% else %}<li>No warnings.</li>{% endfor %}</ul>
+    <h3>Assumptions</h3>
+    <ul class="note-list">{% for item in report.assumptions %}<li>{{ item }}</li>{% else %}<li>No assumptions provided.</li>{% endfor %}</ul>
+    <h3>Data completeness</h3>
+    <p class="muted">Missing: {{ report.data_completeness.missing | join(", ") if report.data_completeness.missing else "None" }}. Not evaluated constraints: {{ report.data_completeness.not_evaluated_constraints | join(", ") if report.data_completeness.not_evaluated_constraints else "None" }}.</p>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Radiation Screening</h2>
+    <div class="grid">
+      <div class="card"><div class="label">Available</div><div class="value small-value">{{ report.radiation.available }}</div></div>
+      <div class="card"><div class="label">Profile</div><div class="value small-value">{{ report.radiation.profile or "Not available" }}</div></div>
+      <div class="card"><div class="label">Severity</div><div class="value">{{ report.radiation.severity }}</div></div>
+    </div>
+    <p>{{ report.radiation.summary }}</p>
+    <ul class="note-list">{% for item in report.radiation.flags %}<li>{{ item }}</li>{% else %}<li>No radiation flags available.</li>{% endfor %}</ul>
+    {{ footer() }}
+  </section>
+
+  <section class="page">
+    <h2>Illustrative Timeline and Next Engineering Actions</h2>
+    <p class="muted">Illustrative planning timeline only; not a schedule commitment or commercial promise.</p>
+    <div class="grid">{% for item in report.timeline %}<div class="card"><div class="label">Step {{ loop.index }}</div><div class="value small-value">{{ item }}</div></div>{% endfor %}</div>
+    <h3>Next Engineering Actions</h3>
+    <ul class="note-list">{% for item in report.next_engineering_actions %}<li>{{ item }}</li>{% endfor %}</ul>
+    {{ footer() }}
+  </section>
+</body>
+</html>

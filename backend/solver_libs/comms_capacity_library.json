@@ -1,0 +1,85 @@
+{
+  "schema_version": "COMMS_CAPACITY_LIBRARY_1.0",
+  "generated_on": "2026-04-30",
+  "notes": [
+    "Conservative communication tier capacities for first-pass CubeSat optimization.",
+    "nominal_supported_downlink_mbps is a conservative achievable nominal downlink capability proxy (effective throughput is handled separately via downlink_efficiency_factor).",
+    "pointing_dependency indicates whether the tier typically requires at least MEDIUM/HIGH ADCS for stable pointing (narrower beams)."
+  ],
+  "comms_tiers": [
+    {
+      "comms_tier": "LOW",
+      "nominal_supported_downlink_mbps": 2,
+      "frequency_band": "VHF/UHF",
+      "antenna_complexity": "simple_whip_or_patch",
+      "pointing_dependency": "LOW",
+      "tx_peak_power_w": 10,
+      "tx_avg_power_w": 3.0,
+      "comms_mass_kg": 0.35,
+      "comms_volume_u": 0.15,
+      "supported_bus_min": "1U",
+      "supported_bus_max": "6U",
+      "supported_bus_range": {
+        "min": "1U",
+        "max": "6U"
+      }
+    },
+    {
+      "comms_tier": "MEDIUM",
+      "nominal_supported_downlink_mbps": 25,
+      "frequency_band": "S-band",
+      "antenna_complexity": "patch_or_small_hga",
+      "pointing_dependency": "MEDIUM",
+      "tx_peak_power_w": 25,
+      "tx_avg_power_w": 8.0,
+      "comms_mass_kg": 0.90,
+      "comms_volume_u": 0.40,
+      "supported_bus_min": "2U",
+      "supported_bus_max": "12U",
+      "supported_bus_range": {
+        "min": "2U",
+        "max": "12U"
+      }
+    },
+    {
+      "comms_tier": "HIGH",
+      "nominal_supported_downlink_mbps": 180,
+      "frequency_band": "X-band",
+      "antenna_complexity": "high_gain_antenna",
+      "pointing_dependency": "HIGH",
+      "tx_peak_power_w": 60,
+      "tx_avg_power_w": 18.0,
+      "comms_mass_kg": 2.00,
+      "comms_volume_u": 0.90,
+      "supported_bus_min": "3U",
+      "supported_bus_max": "27U",
+      "supported_bus_range": {
+        "min": "3U",
+        "max": "27U"
+      }
+    },
+    {
+      "comms_tier": "EXTREME",
+      "nominal_supported_downlink_mbps": 3000,
+      "frequency_band": "Optical_or_Very-High-Rate_RF",
+      "antenna_complexity": "precision_pointing_terminal",
+      "pointing_dependency": "EXTREME",
+      "tx_peak_power_w": 120,
+      "tx_avg_power_w": 35.0,
+      "comms_mass_kg": 4.50,
+      "comms_volume_u": 2.20,
+      "supported_bus_min": "6U",
+      "supported_bus_max": "50U+",
+      "supported_bus_range": {
+        "min": "6U",
+        "max": "50U+"
+      }
+    }
+  ],
+  "field_descriptions": {
+    "nominal_supported_downlink_mbps": "Nominal supported downlink rate for feasibility screening; effective throughput is nominal * downlink_efficiency_factor * usable_contact_fraction in system analysis.",
+    "pointing_dependency": "LOW/MEDIUM/HIGH/EXTREME indicating the minimum practical ADCS tier to support the comm tier.",
+    "tx_peak_power_w": "Peak transmit power draw proxy contributing to P_peak_total.",
+    "tx_avg_power_w": "Average transmit subsystem power draw proxy contributing to P_avg_total under comm duty assumptions."
+  }
+}

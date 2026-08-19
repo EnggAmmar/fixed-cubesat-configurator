@@ -1,0 +1,106 @@
+{
+  "version": "v1",
+  "families": [
+    {
+      "family_id": "remote_sensing",
+      "label": "Remote Sensing",
+      "description": "Earth observation missions (optical, hyperspectral, thermal, SAR) with revisit-driven constellation sizing.",
+      "payload_categories": [
+        {
+          "category_id": "hyperspectral",
+          "label": "Hyperspectral",
+          "description": "High spectral resolution imaging for material classification and analytics."
+        },
+        {
+          "category_id": "infrared_imaging",
+          "label": "Infrared Imaging",
+          "description": "Near- and short-wave infrared imaging for vegetation, land-use, moisture, environmental, and material signature analysis."
+        },
+        {
+          "category_id": "vhr_optical",
+          "label": "VHR Optical",
+          "description": "Very-high-resolution optical imaging with tighter pointing constraints."
+        },
+        {
+          "category_id": "thermal",
+          "label": "Thermal",
+          "description": "Thermal infrared imaging for heat signatures and temperature mapping."
+        },
+        {
+          "category_id": "sar",
+          "label": "SAR",
+          "description": "Synthetic aperture radar for all-weather, day/night imaging and surface deformation."
+        },
+        {
+          "category_id": "my_payload",
+          "label": "My Payload",
+          "description": "Confidential synthetic payload input (dimensions, mass, power, optional data/pointing/thermal)."
+        }
+      ]
+    },
+    {
+      "family_id": "iot_communication",
+      "label": "IoT / Communication",
+      "description": "Store-and-forward IoT and communications missions with data-rate and link-driven sizing.",
+      "payload_categories": [
+        {
+          "category_id": "iot_store_and_forward",
+          "label": "IoT Store-and-Forward",
+          "description": "Collect bursts from ground terminals, relay packets, and downlink later through store-and-forward communication payloads."
+        },
+        {
+          "category_id": "broadband_rf_comms",
+          "label": "Broadband RF Comms",
+          "description": "High-throughput RF communication payloads using SDR, transmitter, receiver, and signal-processing hardware."
+        },
+        {
+          "category_id": "optical_laser_comms",
+          "label": "Optical / Laser Comms",
+          "description": "Laser and optical communication links for high-rate downlink or inter-satellite relay missions."
+        },
+        {
+          "category_id": "quantum_secure_comms",
+          "label": "Quantum Secure Comms",
+          "description": "Quantum communication payloads for secure optical key distribution and protected communication experiments."
+        },
+        {
+          "category_id": "my_payload",
+          "label": "My Payload",
+          "description": "Confidential synthetic payload input (dimensions, mass, power, optional data/pointing/thermal)."
+        }
+      ]
+    },
+    {
+      "family_id": "navigation",
+      "label": "Navigation",
+      "description": "Navigation-related missions including PNT augmentation, tracking, and timing experiments.",
+      "payload_categories": [
+        {
+          "category_id": "pnt_augmentation",
+          "label": "PNT Augmentation",
+          "description": "Broadcast navigation corrections and augmentation signals for positioning, navigation, and timing support."
+        },
+        {
+          "category_id": "navigation_beacons",
+          "label": "Navigation Beacons",
+          "description": "RF or optical beacon payloads for orbital reference, synchronization, and navigation marker missions."
+        },
+        {
+          "category_id": "rf_geolocation",
+          "label": "RF Geolocation",
+          "description": "RF direction-finding and signal-localization payloads for emitter geolocation and navigation-related RF sensing."
+        },
+        {
+          "category_id": "timing_payloads",
+          "label": "Timing Payloads",
+          "description": "Precision timing, clock, and frequency-standard payloads for synchronization and navigation experiments."
+        },
+        {
+          "category_id": "my_payload",
+          "label": "My Payload",
+          "description": "Confidential synthetic payload input (dimensions, mass, power, optional data/pointing/thermal)."
+        }
+      ]
+    }
+  ]
+}

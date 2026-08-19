@@ -1,0 +1,37 @@
+
+    {
+      "payload_group":"Edge Computing Payloads",
+      "payload_type":"High-Performance Processing",
+      "payload_variant":"GPU",
+      "products":[
+        {"payload_id":"IOT-EDGE-GPU-001","vendor":"CAVU Aerospace","product_name":"Polar Edge AI CubeSat Computer","mass_kg":1.80,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":120},"payload_envelope_u":1.2,"mounting_face":"internal","avg_power_w":12.0,"peak_power_w":20.0,"nominal_data_rate_mbps":85,"spectral_band":"100 TOPS GPU AI compute","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":165000},
+        {"payload_id":"IOT-EDGE-GPU-002","vendor":"Jetson Orin Space Adapted","product_name":"Orbital CUDA Compute Payload","mass_kg":1.55,"dimensions_mm":{"length_x":95,"width_y":95,"height_z":110},"payload_envelope_u":1.0,"mounting_face":"internal","avg_power_w":10.8,"peak_power_w":18.5,"nominal_data_rate_mbps":78,"spectral_band":"parallel AI acceleration","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":152000},
+        {"payload_id":"IOT-EDGE-GPU-003","vendor":"VERTECS Derived","product_name":"Linux GPU Payload Interface Computer","mass_kg":1.62,"dimensions_mm":{"length_x":96,"width_y":96,"height_z":114},"payload_envelope_u":1.1,"mounting_face":"internal","avg_power_w":11.2,"peak_power_w":18.8,"nominal_data_rate_mbps":80,"spectral_band":"high bitrate image/AI compute","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":158000},
+        {"payload_id":"IOT-EDGE-GPU-004","vendor":"OrbitalCUDA OEM","product_name":"Parallel Data Compression GPU Module","mass_kg":1.48,"dimensions_mm":{"length_x":93,"width_y":93,"height_z":108},"payload_envelope_u":1.0,"mounting_face":"internal","avg_power_w":10.0,"peak_power_w":17.2,"nominal_data_rate_mbps":75,"spectral_band":"GPU stream processing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":149000}
+      ]
+    },
+
+    {
+      "payload_group":"Edge Computing Payloads",
+      "payload_type":"High-Performance Processing",
+      "payload_variant":"FPGA",
+      "products":[
+        {"payload_id":"IOT-EDGE-FPGA-001","vendor":"Microchip PolarFire SoC","product_name":"Radiation Tolerant FPGA Payload Controller","mass_kg":0.95,"dimensions_mm":{"length_x":80,"width_y":80,"height_z":75},"payload_envelope_u":0.7,"mounting_face":"internal","avg_power_w":5.2,"peak_power_w":8.5,"nominal_data_rate_mbps":55,"spectral_band":"programmable logic compute","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.22,"estimated_cost_usd":92000},
+        {"payload_id":"IOT-EDGE-FPGA-002","vendor":"Xilinx Zynq Space Adapted","product_name":"Hybrid FPGA Linux Payload Processor","mass_kg":1.05,"dimensions_mm":{"length_x":82,"width_y":82,"height_z":78},"payload_envelope_u":0.75,"mounting_face":"internal","avg_power_w":5.8,"peak_power_w":9.0,"nominal_data_rate_mbps":58,"spectral_band":"reconfigurable digital acceleration","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.22,"estimated_cost_usd":98000},
+        {"payload_id":"IOT-EDGE-FPGA-003","vendor":"GomSpace Z7000 Heritage","product_name":"SDR/Optical Terminal FPGA Compute Core","mass_kg":1.00,"dimensions_mm":{"length_x":81,"width_y":81,"height_z":77},"payload_envelope_u":0.72,"mounting_face":"internal","avg_power_w":5.5,"peak_power_w":8.8,"nominal_data_rate_mbps":57,"spectral_band":"SDR FPGA bus logic","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.22,"estimated_cost_usd":95500},
+        {"payload_id":"IOT-EDGE-FPGA-004","vendor":"NanoLogic OEM","product_name":"Real-Time Reconfigurable Comm FPGA","mass_kg":0.98,"dimensions_mm":{"length_x":80,"width_y":80,"height_z":76},"payload_envelope_u":0.70,"mounting_face":"internal","avg_power_w":5.3,"peak_power_w":8.6,"nominal_data_rate_mbps":56,"spectral_band":"adaptive packet logic","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.22,"estimated_cost_usd":93500},
+        {"payload_id":"IOT-EDGE-FPGA-005","vendor":"SpaceFabric OEM","product_name":"High Reliability FPGA Mission Controller","mass_kg":1.08,"dimensions_mm":{"length_x":83,"width_y":83,"height_z":79},"payload_envelope_u":0.76,"mounting_face":"internal","avg_power_w":5.9,"peak_power_w":9.2,"nominal_data_rate_mbps":59,"spectral_band":"high speed payload routing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.22,"estimated_cost_usd":99000}
+      ]
+    },
+
+    {
+      "payload_group":"Edge Computing Payloads",
+      "payload_type":"High-Performance Processing",
+      "payload_variant":"DSP",
+      "products":[
+        {"payload_id":"IOT-EDGE-DSP-001","vendor":"TI Space DSP","product_name":"Adaptive Signal DSP Payload Module","mass_kg":0.62,"dimensions_mm":{"length_x":68,"width_y":68,"height_z":48},"payload_envelope_u":0.4,"mounting_face":"internal","avg_power_w":3.5,"peak_power_w":5.5,"nominal_data_rate_mbps":36,"spectral_band":"digital filtering/beamforming","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.24,"estimated_cost_usd":61000},
+        {"payload_id":"IOT-EDGE-DSP-002","vendor":"OrbitalDSP","product_name":"Low Latency SATCOM Signal Accelerator","mass_kg":0.66,"dimensions_mm":{"length_x":70,"width_y":70,"height_z":50},"payload_envelope_u":0.42,"mounting_face":"internal","avg_power_w":3.8,"peak_power_w":5.8,"nominal_data_rate_mbps":38,"spectral_band":"adaptive modulation compute","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.24,"estimated_cost_usd":64000},
+        {"payload_id":"IOT-EDGE-DSP-003","vendor":"SignalWave OEM","product_name":"Digital Beamforming DSP Engine","mass_kg":0.64,"dimensions_mm":{"length_x":69,"width_y":69,"height_z":49},"payload_envelope_u":0.41,"mounting_face":"internal","avg_power_w":3.6,"peak_power_w":5.6,"nominal_data_rate_mbps":37,"spectral_band":"beamforming and FFT compute","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.24,"estimated_cost_usd":62500},
+        {"payload_id":"IOT-EDGE-DSP-004","vendor":"RFDSP OEM","product_name":"Interference Classification DSP Core","mass_kg":0.67,"dimensions_mm":{"length_x":71,"width_y":71,"height_z":51},"payload_envelope_u":0.43,"mounting_face":"internal","avg_power_w":3.9,"peak_power_w":5.9,"nominal_data_rate_mbps":39,"spectral_band":"RF signal analytics","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.24,"estimated_cost_usd":64800}
+      ]
+    }

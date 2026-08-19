@@ -1,0 +1,85 @@
+{
+  "schema_version": "THERMAL_CAPACITY_LIBRARY_1.0",
+  "generated_on": "2026-04-30",
+  "notes": [
+    "Conservative thermal tier capacities for first-pass CubeSat optimization.",
+    "max_heat_rejection_w is a conservative continuous internal waste-heat handling capability proxy for a typical supported bus size with nominal radiator area (use bus radiator area coupling for more detailed modeling).",
+    "q_reject_density_w_per_m2 provides a coupling coefficient when combined with bus nominal_radiator_area_m2."
+  ],
+  "thermal_tiers": [
+    {
+      "thermal_tier": "LOW",
+      "max_heat_rejection_w": 14.64,
+      "q_reject_density_w_per_m2": 120,
+      "heater_capability": "minimal",
+      "thermal_stability_class": "LOW",
+      "thermal_avg_power_w": 0.5,
+      "thermal_peak_power_w": 2.0,
+      "thermal_mass_kg": 0.20,
+      "thermal_volume_u": 0.10,
+      "supported_bus_min": "1U",
+      "supported_bus_max": "6U",
+      "supported_bus_range": {
+        "min": "1U",
+        "max": "6U"
+      }
+    },
+    {
+      "thermal_tier": "MEDIUM",
+      "max_heat_rejection_w": 42.7,
+      "q_reject_density_w_per_m2": 180,
+      "heater_capability": "moderate",
+      "thermal_stability_class": "MEDIUM",
+      "thermal_avg_power_w": 1.5,
+      "thermal_peak_power_w": 6.0,
+      "thermal_mass_kg": 0.60,
+      "thermal_volume_u": 0.30,
+      "supported_bus_min": "2U",
+      "supported_bus_max": "12U",
+      "supported_bus_range": {
+        "min": "2U",
+        "max": "12U"
+      }
+    },
+    {
+      "thermal_tier": "HIGH",
+      "max_heat_rejection_w": 103.7,
+      "q_reject_density_w_per_m2": 250,
+      "heater_capability": "high",
+      "thermal_stability_class": "HIGH",
+      "thermal_avg_power_w": 3.5,
+      "thermal_peak_power_w": 12.0,
+      "thermal_mass_kg": 1.40,
+      "thermal_volume_u": 0.70,
+      "supported_bus_min": "3U",
+      "supported_bus_max": "27U",
+      "supported_bus_range": {
+        "min": "3U",
+        "max": "27U"
+      }
+    },
+    {
+      "thermal_tier": "EXTREME",
+      "max_heat_rejection_w": 219.6,
+      "q_reject_density_w_per_m2": 320,
+      "heater_capability": "very_high",
+      "thermal_stability_class": "EXTREME",
+      "thermal_avg_power_w": 7.0,
+      "thermal_peak_power_w": 25.0,
+      "thermal_mass_kg": 3.00,
+      "thermal_volume_u": 1.50,
+      "supported_bus_min": "6U",
+      "supported_bus_max": "50U+",
+      "supported_bus_range": {
+        "min": "6U",
+        "max": "50U+"
+      }
+    }
+  ],
+  "field_descriptions": {
+    "max_heat_rejection_w": "Standalone feasibility proxy for internal waste heat rejection for the tier on a representative bus class.",
+    "q_reject_density_w_per_m2": "Heat rejection density coefficient used with bus nominal_radiator_area_m2 to compute Q_out_max_W.",
+    "heater_capability": "Qualitative heater/control capability for eclipse survival and stability.",
+    "thermal_stability_class": "LOW/MEDIUM/HIGH/EXTREME stability capability proxy."
+  }
+}

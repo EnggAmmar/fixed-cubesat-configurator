@@ -1,0 +1,342 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1250" viewBox="0 0 1800 1250">
+<defs>
+  <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+    <stop offset="0%" stop-color="#F7FAFF"/>
+    <stop offset="45%" stop-color="#F4F6FB"/>
+    <stop offset="100%" stop-color="#EEF4F8"/>
+  </linearGradient>
+  <linearGradient id="hero" x1="0" y1="0" x2="1" y2="0">
+    <stop offset="0%" stop-color="#18243A"/>
+    <stop offset="55%" stop-color="#20395F"/>
+    <stop offset="100%" stop-color="#245B68"/>
+  </linearGradient>
+  <filter id="cardShadow" x="-20%" y="-20%" width="140%" height="150%">
+    <feDropShadow dx="0" dy="10" stdDeviation="10" flood-color="#101828" flood-opacity="0.12"/>
+  </filter>
+  <filter id="softGlow" x="-40%" y="-40%" width="180%" height="180%">
+    <feGaussianBlur stdDeviation="8" result="blur"/>
+    <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <marker id="arrowHead" markerWidth="13" markerHeight="13" refX="11" refY="6.5" orient="auto" markerUnits="userSpaceOnUse">
+    <path d="M0,0 L12,6.5 L0,13 z" fill="#4F6BED"/>
+  </marker>
+</defs>
+<rect width="1800" height="1250" fill="url(#bg)"/>
+<circle cx="1570" cy="160" r="260" fill="#D7F3FF" opacity="0.35"/>
+<circle cx="170" cy="1080" r="300" fill="#E8ECFF" opacity="0.50"/>
+
+<rect x="60" y="44" width="1680" height="122" rx="28" fill="url(#hero)" stroke="#1E3352" stroke-width="1.5" opacity="1" filter="url(#cardShadow)" class=""/>
+<text x="100" y="100" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="38" font-weight="900" fill="#FFFFFF" opacity="1">CubeSat Mission Configurator</text>
+<text x="100" y="136" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="22" font-weight="500" fill="#CFE1FF" opacity="1">Project architecture visual — mission input to optimized satellite architecture</text>
+<rect x="1375" y="76" width="140" height="32" rx="14" fill="#E9FBFF" stroke="#91E4F2" stroke-width="1.5" opacity="1" class=""/>
+<text x="1445.0" y="98" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#076678" opacity="1">React + WebGL</text>
+<rect x="1530" y="76" width="92" height="32" rx="14" fill="#EFF6FF" stroke="#B5D1FF" stroke-width="1.5" opacity="1" class=""/>
+<text x="1576.0" y="98" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#1E5AB6" opacity="1">FastAPI</text>
+<rect x="1635" y="76" width="82" height="32" rx="14" fill="#FFF4E5" stroke="#FFD499" stroke-width="1.5" opacity="1" class=""/>
+<text x="1676.0" y="98" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#9A5B00" opacity="1">CP-SAT</text>
+<text x="1685" y="138" text-anchor="end" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#D5E8FF" opacity="1">branch: my_safe_copy</text>
+<text x="85" y="220" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="900" fill="#172033" opacity="1">1. Mission design inputs</text>
+<text x="505" y="220" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="900" fill="#172033" opacity="1">2. Interactive frontend</text>
+<text x="880" y="220" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="900" fill="#172033" opacity="1">3. Backend engineering pipeline</text>
+<text x="1395" y="220" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="900" fill="#172033" opacity="1">4. Outputs</text>
+<rect x="56" y="231" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="64" y="239" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="72" y="247" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="80" y="255" width="330" height="142" rx="22" fill="#FFFFFF" stroke="#D6DDEA" stroke-width="2" opacity="1" filter="url(#cardShadow)" class=""/>
+<rect x="80" y="255" width="330" height="8" rx="4" fill="#4F6BED" opacity="0.88"/>
+<circle cx="118" cy="297" r="22" fill="#4F6BED" opacity="0.13"/>
+<text x="118" y="306" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#4F6BED" opacity="1">①</text>
+<text x="152" y="291" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#172033" opacity="1">
+<tspan x="152" dy="0">Wizard flow</tspan>
+</text>
+<text x="104" y="333" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16.5" font-weight="400" fill="#526071" opacity="1">
+<tspan x="104" dy="0">Mission family</tspan>
+<tspan x="104" dy="20.625">Payload selection</tspan>
+<tspan x="104" dy="20.625">ROI / region</tspan>
+<tspan x="104" dy="20.625">Mission parameters</tspan>
+</text>
+<rect x="56" y="416" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="64" y="424" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="72" y="432" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="80" y="440" width="330" height="142" rx="22" fill="#FFFFFF" stroke="#D6DDEA" stroke-width="2" opacity="1" filter="url(#cardShadow)" class=""/>
+<rect x="80" y="440" width="330" height="8" rx="4" fill="#14A38B" opacity="0.88"/>
+<circle cx="118" cy="482" r="22" fill="#14A38B" opacity="0.13"/>
+<text x="118" y="491" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#14A38B" opacity="1">②</text>
+<text x="152" y="476" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#172033" opacity="1">
+<tspan x="152" dy="0">Payload channel</tspan>
+</text>
+<text x="104" y="518" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16.5" font-weight="400" fill="#526071" opacity="1">
+<tspan x="104" dy="0">Catalog payload</tspan>
+<tspan x="104" dy="20.625">or user-defined payload</tspan>
+<tspan x="104" dy="20.625">mass • volume • power • data</tspan>
+</text>
+<rect x="56" y="604" width="330" height="154" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="64" y="612" width="330" height="154" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="72" y="620" width="330" height="154" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="80" y="628" width="330" height="154" rx="22" fill="#FFFFFF" stroke="#D6DDEA" stroke-width="2" opacity="1" filter="url(#cardShadow)" class=""/>
+<rect x="80" y="628" width="330" height="8" rx="4" fill="#F59E0B" opacity="0.88"/>
+<circle cx="118" cy="670" r="22" fill="#F59E0B" opacity="0.13"/>
+<text x="118" y="679" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#F59E0B" opacity="1">③</text>
+<text x="152" y="664" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#172033" opacity="1">
+<tspan x="152" dy="0">Engineering</tspan>
+<tspan x="152" dy="26.25">preferences</tspan>
+</text>
+<text x="104" y="706" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16.5" font-weight="400" fill="#526071" opacity="1">
+<tspan x="104" dy="0">Altitude / orbit</tspan>
+<tspan x="104" dy="20.625">lifetime</tspan>
+<tspan x="104" dy="20.625">propulsion</tspan>
+<tspan x="104" dy="20.625">pointing</tspan>
+<tspan x="104" dy="20.625">downlink</tspan>
+<tspan x="104" dy="20.625">budget / bus cap</tspan>
+</text>
+<rect x="56" y="806" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="64" y="814" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="72" y="822" width="330" height="142" rx="20" fill="#FFFFFF" stroke="#E3E8F0" stroke-width="1.4" opacity="0.72" class=""/>
+<rect x="80" y="830" width="330" height="142" rx="22" fill="#FFFFFF" stroke="#D6DDEA" stroke-width="2" opacity="1" filter="url(#cardShadow)" class=""/>
+<rect x="80" y="830" width="330" height="8" rx="4" fill="#8B5CF6" opacity="0.88"/>
+<circle cx="118" cy="872" r="22" fill="#8B5CF6" opacity="0.13"/>
+<text x="118" y="881" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="24" font-weight="600" fill="#8B5CF6" opacity="1">④</text>
+<text x="152" y="866" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="21" font-weight="800" fill="#172033" opacity="1">
+<tspan x="152" dy="0">Reference data</tspan>
+</text>
+<text x="104" y="908" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16.5" font-weight="400" fill="#526071" opacity="1">
+<tspan x="104" dy="0">catalog.json</tspan>
+<tspan x="104" dy="20.625">payloads</tspan>
+<tspan x="104" dy="20.625">platforms</tspan>
+<tspan x="104" dy="20.625">subsystems</tspan>
+<tspan x="104" dy="20.625">metadata + costs</tspan>
+</text>
+<rect x="465" y="255" width="330" height="662" rx="28" fill="#FFFFFF" stroke="#D6DDEA" stroke-width="2" opacity="1" filter="url(#cardShadow)" class=""/>
+<rect x="465" y="255" width="330" height="8" rx="4" fill="#2B7FFF" opacity="0.9"/>
+<text x="630" y="298" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="900" fill="#172033" opacity="1">Frontend Layer</text>
+<text x="492" y="338" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16.5" font-weight="600" fill="#5C687A" opacity="1">
+<tspan x="492" dy="0">Persistent WebGL scene + routed</tspan>
+<tspan x="492" dy="20.625">UI overlay</tspan>
+</text>
+<rect x="495" y="386" width="270" height="80" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="519" cy="412" r="8" fill="#4F6BED" opacity="0.85"/>
+<text x="537" y="410" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="537" dy="0">React Router wizard</tspan>
+</text>
+<text x="513" y="441" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="513" dy="0">Family → Payload → ROI →</tspan>
+<tspan x="513" dy="15.93">Parameters → Result</tspan>
+</text>
+<rect x="495" y="488" width="270" height="82" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="519" cy="514" r="8" fill="#14A38B" opacity="0.85"/>
+<text x="537" y="512" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="537" dy="0">Mission state</tspan>
+</text>
+<text x="513" y="543" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="513" dy="0">Draft mission input assembled</tspan>
+<tspan x="513" dy="15.93">before solve</tspan>
+</text>
+<rect x="495" y="593" width="270" height="92" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="519" cy="619" r="8" fill="#8B5CF6" opacity="0.85"/>
+<text x="537" y="617" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="537" dy="0">SceneCanvas</tspan>
+</text>
+<text x="513" y="648" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="513" dy="0">Earth system, orbit layer,</tspan>
+<tspan x="513" dy="15.93">satellite hero and route</tspan>
+<tspan x="513" dy="15.93">transitions</tspan>
+</text>
+<rect x="495" y="710" width="270" height="82" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="519" cy="736" r="8" fill="#F97316" opacity="0.85"/>
+<text x="537" y="734" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="537" dy="0">API client</tspan>
+</text>
+<text x="513" y="765" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="513" dy="0">POST /api/v1/mission/solve POST</tspan>
+<tspan x="513" dy="15.93">/api/v1/mission/report</tspan>
+</text>
+<rect x="495" y="830" width="150" height="32" rx="14" fill="#F0F7FF" stroke="#BFD7FF" stroke-width="1.5" opacity="1" class=""/>
+<text x="570.0" y="852" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#1B5FBF" opacity="1">UX + visualization</text>
+<rect x="655" y="830" width="112" height="32" rx="14" fill="#F8F2FF" stroke="#DBC7FF" stroke-width="1.5" opacity="1" class=""/>
+<text x="711.0" y="852" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#6938A8" opacity="1">solver trace</text>
+<rect x="845" y="255" width="425" height="236" rx="28" fill="#FFFFFF" stroke="#D6DDEA" stroke-width="2" opacity="1" filter="url(#cardShadow)" class=""/>
+<rect x="845" y="255" width="425" height="8" rx="4" fill="#1C9E8A" opacity="0.9"/>
+<text x="1057" y="299" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="900" fill="#172033" opacity="1">FastAPI API Layer</text>
+<text x="880" y="338" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16.5" font-weight="400" fill="#526071" opacity="1">
+<tspan x="880" dy="0">Entrypoint: app.main</tspan>
+<tspan x="880" dy="20.625">Routers: mission, payload,</tspan>
+<tspan x="880" dy="20.625">requirements, taxonomy, bus,</tspan>
+<tspan x="880" dy="20.625">optimization, constellation, radiation</tspan>
+</text>
+<rect x="880" y="406" width="160" height="58" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="904" cy="432" r="8" fill="#1C9E8A" opacity="0.85"/>
+<text x="922" y="430" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="922" dy="0">Solve</tspan>
+<tspan x="922" dy="19.375">endpoint</tspan>
+</text>
+<text x="898" y="461" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="898" dy="0">/mission/solve</tspan>
+</text>
+<rect x="1070" y="406" width="160" height="58" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="1094" cy="432" r="8" fill="#F97316" opacity="0.85"/>
+<text x="1112" y="430" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="1112" dy="0">Report</tspan>
+<tspan x="1112" dy="19.375">endpoint</tspan>
+</text>
+<text x="1088" y="461" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="1088" dy="0">/mission/report</tspan>
+</text>
+<rect x="845" y="535" width="425" height="382" rx="28" fill="#FFFFFF" stroke="#D6DDEA" stroke-width="2" opacity="1" filter="url(#cardShadow)" class=""/>
+<rect x="845" y="535" width="425" height="8" rx="4" fill="#4F6BED" opacity="0.9"/>
+<text x="1057" y="579" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="900" fill="#172033" opacity="1">Engineering Pipeline</text>
+<circle cx="1057" cy="720" r="82" fill="#EDF4FF" stroke="#BFD7FF" stroke-width="2"/>
+<circle cx="1057" cy="720" r="50" fill="#FFFFFF" stroke="#4F6BED" stroke-width="3" filter="url(#softGlow)"/>
+<text x="1057" y="712" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="23" font-weight="900" fill="#3157C7" opacity="1">CP-SAT</text>
+<text x="1057" y="742" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="700" fill="#526071" opacity="1">selection</text>
+<rect x="870" y="615" width="175" height="70" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="894" cy="641" r="8" fill="#4F6BED" opacity="0.85"/>
+<text x="912" y="639" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="912" dy="0">01 Payload</tspan>
+<tspan x="912" dy="19.375">normalize</tspan>
+</text>
+<text x="888" y="670" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="888" dy="0">catalog or</tspan>
+<tspan x="888" dy="15.93">my_payload</tspan>
+</text>
+<rect x="1065" y="615" width="175" height="70" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="1089" cy="641" r="8" fill="#4F6BED" opacity="0.85"/>
+<text x="1107" y="639" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="1107" dy="0">02 Requirements</tspan>
+</text>
+<text x="1083" y="670" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="1083" dy="0">mass • power •</tspan>
+<tspan x="1083" dy="15.93">downlink</tspan>
+</text>
+<rect x="870" y="805" width="175" height="70" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="894" cy="831" r="8" fill="#4F6BED" opacity="0.85"/>
+<text x="912" y="829" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="912" dy="0">03</tspan>
+<tspan x="912" dy="19.375">Constellation</tspan>
+</text>
+<text x="888" y="860" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="888" dy="0">orbit / sats /</tspan>
+<tspan x="888" dy="15.93">planes</tspan>
+</text>
+<rect x="1065" y="805" width="175" height="70" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="1089" cy="831" r="8" fill="#4F6BED" opacity="0.85"/>
+<text x="1107" y="829" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="1107" dy="0">04 Bus</tspan>
+<tspan x="1107" dy="19.375">candidates</tspan>
+</text>
+<text x="1083" y="860" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="1083" dy="0">packaging fitness</tspan>
+</text>
+<line x1="995" y1="650" x2="1020" y2="688" stroke="#8BA4F9" stroke-width="2" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<line x1="1088" y1="650" x2="1075" y2="687" stroke="#8BA4F9" stroke-width="2" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<line x1="995" y1="837" x2="1020" y2="752" stroke="#8BA4F9" stroke-width="2" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<line x1="1088" y1="837" x2="1075" y2="752" stroke="#8BA4F9" stroke-width="2" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<rect x="1338" y="255" width="382" height="662" rx="28" fill="#FFFFFF" stroke="#D6DDEA" stroke-width="2" opacity="1" filter="url(#cardShadow)" class=""/>
+<rect x="1338" y="255" width="382" height="8" rx="4" fill="#F97316" opacity="0.9"/>
+<text x="1529" y="299" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="900" fill="#172033" opacity="1">Architecture Outputs</text>
+<rect x="1370" y="348" width="310" height="78" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="1394" cy="374" r="8" fill="#4F6BED" opacity="0.85"/>
+<text x="1412" y="372" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="1412" dy="0">Selected CubeSat platform</tspan>
+</text>
+<text x="1388" y="403" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="1388" dy="0">chosen bus size, capacity and</tspan>
+<tspan x="1388" dy="15.93">platform summary</tspan>
+</text>
+<rect x="1370" y="452" width="310" height="90" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="1394" cy="478" r="8" fill="#14A38B" opacity="0.85"/>
+<text x="1412" y="476" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="1412" dy="0">Subsystem architecture</tspan>
+</text>
+<text x="1388" y="507" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="1388" dy="0">ADCS • EPS • OBC • COMM • Thermal •</tspan>
+<tspan x="1388" dy="15.93">Propulsion • Radiation support</tspan>
+</text>
+<rect x="1370" y="570" width="310" height="88" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="1394" cy="596" r="8" fill="#F59E0B" opacity="0.85"/>
+<text x="1412" y="594" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="1412" dy="0">Budgets and margins</tspan>
+</text>
+<text x="1388" y="625" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="1388" dy="0">mass, avg/peak power, cost, risk,</tspan>
+<tspan x="1388" dy="15.93">bus-volume margin</tspan>
+</text>
+<rect x="1370" y="684" width="310" height="86" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="1394" cy="710" r="8" fill="#8B5CF6" opacity="0.85"/>
+<text x="1412" y="708" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="1412" dy="0">Engineering trace</tspan>
+</text>
+<text x="1388" y="739" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="1388" dy="0">solver status, objective weights,</tspan>
+<tspan x="1388" dy="15.93">constraints and warnings</tspan>
+</text>
+<rect x="1370" y="798" width="310" height="78" rx="16" fill="#FBFCFF" stroke="#D9E3F0" stroke-width="1.5" opacity="1" class=""/>
+<circle cx="1394" cy="824" r="8" fill="#EF4444" opacity="0.85"/>
+<text x="1412" y="822" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15.5" font-weight="800" fill="#24324A" opacity="1">
+<tspan x="1412" dy="0">Mission report export</tspan>
+</text>
+<text x="1388" y="853" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13.5" font-weight="400" fill="#657286" opacity="1">
+<tspan x="1388" dy="0">PDF • HTML • JSON • Markdown</tspan>
+</text>
+<path d="M410,320 C467.5,320 407.5,430 465,430" fill="none" stroke="#4F6BED" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<rect x="386.5" y="349.0" width="112" height="30" rx="14" fill="#FFFFFF" stroke="#D7E2F2" stroke-width="1" opacity="1" class=""/>
+<text x="442.5" y="371.0" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#30435F" opacity="1">input</text>
+<path d="M410,515 C437.5,515 437.5,530 465,530" fill="none" stroke="#14A38B" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<path d="M410,705 C427.5,705 447.5,640 465,640" fill="none" stroke="#F59E0B" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<path d="M410,900 C547.5,900 707.5,736 845,736" fill="none" stroke="#8B5CF6" stroke-width="3" stroke-linecap="round" marker-end="url(#arrowHead)" stroke-dasharray="8 8"/>
+<rect x="571.5" y="797.0" width="112" height="30" rx="14" fill="#FFFFFF" stroke="#D7E2F2" stroke-width="1" opacity="1" class=""/>
+<text x="627.5" y="819.0" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#30435F" opacity="1">catalog</text>
+<path d="M795,750 C880.0,750 760.0,440 845,440" fill="none" stroke="#4F6BED" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<rect x="764.0" y="575.0" width="112" height="30" rx="14" fill="#FFFFFF" stroke="#D7E2F2" stroke-width="1" opacity="1" class=""/>
+<text x="820.0" y="597.0" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#30435F" opacity="1">REST</text>
+<path d="M795,790 C860.0,790 780.0,710 845,710" fill="none" stroke="#4F6BED" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<line x1="1057" y1="491" x2="1057" y2="535" stroke="#1C9E8A" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<rect x="1001.0" y="494.88" width="112" height="30" rx="14" fill="#FFFFFF" stroke="#D7E2F2" stroke-width="1" opacity="1" class=""/>
+<text x="1057.0" y="516.88" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#30435F" opacity="1">request</text>
+<path d="M1270,720 C1359.0,720 1249.0,492 1338,492" fill="none" stroke="#4F6BED" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<rect x="1248.0" y="586.0" width="112" height="30" rx="14" fill="#FFFFFF" stroke="#D7E2F2" stroke-width="1" opacity="1" class=""/>
+<text x="1304.0" y="608.0" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#30435F" opacity="1">solution</text>
+<path d="M1270,760 C1369.0,760 1239.0,824 1338,824" fill="none" stroke="#F97316" stroke-width="4" stroke-linecap="round" marker-end="url(#arrowHead)"/>
+<rect x="1248.0" y="784.0" width="112" height="30" rx="14" fill="#FFFFFF" stroke="#D7E2F2" stroke-width="1" opacity="1" class=""/>
+<text x="1304.0" y="806.0" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="13" font-weight="700" fill="#30435F" opacity="1">reports</text>
+<rect x="80" y="1000" width="1640" height="170" rx="30" fill="#0F172A" stroke="#1E293B" stroke-width="1.5" opacity="1" filter="url(#cardShadow)" class=""/>
+<text x="120" y="1054" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="25" font-weight="900" fill="#FFFFFF" opacity="1">Optimization constraint families</text>
+<text x="120" y="1088" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="400" fill="#B9C5D6" opacity="1">
+<tspan x="120" dy="0">Mission intent is converted into hard feasibility</tspan>
+<tspan x="120" dy="20.0">constraints and a weighted objective, then returned as a</tspan>
+<tspan x="120" dy="20.0">traceable design selection.</tspan>
+</text>
+<rect x="705" y="1032" width="133.4" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="771.7" y="1054" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">Bus U / packaging</text>
+<rect x="875" y="1032" width="115.89999999999999" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="932.95" y="1054" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">Mass capacity</text>
+<rect x="1020" y="1032" width="150.8" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="1095.4" y="1054" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">Power generation</text>
+<rect x="1195" y="1032" width="134.3" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="1262.15" y="1054" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">Payload volume</text>
+<rect x="1360" y="1032" width="84.39999999999999" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="1402.2" y="1054" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">Cost cap</text>
+<rect x="705" y="1084" width="125.10000000000001" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="767.55" y="1106" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">ADCS pointing</text>
+<rect x="860" y="1084" width="126.0" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="923.0" y="1106" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">COMM downlink</text>
+<rect x="1022" y="1084" width="101.0" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="1072.5" y="1106" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">OBC storage</text>
+<rect x="1175" y="1084" width="102.6" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="1226.3" y="1106" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">EPS battery</text>
+<rect x="1322" y="1084" width="117.5" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="1380.75" y="1106" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">Thermal mode</text>
+<rect x="1480" y="1084" width="101.0" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="1530.5" y="1106" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">Propulsion</text>
+<rect x="1610" y="1084" width="86" height="32" rx="14" fill="#1E293B" stroke="#41516B" stroke-width="1.5" opacity="1" class=""/>
+<text x="1653.0" y="1106" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#DCEBFF" opacity="1">Risk</text>
+<text x="120" y="1150" text-anchor="start" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="18" font-weight="900" fill="#FFFFFF" opacity="1">Execution stack:</text>
+<rect x="270" y="1128" width="134" height="32" rx="14" fill="#172554" stroke="#3450A8" stroke-width="1.5" opacity="1" class=""/>
+<text x="337.0" y="1150" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#CFE1FF" opacity="1">Frontend :3000</text>
+<rect x="420" y="1128" width="130" height="32" rx="14" fill="#052E2B" stroke="#2D7D73" stroke-width="1.5" opacity="1" class=""/>
+<text x="485.0" y="1150" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#C8FFF5" opacity="1">Backend :8000</text>
+<rect x="565" y="1128" width="136" height="32" rx="14" fill="#2A1B05" stroke="#8B5A10" stroke-width="1.5" opacity="1" class=""/>
+<text x="633.0" y="1150" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#FFE0AA" opacity="1">Docker Compose</text>
+<rect x="718" y="1128" width="232" height="32" rx="14" fill="#2B1A40" stroke="#6E4EA2" stroke-width="1.5" opacity="1" class=""/>
+<text x="834.0" y="1150" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="15" font-weight="700" fill="#EADFFF" opacity="1">CI: lint + tests + build + E2E</text>
+<text x="900" y="1210" text-anchor="middle" font-family="Inter, Segoe UI, Arial, sans-serif" font-size="16" font-weight="600" fill="#667085" opacity="1">Inspired by a medical-image pipeline layout: left-to-right flow, stacked data cards, central processing block, right-side decision outputs.</text>
+</svg>

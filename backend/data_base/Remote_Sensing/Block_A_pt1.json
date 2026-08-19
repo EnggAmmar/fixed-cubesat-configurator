@@ -1,0 +1,565 @@
+{
+  "mission_family": "Remote Sensing",
+  "block": "MASTER_BLOCK_A_EARTH_OBSERVATION_PAYLOADS_PART1",
+  "schema_version": "ONE_V3_PAYLOAD_DB_2.0",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Optical Imaging",
+      "payload_variant": "Visible Light Cameras",
+      "products": [
+        {
+          "payload_id": "RS-EO-VIS-001",
+          "vendor": "Simera Sense",
+          "product_name": "TriScape100",
+          "mass_kg": 1.10,
+          "dimensions_mm": {
+            "length_x": 98,
+            "width_y": 98,
+            "height_z": 176
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 2.5,
+          "peak_power_w": 5.8,
+          "nominal_data_rate_mbps": 95,
+          "spectral_band": "VIS RGB",
+          "ground_resolution_m": 4.75,
+          "swath_km": 19.4,
+          "pointing_requirement_deg": 0.10,
+          "estimated_cost_usd": 180000
+        },
+        {
+          "payload_id": "RS-EO-VIS-002",
+          "vendor": "Satlantis",
+          "product_name": "iSIM-90",
+          "mass_kg": 1.50,
+          "dimensions_mm": {
+            "length_x": 95,
+            "width_y": 96,
+            "height_z": 131
+          },
+          "payload_envelope_u": 1.2,
+          "mounting_face": "nadir",
+          "avg_power_w": 8.0,
+          "peak_power_w": 12.0,
+          "nominal_data_rate_mbps": 120,
+          "spectral_band": "VIS RGB",
+          "ground_resolution_m": 1.5,
+          "swath_km": 12,
+          "pointing_requirement_deg": 0.08,
+          "estimated_cost_usd": 220000
+        },
+        {
+          "payload_id": "RS-EO-VIS-003",
+          "vendor": "Satlantis",
+          "product_name": "iSIM-170",
+          "mass_kg": 4.20,
+          "dimensions_mm": {
+            "length_x": 170,
+            "width_y": 170,
+            "height_z": 220
+          },
+          "payload_envelope_u": 6.0,
+          "mounting_face": "nadir",
+          "avg_power_w": 15,
+          "peak_power_w": 22,
+          "nominal_data_rate_mbps": 180,
+          "spectral_band": "VIS RGB",
+          "ground_resolution_m": 0.9,
+          "swath_km": 14,
+          "pointing_requirement_deg": 0.05,
+          "estimated_cost_usd": 480000
+        },
+        {
+          "payload_id": "RS-EO-VIS-004",
+          "vendor": "Dragonfly Aerospace",
+          "product_name": "Gecko Imager",
+          "mass_kg": 1.90,
+          "dimensions_mm": {
+            "length_x": 98,
+            "width_y": 98,
+            "height_z": 145
+          },
+          "payload_envelope_u": 1.4,
+          "mounting_face": "nadir",
+          "avg_power_w": 8.5,
+          "peak_power_w": 12,
+          "nominal_data_rate_mbps": 110,
+          "spectral_band": "VIS",
+          "ground_resolution_m": 4.0,
+          "swath_km": 35,
+          "pointing_requirement_deg": 0.10,
+          "estimated_cost_usd": 175000
+        },
+        {
+          "payload_id": "RS-EO-VIS-005",
+          "vendor": "Open Cosmos",
+          "product_name": "HAMMER EO Camera",
+          "mass_kg": 1.80,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 150
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 9,
+          "peak_power_w": 14,
+          "nominal_data_rate_mbps": 95,
+          "spectral_band": "VIS",
+          "ground_resolution_m": 5.0,
+          "swath_km": 30,
+          "pointing_requirement_deg": 0.12,
+          "estimated_cost_usd": 160000
+        },
+        {
+          "payload_id": "RS-EO-VIS-006",
+          "vendor": "AAC Clyde Space",
+          "product_name": "xCAM EO Payload",
+          "mass_kg": 1.20,
+          "dimensions_mm": {
+            "length_x": 90,
+            "width_y": 90,
+            "height_z": 120
+          },
+          "payload_envelope_u": 1.0,
+          "mounting_face": "nadir",
+          "avg_power_w": 6.2,
+          "peak_power_w": 9,
+          "nominal_data_rate_mbps": 85,
+          "spectral_band": "VIS",
+          "ground_resolution_m": 6.0,
+          "swath_km": 28,
+          "pointing_requirement_deg": 0.15,
+          "estimated_cost_usd": 130000
+        },
+        {
+          "payload_id": "RS-EO-VIS-007",
+          "vendor": "NanoAvionics",
+          "product_name": "NanoCam EO",
+          "mass_kg": 1.40,
+          "dimensions_mm": {
+            "length_x": 92,
+            "width_y": 92,
+            "height_z": 130
+          },
+          "payload_envelope_u": 1.1,
+          "mounting_face": "nadir",
+          "avg_power_w": 6.8,
+          "peak_power_w": 10,
+          "nominal_data_rate_mbps": 88,
+          "spectral_band": "VIS",
+          "ground_resolution_m": 5.7,
+          "swath_km": 27,
+          "pointing_requirement_deg": 0.13,
+          "estimated_cost_usd": 140000
+        },
+        {
+          "payload_id": "RS-EO-VIS-008",
+          "vendor": "Berlin Space Technologies",
+          "product_name": "BST Optical Camera",
+          "mass_kg": 1.60,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 140
+          },
+          "payload_envelope_u": 1.4,
+          "mounting_face": "nadir",
+          "avg_power_w": 7.8,
+          "peak_power_w": 11,
+          "nominal_data_rate_mbps": 90,
+          "spectral_band": "VIS",
+          "ground_resolution_m": 5.3,
+          "swath_km": 29,
+          "pointing_requirement_deg": 0.12,
+          "estimated_cost_usd": 145000
+        },
+        {
+          "payload_id": "RS-EO-VIS-009",
+          "vendor": "XCAM",
+          "product_name": "C3D CubeSat Camera",
+          "mass_kg": 0.82,
+          "dimensions_mm": {
+            "length_x": 75,
+            "width_y": 75,
+            "height_z": 85
+          },
+          "payload_envelope_u": 0.7,
+          "mounting_face": "nadir",
+          "avg_power_w": 4.5,
+          "peak_power_w": 6.5,
+          "nominal_data_rate_mbps": 60,
+          "spectral_band": "VIS",
+          "ground_resolution_m": 8.0,
+          "swath_km": 34,
+          "pointing_requirement_deg": 0.20,
+          "estimated_cost_usd": 85000
+        },
+        {
+          "payload_id": "RS-EO-VIS-010",
+          "vendor": "EnduroSat",
+          "product_name": "CubeCam-V",
+          "mass_kg": 0.90,
+          "dimensions_mm": {
+            "length_x": 80,
+            "width_y": 80,
+            "height_z": 90
+          },
+          "payload_envelope_u": 0.8,
+          "mounting_face": "nadir",
+          "avg_power_w": 4.9,
+          "peak_power_w": 7,
+          "nominal_data_rate_mbps": 65,
+          "spectral_band": "VIS",
+          "ground_resolution_m": 7.5,
+          "swath_km": 30,
+          "pointing_requirement_deg": 0.18,
+          "estimated_cost_usd": 90000
+        }
+      ]
+    },
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Optical Imaging",
+      "payload_variant": "Panchromatic Cameras",
+      "products": [
+        {
+          "payload_id": "RS-EO-PAN-001",
+          "vendor": "Simera Sense",
+          "product_name": "MultiScape100 PAN",
+          "mass_kg": 1.26,
+          "dimensions_mm": {
+            "length_x": 98,
+            "width_y": 98,
+            "height_z": 176
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 3.25,
+          "peak_power_w": 7.0,
+          "nominal_data_rate_mbps": 100,
+          "spectral_band": "500-750nm PAN",
+          "ground_resolution_m": 4.75,
+          "swath_km": 19.4,
+          "pointing_requirement_deg": 0.10,
+          "estimated_cost_usd": 185000
+        },
+        {
+          "payload_id": "RS-EO-PAN-002",
+          "vendor": "Satlantis",
+          "product_name": "iSIM-170 PAN",
+          "mass_kg": 4.30,
+          "dimensions_mm": {
+            "length_x": 170,
+            "width_y": 170,
+            "height_z": 220
+          },
+          "payload_envelope_u": 6.0,
+          "mounting_face": "nadir",
+          "avg_power_w": 15,
+          "peak_power_w": 22,
+          "nominal_data_rate_mbps": 180,
+          "spectral_band": "PAN",
+          "ground_resolution_m": 0.8,
+          "swath_km": 13,
+          "pointing_requirement_deg": 0.05,
+          "estimated_cost_usd": 500000
+        },
+        {
+          "payload_id": "RS-EO-PAN-003",
+          "vendor": "Dragonfly Aerospace",
+          "product_name": "PanoEye",
+          "mass_kg": 1.80,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 145
+          },
+          "payload_envelope_u": 1.4,
+          "mounting_face": "nadir",
+          "avg_power_w": 8.4,
+          "peak_power_w": 12,
+          "nominal_data_rate_mbps": 112,
+          "spectral_band": "PAN",
+          "ground_resolution_m": 3.7,
+          "swath_km": 36,
+          "pointing_requirement_deg": 0.09,
+          "estimated_cost_usd": 190000
+        },
+        {
+          "payload_id": "RS-EO-PAN-004",
+          "vendor": "Open Cosmos",
+          "product_name": "PAN Observation Payload",
+          "mass_kg": 1.70,
+          "dimensions_mm": {
+            "length_x": 95,
+            "width_y": 95,
+            "height_z": 140
+          },
+          "payload_envelope_u": 1.3,
+          "mounting_face": "nadir",
+          "avg_power_w": 8.0,
+          "peak_power_w": 11,
+          "nominal_data_rate_mbps": 96,
+          "spectral_band": "PAN",
+          "ground_resolution_m": 4.8,
+          "swath_km": 30,
+          "pointing_requirement_deg": 0.11,
+          "estimated_cost_usd": 170000
+        },
+        {
+          "payload_id": "RS-EO-PAN-005",
+          "vendor": "AAC Clyde Space",
+          "product_name": "PANCam",
+          "mass_kg": 1.30,
+          "dimensions_mm": {
+            "length_x": 90,
+            "width_y": 90,
+            "height_z": 120
+          },
+          "payload_envelope_u": 1.0,
+          "mounting_face": "nadir",
+          "avg_power_w": 6.5,
+          "peak_power_w": 9.2,
+          "nominal_data_rate_mbps": 83,
+          "spectral_band": "PAN",
+          "ground_resolution_m": 5.9,
+          "swath_km": 29,
+          "pointing_requirement_deg": 0.14,
+          "estimated_cost_usd": 135000
+        }
+      ]
+    },
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Infrared Imaging",
+      "payload_variant": "NIR Sensors",
+      "products": [
+        {
+          "payload_id": "RS-EO-NIR-001",
+          "vendor": "Simera Sense",
+          "product_name": "MultiScape100 NIR",
+          "mass_kg": 1.26,
+          "dimensions_mm": {
+            "length_x": 98,
+            "width_y": 98,
+            "height_z": 176
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 3.25,
+          "peak_power_w": 7.0,
+          "nominal_data_rate_mbps": 100,
+          "spectral_band": "700-1000nm",
+          "ground_resolution_m": 4.9,
+          "swath_km": 19.4,
+          "pointing_requirement_deg": 0.10,
+          "estimated_cost_usd": 195000
+        },
+        {
+          "payload_id": "RS-EO-NIR-002",
+          "vendor": "Satlantis",
+          "product_name": "iSIM-NIR",
+          "mass_kg": 1.70,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 140
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 8.8,
+          "peak_power_w": 12.5,
+          "nominal_data_rate_mbps": 118,
+          "spectral_band": "700-950nm",
+          "ground_resolution_m": 2.2,
+          "swath_km": 18,
+          "pointing_requirement_deg": 0.08,
+          "estimated_cost_usd": 240000
+        },
+        {
+          "payload_id": "RS-EO-NIR-003",
+          "vendor": "Dragonfly Aerospace",
+          "product_name": "NIR Gecko",
+          "mass_kg": 2.00,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 150
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 9,
+          "peak_power_w": 13,
+          "nominal_data_rate_mbps": 115,
+          "spectral_band": "700-1050nm",
+          "ground_resolution_m": 4.2,
+          "swath_km": 34,
+          "pointing_requirement_deg": 0.09,
+          "estimated_cost_usd": 205000
+        },
+        {
+          "payload_id": "RS-EO-NIR-004",
+          "vendor": "Open Cosmos",
+          "product_name": "NIR Observation Module",
+          "mass_kg": 1.60,
+          "dimensions_mm": {
+            "length_x": 95,
+            "width_y": 95,
+            "height_z": 135
+          },
+          "payload_envelope_u": 1.3,
+          "mounting_face": "nadir",
+          "avg_power_w": 8.2,
+          "peak_power_w": 11.5,
+          "nominal_data_rate_mbps": 94,
+          "spectral_band": "750-980nm",
+          "ground_resolution_m": 5.4,
+          "swath_km": 28,
+          "pointing_requirement_deg": 0.11,
+          "estimated_cost_usd": 175000
+        },
+        {
+          "payload_id": "RS-EO-NIR-005",
+          "vendor": "XCAM",
+          "product_name": "C3D NIR",
+          "mass_kg": 0.88,
+          "dimensions_mm": {
+            "length_x": 76,
+            "width_y": 76,
+            "height_z": 88
+          },
+          "payload_envelope_u": 0.8,
+          "mounting_face": "nadir",
+          "avg_power_w": 4.8,
+          "peak_power_w": 6.9,
+          "nominal_data_rate_mbps": 61,
+          "spectral_band": "700-900nm",
+          "ground_resolution_m": 8.0,
+          "swath_km": 32,
+          "pointing_requirement_deg": 0.18,
+          "estimated_cost_usd": 93000
+        }
+      ]
+    },
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Infrared Imaging",
+      "payload_variant": "SWIR Sensors",
+      "products": [
+        {
+          "payload_id": "RS-EO-SWIR-001",
+          "vendor": "Satlantis",
+          "product_name": "iSIM-SWIR",
+          "mass_kg": 2.20,
+          "dimensions_mm": {
+            "length_x": 110,
+            "width_y": 110,
+            "height_z": 150
+          },
+          "payload_envelope_u": 2.0,
+          "mounting_face": "nadir",
+          "avg_power_w": 11,
+          "peak_power_w": 16,
+          "nominal_data_rate_mbps": 125,
+          "spectral_band": "1000-1700nm",
+          "ground_resolution_m": 3.0,
+          "swath_km": 18,
+          "pointing_requirement_deg": 0.08,
+          "estimated_cost_usd": 320000
+        },
+        {
+          "payload_id": "RS-EO-SWIR-002",
+          "vendor": "Dragonfly Aerospace",
+          "product_name": "SWIR Gecko",
+          "mass_kg": 2.50,
+          "dimensions_mm": {
+            "length_x": 110,
+            "width_y": 110,
+            "height_z": 160
+          },
+          "payload_envelope_u": 2.2,
+          "mounting_face": "nadir",
+          "avg_power_w": 11.8,
+          "peak_power_w": 17,
+          "nominal_data_rate_mbps": 130,
+          "spectral_band": "900-1700nm",
+          "ground_resolution_m": 3.5,
+          "swath_km": 20,
+          "pointing_requirement_deg": 0.08,
+          "estimated_cost_usd": 335000
+        },
+        {
+          "payload_id": "RS-EO-SWIR-003",
+          "vendor": "GHGSat Heritage",
+          "product_name": "SWIR Methane Imager",
+          "mass_kg": 5.50,
+          "dimensions_mm": {
+            "length_x": 160,
+            "width_y": 160,
+            "height_z": 220
+          },
+          "payload_envelope_u": 5.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 18,
+          "peak_power_w": 25,
+          "nominal_data_rate_mbps": 190,
+          "spectral_band": "1600-1700nm",
+          "ground_resolution_m": 25,
+          "swath_km": 12,
+          "pointing_requirement_deg": 0.05,
+          "estimated_cost_usd": 650000
+        },
+        {
+          "payload_id": "RS-EO-SWIR-004",
+          "vendor": "Specim OEM Space",
+          "product_name": "SWIR Pushbroom Module",
+          "mass_kg": 2.80,
+          "dimensions_mm": {
+            "length_x": 120,
+            "width_y": 120,
+            "height_z": 170
+          },
+          "payload_envelope_u": 2.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 12.5,
+          "peak_power_w": 18,
+          "nominal_data_rate_mbps": 145,
+          "spectral_band": "1000-2500nm",
+          "ground_resolution_m": 6.0,
+          "swath_km": 18,
+          "pointing_requirement_deg": 0.07,
+          "estimated_cost_usd": 350000
+        },
+        {
+          "payload_id": "RS-EO-SWIR-005",
+          "vendor": "EnduroSat OEM",
+          "product_name": "CubeCam-SWIR",
+          "mass_kg": 1.85,
+          "dimensions_mm": {
+            "length_x": 95,
+            "width_y": 95,
+            "height_z": 135
+          },
+          "payload_envelope_u": 1.3,
+          "mounting_face": "nadir",
+          "avg_power_w": 9.1,
+          "peak_power_w": 13.5,
+          "nominal_data_rate_mbps": 110,
+          "spectral_band": "1000-1600nm",
+          "ground_resolution_m": 5.4,
+          "swath_km": 18,
+          "pointing_requirement_deg": 0.10,
+          "estimated_cost_usd": 245000
+        }
+      ]
+    }
+  ]
+}

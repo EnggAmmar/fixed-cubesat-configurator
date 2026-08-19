@@ -1,0 +1,92 @@
+{
+  "schema_version": "ADCS_CAPACITY_LIBRARY_1.0",
+  "generated_on": "2026-04-30",
+  "notes": [
+    "Conservative ADCS tier capacities for first-pass CubeSat optimization.",
+    "pointing_accuracy_deg is a representative achievable 1-sigma pointing performance proxy under nominal disturbance conditions for the supported bus range.",
+    "Presence flags indicate the assumed minimum sensor/actuator suite for that tier."
+  ],
+  "adcs_tiers": [
+    {
+      "adcs_tier": "LOW",
+      "pointing_accuracy_deg": 1.0,
+      "slew_capability_deg_per_s": 0.5,
+      "reaction_wheel_presence": false,
+      "star_tracker_presence": false,
+      "magnetorquer_presence": true,
+      "disturbance_rejection_class": "LOW",
+      "adcs_avg_power_w": 2.0,
+      "adcs_peak_power_w": 6.0,
+      "adcs_mass_kg": 0.35,
+      "adcs_volume_u": 0.20,
+      "supported_bus_min": "1U",
+      "supported_bus_max": "3U",
+      "supported_bus_range": {
+        "min": "1U",
+        "max": "3U"
+      }
+    },
+    {
+      "adcs_tier": "MEDIUM",
+      "pointing_accuracy_deg": 0.3,
+      "slew_capability_deg_per_s": 1.0,
+      "reaction_wheel_presence": true,
+      "star_tracker_presence": false,
+      "magnetorquer_presence": true,
+      "disturbance_rejection_class": "MEDIUM",
+      "adcs_avg_power_w": 4.0,
+      "adcs_peak_power_w": 10.0,
+      "adcs_mass_kg": 0.85,
+      "adcs_volume_u": 0.45,
+      "supported_bus_min": "2U",
+      "supported_bus_max": "6U",
+      "supported_bus_range": {
+        "min": "2U",
+        "max": "6U"
+      }
+    },
+    {
+      "adcs_tier": "HIGH",
+      "pointing_accuracy_deg": 0.1,
+      "slew_capability_deg_per_s": 3.0,
+      "reaction_wheel_presence": true,
+      "star_tracker_presence": true,
+      "magnetorquer_presence": true,
+      "disturbance_rejection_class": "HIGH",
+      "adcs_avg_power_w": 6.5,
+      "adcs_peak_power_w": 15.0,
+      "adcs_mass_kg": 1.70,
+      "adcs_volume_u": 0.80,
+      "supported_bus_min": "3U",
+      "supported_bus_max": "12U",
+      "supported_bus_range": {
+        "min": "3U",
+        "max": "12U"
+      }
+    },
+    {
+      "adcs_tier": "EXTREME",
+      "pointing_accuracy_deg": 0.02,
+      "slew_capability_deg_per_s": 5.0,
+      "reaction_wheel_presence": true,
+      "star_tracker_presence": true,
+      "magnetorquer_presence": true,
+      "disturbance_rejection_class": "EXTREME",
+      "adcs_avg_power_w": 10.0,
+      "adcs_peak_power_w": 25.0,
+      "adcs_mass_kg": 3.20,
+      "adcs_volume_u": 1.40,
+      "supported_bus_min": "6U",
+      "supported_bus_max": "50U+",
+      "supported_bus_range": {
+        "min": "6U",
+        "max": "50U+"
+      }
+    }
+  ],
+  "field_descriptions": {
+    "pointing_accuracy_deg": "Pointing performance capability proxy used to enforce point_req <= pointing_accuracy_deg for feasibility.",
+    "slew_capability_deg_per_s": "Slew rate capability proxy used for maneuvering burden screening.",
+    "disturbance_rejection_class": "Qualitative disturbance rejection strength proxy aligned to LOW/MEDIUM/HIGH/EXTREME tier."
+  }
+}

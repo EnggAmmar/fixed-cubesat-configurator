@@ -1,0 +1,311 @@
+{
+  "payloads": [
+    {
+      "payload_id": "rs_hyperspec_v1",
+      "family": "remote_sensing",
+      "category_id": "hyperspectral",
+      "label": "Hyperspectral (v1)",
+      "length_mm": 200,
+      "width_mm": 120,
+      "height_mm": 120,
+      "mass_kg": 3.0,
+      "avg_power_w": 12.0,
+      "peak_power_w": 20.0,
+      "data_rate_mbps": 60.0,
+      "pointing_accuracy_deg": 0.3,
+      "thermal_class": "standard"
+    },
+    {
+      "payload_id": "rs_vhr_optical_v1",
+      "family": "remote_sensing",
+      "category_id": "vhr_optical",
+      "label": "VHR Optical (v1)",
+      "length_mm": 240,
+      "width_mm": 120,
+      "height_mm": 120,
+      "mass_kg": 2.2,
+      "avg_power_w": 10.0,
+      "peak_power_w": 18.0,
+      "data_rate_mbps": 80.0,
+      "pointing_accuracy_deg": 0.2,
+      "thermal_class": "sensitive"
+    }
+  ],
+  "platforms": [
+    {
+      "item_id": "plat_1u_nano",
+      "name": "1U Platform (Nano)",
+      "bus_size_u": 1.0,
+      "max_total_mass_kg": 1.33,
+      "max_payload_volume_cm3": 400.0,
+      "avg_power_gen_w": 4.0,
+      "peak_power_gen_w": 8.0,
+      "cost_kusd": 55.0,
+      "metadata": { "notes": "Very small platform for minimal payloads.", "dry_mass_kg": 0.45, "risk_points": 12 }
+    },
+    {
+      "item_id": "plat_1p5u_micro",
+      "name": "1.5U Platform (Micro)",
+      "bus_size_u": 1.5,
+      "max_total_mass_kg": 2.0,
+      "max_payload_volume_cm3": 650.0,
+      "avg_power_gen_w": 6.0,
+      "peak_power_gen_w": 12.0,
+      "cost_kusd": 75.0,
+      "metadata": { "notes": "Compact platform with limited power.", "dry_mass_kg": 0.65, "risk_points": 12 }
+    },
+    {
+      "item_id": "plat_2u_compact",
+      "name": "2U Platform (Compact)",
+      "bus_size_u": 2.0,
+      "max_total_mass_kg": 2.66,
+      "max_payload_volume_cm3": 900.0,
+      "avg_power_gen_w": 10.0,
+      "peak_power_gen_w": 18.0,
+      "cost_kusd": 95.0,
+      "metadata": { "notes": "Compact platform for small comms and tech demos.", "dry_mass_kg": 0.9, "risk_points": 11 }
+    },
+    {
+      "item_id": "plat_3u_basic",
+      "name": "3U Platform (Basic)",
+      "bus_size_u": 3.0,
+      "max_total_mass_kg": 4.0,
+      "max_payload_volume_cm3": 1500.0,
+      "avg_power_gen_w": 18.0,
+      "peak_power_gen_w": 30.0,
+      "cost_kusd": 120.0,
+      "metadata": { "notes": "Entry platform for small payloads.", "dry_mass_kg": 1.25, "risk_points": 10 }
+    },
+    {
+      "item_id": "plat_6u_plus",
+      "name": "6U Platform (Plus)",
+      "bus_size_u": 6.0,
+      "max_total_mass_kg": 10.0,
+      "max_payload_volume_cm3": 3500.0,
+      "avg_power_gen_w": 45.0,
+      "peak_power_gen_w": 70.0,
+      "cost_kusd": 220.0,
+      "metadata": { "notes": "Balanced platform for imaging missions.", "dry_mass_kg": 3.2, "risk_points": 10 }
+    },
+    {
+      "item_id": "plat_8u_high",
+      "name": "8U Platform (High Capability)",
+      "bus_size_u": 8.0,
+      "max_total_mass_kg": 16.0,
+      "max_payload_volume_cm3": 6000.0,
+      "avg_power_gen_w": 70.0,
+      "peak_power_gen_w": 110.0,
+      "cost_kusd": 330.0,
+      "metadata": { "notes": "Higher power and volume for demanding payloads.", "dry_mass_kg": 4.8, "risk_points": 11 }
+    },
+    {
+      "item_id": "plat_12u_large",
+      "name": "12U Platform (Large)",
+      "bus_size_u": 12.0,
+      "max_total_mass_kg": 24.0,
+      "max_payload_volume_cm3": 9500.0,
+      "avg_power_gen_w": 110.0,
+      "peak_power_gen_w": 180.0,
+      "cost_kusd": 520.0,
+      "metadata": { "notes": "Large standard platform for high-capability payloads.", "dry_mass_kg": 7.2, "risk_points": 12 }
+    },
+    {
+      "item_id": "plat_16u_xl",
+      "name": "16U Platform (XL)",
+      "bus_size_u": 16.0,
+      "max_total_mass_kg": 32.0,
+      "max_payload_volume_cm3": 13000.0,
+      "avg_power_gen_w": 150.0,
+      "peak_power_gen_w": 240.0,
+      "cost_kusd": 700.0,
+      "metadata": { "notes": "Commercial XL extension for maximum flexibility.", "dry_mass_kg": 9.0, "risk_points": 13 }
+    }
+  ],
+  "subsystems": {
+    "eps": [
+      {
+        "item_id": "eps_basic",
+        "name": "EPS (Basic)",
+        "mass_kg": 0.6,
+        "avg_power_w": 2.0,
+        "peak_power_w": 3.0,
+        "cost_kusd": 18.0,
+        "metadata": { "battery_wh": 80, "risk_points": 8 }
+      },
+      {
+        "item_id": "eps_plus",
+        "name": "EPS (Plus)",
+        "mass_kg": 0.9,
+        "avg_power_w": 3.0,
+        "peak_power_w": 4.0,
+        "cost_kusd": 28.0,
+        "metadata": { "battery_wh": 140, "risk_points": 9 }
+      }
+    ],
+    "adcs": [
+      {
+        "item_id": "adcs_standard",
+        "name": "ADCS (Standard)",
+        "mass_kg": 0.8,
+        "avg_power_w": 4.0,
+        "peak_power_w": 7.0,
+        "cost_kusd": 55.0,
+        "metadata": { "pointing_error_deg": 0.6, "risk_points": 10 }
+      },
+      {
+        "item_id": "adcs_precise",
+        "name": "ADCS (Precise)",
+        "mass_kg": 1.1,
+        "avg_power_w": 5.0,
+        "peak_power_w": 9.0,
+        "cost_kusd": 85.0,
+        "metadata": { "pointing_error_deg": 0.2, "risk_points": 11 }
+      },
+      {
+        "item_id": "adcs_ultra",
+        "name": "ADCS (Ultra)",
+        "mass_kg": 1.35,
+        "avg_power_w": 6.5,
+        "peak_power_w": 11.5,
+        "cost_kusd": 125.0,
+        "metadata": { "pointing_error_deg": 0.1, "risk_points": 12 }
+      },
+      {
+        "item_id": "adcs_optical",
+        "name": "ADCS (Optical-Grade)",
+        "mass_kg": 1.8,
+        "avg_power_w": 9.5,
+        "peak_power_w": 16.5,
+        "cost_kusd": 240.0,
+        "metadata": { "pointing_error_deg": 0.003, "risk_points": 14 }
+      }
+    ],
+    "obc": [
+      {
+        "item_id": "obc_basic",
+        "name": "OBC (Basic)",
+        "mass_kg": 0.3,
+        "avg_power_w": 3.0,
+        "peak_power_w": 4.0,
+        "cost_kusd": 25.0,
+        "metadata": { "storage_gb": 64, "risk_points": 9 }
+      },
+      {
+        "item_id": "obc_payload_gpu",
+        "name": "OBC (Payload GPU)",
+        "mass_kg": 0.6,
+        "avg_power_w": 7.0,
+        "peak_power_w": 12.0,
+        "cost_kusd": 60.0,
+        "metadata": { "storage_gb": 256, "tops": 4.0, "risk_points": 11 }
+      },
+      {
+        "item_id": "obc_high_storage",
+        "name": "OBC (High Storage)",
+        "mass_kg": 0.75,
+        "avg_power_w": 8.0,
+        "peak_power_w": 14.0,
+        "cost_kusd": 78.0,
+        "metadata": { "storage_gb": 1024, "risk_points": 12 }
+      }
+    ],
+    "comm": [
+      {
+        "item_id": "comm_sband",
+        "name": "S-band Downlink",
+        "mass_kg": 0.5,
+        "avg_power_w": 6.0,
+        "peak_power_w": 12.0,
+        "cost_kusd": 45.0,
+        "metadata": { "downlink_mbps": 20.0, "risk_points": 10 }
+      },
+      {
+        "item_id": "comm_xband",
+        "name": "X-band Downlink",
+        "mass_kg": 0.7,
+        "avg_power_w": 10.0,
+        "peak_power_w": 18.0,
+        "cost_kusd": 95.0,
+        "metadata": { "downlink_mbps": 120.0, "risk_points": 12 }
+      },
+      {
+        "item_id": "comm_optical",
+        "name": "Optical Downlink Terminal",
+        "mass_kg": 1.4,
+        "avg_power_w": 22.0,
+        "peak_power_w": 40.0,
+        "cost_kusd": 320.0,
+        "metadata": { "downlink_mbps": 3000.0, "risk_points": 15 }
+      }
+    ],
+    "thermal": [
+      {
+        "item_id": "thermal_standard",
+        "name": "Thermal (Standard)",
+        "mass_kg": 0.2,
+        "avg_power_w": 0.5,
+        "peak_power_w": 1.0,
+        "cost_kusd": 8.0,
+        "metadata": { "class": "standard", "risk_points": 7 }
+      },
+      {
+        "item_id": "thermal_enhanced",
+        "name": "Thermal (Enhanced)",
+        "mass_kg": 0.35,
+        "avg_power_w": 1.0,
+        "peak_power_w": 2.0,
+        "cost_kusd": 16.0,
+        "metadata": { "class": "enhanced", "risk_points": 8 }
+      }
+    ],
+    "propulsion": [
+      {
+        "item_id": "prop_none",
+        "name": "No Propulsion",
+        "mass_kg": 0.0,
+        "avg_power_w": 0.0,
+        "peak_power_w": 0.0,
+        "cost_kusd": 0.0,
+        "metadata": { "type": "none", "risk_points": 0 }
+      },
+      {
+        "item_id": "prop_coldgas",
+        "name": "Cold Gas Propulsion",
+        "mass_kg": 1.2,
+        "avg_power_w": 2.0,
+        "peak_power_w": 4.0,
+        "cost_kusd": 85.0,
+        "metadata": { "type": "cold_gas", "delta_v_mps": 40, "risk_points": 14 }
+      },
+      {
+        "item_id": "prop_electric",
+        "name": "Electric Propulsion",
+        "mass_kg": 2.0,
+        "avg_power_w": 10.0,
+        "peak_power_w": 20.0,
+        "cost_kusd": 160.0,
+        "metadata": { "type": "electric", "delta_v_mps": 120, "risk_points": 16 }
+      }
+    ],
+    "radiation_support_components": [
+      {
+        "item_id": "rad_ecc_memory",
+        "name": "ECC Memory / EDAC Support",
+        "mass_kg": 0.08,
+        "avg_power_w": 0.4,
+        "peak_power_w": 0.7,
+        "cost_kusd": 12.0,
+        "metadata": { "risk_points": 4, "risk_reduction_points": 8, "tid_support": true }
+      },
+      {
+        "item_id": "rad_shielding_kit",
+        "name": "Radiation Shielding Kit",
+        "mass_kg": 0.35,
+        "avg_power_w": 0.0,
+        "peak_power_w": 0.0,
+        "cost_kusd": 18.0,
+        "metadata": { "risk_points": 5, "risk_reduction_points": 10, "tid_support": true }
+      }
+    ]
+  }
+}

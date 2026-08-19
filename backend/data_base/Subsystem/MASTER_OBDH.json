@@ -1,0 +1,1604 @@
+{
+  "meta": {
+    "subsystem": "OBDH",
+    "schema_version": "ONE_V3_SUBSYSTEM_DB_OBDH_1.0",
+    "created_utc": "2026-05-11T12:02:07Z",
+    "source_file": "obc_v2.json",
+    "notes": [
+      "Built from uploaded OBDH seed file plus public vendor/catalog web sources.",
+      "Products marked public_vendor_missing_numeric are real product families but missing public mass/power/volume fields in accessible pages.",
+      "Architecture-derived entries such as redundant OBC pairs and watchdog functions are useful for solver trade studies but should not be treated as standalone purchasable SKUs.",
+      "All values are normalized for solver use. Unknown values are null, not fabricated."
+    ],
+    "units": {
+      "mass_kg": "kg",
+      "volume_U": "CubeSat U-equivalent estimated envelope",
+      "power_avg_W": "W",
+      "power_peak_W": "W",
+      "storage_GB": "GB",
+      "storage_Tbit": "terabits",
+      "clock_speed_MHz": "MHz"
+    }
+  },
+  "ontology": {
+    "subsystem": "On-Board Data Handling (OBDH)",
+    "domains": [
+      "flight_computer",
+      "data_storage",
+      "data_processing",
+      "networking"
+    ],
+    "classes": {
+      "flight_computer": [
+        "On-Board Computer (OBC)",
+        "Backup Computer",
+        "Watchdog Timer"
+      ],
+      "data_storage": [
+        "Flash Memory Storage",
+        "Solid State Recorders / Solid State Drives",
+        "EEPROM / FRAM / MRAM",
+        "RAM Memory"
+      ],
+      "data_processing": [
+        "Data Compression Units",
+        "Encryption Modules",
+        "Format Conversion",
+        "Payload Processing / Edge Computing"
+      ],
+      "networking": [
+        "Ethernet Switches",
+        "CAN Bus Controllers",
+        "SPI Interfaces",
+        "I2C Interfaces",
+        "SpaceWire / RS-422 / RS-485 Interfaces",
+        "GNSS / PPS Timing Interfaces"
+      ]
+    }
+  },
+  "products": [
+    {
+      "id": "obc-standard-gomspace-nanomind-a3200",
+      "domain": "flight_computer",
+      "role": "obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Standard OBC",
+      "option_name": "Microcontroller Based",
+      "product_name": "GomSpace NanoMind A3200",
+      "vendor": "GomSpace",
+      "key_spec": "Low power, high reliability",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 1,
+        "power_avg_W": 0.2,
+        "clock_speed_MHz": 64,
+        "storage_GB": 0.032
+      },
+      "capabilities": {
+        "os_support": "baremetal",
+        "real_time_control": true
+      },
+      "tags": [
+        "low_power",
+        "ttc_control",
+        "simple_payloads"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed",
+      "source_urls": []
+    },
+    {
+      "id": "obc-highperf-isis-linux",
+      "domain": "flight_computer",
+      "role": "high_perf_obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "High Performance (C&DH)",
+      "option_name": "Linux/ARM Based",
+      "product_name": "ISIS OBC",
+      "vendor": "ISISpace",
+      "key_spec": "Runs Linux, handles complex file systems",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 1,
+        "power_avg_W": 0.8,
+        "clock_speed_MHz": 400,
+        "storage_GB": 2
+      },
+      "capabilities": {
+        "os_support": "linux",
+        "file_systems": true
+      },
+      "tags": [
+        "linux",
+        "moderate_processing",
+        "payload_handling"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed",
+      "source_urls": []
+    },
+    {
+      "id": "obc-highperf-unibap-ix5",
+      "domain": "flight_computer",
+      "role": "high_perf_obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "High Performance (C&DH)",
+      "option_name": "Linux/ARM Based",
+      "product_name": "Unibap iX5 (Data Handling)",
+      "vendor": "Unibap",
+      "key_spec": "Massive storage for video buffering",
+      "normalized": {
+        "mass_kg": 0.3,
+        "volume_U": 1,
+        "power_avg_W": 4,
+        "clock_speed_MHz": 1200,
+        "storage_GB": 64
+      },
+      "capabilities": {
+        "os_support": "linux",
+        "edge_processing": true
+      },
+      "tags": [
+        "high_power",
+        "video",
+        "edge_computing"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed",
+      "source_urls": []
+    },
+    {
+      "id": "obc-ssr-syrlinks-256",
+      "domain": "data_storage",
+      "role": "ssr",
+      "category_name": "Data Storage (OBDH 1.4.2)",
+      "class_name": "Solid State Recorders (SSR)",
+      "option_name": "High Capacity Storage",
+      "product_name": "Syrlinks SSR-256",
+      "vendor": "Syrlinks",
+      "key_spec": "Essential for SAR/Hyperspectral buffering",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 0.2,
+        "power_avg_W": 1.5,
+        "storage_GB": 256
+      },
+      "performance": {
+        "write_speed_Mbps": 700
+      },
+      "tags": [
+        "high_capacity",
+        "payload_buffer"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed",
+      "source_urls": []
+    },
+    {
+      "id": "obc-network-gomspace-nanocom-gssb",
+      "domain": "networking",
+      "role": "network_switch",
+      "category_name": "Networking (OBDH 1.4.4)",
+      "class_name": "Ethernet Switches",
+      "option_name": "CubeSat SpaceWire/Ethernet",
+      "product_name": "GomSpace NanoCom GSSB",
+      "vendor": "GomSpace",
+      "key_spec": "Connects multiple payloads to one radio",
+      "normalized": {
+        "mass_kg": 0.08,
+        "volume_U": 0.25,
+        "power_avg_W": 0.5
+      },
+      "performance": {
+        "ports": 5
+      },
+      "tags": [
+        "networking",
+        "multi_payload"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed",
+      "source_urls": []
+    },
+    {
+      "id": "obc-encryption-innoflight-ki53",
+      "domain": "data_processing",
+      "role": "encryption_module",
+      "category_name": "Data Processing (OBDH 1.4.3)",
+      "class_name": "Encryption Modules",
+      "option_name": "Hardware Encryption",
+      "product_name": "Innoflight KI-53 (SCR)",
+      "vendor": "Innoflight",
+      "key_spec": "Required for Defense/Intel missions",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 0.1,
+        "power_avg_W": 0.3
+      },
+      "capabilities": {
+        "encryption_standard": "AES-256 / FIPS-140-2"
+      },
+      "tags": [
+        "secure_comms",
+        "defense_grade"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed",
+      "source_urls": []
+    },
+    {
+      "id": "obdh-obc-gomspace-nanomind-a3200",
+      "domain": "flight_computer",
+      "role": "obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Standard OBC",
+      "option_name": "Microcontroller / RTOS",
+      "product_name": "NanoMind A3200",
+      "vendor": "GomSpace",
+      "key_spec": "Low-power CubeSat OBC with AVR32 MCU, CSP/GOSH support, flash, SDRAM, FRAM, ADC/GPIO and common spacecraft buses.",
+      "normalized": {
+        "mass_kg": 0.024,
+        "volume_U": 0.03,
+        "power_avg_W": 0.17,
+        "power_peak_W": 0.9,
+        "clock_speed_MHz": 64,
+        "storage_GB": 0.128
+      },
+      "memory": {
+        "nor_flash_MB": 128,
+        "built_in_flash_KB": 512,
+        "sdram_MB": 32,
+        "fram_KB": 32
+      },
+      "capabilities": {
+        "os_support": "RTOS / GomSpace stack",
+        "real_time_control": true,
+        "csp_support": true,
+        "watchdog_or_fdir": true
+      },
+      "interfaces": {
+        "i2c": true,
+        "uart": true,
+        "can": true,
+        "spi": true,
+        "adc_channels": 8,
+        "pwm_outputs": 3
+      },
+      "reliability": {
+        "operating_temp_c": [
+          -30,
+          85
+        ],
+        "space_heritage": true
+      },
+      "tags": [
+        "low_power",
+        "cubesat",
+        "flight_computer",
+        "csp",
+        "simple_payloads"
+      ],
+      "trl": 8,
+      "source_kind": "public_vendor_plus_catalog",
+      "source_urls": [
+        "https://gomspace.com/product/nanomind-a3200/",
+        "https://www.satnow.com/products/on-board-computers/gomspace/116-1279-nanomind-a3200"
+      ]
+    },
+    {
+      "id": "obdh-obc-isispace-iobc",
+      "domain": "flight_computer",
+      "role": "obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Standard OBC",
+      "option_name": "ARM9 / RTOS",
+      "product_name": "iOBC",
+      "vendor": "ISISPACE",
+      "key_spec": "Flight-proven CubeSat OBC based on 400 MHz ARM9 with FreeRTOS, FRAM, SDRAM, SD storage and flexible daughterboard interfaces.",
+      "normalized": {
+        "mass_kg": 0.094,
+        "volume_U": 0.11,
+        "power_avg_W": 0.4,
+        "clock_speed_MHz": 400,
+        "storage_GB": 4
+      },
+      "memory": {
+        "sdram_MB": 64,
+        "nor_flash_MB": 1,
+        "fram_KB": 512,
+        "sd_storage_GB": 4,
+        "sd_storage_max_GB": 32
+      },
+      "capabilities": {
+        "os_support": "FreeRTOS",
+        "real_time_control": true,
+        "file_systems": true,
+        "watchdog_or_fdir": true
+      },
+      "interfaces": {
+        "i2c": true,
+        "spi": true,
+        "uart": true,
+        "rs232": true,
+        "rs422": true,
+        "rs485": true,
+        "usb": true
+      },
+      "reliability": {
+        "operating_temp_c": [
+          -25,
+          65
+        ],
+        "space_heritage": true
+      },
+      "tags": [
+        "flight_proven",
+        "arm9",
+        "rtos",
+        "payload_interfaces"
+      ],
+      "trl": 8,
+      "source_kind": "public_catalog",
+      "source_urls": [
+        "https://www.satnow.com/products/on-board-computers/isispace/116-1233-iobc",
+        "https://www.isispace.nl/wp-content/uploads/2021/08/ISISPACE-Products-brochure-2021.pdf"
+      ]
+    },
+    {
+      "id": "obdh-obc-endurosat-obc-gnss",
+      "domain": "flight_computer",
+      "role": "obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Standard OBC",
+      "option_name": "ARM Cortex M7 with GNSS option",
+      "product_name": "Onboard Computer with GNSS",
+      "vendor": "EnduroSat",
+      "key_spec": "CubeSat OBC with ARM Cortex-M7, 2×16 GB embedded SD NAND, CAN-FD, Ethernet, serial interfaces and optional integrated GNSS receiver.",
+      "normalized": {
+        "mass_kg": 0.123,
+        "mass_with_gnss_kg": 0.173,
+        "volume_U": 0.25,
+        "clock_speed_MHz": 216,
+        "storage_GB": 32
+      },
+      "memory": {
+        "program_flash_MB": 2,
+        "embedded_sd_nand_GB": 32,
+        "fram_MB": 4
+      },
+      "capabilities": {
+        "os_support": "FreeRTOS SDK",
+        "real_time_control": true,
+        "gnss_optional": true,
+        "in_orbit_update": true
+      },
+      "interfaces": {
+        "can_fd": 3,
+        "rs422": 1,
+        "rs485": 1,
+        "spi": 1,
+        "uart": 1,
+        "ethernet_100base_tx": 1,
+        "gpio": 16
+      },
+      "reliability": {
+        "flight_heritage": true
+      },
+      "tags": [
+        "cubesat",
+        "gnss_optional",
+        "ethernet",
+        "can_fd",
+        "flight_computer"
+      ],
+      "trl": 8,
+      "source_kind": "public_vendor",
+      "source_urls": [
+        "https://www.endurosat.com/products/onboard-computer-with-gnss/",
+        "https://catalog.orbitaltransports.com/onboard-computer/"
+      ]
+    },
+    {
+      "id": "obdh-obc-aac-kryten-m3",
+      "domain": "flight_computer",
+      "role": "obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Radiation-tolerant CubeSat OBC",
+      "option_name": "Cortex-M3 EDAC OBC",
+      "product_name": "Kryten-M3 / Kryten-M3 PLUS",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "CubeSat OBC with Cortex-M3 processor, EDAC/non-volatile memory protections and autonomous single-event latch-up protections.",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null
+      },
+      "capabilities": {
+        "processor_class": "Cortex-M3",
+        "edac": true,
+        "single_event_latchup_protection": true
+      },
+      "reliability": {
+        "space_heritage": true,
+        "flight_proven": true
+      },
+      "tags": [
+        "edac",
+        "cubesat",
+        "flight_proven",
+        "fault_tolerant"
+      ],
+      "trl": 8,
+      "source_kind": "public_vendor_missing_numeric",
+      "source_urls": [
+        "https://www.aac-clyde.space/what-we-do/space-products-components/command-data-handling/kryten-m3",
+        "https://www.aac-clyde.space/what-we-do/space-products-components/command-data-handling"
+      ],
+      "notes": {
+        "missing_values": [
+          "mass_kg",
+          "power_avg_W",
+          "volume_U"
+        ],
+        "reason": "public page exposes features but not full numeric datasheet values"
+      }
+    },
+    {
+      "id": "obdh-obc-aac-sirius-leon3ft",
+      "domain": "flight_computer",
+      "role": "obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Fault-Tolerant OBC",
+      "option_name": "LEON3FT / RTEMS",
+      "product_name": "SIRIUS-OBC-LEON3FT",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "SmallSat OBC using 50 MHz LEON3FT fault-tolerant processor, RTEMS, EDAC memory protection and SpaceWire/serial/CAN interface options.",
+      "normalized": {
+        "mass_kg": 0.13,
+        "volume_U": 0.15,
+        "power_avg_W": 1.3,
+        "clock_speed_MHz": 50,
+        "storage_GB": 2
+      },
+      "memory": {
+        "sdram_MB_post_edac": 64,
+        "nvram_KB_post_edac": 16,
+        "nand_flash_GB_post_edac": 2
+      },
+      "capabilities": {
+        "os_support": "RTEMS",
+        "processor_class": "LEON3FT SPARC V8",
+        "edac": true,
+        "tmr": true,
+        "real_time_control": true
+      },
+      "interfaces": {
+        "spacewire": 2,
+        "rs422_rs485_uart": 6,
+        "rs485_uart": 2,
+        "gpio": 16,
+        "can_optional": 2
+      },
+      "reliability": {
+        "tid_krad": 20,
+        "qualified_tid_krad": 30,
+        "operating_temp_c": [
+          -30,
+          60
+        ],
+        "design_life_years_leo": 5,
+        "space_heritage": true
+      },
+      "tags": [
+        "fault_tolerant",
+        "leon3ft",
+        "rtems",
+        "spacewire",
+        "smallsat"
+      ],
+      "trl": 9,
+      "source_kind": "public_vendor",
+      "source_urls": [
+        "https://www.aac-clyde.space/what-we-do/space-products-components/command-data-handling/smallsat-sirius-obc"
+      ]
+    },
+    {
+      "id": "obdh-obc-spacecubics-artix7",
+      "domain": "flight_computer",
+      "role": "obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "FPGA-based OBC",
+      "option_name": "Artix-7 / Zephyr RTOS",
+      "product_name": "Space Cubics Onboard Computer",
+      "vendor": "Space Cubics",
+      "key_spec": "CubeSat OBC using Xilinx Artix-7 FPGA, ARM Cortex-M3 soft core, Zephyr RTOS, FeRAM/NOR memory and CAN/I2C/UART interfaces.",
+      "normalized": {
+        "mass_kg": 0.13,
+        "volume_U": 0.05,
+        "power_peak_W": 2.0,
+        "clock_speed_MHz": 24
+      },
+      "memory": {
+        "on_chip_sram_KB": 64,
+        "on_board_sram_MB": 4,
+        "nor_flash_config_MB": 64,
+        "nor_flash_data_MB": 64,
+        "feram_KB": 1024
+      },
+      "capabilities": {
+        "os_support": "Zephyr RTOS",
+        "watchdog_timer": true,
+        "fpga_user_io": 38,
+        "real_time_control": true
+      },
+      "interfaces": {
+        "can": true,
+        "i2c": true,
+        "uart": true
+      },
+      "reliability": {
+        "operating_temp_c": [
+          -40,
+          80
+        ]
+      },
+      "tags": [
+        "fpga",
+        "zephyr",
+        "watchdog",
+        "cubesat",
+        "jaxa_heritage"
+      ],
+      "trl": 7,
+      "source_kind": "public_vendor",
+      "source_urls": [
+        "https://space-for-space.com/product/onboard-computer-obc/"
+      ]
+    },
+    {
+      "id": "obdh-obc-gomspace-z7000",
+      "domain": "flight_computer",
+      "role": "high_perf_obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "High Performance OBC",
+      "option_name": "ARM + FPGA / Linux",
+      "product_name": "NanoMind Z7000",
+      "vendor": "GomSpace",
+      "key_spec": "Processing module based on Xilinx Zynq-7030 with dual ARM Cortex-A9 and FPGA fabric for signal/image processing and advanced OBC/DPU use.",
+      "normalized": {
+        "mass_kg": 0.0283,
+        "volume_U": 0.03,
+        "clock_speed_MHz": 667,
+        "storage_GB": 4
+      },
+      "memory": {
+        "ddr3_ram_GB": 1,
+        "storage_GB": 4,
+        "storage_max_GB": 32
+      },
+      "capabilities": {
+        "os_support": "Linux",
+        "fpga": true,
+        "image_processing": true,
+        "signal_processing": true
+      },
+      "interfaces": {
+        "i2c": true,
+        "can": true,
+        "usb_2": true,
+        "csp": true
+      },
+      "reliability": {
+        "operating_temp_c": [
+          -40,
+          85
+        ],
+        "flight_proven": true
+      },
+      "tags": [
+        "high_performance",
+        "fpga",
+        "linux",
+        "payload_processing"
+      ],
+      "trl": 7,
+      "source_kind": "public_datasheet",
+      "source_urls": [
+        "https://gomspace.com/UserFiles/Subsystems/datasheet/gs-ds-nanomind-z7000-15.pdf"
+      ]
+    },
+    {
+      "id": "obdh-obc-gomspace-hp-mk3",
+      "domain": "flight_computer",
+      "role": "high_perf_obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "High Performance OBC",
+      "option_name": "Zynq-7030/7045 Payload Processor",
+      "product_name": "NanoMind HP MK3",
+      "vendor": "GomSpace",
+      "key_spec": "High-performance ARM Cortex-A9 + FPGA platform for payload processing, AI/ML, compression, encryption and error-correction acceleration.",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null
+      },
+      "capabilities": {
+        "os_support": "Linux",
+        "fpga": true,
+        "ai_ml": true,
+        "data_compression": true,
+        "encryption_acceleration": true
+      },
+      "interfaces": {
+        "configurable_io": true
+      },
+      "tags": [
+        "high_performance",
+        "payload_processing",
+        "ai_ml",
+        "compression",
+        "encryption"
+      ],
+      "trl": 7,
+      "source_kind": "public_vendor_missing_numeric",
+      "source_urls": [
+        "https://gomspace.com/product/nanomind-hp-mk3/"
+      ],
+      "notes": {
+        "missing_values": [
+          "mass_kg",
+          "power_avg_W",
+          "volume_U"
+        ],
+        "reason": "public product page provides capability description but not full numeric specifications"
+      }
+    },
+    {
+      "id": "obdh-dpu-unibap-ix5-200",
+      "domain": "data_processing",
+      "role": "payload_processor",
+      "category_name": "Data Processing (OBDH 1.4.3)",
+      "class_name": "Payload Processing / Edge Computing",
+      "option_name": "CPU + GPU + FPGA",
+      "product_name": "iX5-200",
+      "vendor": "Unibap",
+      "key_spec": "High-performance payload interface and processing unit combining AMD CPU, AMD Radeon GPU and Xilinx KU060 FPGA with large SSD storage.",
+      "normalized": {
+        "mass_kg": 1.3,
+        "volume_U": 1.4,
+        "power_avg_W": 25.0,
+        "power_range_W": [
+          20,
+          30
+        ],
+        "storage_GB": 240
+      },
+      "memory": {
+        "cpu_gpu_ddr3_ecc_GB": 2,
+        "fpga_ddr4_GB": 1,
+        "sata_ssd_GB": 240
+      },
+      "capabilities": {
+        "os_support": "Linux",
+        "edge_processing": true,
+        "fpga": true,
+        "payload_interface": true
+      },
+      "interfaces": {
+        "can": 1,
+        "ethernet_gbe": 1,
+        "gpio": 21,
+        "i2c": 4,
+        "lvds": 42,
+        "rs232_422": 5,
+        "rs485": 2,
+        "spacewire": 2,
+        "spi": 2,
+        "usb_2": 2,
+        "usb_3": 1
+      },
+      "reliability": {
+        "operating_temp_c": [
+          -20,
+          55
+        ],
+        "trl": 6
+      },
+      "tags": [
+        "edge_computing",
+        "high_storage",
+        "fpga",
+        "gpu",
+        "payload_interface"
+      ],
+      "trl": 6,
+      "source_kind": "public_vendor",
+      "source_urls": [
+        "https://unibap.com/solutions/hardware/ix5-200/"
+      ]
+    },
+    {
+      "id": "obdh-obc-spacemicro-proton400k",
+      "domain": "flight_computer",
+      "role": "rad_hard_obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Radiation-Hardened SBC",
+      "option_name": "PowerPC / EDAC / rad-hard NAND",
+      "product_name": "PROTON400K",
+      "vendor": "Space Micro",
+      "key_spec": "Radiation-hardened SBC for image processing, signal processing and C&DH, with dual-core PowerPC, EDAC DDR3, MRAM and up to 256 GB storage.",
+      "normalized": {
+        "mass_kg": 0.475,
+        "volume_U": 1.4,
+        "power_avg_W": 10.0,
+        "power_range_W": [
+          8,
+          12
+        ],
+        "storage_GB": 256,
+        "clock_speed_MHz": 100
+      },
+      "memory": {
+        "ddr3_edac_GB": 2,
+        "boot_mram_MB": 4,
+        "rad_hard_nand_GB": [
+          1,
+          4
+        ],
+        "storage_GB": 256
+      },
+      "capabilities": {
+        "watchdog_mitigation": true,
+        "image_processing": true,
+        "signal_processing": true,
+        "rad_hard": true
+      },
+      "interfaces": {
+        "ethernet": true,
+        "uart": true,
+        "can": true,
+        "spacewire": true
+      },
+      "reliability": {
+        "tid_krad": 100,
+        "space_heritage": true,
+        "operating_temp_c": [
+          -24,
+          61
+        ]
+      },
+      "tags": [
+        "rad_hard",
+        "high_reliability",
+        "image_processing",
+        "payload_electronics"
+      ],
+      "trl": 8,
+      "source_kind": "public_catalog",
+      "source_urls": [
+        "https://www.satnow.com/products/on-board-computers/space-micro/116-1219-proton400k"
+      ]
+    },
+    {
+      "id": "obdh-obc-dorbit-core",
+      "domain": "flight_computer",
+      "role": "obc",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Mini/Micro Satellite OBC",
+      "option_name": "Multi-core AVR32 / FreeRTOS",
+      "product_name": "OBC CORE",
+      "vendor": "D-Orbit",
+      "key_spec": "Mini/microsatellite OBC with AVR32 microcontroller, configurable multi-core architecture, FreeRTOS and Python onboard control procedure engine.",
+      "normalized": {
+        "mass_kg": 0.15,
+        "volume_U": 0.41,
+        "power_avg_W": null,
+        "storage_GB": 16
+      },
+      "memory": {
+        "spi_flash_Gbit": 1,
+        "fram_Mbit": 4,
+        "sdram_Mbit": 256,
+        "emmc_GB": 16
+      },
+      "capabilities": {
+        "os_support": "FreeRTOS",
+        "python_onboard_scripting": true,
+        "load_balancing": true
+      },
+      "interfaces": {
+        "can": true,
+        "rs422": true,
+        "pcie": true
+      },
+      "reliability": {
+        "operating_temp_c": [
+          -30,
+          70
+        ]
+      },
+      "tags": [
+        "microsat",
+        "freertos",
+        "onboard_scripting",
+        "can"
+      ],
+      "trl": 7,
+      "source_kind": "public_catalog",
+      "source_urls": [
+        "https://www.satnow.com/products/on-board-computers/d-orbit/116-1214-obc-core"
+      ]
+    },
+    {
+      "id": "obdh-obc-nanoavionics-satbus-3c2",
+      "domain": "flight_computer",
+      "role": "integrated_bus_unit",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Integrated Main Bus Unit",
+      "option_name": "OBC + ADCS + COMM",
+      "product_name": "SatBus 3C2",
+      "vendor": "NanoAvionics",
+      "key_spec": "Integrated main bus unit containing OBC, ADCS and redundant UHF communication functions, with CSP, in-orbit updates and multiple spacecraft buses.",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null,
+        "clock_speed_MHz": 400,
+        "storage_GB": 0.256
+      },
+      "memory": {
+        "integrated_ram_MB": 1,
+        "integrated_flash_MB": 2,
+        "fram_MB": 1,
+        "external_nor_flash_MB": 256
+      },
+      "capabilities": {
+        "csp_support": true,
+        "in_orbit_update": true,
+        "obc": true,
+        "adcs_integrated": true,
+        "comm_integrated": true
+      },
+      "interfaces": {
+        "can": "multiple",
+        "spi": true,
+        "i2c": true,
+        "uart_usart": true,
+        "pwm": true,
+        "gpio": true,
+        "usb_swd_debug": true
+      },
+      "tags": [
+        "integrated_bus",
+        "csp",
+        "in_orbit_update",
+        "small_satellite"
+      ],
+      "trl": 7,
+      "source_kind": "public_vendor_missing_numeric",
+      "source_urls": [
+        "https://nanoavionics.com/cubesat-components/cubesat-on-board-computer-main-bus-unit-satbus-3c2/"
+      ],
+      "notes": {
+        "missing_values": [
+          "mass_kg",
+          "power_avg_W",
+          "volume_U"
+        ],
+        "reason": "public page exposes OBC memory/interfaces, but not full numeric mechanical/power data in crawled text"
+      }
+    },
+    {
+      "id": "obdh-dpu-nanoavionics-payload-controller-2",
+      "domain": "data_processing",
+      "role": "payload_controller",
+      "category_name": "Data Processing (OBDH 1.4.3)",
+      "class_name": "Payload Controller",
+      "option_name": "FPGA SoC / PetaLinux",
+      "product_name": "Payload Controller PC 2.0",
+      "vendor": "NanoAvionics",
+      "key_spec": "Payload controller using FPGA SoC with ARM processor, 32 GB NAND, 512 MB ECC RAM, Ethernet/CAN/SPI/I2C/SpaceWire options and in-orbit update support.",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null,
+        "clock_speed_MHz": 667,
+        "storage_GB": 32
+      },
+      "memory": {
+        "nand_flash_GB": 32,
+        "nor_flash_MB": 32,
+        "fram_MB": 1.5,
+        "ddr3_ecc_MB": 512
+      },
+      "capabilities": {
+        "os_support": "PetaLinux",
+        "payload_controller": true,
+        "file_system": "UBIFS",
+        "in_orbit_update": true,
+        "self_diagnostics": true
+      },
+      "interfaces": {
+        "ethernet": true,
+        "can": true,
+        "rs422_uart": true,
+        "spi": true,
+        "uart_debug": true,
+        "i2c": true,
+        "usb_2": true,
+        "lvds": 20,
+        "gpio": 40,
+        "spacewire": 5
+      },
+      "tags": [
+        "payload_controller",
+        "spacewire",
+        "ethernet",
+        "high_storage",
+        "fpga_soc"
+      ],
+      "trl": 7,
+      "source_kind": "public_vendor_missing_numeric",
+      "source_urls": [
+        "https://nanoavionics.com/cubesat-components/payload-controller-1-5/"
+      ],
+      "notes": {
+        "missing_values": [
+          "mass_kg",
+          "power_avg_W",
+          "volume_U"
+        ]
+      }
+    },
+    {
+      "id": "obdh-storage-syrlinks-ssr-256",
+      "domain": "data_storage",
+      "role": "solid_state_recorder",
+      "category_name": "Data Storage (OBDH 1.4.2)",
+      "class_name": "Solid State Recorder",
+      "option_name": "CubeSat SSR",
+      "product_name": "SSR-256",
+      "vendor": "Syrlinks",
+      "key_spec": "High-capacity solid-state recorder class for buffering SAR/hyperspectral/high-rate payload data.",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 0.2,
+        "power_avg_W": 1.5,
+        "storage_GB": 256
+      },
+      "performance": {
+        "write_speed_Mbps": 700
+      },
+      "tags": [
+        "high_capacity",
+        "payload_buffer",
+        "seed_value"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed",
+      "source_urls": []
+    },
+    {
+      "id": "obdh-storage-nasa-spacecube-mini-ssdr",
+      "domain": "data_storage",
+      "role": "solid_state_recorder",
+      "category_name": "Data Storage (OBDH 1.4.2)",
+      "class_name": "Radiation-tolerant SSDR",
+      "option_name": "1U SpaceCube Mini SSDR",
+      "product_name": "SpaceCube Mini Solid State Data Recorder",
+      "vendor": "NASA Goddard",
+      "key_spec": "Radiation-tolerant single-board SSDR for small satellites with 12 Tbit storage, high-speed write/read and SpaceWire/multi-gigabit interfaces.",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": 0.35,
+        "storage_Tbit": 12,
+        "storage_GB": 1500
+      },
+      "performance": {
+        "write_speed_MBps": 400,
+        "read_speed_MBps": 600
+      },
+      "capabilities": {
+        "radiation_tolerant": true,
+        "edac": true,
+        "modular_scalable": true
+      },
+      "interfaces": {
+        "spacewire": true,
+        "multi_gigabit_transceivers": true
+      },
+      "tags": [
+        "high_storage",
+        "radiation_tolerant",
+        "small_sat",
+        "ssdr"
+      ],
+      "trl": 6,
+      "source_kind": "public_nasa_technology",
+      "source_urls": [
+        "https://technology.nasa.gov/patent/GSC-TOPS-359"
+      ],
+      "notes": {
+        "missing_values": [
+          "mass_kg",
+          "power_avg_W"
+        ],
+        "reason": "NASA technology page gives capacity/form factor/rates, not all implementation mass/power numbers"
+      }
+    },
+    {
+      "id": "obdh-storage-mercury-rh3480",
+      "domain": "data_storage",
+      "role": "solid_state_recorder",
+      "category_name": "Data Storage (OBDH 1.4.2)",
+      "class_name": "Radiation-tolerant SSDR",
+      "option_name": "3U VPX SLC NAND Recorder",
+      "product_name": "RH3480 SSDR",
+      "vendor": "Mercury Systems",
+      "key_spec": "Radiation-tolerant SSDR with 480 GB-class SLC NAND, SRIO interface and high-reliability ECC for LEO/high-radiation data capture.",
+      "normalized": {
+        "mass_kg": 0.75,
+        "volume_U": 1.6,
+        "power_peak_W": 25,
+        "storage_GB": 450
+      },
+      "performance": {
+        "srio_Gbps": 3.125,
+        "erase_time_s": 30
+      },
+      "capabilities": {
+        "ecc": true,
+        "abrupt_power_interruption_protection": true,
+        "radiation_tolerant": true
+      },
+      "reliability": {
+        "tid_krad": 100,
+        "sel_immunity_let": 103
+      },
+      "tags": [
+        "radiation_tolerant",
+        "ssdr",
+        "high_reliability",
+        "leo"
+      ],
+      "trl": 8,
+      "source_kind": "public_catalog_plus_vendor",
+      "source_urls": [
+        "https://www.satnow.com/products/solid-state-recorders/mercury-systems/130-1083-rh3480",
+        "https://www.mrcy.com/products/data-storage-and-transfer/space-data-recorders"
+      ]
+    },
+    {
+      "id": "obdh-storage-mercury-rh304t",
+      "domain": "data_storage",
+      "role": "solid_state_recorder",
+      "category_name": "Data Storage (OBDH 1.4.2)",
+      "class_name": "Radiation-tolerant SSDR",
+      "option_name": "High Capacity 3U SSDR",
+      "product_name": "RH304T SSDR",
+      "vendor": "Mercury Systems",
+      "key_spec": "Radiation-tolerant 4.5 TB-class SSDR with SRIO and dual-port high-rate read/write support.",
+      "normalized": {
+        "mass_kg": 0.75,
+        "volume_U": 1.6,
+        "power_range_W": [
+          7,
+          25
+        ],
+        "storage_GB": 4500
+      },
+      "performance": {
+        "srio_Gbps": 3.125,
+        "dual_port_rate_Gbps": 16
+      },
+      "capabilities": {
+        "ecc": true,
+        "radiation_tolerant": true
+      },
+      "reliability": {
+        "tid_krad": 100,
+        "sel_immunity_let": 103
+      },
+      "tags": [
+        "very_high_storage",
+        "radiation_tolerant",
+        "ssdr"
+      ],
+      "trl": 8,
+      "source_kind": "public_catalog",
+      "source_urls": [
+        "https://www.mrcy.com/products/data-storage-and-transfer/space-data-recorders"
+      ]
+    },
+    {
+      "id": "obdh-storage-airbus-2040",
+      "domain": "data_storage",
+      "role": "solid_state_recorder",
+      "category_name": "Data Storage (OBDH 1.4.2)",
+      "class_name": "Large Spacecraft SSDR",
+      "option_name": "8 Tbit Recorder",
+      "product_name": "2040 / Nemo 2 Solid State Recorder",
+      "vendor": "Airbus",
+      "key_spec": "Space-qualified 8 Tbit total / 4 Tbit user solid-state recorder with SpaceWire, CFDP, CCSDS and optional AES-256.",
+      "normalized": {
+        "mass_kg": 8.0,
+        "volume_U": 17.0,
+        "power_avg_W": 22.0,
+        "storage_Tbit": 8,
+        "user_storage_Tbit": 4
+      },
+      "performance": {
+        "recording_data_rate_Gbps_per_slice": 10
+      },
+      "capabilities": {
+        "cfdp": true,
+        "ccsds": true,
+        "optional_aes256": true
+      },
+      "reliability": {
+        "design_life_years": 12,
+        "operating_temp_c": [
+          -25,
+          60
+        ],
+        "space_heritage": true
+      },
+      "tags": [
+        "large_spacecraft",
+        "very_high_storage",
+        "ccsds",
+        "not_cubesat_scale"
+      ],
+      "trl": 9,
+      "source_kind": "public_catalog",
+      "source_urls": [
+        "https://www.satnow.com/products/solid-state-recorders/airbus/130-1213-2040"
+      ]
+    },
+    {
+      "id": "obdh-storage-airbus-2080",
+      "domain": "data_storage",
+      "role": "solid_state_recorder",
+      "category_name": "Data Storage (OBDH 1.4.2)",
+      "class_name": "Large Spacecraft SSDR",
+      "option_name": "12 Tbit Recorder",
+      "product_name": "2080 Solid State Recorder",
+      "vendor": "Airbus",
+      "key_spec": "Space-qualified 12 Tbit total / 8 Tbit user solid-state recorder for high-volume missions.",
+      "normalized": {
+        "mass_kg": 11.0,
+        "volume_U": 18.5,
+        "power_avg_W": 44.0,
+        "storage_Tbit": 12,
+        "user_storage_Tbit": 8
+      },
+      "performance": {
+        "recording_data_rate_Gbps_per_slice": 10
+      },
+      "capabilities": {
+        "ccsds": true,
+        "cfdp": true
+      },
+      "reliability": {
+        "design_life_years": 12,
+        "operating_temp_c": [
+          -25,
+          60
+        ],
+        "space_heritage": true
+      },
+      "tags": [
+        "large_spacecraft",
+        "very_high_storage",
+        "not_cubesat_scale"
+      ],
+      "trl": 9,
+      "source_kind": "public_catalog",
+      "source_urls": [
+        "https://www.satnow.com/products/solid-state-recorders/airbus/130-1213-2080"
+      ]
+    },
+    {
+      "id": "obdh-security-l3harris-ki700",
+      "domain": "data_processing",
+      "role": "encryption_module",
+      "category_name": "Data Processing (OBDH 1.4.3)",
+      "class_name": "Encryption Modules",
+      "option_name": "AES-256 space encryptor",
+      "product_name": "KI-700 Medium Rate AES Unit",
+      "vendor": "L3Harris",
+      "key_spec": "NSA-certified AES-256 encryption/decryption unit for satellite command, telemetry, crosslink and payload data protection.",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "uplink_decryption_Mbps": 40,
+        "downlink_encryption_Mbps": 640
+      },
+      "capabilities": {
+        "aes256": true,
+        "command_authentication": true,
+        "telemetry_link_protection": true,
+        "payload_data_link_protection": true
+      },
+      "reliability": {
+        "radiation_hardened": true,
+        "mission_life_years_geo": 15
+      },
+      "tags": [
+        "secure_comms",
+        "aes256",
+        "crypto",
+        "geo_radhard"
+      ],
+      "trl": 8,
+      "source_kind": "public_vendor_missing_mechanical",
+      "source_urls": [
+        "https://www.l3harris.com/all-capabilities/medium-rate-advanced-encryption-standard-aes-unit-ki-700"
+      ],
+      "notes": {
+        "missing_values": [
+          "mass_kg",
+          "power_avg_W",
+          "volume_U"
+        ]
+      }
+    },
+    {
+      "id": "obdh-security-l3harris-mcu110c",
+      "domain": "data_processing",
+      "role": "encryption_module",
+      "category_name": "Data Processing (OBDH 1.4.3)",
+      "class_name": "Encryption Modules",
+      "option_name": "Miniature COMSEC",
+      "product_name": "MCU-110C Secure SATCOM Encryption Unit",
+      "vendor": "L3Harris",
+      "key_spec": "Miniature COMSEC encryptor/decryptor for secure satellite uplink/downlink protection with OTAR and downlink error-correction support.",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null
+      },
+      "performance": {
+        "uplink_decryption_Mbps": 5,
+        "downlink_encryption_Mbps": 10
+      },
+      "capabilities": {
+        "otar": true,
+        "key_slots": 256,
+        "downlink_error_correction": true
+      },
+      "reliability": {
+        "radiation_hardened": true,
+        "mission_life_years": 15,
+        "on_orbit_success_units": 130
+      },
+      "tags": [
+        "comsec",
+        "secure_comms",
+        "space_crypto",
+        "otar"
+      ],
+      "trl": 9,
+      "source_kind": "public_vendor_missing_mechanical",
+      "source_urls": [
+        "https://www.l3harris.com/all-capabilities/secure-satellite-communications-encryption-unit-mcu-110c"
+      ],
+      "notes": {
+        "missing_values": [
+          "mass_kg",
+          "power_avg_W",
+          "volume_U"
+        ]
+      }
+    },
+    {
+      "id": "obdh-security-innoflight-ki53",
+      "domain": "data_processing",
+      "role": "encryption_module",
+      "category_name": "Data Processing (OBDH 1.4.3)",
+      "class_name": "Encryption Modules",
+      "option_name": "Hardware Encryption",
+      "product_name": "KI-53 Secure Crypto Router",
+      "vendor": "Innoflight",
+      "key_spec": "Compact secure communication module class for defense/secure telemetry missions.",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 0.1,
+        "power_avg_W": 0.3
+      },
+      "capabilities": {
+        "encryption_standard": "AES-256 / FIPS-140-2"
+      },
+      "tags": [
+        "secure_comms",
+        "defense_grade",
+        "seed_value"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed_needs_verification",
+      "source_urls": []
+    },
+    {
+      "id": "obdh-network-gomspace-gssb",
+      "domain": "networking",
+      "role": "bus_controller",
+      "category_name": "Networking (OBDH 1.4.4)",
+      "class_name": "CAN/I2C/SPI Networking",
+      "option_name": "GomSpace Sensor Bus",
+      "product_name": "NanoCom GSSB",
+      "vendor": "GomSpace",
+      "key_spec": "Small distributed bus/networking node class for connecting CubeSat modules and payloads to the spacecraft OBC.",
+      "normalized": {
+        "mass_kg": 0.08,
+        "volume_U": 0.25,
+        "power_avg_W": 0.5
+      },
+      "performance": {
+        "ports": 5
+      },
+      "interfaces": {
+        "gssb": true,
+        "i2c": true,
+        "csp": true
+      },
+      "tags": [
+        "networking",
+        "multi_payload",
+        "seed_value"
+      ],
+      "trl": 7,
+      "source_kind": "uploaded_seed",
+      "source_urls": []
+    },
+    {
+      "id": "obdh-network-skylabs-nanolink-s-base-secure",
+      "domain": "networking",
+      "role": "secure_data_link_interface",
+      "category_name": "Networking (OBDH 1.4.4)",
+      "class_name": "Secure Data Link Interface",
+      "option_name": "CCSDS Security / AES-GCM-256",
+      "product_name": "NANOlink(-S)-base Secure Link Option",
+      "vendor": "SkyLabs",
+      "key_spec": "S-band full-duplex communication subsystem with optional built-in security using CCSDS Space Data Link Security and AES-GCM-256.",
+      "normalized": {
+        "mass_kg": null,
+        "volume_U": null,
+        "power_avg_W": null
+      },
+      "capabilities": {
+        "ccsds_space_data_link_security": true,
+        "aes_gcm_256": true,
+        "multiple_keys": true
+      },
+      "interfaces": {
+        "can_bus": true,
+        "rs422": true,
+        "csp": true
+      },
+      "reliability": {
+        "trl": 9
+      },
+      "tags": [
+        "secure_link",
+        "aes_gcm_256",
+        "ccsds_security",
+        "network_security"
+      ],
+      "trl": 9,
+      "source_kind": "public_vendor_missing_mechanical",
+      "source_urls": [
+        "https://www.skylabs.si/products/nanolink-s-base-gen2-2/"
+      ],
+      "notes": {
+        "missing_values": [
+          "mass_kg",
+          "power_avg_W",
+          "volume_U"
+        ]
+      }
+    },
+    {
+      "id": "obdh-nav-spacemanic-celeste-gnss",
+      "domain": "networking",
+      "role": "timing_navigation_interface",
+      "category_name": "Networking (OBDH 1.4.4)",
+      "class_name": "GNSS Timing Interface",
+      "option_name": "GNSS receiver with storage and buses",
+      "product_name": "Celeste GNSS Receiver",
+      "vendor": "SPACEMANIC",
+      "key_spec": "Plug-and-play Multi-GNSS receiver module with PPS, FRAM storage, CSP communication and CAN/RS485/I2C/UART interfaces.",
+      "normalized": {
+        "mass_kg": 0.025,
+        "volume_U": 0.05,
+        "power_avg_W": 0.1,
+        "storage_GB": 0.00025
+      },
+      "memory": {
+        "fram_Mbit": 2
+      },
+      "capabilities": {
+        "gnss": [
+          "GPS",
+          "Glonass",
+          "Beidou"
+        ],
+        "pps_output": true,
+        "csp_support": true,
+        "fatfs": true
+      },
+      "interfaces": {
+        "i2c": 1,
+        "rs485": 1,
+        "uart": 2,
+        "can": 1,
+        "pps": 1,
+        "jtag": true
+      },
+      "reliability": {
+        "operating_temp_c": [
+          -40,
+          85
+        ],
+        "flight_heritage": true
+      },
+      "tags": [
+        "gnss",
+        "timing",
+        "pps",
+        "obdh_timing"
+      ],
+      "trl": 8,
+      "source_kind": "public_vendor",
+      "source_urls": [
+        "https://www.spacemanic.com/celeste-gnss-receiver/"
+      ]
+    },
+    {
+      "id": "obdh-backup-computer-dual-a3200-architecture",
+      "domain": "flight_computer",
+      "role": "backup_computer",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Backup Computer",
+      "option_name": "Cold/Warm Redundant A3200 Pair",
+      "product_name": "Dual NanoMind A3200 Redundant OBC Architecture",
+      "vendor": "GomSpace Derived",
+      "key_spec": "Redundant OBC architecture using two A3200-class computers; one primary and one backup for improved fault tolerance.",
+      "normalized": {
+        "mass_kg": 0.048,
+        "volume_U": 0.06,
+        "power_avg_W": 0.34,
+        "power_peak_W": 1.8,
+        "storage_GB": 0.256
+      },
+      "capabilities": {
+        "redundant_pair": true,
+        "cold_redundancy": true,
+        "warm_redundancy_possible": true,
+        "watchdog_or_fdir": true
+      },
+      "interfaces": {
+        "i2c": true,
+        "uart": true,
+        "can": true,
+        "spi": true
+      },
+      "selection": {
+        "derived_from": "obdh-obc-gomspace-nanomind-a3200",
+        "use_when": [
+          "mission_risk_high",
+          "long_life",
+          "critical_payload"
+        ]
+      },
+      "tags": [
+        "backup_computer",
+        "redundancy",
+        "fdir",
+        "derived_architecture"
+      ],
+      "trl": 7,
+      "source_kind": "architecture_derived_from_public_product",
+      "source_urls": [
+        "https://gomspace.com/product/nanomind-a3200/",
+        "https://www.satnow.com/products/on-board-computers/gomspace/116-1279-nanomind-a3200"
+      ]
+    },
+    {
+      "id": "obdh-watchdog-spacecubics-pic-recovery",
+      "domain": "flight_computer",
+      "role": "watchdog_timer",
+      "category_name": "Flight Computers (OBDH 1.4.1)",
+      "class_name": "Watchdog Timer",
+      "option_name": "External recovery MCU",
+      "product_name": "Space Cubics PIC Recovery / Watchdog Function",
+      "vendor": "Space Cubics Derived",
+      "key_spec": "Watchdog/recovery function derived from the Space Cubics OBC architecture, which includes a PIC for anomaly detection and system recovery.",
+      "normalized": {
+        "mass_kg": 0.005,
+        "volume_U": 0.005,
+        "power_avg_W": 0.05
+      },
+      "capabilities": {
+        "watchdog_timer": true,
+        "system_recovery": true,
+        "anomaly_detection": true
+      },
+      "tags": [
+        "watchdog",
+        "fdir",
+        "recovery",
+        "derived_function"
+      ],
+      "trl": 7,
+      "source_kind": "architecture_function_from_public_product",
+      "source_urls": [
+        "https://space-for-space.com/product/onboard-computer-obc/"
+      ]
+    }
+  ],
+  "selection_hooks": {
+    "hard_constraints": [
+      "normalized.mass_kg <= mission.obdh_mass_budget_kg",
+      "normalized.power_avg_W <= mission.obdh_avg_power_budget_W",
+      "normalized.power_peak_W <= mission.obdh_peak_power_budget_W",
+      "if mission.required_storage_GB is set: normalized.storage_GB >= mission.required_storage_GB",
+      "if payload.daily_data_generation_gb is high: select data_storage role with storage_GB >= onboard_storage_days * daily_data_generation_gb",
+      "if mission.requires_real_time_control: flight_computer.capabilities.real_time_control == true",
+      "if mission.requires_secure_comms: select data_processing.role == encryption_module or networking.secure_data_link_interface",
+      "if payload.compute_load_class in ['high','very_high']: select high_perf_obc or payload_processor",
+      "if mission.radiation_sensitivity == 'high' or orbit is beyond LEO: prefer rad_hard_obc or EDAC/TMR capabilities"
+    ],
+    "suggested_scoring_fields": [
+      {
+        "field": "normalized.power_avg_W",
+        "goal": "minimize",
+        "weight_hint": 0.2
+      },
+      {
+        "field": "normalized.mass_kg",
+        "goal": "minimize",
+        "weight_hint": 0.18
+      },
+      {
+        "field": "normalized.storage_GB",
+        "goal": "maximize_if_data_heavy",
+        "weight_hint": 0.18
+      },
+      {
+        "field": "capabilities.edac",
+        "goal": "prefer",
+        "weight_hint": 0.12
+      },
+      {
+        "field": "capabilities.csp_support",
+        "goal": "prefer",
+        "weight_hint": 0.08
+      },
+      {
+        "field": "interfaces.can",
+        "goal": "prefer",
+        "weight_hint": 0.08
+      },
+      {
+        "field": "interfaces.ethernet_100base_tx or interfaces.ethernet_gbe",
+        "goal": "prefer_for_high_payload_data",
+        "weight_hint": 0.08
+      },
+      {
+        "field": "trl",
+        "goal": "maximize",
+        "weight_hint": 0.08
+      }
+    ],
+    "trace_explanations": {
+      "basic_low_data_mission": "Use a low-power standard OBC and no separate high-capacity recorder.",
+      "earth_observation_high_data": "Require high storage and/or payload processor; prefer Ethernet/SpaceWire and SSD recorder.",
+      "secure_communication": "Add encryption module or secure data link interface.",
+      "high_reliability_long_mission": "Prefer EDAC, watchdog, redundant OBC, and flight-proven units.",
+      "advanced_onboard_processing": "Prefer FPGA/GPU/payload processor products with Linux/PetaLinux and high-bandwidth interfaces."
+    }
+  }
+}

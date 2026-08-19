@@ -1,0 +1,1810 @@
+{
+  "meta": {
+    "subsystem": "EPS",
+    "block": "MASTER_SUBSYSTEM_DATABASE",
+    "schema_version": "ONE_V3_SUBSYSTEM_EPS_DB_1.0",
+    "created_utc": "2026-05-11T11:18:29Z",
+    "basis": [
+      "User EPS ontology: solar panels, energy storage, power management.",
+      "Uploaded eps_v2.json normalized products.",
+      "Additional COTS-derived examples added for solver breadth; unverified approximate values are explicitly marked."
+    ],
+    "units": {
+      "mass": "kg",
+      "power": "W",
+      "energy": "Wh",
+      "current": "A",
+      "volume": "CubeSat U",
+      "cost": "kUSD",
+      "efficiency": "percent"
+    },
+    "data_policy": {
+      "no_master_payload_database_changes": true,
+      "procurement_warning": "This database is intended for preliminary configuration and solver trade studies, not final procurement without datasheet verification.",
+      "missing_values": "Unknown fields are null. Estimated fields are tagged through solver_metadata.data_quality."
+    }
+  },
+  "ontology": {
+    "domains": [
+      "power_generation",
+      "energy_storage",
+      "power_management"
+    ],
+    "roles": [
+      "solar_cell",
+      "solar_panel",
+      "deployable_array",
+      "battery",
+      "ultracapacitor",
+      "primary_battery",
+      "eps_controller",
+      "bms",
+      "pdu",
+      "sada"
+    ],
+    "classes": {
+      "power_generation": [
+        "Triple-Junction GaAs Cells",
+        "Silicon Solar Cells",
+        "Deployable Solar Arrays",
+        "Body-Mounted Solar Panels"
+      ],
+      "energy_storage": [
+        "Lithium-Ion 18650 Batteries",
+        "Lithium-Polymer Batteries",
+        "Ultra-Capacitors",
+        "Primary Lithium Batteries"
+      ],
+      "power_management": [
+        "Electrical Power System (EPS)",
+        "Battery Management System",
+        "Solar Array Drive Assembly",
+        "Power Distribution Units"
+      ]
+    }
+  },
+  "products": [
+    {
+      "item_id": "eps-solarcell-azurspace-3g30",
+      "domain": "power_generation",
+      "role": "solar_cell",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Triple-Junction Cells (GaAs)",
+      "option_name": "Space-Grade GaAs Panels",
+      "product_name": "Azur Space 3G30 (Cell Assembly)",
+      "vendor": "Azur Space",
+      "key_spec": "Standard cell used by ISISpace/EnduroSat panels",
+      "normalized": {
+        "mass_kg": 0.05,
+        "efficiency_percent": 29.5,
+        "volume_U": null,
+        "power_avg_W": null,
+        "power_peak_W": null
+      },
+      "generation": {
+        "generation_per_face_W": 2.3,
+        "orbit_avg_generation_W": 1.5
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Custom/Modular"
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 3
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "high_efficiency",
+        "leo_standard",
+        "body_mounted"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-solarcell-spectrolab-xtjprime",
+      "domain": "power_generation",
+      "role": "solar_cell",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Triple-Junction Cells (GaAs)",
+      "option_name": "Space-Grade GaAs Panels",
+      "product_name": "Spectrolab XTJ Prime",
+      "vendor": "Spectrolab",
+      "key_spec": "US-Standard for high-rel missions",
+      "normalized": {
+        "mass_kg": 0.04,
+        "efficiency_percent": 30.7,
+        "volume_U": null,
+        "power_avg_W": null,
+        "power_peak_W": null
+      },
+      "generation": {
+        "generation_per_face_W": 2.4,
+        "orbit_avg_generation_W": 1.6
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Custom/Modular"
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 3
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 7
+      },
+      "tags": [
+        "highest_efficiency",
+        "premium",
+        "leo_standard"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-solarpanel-educational-silicon",
+      "domain": "power_generation",
+      "role": "solar_panel",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Silicon Solar Cells",
+      "option_name": "Cost-Effective Silicon Panels",
+      "product_name": "Generic Educational Silicon Panel",
+      "vendor": "Generic",
+      "key_spec": "Significant cost savings for non-critical missions",
+      "normalized": {
+        "mass_kg": 0.06,
+        "efficiency_percent": 17,
+        "volume_U": null,
+        "power_avg_W": null,
+        "power_peak_W": null
+      },
+      "generation": {
+        "generation_per_face_W": 1.2,
+        "orbit_avg_generation_W": 0.5
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Fixed"
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 8
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "low_cost",
+        "educational",
+        "low_power"
+      ],
+      "trl": 5
+    },
+    {
+      "item_id": "eps-solarpanel-endurosat-bodymounted",
+      "domain": "power_generation",
+      "role": "solar_panel",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Solar Arrays (Topology)",
+      "option_name": "Body-Mounted Panels",
+      "product_name": "EnduroSat 1U/3U Side Panel",
+      "vendor": "EnduroSat",
+      "key_spec": "Rugged, no moving parts",
+      "normalized": {
+        "mass_kg": 0.14,
+        "efficiency_percent": 29.5,
+        "volume_U": null,
+        "power_avg_W": null,
+        "power_peak_W": null
+      },
+      "generation": {
+        "generation_per_face_W": 7,
+        "orbit_avg_generation_W": 2.3
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Fixed/Body-Mounted"
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 8
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "rugged",
+        "flight_proven",
+        "no_deployment"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-solararray-isispace-deployable-3u",
+      "domain": "power_generation",
+      "role": "deployable_array",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Solar Arrays (Topology)",
+      "option_name": "Deployable Solar Arrays",
+      "product_name": "ISISpace 3U Double Deployable",
+      "vendor": "ISISpace",
+      "key_spec": "Mechanical deployment via burn-wire",
+      "normalized": {
+        "mass_kg": 0.45,
+        "volume_U": 0.4,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {
+        "generation_peak_W": 30,
+        "orbit_avg_generation_W": 18
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Deployable/Articulated",
+        "requires": [
+          "sun_pointing_adcs"
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 45
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 14
+      },
+      "tags": [
+        "high_power",
+        "deployable",
+        "requires_adcs"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-battery-liion-pumpkin-bm2",
+      "domain": "energy_storage",
+      "role": "battery",
+      "category_name": "Energy Storage",
+      "class_name": "Lithium-Ion (Li-Ion)",
+      "option_name": "18650 Battery Packs",
+      "product_name": "Pumpkin BM2 (18650 Array)",
+      "vendor": "Pumpkin",
+      "key_spec": "Highly modular, uses standard cells",
+      "normalized": {
+        "mass_kg": 0.7,
+        "volume_U": 0.5,
+        "capacity_Wh": 72,
+        "max_output_current_A": 10,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 72,
+        "max_output_current_A": 10
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 15
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "high_capacity",
+        "leo_standard",
+        "long_mission"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-battery-lipo-aac-optimus",
+      "domain": "energy_storage",
+      "role": "battery",
+      "category_name": "Energy Storage",
+      "class_name": "Lithium-Polymer (Li-Po)",
+      "option_name": "Pouch Cell Packs",
+      "product_name": "AAC Clyde Space Optimus",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "Flat pouch cells, better packing efficiency",
+      "normalized": {
+        "mass_kg": 0.35,
+        "volume_U": 1,
+        "capacity_Wh": 30,
+        "max_output_current_A": 4,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 30,
+        "max_output_current_A": 4
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 15
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "compact",
+        "medium_capacity"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-ultracap-maxwell-durablue",
+      "domain": "energy_storage",
+      "role": "ultracapacitor",
+      "category_name": "Energy Storage",
+      "class_name": "Advanced Storage",
+      "option_name": "Ultra-Capacitors",
+      "product_name": "Maxwell DuraBlue Module",
+      "vendor": "Maxwell",
+      "key_spec": "For high-current bursts (SAR pulses)",
+      "normalized": {
+        "mass_kg": 0.2,
+        "volume_U": 0.5,
+        "capacity_Wh": 0.5,
+        "max_output_current_A": 50,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 0.5,
+        "max_output_current_A": 50
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 15
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 9
+      },
+      "tags": [
+        "high_peak_power",
+        "payload_burst"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-battery-primary-saft-lsh20",
+      "domain": "energy_storage",
+      "role": "primary_battery",
+      "category_name": "Energy Storage",
+      "class_name": "Advanced Storage",
+      "option_name": "Primary Lithium (Non-Rechargeable)",
+      "product_name": "Saft LSH-20 Pack",
+      "vendor": "Saft",
+      "key_spec": "For short-life missions or backup power",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 1,
+        "capacity_Ah": 13,
+        "max_output_current_A": 1.8,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Ah": 13,
+        "max_output_current_A": 1.8
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 15
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 9
+      },
+      "tags": [
+        "short_mission",
+        "backup_power"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-controller-gomspace-p31u",
+      "domain": "power_management",
+      "role": "eps_controller",
+      "category_name": "Power Management",
+      "class_name": "Electrical Power Systems (EPS)",
+      "option_name": "Integrated EPS",
+      "product_name": "GomSpace NanoPower P31u",
+      "vendor": "GomSpace",
+      "key_spec": "Includes MPPT and battery management",
+      "normalized": {
+        "mass_kg": 0.08,
+        "volume_U": 0.25,
+        "power_avg_W": 0.15,
+        "efficiency_percent": 94,
+        "power_peak_W": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 18
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "mppt",
+        "battery_management",
+        "flight_proven"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-controller-aac-starbuck-nano",
+      "domain": "power_management",
+      "role": "eps_controller",
+      "category_name": "Power Management",
+      "class_name": "Electrical Power Systems (EPS)",
+      "option_name": "Integrated EPS",
+      "product_name": "AAC Clyde Starbuck-Nano",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "Industry standard for 1U-3U missions",
+      "normalized": {
+        "mass_kg": 0.09,
+        "volume_U": 0.25,
+        "power_avg_W": 0.13,
+        "efficiency_percent": 96,
+        "power_peak_W": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 18
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "mppt",
+        "high_efficiency",
+        "leo_standard"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-pdu-aac-pdm",
+      "domain": "power_management",
+      "role": "pdu",
+      "category_name": "Power Management",
+      "class_name": "Distribution & Actuation",
+      "option_name": "Power Distribution Units (PDU)",
+      "product_name": "AAC Clyde Space PDM",
+      "vendor": "AAC Clyde Space",
+      "key_spec": "Latching Current Limiters (LCL) for payload protection",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 0.1,
+        "power_avg_W": 0.05,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {
+        "channels": 10
+      },
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 10
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 9
+      },
+      "tags": [
+        "power_distribution",
+        "payload_protection"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-sada-honeybee-microsada",
+      "domain": "power_management",
+      "role": "sada",
+      "category_name": "Power Management",
+      "class_name": "Distribution & Actuation",
+      "option_name": "Solar Array Drive Assembly (SADA)",
+      "product_name": "Honeybee Robotics Micro-SADA",
+      "vendor": "Honeybee Robotics",
+      "key_spec": "Rotates panels to track sun (Rare in CubeSats)",
+      "normalized": {
+        "mass_kg": 0.15,
+        "volume_U": 0.2,
+        "power_avg_W": 1.5,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 35
+      },
+      "solver_metadata": {
+        "source_status": "user_uploaded",
+        "data_quality": "user_provided_normalized",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 12
+      },
+      "tags": [
+        "sun_tracking",
+        "deployable_support",
+        "rare"
+      ],
+      "trl": 7
+    },
+    {
+      "item_id": "eps-solararray-gomspace-3u-deployable",
+      "domain": "power_generation",
+      "role": "deployable_array",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Deployable Solar Arrays",
+      "product_name": "GomSpace NanoPower Solar P110 / deployable-class 3U array",
+      "vendor": "GomSpace",
+      "key_spec": "Deployable CubeSat solar array class for 3U/6U missions",
+      "normalized": {
+        "mass_kg": 0.38,
+        "volume_U": 0.35,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {
+        "generation_peak_W": 28.0,
+        "orbit_avg_generation_W": 16.0
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Deployable",
+        "requires": [
+          "sun_pointing_adcs"
+        ],
+        "compatible_bus_u": [
+          3,
+          6
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 42
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 14
+      },
+      "tags": [
+        "deployable",
+        "high_power",
+        "cube_sat"
+      ],
+      "trl": 7,
+      "option_name": "Deployable Solar Arrays"
+    },
+    {
+      "item_id": "eps-solararray-cubespace-deployable-6u",
+      "domain": "power_generation",
+      "role": "deployable_array",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Deployable Solar Arrays",
+      "product_name": "CubeSpace 6U Deployable Solar Array Class",
+      "vendor": "CubeSpace",
+      "key_spec": "High-power deployable array class for 6U/12U buses",
+      "normalized": {
+        "mass_kg": 0.75,
+        "volume_U": 0.7,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {
+        "generation_peak_W": 55.0,
+        "orbit_avg_generation_W": 32.0
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Deployable",
+        "requires": [
+          "sun_pointing_adcs"
+        ],
+        "compatible_bus_u": [
+          6,
+          12
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 75
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 14
+      },
+      "tags": [
+        "deployable",
+        "high_power"
+      ],
+      "trl": 7,
+      "option_name": "Deployable Solar Arrays"
+    },
+    {
+      "item_id": "eps-solarpanel-isispace-body-3u",
+      "domain": "power_generation",
+      "role": "solar_panel",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Body-Mounted Solar Panels",
+      "product_name": "ISISpace 3U Body-Mounted Solar Panel Class",
+      "vendor": "ISISpace",
+      "key_spec": "Body-mounted triple-junction panel class",
+      "normalized": {
+        "mass_kg": 0.18,
+        "volume_U": 0.08,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {
+        "generation_per_face_W": 8.0,
+        "orbit_avg_generation_W": 2.6
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Fixed/Body-Mounted",
+        "compatible_bus_u": [
+          3
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 12
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "body_mounted",
+        "no_deployment",
+        "leo_standard"
+      ],
+      "trl": 7,
+      "option_name": "Body-Mounted Solar Panels"
+    },
+    {
+      "item_id": "eps-solarpanel-gomspace-body",
+      "domain": "power_generation",
+      "role": "solar_panel",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Body-Mounted Solar Panels",
+      "product_name": "GomSpace NanoPower Solar Body Panel Class",
+      "vendor": "GomSpace",
+      "key_spec": "Body-mounted solar panel class for small CubeSats",
+      "normalized": {
+        "mass_kg": 0.16,
+        "volume_U": 0.08,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {
+        "generation_per_face_W": 7.5,
+        "orbit_avg_generation_W": 2.4
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Fixed/Body-Mounted",
+        "compatible_bus_u": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 12
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "body_mounted",
+        "flight_heritage"
+      ],
+      "trl": 7,
+      "option_name": "Body-Mounted Solar Panels"
+    },
+    {
+      "item_id": "eps-solarcell-solestial-silicon",
+      "domain": "power_generation",
+      "role": "solar_cell",
+      "category_name": "Power Generation (Solar)",
+      "class_name": "Silicon Solar Cells",
+      "product_name": "Solestial Radiation-Tolerant Silicon Solar Cell Class",
+      "vendor": "Solestial",
+      "key_spec": "Low-cost radiation-tolerant silicon cell class",
+      "normalized": {
+        "mass_kg": 0.04,
+        "volume_U": null,
+        "power_avg_W": null,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {
+        "generation_per_face_W": 1.5,
+        "orbit_avg_generation_W": 0.8
+      },
+      "storage": {},
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "mounting_topology": "Custom/Modular"
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 2.5
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 11
+      },
+      "tags": [
+        "silicon",
+        "low_cost",
+        "emerging"
+      ],
+      "trl": 6,
+      "option_name": "Silicon Solar Cells"
+    },
+    {
+      "item_id": "eps-battery-gomspace-bp4",
+      "domain": "energy_storage",
+      "role": "battery",
+      "category_name": "Energy Storage",
+      "class_name": "Lithium-Ion 18650 Batteries",
+      "product_name": "GomSpace NanoPower BP4 Battery Pack Class",
+      "vendor": "GomSpace",
+      "key_spec": "CubeSat Li-ion battery pack class",
+      "normalized": {
+        "mass_kg": 0.42,
+        "volume_U": 0.35,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 38.5,
+        "max_output_current_A": 8.0,
+        "chemistry": "Li-ion"
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "compatible_bus_u": [
+          1,
+          2,
+          3
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 18
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "battery",
+        "leo_standard",
+        "modular"
+      ],
+      "trl": 7,
+      "option_name": "Lithium-Ion 18650 Batteries"
+    },
+    {
+      "item_id": "eps-battery-gomspace-bpx",
+      "domain": "energy_storage",
+      "role": "battery",
+      "category_name": "Energy Storage",
+      "class_name": "Lithium-Ion 18650 Batteries",
+      "product_name": "GomSpace NanoPower BPX High-Capacity Battery Class",
+      "vendor": "GomSpace",
+      "key_spec": "Higher-capacity Li-ion battery pack class",
+      "normalized": {
+        "mass_kg": 0.85,
+        "volume_U": 0.7,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 77.0,
+        "max_output_current_A": 12.0,
+        "chemistry": "Li-ion"
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "compatible_bus_u": [
+          3,
+          6,
+          12
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 30
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "high_capacity",
+        "battery"
+      ],
+      "trl": 7,
+      "option_name": "Lithium-Ion 18650 Batteries"
+    },
+    {
+      "item_id": "eps-battery-endurosat-2p",
+      "domain": "energy_storage",
+      "role": "battery",
+      "category_name": "Energy Storage",
+      "class_name": "Lithium-Ion 18650 Batteries",
+      "product_name": "EnduroSat Battery Pack 2P Class",
+      "vendor": "EnduroSat",
+      "key_spec": "Modular CubeSat Li-ion battery pack class",
+      "normalized": {
+        "mass_kg": 0.55,
+        "volume_U": 0.45,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 48.0,
+        "max_output_current_A": 8.0,
+        "chemistry": "Li-ion"
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "compatible_bus_u": [
+          1,
+          3,
+          6
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 20
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "modular",
+        "battery"
+      ],
+      "trl": 7,
+      "option_name": "Lithium-Ion 18650 Batteries"
+    },
+    {
+      "item_id": "eps-battery-nanoavionics-6u",
+      "domain": "energy_storage",
+      "role": "battery",
+      "category_name": "Energy Storage",
+      "class_name": "Lithium-Ion 18650 Batteries",
+      "product_name": "NanoAvionics 6U Battery Module Class",
+      "vendor": "NanoAvionics",
+      "key_spec": "Higher-capacity platform battery module class",
+      "normalized": {
+        "mass_kg": 0.9,
+        "volume_U": 0.75,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 90.0,
+        "max_output_current_A": 15.0,
+        "chemistry": "Li-ion"
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "compatible_bus_u": [
+          6,
+          12
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 35
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "high_capacity",
+        "platform_battery"
+      ],
+      "trl": 7,
+      "option_name": "Lithium-Ion 18650 Batteries"
+    },
+    {
+      "item_id": "eps-battery-eaglepicher-space-liion",
+      "domain": "energy_storage",
+      "role": "battery",
+      "category_name": "Energy Storage",
+      "class_name": "Lithium-Ion Batteries",
+      "product_name": "EaglePicher Space Li-ion Battery Module Class",
+      "vendor": "EaglePicher",
+      "key_spec": "High-reliability space battery module class",
+      "normalized": {
+        "mass_kg": 1.2,
+        "volume_U": 0.9,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 110.0,
+        "max_output_current_A": 15.0,
+        "chemistry": "Li-ion"
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {
+        "compatible_bus_u": [
+          6,
+          12,
+          16
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 60
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 7
+      },
+      "tags": [
+        "premium",
+        "high_reliability"
+      ],
+      "trl": 8,
+      "option_name": "Lithium-Ion Batteries"
+    },
+    {
+      "item_id": "eps-ultracap-eaton-xlr",
+      "domain": "energy_storage",
+      "role": "ultracapacitor",
+      "category_name": "Energy Storage",
+      "class_name": "Ultra-Capacitors",
+      "product_name": "Eaton XLR Supercapacitor Module Class",
+      "vendor": "Eaton",
+      "key_spec": "Burst-power support for payload transients",
+      "normalized": {
+        "mass_kg": 0.25,
+        "volume_U": 0.5,
+        "power_avg_W": 0.0,
+        "power_peak_W": null,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {
+        "capacity_Wh": 0.7,
+        "max_output_current_A": 60.0,
+        "chemistry": "supercapacitor"
+      },
+      "power_management": {},
+      "electrical": {},
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 8
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 9
+      },
+      "tags": [
+        "burst_power",
+        "supplemental"
+      ],
+      "trl": 6,
+      "option_name": "Ultra-Capacitors"
+    },
+    {
+      "item_id": "eps-controller-isispace-ieps",
+      "domain": "power_management",
+      "role": "eps_controller",
+      "category_name": "Power Management",
+      "class_name": "Electrical Power System (EPS)",
+      "product_name": "ISISpace iEPS Class",
+      "vendor": "ISISpace",
+      "key_spec": "Integrated EPS with MPPT/battery interface class",
+      "normalized": {
+        "mass_kg": 0.12,
+        "volume_U": 0.25,
+        "power_avg_W": 0.2,
+        "power_peak_W": 0.5,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {
+        "mppt_channels": 3,
+        "regulated_outputs": 6,
+        "efficiency_percent": 94
+      },
+      "electrical": {
+        "bus_voltage_V": [
+          3.3,
+          5,
+          12
+        ],
+        "max_output_current_A": 6
+      },
+      "integration": {
+        "compatible_bus_u": [
+          1,
+          2,
+          3
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 22
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "eps_controller",
+        "mppt"
+      ],
+      "trl": 7,
+      "option_name": "Electrical Power System (EPS)"
+    },
+    {
+      "item_id": "eps-controller-endurosat-eps-ii",
+      "domain": "power_management",
+      "role": "eps_controller",
+      "category_name": "Power Management",
+      "class_name": "Electrical Power System (EPS)",
+      "product_name": "EnduroSat EPS II Class",
+      "vendor": "EnduroSat",
+      "key_spec": "Integrated smallsat EPS controller class",
+      "normalized": {
+        "mass_kg": 0.1,
+        "volume_U": 0.25,
+        "power_avg_W": 0.16,
+        "power_peak_W": 0.4,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {
+        "mppt_channels": 3,
+        "regulated_outputs": 6,
+        "efficiency_percent": 95
+      },
+      "electrical": {
+        "bus_voltage_V": [
+          3.3,
+          5,
+          12
+        ],
+        "max_output_current_A": 5
+      },
+      "integration": {
+        "compatible_bus_u": [
+          1,
+          2,
+          3,
+          6
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 20
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "eps_controller",
+        "modular"
+      ],
+      "trl": 7,
+      "option_name": "Electrical Power System (EPS)"
+    },
+    {
+      "item_id": "eps-controller-cubespace-cubesat-eps",
+      "domain": "power_management",
+      "role": "eps_controller",
+      "category_name": "Power Management",
+      "class_name": "Electrical Power System (EPS)",
+      "product_name": "CubeSpace CubeSat EPS Controller Class",
+      "vendor": "CubeSpace",
+      "key_spec": "Integrated EPS controller class",
+      "normalized": {
+        "mass_kg": 0.11,
+        "volume_U": 0.25,
+        "power_avg_W": 0.18,
+        "power_peak_W": 0.45,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {
+        "mppt_channels": 3,
+        "regulated_outputs": 6,
+        "efficiency_percent": 94
+      },
+      "electrical": {
+        "bus_voltage_V": [
+          3.3,
+          5,
+          12
+        ],
+        "max_output_current_A": 6
+      },
+      "integration": {
+        "compatible_bus_u": [
+          1,
+          3,
+          6
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 21
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 8
+      },
+      "tags": [
+        "eps_controller"
+      ],
+      "trl": 7,
+      "option_name": "Electrical Power System (EPS)"
+    },
+    {
+      "item_id": "eps-pdu-gomspace-nanopower-pdu",
+      "domain": "power_management",
+      "role": "pdu",
+      "category_name": "Power Management",
+      "class_name": "Power Distribution Units",
+      "product_name": "GomSpace NanoPower PDU Class",
+      "vendor": "GomSpace",
+      "key_spec": "Power distribution and switch protection class",
+      "normalized": {
+        "mass_kg": 0.07,
+        "volume_U": 0.12,
+        "power_avg_W": 0.06,
+        "power_peak_W": 0.2,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {
+        "channels": 12,
+        "latching_current_limiters": true
+      },
+      "electrical": {
+        "bus_voltage_V": [
+          3.3,
+          5,
+          12
+        ],
+        "max_output_current_A": 8
+      },
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 12
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 9
+      },
+      "tags": [
+        "pdu",
+        "protection"
+      ],
+      "trl": 7,
+      "option_name": "Power Distribution Units"
+    },
+    {
+      "item_id": "eps-pdu-isispace-power-distribution",
+      "domain": "power_management",
+      "role": "pdu",
+      "category_name": "Power Management",
+      "class_name": "Power Distribution Units",
+      "product_name": "ISISpace Power Distribution Unit Class",
+      "vendor": "ISISpace",
+      "key_spec": "CubeSat PDU class with switched outputs",
+      "normalized": {
+        "mass_kg": 0.08,
+        "volume_U": 0.15,
+        "power_avg_W": 0.07,
+        "power_peak_W": 0.2,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {
+        "channels": 10,
+        "latching_current_limiters": true
+      },
+      "electrical": {
+        "bus_voltage_V": [
+          3.3,
+          5,
+          12
+        ],
+        "max_output_current_A": 8
+      },
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 14
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 9
+      },
+      "tags": [
+        "pdu"
+      ],
+      "trl": 7,
+      "option_name": "Power Distribution Units"
+    },
+    {
+      "item_id": "eps-bms-generic-space-liion",
+      "domain": "power_management",
+      "role": "bms",
+      "category_name": "Power Management",
+      "class_name": "Battery Management System",
+      "product_name": "Space Li-ion Battery Management System Class",
+      "vendor": "Generic COTS-Derived",
+      "key_spec": "Battery balancing, protection, and telemetry class",
+      "normalized": {
+        "mass_kg": 0.06,
+        "volume_U": 0.1,
+        "power_avg_W": 0.04,
+        "power_peak_W": 0.15,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {
+        "cell_balancing": true,
+        "overcurrent_protection": true,
+        "telemetry": true
+      },
+      "electrical": {
+        "supported_chemistry": [
+          "Li-ion",
+          "Li-polymer"
+        ],
+        "cell_count_series": [
+          2,
+          3,
+          4
+        ]
+      },
+      "integration": {},
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 8
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 9
+      },
+      "tags": [
+        "bms",
+        "battery_management"
+      ],
+      "trl": 7,
+      "option_name": "Battery Management System"
+    },
+    {
+      "item_id": "eps-sada-cubesat-small",
+      "domain": "power_management",
+      "role": "sada",
+      "category_name": "Power Management",
+      "class_name": "Solar Array Drive Assembly",
+      "product_name": "SmallSat Solar Array Drive Assembly Class",
+      "vendor": "COTS-Derived",
+      "key_spec": "Small deployable-array sun-tracking drive class",
+      "normalized": {
+        "mass_kg": 0.22,
+        "volume_U": 0.25,
+        "power_avg_W": 1.8,
+        "power_peak_W": 3.0,
+        "efficiency_percent": null
+      },
+      "generation": {},
+      "storage": {},
+      "power_management": {
+        "single_axis_tracking": true
+      },
+      "electrical": {},
+      "integration": {
+        "requires": [
+          "deployable_array",
+          "sun_pointing_adcs"
+        ],
+        "compatible_bus_u": [
+          6,
+          12,
+          16
+        ]
+      },
+      "environment": {
+        "operating_temp_c": null,
+        "radiation_tolerance_krad": null
+      },
+      "economics": {
+        "estimated_cost_kusd": 45
+      },
+      "solver_metadata": {
+        "source_status": "cots_derived_unverified",
+        "data_quality": "estimated_from_public_class",
+        "selection_notes": [
+          "Use generation.orbit_avg_generation_W for average solar generation constraints when present.",
+          "Use storage.capacity_Wh for eclipse energy constraints when present.",
+          "Use normalized.power_avg_W as internal EPS consumption when present.",
+          "Values marked cots_derived_unverified should be verified against datasheets before final procurement decisions."
+        ],
+        "risk_points": 12
+      },
+      "tags": [
+        "sada",
+        "sun_tracking"
+      ],
+      "trl": 6,
+      "option_name": "Solar Array Drive Assembly"
+    }
+  ],
+  "selection_hooks": {
+    "hard_constraints": [
+      "sum(selected_generation.orbit_avg_generation_W) >= mission.avg_power_W * power_margin_factor",
+      "sum(selected_generation.generation_peak_W) >= mission.peak_power_W when available",
+      "selected_battery.capacity_Wh >= mission.eclipse_energy_Wh * energy_margin_factor",
+      "sum(selected_eps.normalized.mass_kg) <= mission.eps_mass_budget_kg",
+      "sum(selected_eps.normalized.volume_U) <= mission.eps_volume_budget_U",
+      "deployable_array requires ADCS sun-pointing support when integration.requires contains sun_pointing_adcs",
+      "primary_battery is not valid for long-duration rechargeable LEO missions unless mission.mode == backup_or_short_life"
+    ],
+    "suggested_scoring_fields": [
+      {
+        "field": "generation.orbit_avg_generation_W",
+        "goal": "maximize",
+        "weight_hint": 0.25
+      },
+      {
+        "field": "storage.capacity_Wh",
+        "goal": "maximize",
+        "weight_hint": 0.2
+      },
+      {
+        "field": "normalized.mass_kg",
+        "goal": "minimize",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "normalized.volume_U",
+        "goal": "minimize",
+        "weight_hint": 0.1
+      },
+      {
+        "field": "economics.estimated_cost_kusd",
+        "goal": "minimize",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "trl",
+        "goal": "maximize",
+        "weight_hint": 0.1
+      },
+      {
+        "field": "solver_metadata.risk_points",
+        "goal": "minimize",
+        "weight_hint": 0.05
+      }
+    ],
+    "recommended_selection_groups": [
+      "Select one or more power_generation items.",
+      "Select one energy_storage item for rechargeable missions.",
+      "Select one eps_controller.",
+      "Select one pdu if payload has multiple switched loads or protection requirements.",
+      "Select bms when battery product does not include internal battery management.",
+      "Select sada only when deployable/rotating solar array architecture is chosen."
+    ]
+  }
+}

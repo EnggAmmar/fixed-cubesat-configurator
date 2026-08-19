@@ -1,0 +1,162 @@
+{
+  "schema_version": "OBJECTIVE_FUNCTION_COEFFICIENTS_1.0",
+  "generated_on": "2026-04-30",
+  "units": {
+    "cost_proxy": "USD_PROXY",
+    "risk_proxy": "RISK_POINTS",
+    "bus_oversize": "U"
+  },
+  "cost_proxy_tables": {
+    "bus_class_cost_usd_proxy": {
+      "1U": 20000,
+      "1.5U": 25000,
+      "2U": 30000,
+      "3U": 42000,
+      "6U": 78000,
+      "12U": 135000,
+      "16U": 175000,
+      "27U": 260000,
+      "50U+": 420000
+    },
+    "eps_tier_cost_usd_proxy": {
+      "LOW": 15000,
+      "MEDIUM": 40000,
+      "HIGH": 85000,
+      "EXTREME": 160000
+    },
+    "adcs_tier_cost_usd_proxy": {
+      "LOW": 12000,
+      "MEDIUM": 35000,
+      "HIGH": 90000,
+      "EXTREME": 180000
+    },
+    "comms_tier_cost_usd_proxy": {
+      "LOW": 18000,
+      "MEDIUM": 50000,
+      "HIGH": 120000,
+      "EXTREME": 300000
+    },
+    "obc_tier_cost_usd_proxy": {
+      "LOW": 8000,
+      "MEDIUM": 22000,
+      "HIGH": 60000,
+      "EXTREME": 150000
+    },
+    "thermal_tier_cost_usd_proxy": {
+      "LOW": 5000,
+      "MEDIUM": 12000,
+      "HIGH": 35000,
+      "EXTREME": 90000
+    },
+    "propulsion_tier_cost_usd_proxy": {
+      "LOW": 0,
+      "MEDIUM": 60000,
+      "HIGH": 150000,
+      "EXTREME": 320000
+    }
+  },
+  "risk_proxy_tables": {
+    "payload_integration_risk_points": {
+      "low": 10,
+      "medium": 25,
+      "high": 45
+    },
+    "eps_tier_risk_points": {
+      "LOW": 5,
+      "MEDIUM": 12,
+      "HIGH": 25,
+      "EXTREME": 45
+    },
+    "adcs_tier_risk_points": {
+      "LOW": 6,
+      "MEDIUM": 14,
+      "HIGH": 28,
+      "EXTREME": 50
+    },
+    "comms_tier_risk_points": {
+      "LOW": 6,
+      "MEDIUM": 16,
+      "HIGH": 34,
+      "EXTREME": 60
+    },
+    "obc_tier_risk_points": {
+      "LOW": 4,
+      "MEDIUM": 10,
+      "HIGH": 22,
+      "EXTREME": 40
+    },
+    "thermal_tier_risk_points": {
+      "LOW": 3,
+      "MEDIUM": 8,
+      "HIGH": 18,
+      "EXTREME": 35
+    },
+    "propulsion_tier_risk_points": {
+      "LOW": 0,
+      "MEDIUM": 20,
+      "HIGH": 40,
+      "EXTREME": 70
+    }
+  },
+  "objective_definition": {
+    "normalized_terms": {
+      "M_total": {
+        "normalize_by": 25.0,
+        "unit": "kg"
+      },
+      "P_avg_total": {
+        "normalize_by": 60.0,
+        "unit": "W"
+      },
+      "Cost_total": {
+        "normalize_by": 750000.0,
+        "unit": "USD_PROXY"
+      },
+      "Risk_total": {
+        "normalize_by": 360.0,
+        "unit": "RISK_POINTS"
+      },
+      "bus_oversize_penalty": {
+        "normalize_by": 6.0,
+        "unit": "U"
+      }
+    },
+    "weights_percent": {
+      "w_mass": 35,
+      "w_avg_power": 20,
+      "w_cost": 25,
+      "w_risk": 12,
+      "w_bus_oversize": 8
+    },
+    "bus_oversize_penalty_definition": {
+      "definition": "bus_oversize_u = max(0, U_bus_sel - bus_min_u_sel)",
+      "note": "Because Prompt 10 enforces U_bus_sel >= bus_min_u_sel, bus_oversize_u is nonnegative and can be implemented as (U_bus_sel - bus_min_u_sel) in scaled integer units."
+    },
+    "recommended_integer_objective": {
+      "objective_integer_scale": 100000,
+      "assumed_variable_scaling": {
+        "M_total": "kg->g (S_m=1000)",
+        "P_avg_total": "W->mW (S_p=1000)",
+        "bus_oversize_u": "U->mU (S_u=1000)",
+        "Cost_total": "USD_PROXY integer",
+        "Risk_total": "RISK_POINTS integer"
+      },
+      "normalization_scales_in_scaled_units": {
+        "M_norm_g": 25000,
+        "P_norm_mw": 60000,
+        "Cost_norm_usd_proxy": 750000,
+        "Risk_norm_points": 360,
+        "bus_oversize_norm_mU": 6000
+      },
+      "linear_objective_coefficients": {
+        "k_mass_per_g": 140,
+        "k_power_per_mw": 33,
+        "k_cost_per_usd_proxy": 3,
+        "k_risk_per_point": 3333,
+        "k_oversize_per_mU": 133
+      },
+      "objective_expression_scaled": "Minimize Z_int = k_mass*M_total_g + k_power*P_avg_total_mW + k_cost*Cost_total_usd_proxy + k_risk*Risk_total_points + k_oversize*bus_oversize_mU",
+      "note": "Bus class cost curve flattened per Prompt 12.5; risk term softened by increasing Risk_norm_points to 360 (reduces k_risk by ~30%). If any coefficient rounds to 0 in later tuning, increase objective_integer_scale to retain resolution."
+    }
+  }
+}

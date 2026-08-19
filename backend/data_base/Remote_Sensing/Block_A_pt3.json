@@ -1,0 +1,45 @@
+{
+  "mission_family": "Remote Sensing",
+  "block": "MASTER_BLOCK_A_EARTH_OBSERVATION_PAYLOADS_PART3",
+  "schema_version": "ONE_V3_PAYLOAD_DB_2.0",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Synthetic Aperture Radar",
+      "payload_variant": "L-Band SAR",
+      "products": [
+        {"payload_id":"RS-EO-LSAR-001","vendor":"JAXA Heritage","product_name":"Compact L-SAR Mapper","mass_kg":28.0,"dimensions_mm":{"length_x":360,"width_y":240,"height_z":520},"payload_envelope_u":16.0,"mounting_face":"side_deploy","avg_power_w":65,"peak_power_w":135,"nominal_data_rate_mbps":390,"spectral_band":"L-Band 1.2GHz","ground_resolution_m":5.0,"swath_km":55,"pointing_requirement_deg":0.025,"estimated_cost_usd":2200000},
+        {"payload_id":"RS-EO-LSAR-002","vendor":"Airbus Heritage","product_name":"Deployable L-Band SAR","mass_kg":26.0,"dimensions_mm":{"length_x":340,"width_y":230,"height_z":500},"payload_envelope_u":15.0,"mounting_face":"side_deploy","avg_power_w":60,"peak_power_w":128,"nominal_data_rate_mbps":370,"spectral_band":"L-Band","ground_resolution_m":6.0,"swath_km":60,"pointing_requirement_deg":0.025,"estimated_cost_usd":2100000},
+        {"payload_id":"RS-EO-LSAR-003","vendor":"Thales Heritage","product_name":"L-SAR Agriculture Mapper","mass_kg":24.5,"dimensions_mm":{"length_x":330,"width_y":220,"height_z":480},"payload_envelope_u":14.0,"mounting_face":"side_deploy","avg_power_w":58,"peak_power_w":122,"nominal_data_rate_mbps":355,"spectral_band":"L-Band","ground_resolution_m":7.0,"swath_km":58,"pointing_requirement_deg":0.026,"estimated_cost_usd":1980000}
+      ]
+    },
+
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Synthetic Aperture Radar",
+      "payload_variant": "P-Band SAR",
+      "products": [
+        {"payload_id":"RS-EO-PSAR-001","vendor":"ESA Heritage","product_name":"P-Band Biomass Mapper","mass_kg":34.0,"dimensions_mm":{"length_x":400,"width_y":260,"height_z":580},"payload_envelope_u":18.0,"mounting_face":"side_deploy","avg_power_w":78,"peak_power_w":155,"nominal_data_rate_mbps":420,"spectral_band":"P-Band 435MHz","ground_resolution_m":10.0,"swath_km":70,"pointing_requirement_deg":0.022,"estimated_cost_usd":2600000},
+        {"payload_id":"RS-EO-PSAR-002","vendor":"Airbus Heritage","product_name":"Deployable P-Band Soil Radar","mass_kg":31.0,"dimensions_mm":{"length_x":380,"width_y":250,"height_z":550},"payload_envelope_u":17.0,"mounting_face":"side_deploy","avg_power_w":72,"peak_power_w":148,"nominal_data_rate_mbps":405,"spectral_band":"P-Band","ground_resolution_m":12.0,"swath_km":68,"pointing_requirement_deg":0.022,"estimated_cost_usd":2450000}
+      ]
+    },
+
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Weather Radar",
+      "payload_variant": "Weather Radar",
+      "products": [
+        {"payload_id":"RS-EO-WXR-001","vendor":"NASA Heritage","product_name":"Mini Precipitation Radar","mass_kg":12.0,"dimensions_mm":{"length_x":250,"width_y":180,"height_z":320},"payload_envelope_u":8.0,"mounting_face":"nadir","avg_power_w":28,"peak_power_w":52,"nominal_data_rate_mbps":210,"spectral_band":"Ku/Ka Weather Radar","ground_resolution_m":1000,"swath_km":120,"pointing_requirement_deg":0.05,"estimated_cost_usd":980000},
+        {"payload_id":"RS-EO-WXR-002","vendor":"JPL Heritage","product_name":"Compact Storm Radar","mass_kg":10.5,"dimensions_mm":{"length_x":230,"width_y":170,"height_z":300},"payload_envelope_u":7.0,"mounting_face":"nadir","avg_power_w":24,"peak_power_w":46,"nominal_data_rate_mbps":195,"spectral_band":"Ka Weather Radar","ground_resolution_m":1200,"swath_km":110,"pointing_requirement_deg":0.05,"estimated_cost_usd":910000},
+        {"payload_id":"RS-EO-WXR-003","vendor":"Thales OEM","product_name":"WeatherScan Cube Radar","mass_kg":9.8,"dimensions_mm":{"length_x":220,"width_y":165,"height_z":285},"payload_envelope_u":6.5,"mounting_face":"nadir","avg_power_w":22,"peak_power_w":42,"nominal_data_rate_mbps":180,"spectral_band":"Ku Weather Radar","ground_resolution_m":1400,"swath_km":105,"pointing_requirement_deg":0.055,"estimated_cost_usd":860000}
+      ]
+    }
+
+  ]
+}

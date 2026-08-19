@@ -1,0 +1,131 @@
+{
+  "mission_family": "Remote Sensing",
+  "block": "MASTER_BLOCK_E_DEFENSE_INTELLIGENCE_PAYLOADS",
+  "schema_version": "ONE_V3_PAYLOAD_DB_2.1",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+
+    {
+      "payload_group": "Defense / Intelligence Payloads",
+      "payload_type": "Missile Warning Sensors",
+      "payload_variant": "Missile Warning IR Sensors",
+      "products": [
+        {
+          "payload_id":"RS-DEF-MWIR-001",
+          "vendor":"Orbital ISR OEM",
+          "product_name":"Wide Field Missile Plume IR Tracker",
+          "mass_kg":3.60,
+          "dimensions_mm":{"length_x":130,"width_y":130,"height_z":180},
+          "payload_envelope_u":2.8,
+          "mounting_face":"zenith",
+          "avg_power_w":11.5,
+          "peak_power_w":17.0,
+          "nominal_data_rate_mbps":55,
+          "spectral_band":"3-5um MWIR",
+          "ground_resolution_m":null,
+          "swath_km":null,
+          "pointing_requirement_deg":0.030,
+          "estimated_cost_usd":355000
+        },
+        {
+          "payload_id":"RS-DEF-MWIR-002",
+          "vendor":"AeroDefense OEM",
+          "product_name":"Persistent IR Launch Signature Detector",
+          "mass_kg":4.10,
+          "dimensions_mm":{"length_x":140,"width_y":140,"height_z":190},
+          "payload_envelope_u":3.0,
+          "mounting_face":"zenith",
+          "avg_power_w":12.8,
+          "peak_power_w":18.5,
+          "nominal_data_rate_mbps":60,
+          "spectral_band":"3-12um MWIR/LWIR",
+          "ground_resolution_m":null,
+          "swath_km":null,
+          "pointing_requirement_deg":0.028,
+          "estimated_cost_usd":388000
+        },
+        {
+          "payload_id":"RS-DEF-MWIR-003",
+          "vendor":"SentinelSpace OEM",
+          "product_name":"Compact Tactical Infrared Event Warning Sensor",
+          "mass_kg":3.20,
+          "dimensions_mm":{"length_x":125,"width_y":125,"height_z":170},
+          "payload_envelope_u":2.5,
+          "mounting_face":"zenith",
+          "avg_power_w":10.8,
+          "peak_power_w":16.0,
+          "nominal_data_rate_mbps":52,
+          "spectral_band":"4-10um IR surveillance",
+          "ground_resolution_m":null,
+          "swath_km":null,
+          "pointing_requirement_deg":0.032,
+          "estimated_cost_usd":332000
+        }
+      ]
+    },
+
+    {
+      "payload_group": "Defense / Intelligence Payloads",
+      "payload_type": "UV Detection Sensors",
+      "payload_variant": "UV Sensors",
+      "products": [
+        {
+          "payload_id":"RS-DEF-UV-001",
+          "vendor":"CUVE Heritage Derived",
+          "product_name":"Compact UV Event Detection Sensor",
+          "mass_kg":2.10,
+          "dimensions_mm":{"length_x":110,"width_y":110,"height_z":150},
+          "payload_envelope_u":1.8,
+          "mounting_face":"zenith",
+          "avg_power_w":7.5,
+          "peak_power_w":11.0,
+          "nominal_data_rate_mbps":36,
+          "spectral_band":"190-300nm UV",
+          "ground_resolution_m":null,
+          "swath_km":null,
+          "pointing_requirement_deg":0.040,
+          "estimated_cost_usd":225000
+        },
+        {
+          "payload_id":"RS-DEF-UV-002",
+          "vendor":"AeroPhotonics OEM",
+          "product_name":"Wide Angle Ultraviolet Transient Sensor",
+          "mass_kg":2.35,
+          "dimensions_mm":{"length_x":112,"width_y":112,"height_z":155},
+          "payload_envelope_u":2.0,
+          "mounting_face":"zenith",
+          "avg_power_w":8.0,
+          "peak_power_w":11.8,
+          "nominal_data_rate_mbps":38,
+          "spectral_band":"200-350nm UV detection",
+          "ground_resolution_m":null,
+          "swath_km":null,
+          "pointing_requirement_deg":0.042,
+          "estimated_cost_usd":238000
+        },
+        {
+          "payload_id":"RS-DEF-UV-003",
+          "vendor":"SkyShield OEM",
+          "product_name":"UV Flash Signature Monitoring Payload",
+          "mass_kg":2.00,
+          "dimensions_mm":{"length_x":108,"width_y":108,"height_z":148},
+          "payload_envelope_u":1.7,
+          "mounting_face":"zenith",
+          "avg_power_w":7.2,
+          "peak_power_w":10.5,
+          "nominal_data_rate_mbps":34,
+          "spectral_band":"far UV event sensing",
+          "ground_resolution_m":null,
+          "swath_km":null,
+          "pointing_requirement_deg":0.045,
+          "estimated_cost_usd":218000
+        }
+      ]
+    }
+
+  ]
+}

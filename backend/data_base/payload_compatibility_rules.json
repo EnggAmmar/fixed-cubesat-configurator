@@ -1,0 +1,2034 @@
+{
+  "schema_version": "PAYLOAD_COMPATIBILITY_RULES_1.0",
+  "generated_on": "2026-04-29",
+  "source_files": [
+    "backend/data_base/Remote_Sensing/MASTER_Remote_Sensing.json",
+    "backend/data_base/IoT_Comm/MASTER_IoT_Comm.json",
+    "backend/data_base/Navigation/MASTER_Navigation.json"
+  ],
+  "class_scale": [
+    "LOW",
+    "MEDIUM",
+    "HIGH",
+    "EXTREME"
+  ],
+  "notes": [
+    "This file is a solver metadata map only; it does not modify mission databases.",
+    "Classes are conservative and derived from payload burden + inferred engineering fields."
+  ],
+  "inputs_used": [
+    "variants[].payload_group",
+    "variants[].payload_type",
+    "variants[].payload_variant",
+    "variants[].products[].mass_kg",
+    "variants[].products[].payload_envelope_u",
+    "variants[].products[].avg_power_w",
+    "variants[].products[].peak_power_w",
+    "variants[].products[].nominal_data_rate_mbps",
+    "variants[].products[].pointing_requirement_deg",
+    "variants[].products[].mounting_face",
+    "variants[].products[].recommended_bus_min_u",
+    "variants[].products[].cg_sensitivity_class",
+    "variants[].products[].deployment_clearance_needed",
+    "variants[].products[].eclipse_operation_required",
+    "variants[].products[].battery_discharge_sensitivity",
+    "variants[].products[].daily_data_generation_gb",
+    "variants[].products[].compute_load_class",
+    "variants[].products[].required_downlink_class",
+    "variants[].products[].latency_tolerance",
+    "variants[].products[].thermal_control_class",
+    "variants[].products[].temperature_stability_requirement"
+  ],
+  "derivation_rules_summary": {
+    "class_scale": "LOW < MEDIUM < HIGH < EXTREME",
+    "adcs_class_required": "Derived primarily from pointing_requirement_deg and deploy-mechanism likelihood; EXTREME if pointing<=0.05 deg or deploy mechanism likely; HIGH if pointing<=0.10 deg; MEDIUM if pointing<=0.20 deg; else LOW.",
+    "comms_class_required": "Mapped from required_downlink_class: low->LOW, medium->MEDIUM, high->HIGH, very_high->EXTREME; communication payloads are floored at MEDIUM.",
+    "eps_class_required": "Derived from avg/peak power and then bumped up if eclipse_operation_required and/or battery_discharge_sensitivity==high.",
+    "thermal_class_required": "Derived from thermal_control_class (passive->LOW, passive_plus->MEDIUM, active->HIGH), bumped if temperature_stability_requirement==high; forced EXTREME for very high power payloads.",
+    "obc_class_required": "Derived from compute_load_class, bumped for real_time latency and very high daily_data_generation_gb; certain comms/processing payload types are floored at MEDIUM.",
+    "structure_class_required": "Derived from mass_kg, payload_envelope_u, deployment_clearance_needed, and recommended_bus_min_u (large/heavy/deploy-oriented payloads push to HIGH/EXTREME).",
+    "propulsion_need_class": "Default LOW; raised for SAR/weather-radar (HIGH) and select defense geolocation/DF cases (MEDIUM), with a small bump for extremely tight pointing."
+  },
+  "compatibility": [
+    {
+      "payload_id": "RS-EO-VIS-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-VIS-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-VIS-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-EO-VIS-004",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-VIS-005",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-VIS-006",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-VIS-007",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-VIS-008",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-VIS-009",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-VIS-010",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-PAN-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-PAN-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-EO-PAN-003",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-PAN-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-PAN-005",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-NIR-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-NIR-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-NIR-003",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-NIR-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-NIR-005",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-SWIR-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-SWIR-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-SWIR-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-EO-SWIR-004",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-SWIR-005",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-MWIR-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-MWIR-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-MWIR-003",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-MWIR-004",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-MWIR-005",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-LWIR-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-LWIR-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-LWIR-003",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-LWIR-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-LWIR-005",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-HSI-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-HSI-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-HSI-003",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-HSI-004",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-HSI-005",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-EO-XSAR-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-XSAR-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-XSAR-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-CSAR-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-CSAR-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-LSAR-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-LSAR-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-LSAR-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-PSAR-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-PSAR-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-WXR-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-WXR-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-EO-WXR-003",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "HIGH"
+    },
+    {
+      "payload_id": "RS-SCI-OPSPEC-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-OPSPEC-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-OPSPEC-003",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-UVSPEC-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-UVSPEC-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-MSPEC-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-MSPEC-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-MSPEC-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-XSPEC-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-XSPEC-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-GSPEC-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-GSPEC-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-MAG-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-MAG-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-PDET-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-PDET-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-ATM-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SCI-ATM-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-LOC-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-LOC-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-LOC-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-SH-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-SH-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-BIOR-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-BIOR-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-CEC-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-CEC-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-OA-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-OA-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-MA-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-MA-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-FC-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-ECS-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-SP-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-CF-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-CF-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-BIO-CC-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SPC-OPT-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-SPC-OPT-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-SPC-OPT-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-SPC-OPT-004",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-SPC-HED-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SPC-HED-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SPC-HED-003",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-SPC-HED-004",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "RS-DEF-MWIR-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-DEF-MWIR-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-DEF-MWIR-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "EXTREME",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-DEF-UV-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-DEF-UV-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "RS-DEF-UV-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-BPT-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-BPT-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-BPT-003",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-BPT-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-RGT-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-RGT-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-RGT-003",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-RGT-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SDT-001",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SDT-002",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SDT-003",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SDT-004",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SDT-005",
+      "adcs_class_required": "HIGH",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SP-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SP-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SP-003",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-SP-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-TX-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-TX-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-TX-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "LOW",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-TX-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-RX-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-RX-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-RX-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-RX-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-COM-LCT-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "EXTREME",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-LCT-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "EXTREME",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-LCT-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "EXTREME",
+      "eps_class_required": "EXTREME",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-LCT-004",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "EXTREME",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-OL-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "EXTREME",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-OL-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "EXTREME",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-OL-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "EXTREME",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-OL-004",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "EXTREME",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "EXTREME",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-QC-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "LOW",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-QC-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "LOW",
+      "structure_class_required": "EXTREME",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-QC-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "LOW",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-COM-QC-004",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "LOW",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-EDGE-NPU-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-NPU-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-NPU-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-NPU-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-TPU-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-TPU-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-TPU-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-TPU-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-VPU-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-VPU-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-VPU-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-VPU-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-GPU-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-GPU-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-GPU-003",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-GPU-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-FPGA-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-FPGA-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-FPGA-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-FPGA-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-FPGA-005",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-DSP-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-DSP-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-DSP-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-EDGE-DSP-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-DEF-CI-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-DEF-CI-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-DEF-CI-003",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-DEF-CI-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-DEF-SIG-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-DEF-SIG-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-DEF-SIG-003",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-DEF-SIG-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "MEDIUM",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "IOT-DEF-EAS-001",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-DEF-EAS-002",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-DEF-EAS-003",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "IOT-DEF-EAS-004",
+      "adcs_class_required": "MEDIUM",
+      "comms_class_required": "HIGH",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "HIGH",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-PNT-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-PNT-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-PNT-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-PNT-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "MEDIUM",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-TIME-001",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "LOW",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-TIME-002",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "LOW",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-TIME-003",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "LOW",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-TIME-004",
+      "adcs_class_required": "LOW",
+      "comms_class_required": "LOW",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "LOW",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-BEACON-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "LOW",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-BEACON-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "LOW",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-BEACON-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "LOW",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-RF-BEACON-004",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "LOW",
+      "eps_class_required": "HIGH",
+      "thermal_class_required": "HIGH",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "LOW"
+    },
+    {
+      "payload_id": "NAV-DEF-DFA-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "NAV-DEF-DFA-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "NAV-DEF-DFA-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "NAV-DEF-DFA-004",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "NAV-DEF-RFSL-001",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "NAV-DEF-RFSL-002",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "LOW",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "NAV-DEF-RFSL-003",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    },
+    {
+      "payload_id": "NAV-DEF-RFSL-004",
+      "adcs_class_required": "EXTREME",
+      "comms_class_required": "MEDIUM",
+      "eps_class_required": "LOW",
+      "thermal_class_required": "MEDIUM",
+      "obc_class_required": "MEDIUM",
+      "structure_class_required": "HIGH",
+      "propulsion_need_class": "MEDIUM"
+    }
+  ]
+}

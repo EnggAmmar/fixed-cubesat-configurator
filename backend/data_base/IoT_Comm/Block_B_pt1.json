@@ -1,0 +1,46 @@
+{
+  "mission_family": "IoT / Communication",
+  "block": "MASTER_BLOCK_B_EDGE_COMPUTING_PAYLOADS",
+  "schema_version": "ONE_V3_PAYLOAD_DB_3.1",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+
+    {
+      "payload_group":"Edge Computing Payloads",
+      "payload_type":"AI / ML Processing",
+      "payload_variant":"NPU",
+      "products":[
+        {"payload_id":"IOT-EDGE-NPU-001","vendor":"Intel Movidius","product_name":"Myriad X Neural Processing Payload","mass_kg":0.42,"dimensions_mm":{"length_x":55,"width_y":55,"height_z":35},"payload_envelope_u":0.25,"mounting_face":"internal","avg_power_w":2.5,"peak_power_w":4.0,"nominal_data_rate_mbps":18,"spectral_band":"neural inference accelerator","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":42000},
+        {"payload_id":"IOT-EDGE-NPU-002","vendor":"Hailo","product_name":"Hailo-8 Edge AI NPU Module","mass_kg":0.48,"dimensions_mm":{"length_x":58,"width_y":58,"height_z":38},"payload_envelope_u":0.28,"mounting_face":"internal","avg_power_w":2.8,"peak_power_w":4.5,"nominal_data_rate_mbps":20,"spectral_band":"deep learning inferencing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":46000},
+        {"payload_id":"IOT-EDGE-NPU-003","vendor":"Kneron","product_name":"KL720 Space AI NPU Board","mass_kg":0.44,"dimensions_mm":{"length_x":56,"width_y":56,"height_z":36},"payload_envelope_u":0.26,"mounting_face":"internal","avg_power_w":2.6,"peak_power_w":4.2,"nominal_data_rate_mbps":19,"spectral_band":"AI inference edge compute","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":43500},
+        {"payload_id":"IOT-EDGE-NPU-004","vendor":"Axelera","product_name":"Low Power Orbital Neural Accelerator","mass_kg":0.50,"dimensions_mm":{"length_x":60,"width_y":60,"height_z":40},"payload_envelope_u":0.30,"mounting_face":"internal","avg_power_w":2.9,"peak_power_w":4.7,"nominal_data_rate_mbps":21,"spectral_band":"embedded neural tensor ops","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":47000}
+      ]
+    },
+
+    {
+      "payload_group":"Edge Computing Payloads",
+      "payload_type":"AI / ML Processing",
+      "payload_variant":"TPU",
+      "products":[
+        {"payload_id":"IOT-EDGE-TPU-001","vendor":"Google Coral","product_name":"Edge TPU Orbital ML Accelerator","mass_kg":0.36,"dimensions_mm":{"length_x":50,"width_y":50,"height_z":30},"payload_envelope_u":0.22,"mounting_face":"internal","avg_power_w":2.0,"peak_power_w":3.5,"nominal_data_rate_mbps":16,"spectral_band":"tensor inference","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":38000},
+        {"payload_id":"IOT-EDGE-TPU-002","vendor":"ESA SPAICE Derived","product_name":"Adaptive Tensor Payload Processor","mass_kg":0.44,"dimensions_mm":{"length_x":54,"width_y":54,"height_z":34},"payload_envelope_u":0.25,"mounting_face":"internal","avg_power_w":2.4,"peak_power_w":3.8,"nominal_data_rate_mbps":18,"spectral_band":"AI SATCOM inference","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":43000},
+        {"payload_id":"IOT-EDGE-TPU-003","vendor":"Coral Dual","product_name":"Dual Edge TPU Inference Payload","mass_kg":0.40,"dimensions_mm":{"length_x":52,"width_y":52,"height_z":32},"payload_envelope_u":0.24,"mounting_face":"internal","avg_power_w":2.2,"peak_power_w":3.7,"nominal_data_rate_mbps":17,"spectral_band":"parallel tensor inference","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":40500},
+        {"payload_id":"IOT-EDGE-TPU-004","vendor":"TensorOrbit OEM","product_name":"Radiation Screened TPU Compute Card","mass_kg":0.46,"dimensions_mm":{"length_x":55,"width_y":55,"height_z":35},"payload_envelope_u":0.26,"mounting_face":"internal","avg_power_w":2.5,"peak_power_w":4.0,"nominal_data_rate_mbps":18,"spectral_band":"tensor AI accelerator","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":43800}
+      ]
+    },
+
+    {
+      "payload_group":"Edge Computing Payloads",
+      "payload_type":"AI / ML Processing",
+      "payload_variant":"VPU",
+      "products":[
+        {"payload_id":"IOT-EDGE-VPU-001","vendor":"Intel Vision","product_name":"Orbital Vision Processing Unit","mass_kg":0.40,"dimensions_mm":{"length_x":52,"width_y":52,"height_z":32},"payload_envelope_u":0.23,"mounting_face":"internal","avg_power_w":2.3,"peak_power_w":3.7,"nominal_data_rate_mbps":17,"spectral_band":"video/vision acceleration","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":40000},
+        {"payload_id":"IOT-EDGE-VPU-002","vendor":"NanoVision","product_name":"Realtime Video Compression Payload Processor","mass_kg":0.46,"dimensions_mm":{"length_x":56,"width_y":56,"height_z":34},"payload_envelope_u":0.26,"mounting_face":"internal","avg_power_w":2.6,"peak_power_w":4.0,"nominal_data_rate_mbps":19,"spectral_band":"image/video ML compression","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":44500},
+        {"payload_id":"IOT-EDGE-VPU-003","vendor":"VisionSat OEM","product_name":"Onboard Scene Analytics Processor","mass_kg":0.43,"dimensions_mm":{"length_x":54,"width_y":54,"height_z":33},"payload_envelope_u":0.24,"mounting_face":"internal","avg_power_w":2.4,"peak_power_w":3.8,"nominal_data_rate_mbps":18,"spectral_band":"video analytics inference","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":41800},
+        {"payload_id":"IOT-EDGE-VPU-004","vendor":"OrbitalVision OEM","product_name":"Adaptive Stream Compression Engine","mass_kg":0.47,"dimensions_mm":{"length_x":57,"width_y":57,"height_z":35},"payload_envelope_u":0.27,"mounting_face":"internal","avg_power_w":2.7,"peak_power_w":4.1,"nominal_data_rate_mbps":20,"spectral_band":"video packet acceleration","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.30,"estimated_cost_usd":45200}
+      ]
+    }

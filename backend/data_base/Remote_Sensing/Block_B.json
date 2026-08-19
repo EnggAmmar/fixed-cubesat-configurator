@@ -1,0 +1,446 @@
+{
+  "mission_family": "Remote Sensing",
+  "block": "MASTER_BLOCK_B_SCIENTIFIC_INSTRUMENTS",
+  "schema_version": "ONE_V3_PAYLOAD_DB_2.0",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+    {
+      "payload_group": "Scientific Instruments",
+      "payload_type": "Spectrometers",
+      "payload_variant": "Optical Spectrometers",
+      "products": [
+        {
+          "payload_id": "RS-SCI-OPSPEC-001",
+          "vendor": "Specim Space OEM",
+          "product_name": "Compact Optical Spectrometer",
+          "mass_kg": 1.60,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 140
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "nadir",
+          "avg_power_w": 7.5,
+          "peak_power_w": 10.5,
+          "nominal_data_rate_mbps": 90,
+          "spectral_band": "400-900nm",
+          "ground_resolution_m": 15,
+          "swath_km": 18,
+          "pointing_requirement_deg": 0.12,
+          "estimated_cost_usd": 190000
+        },
+        {
+          "payload_id": "RS-SCI-OPSPEC-002",
+          "vendor": "OceanInsight Space",
+          "product_name": "Orbital VIS Spectrometer",
+          "mass_kg": 1.30,
+          "dimensions_mm": {
+            "length_x": 90,
+            "width_y": 90,
+            "height_z": 120
+          },
+          "payload_envelope_u": 1.0,
+          "mounting_face": "nadir",
+          "avg_power_w": 6.2,
+          "peak_power_w": 9.0,
+          "nominal_data_rate_mbps": 78,
+          "spectral_band": "350-850nm",
+          "ground_resolution_m": 18,
+          "swath_km": 20,
+          "pointing_requirement_deg": 0.14,
+          "estimated_cost_usd": 165000
+        },
+        {
+          "payload_id": "RS-SCI-OPSPEC-003",
+          "vendor": "EnduroSat OEM",
+          "product_name": "CubeSpec-VIS",
+          "mass_kg": 1.10,
+          "dimensions_mm": {
+            "length_x": 85,
+            "width_y": 85,
+            "height_z": 110
+          },
+          "payload_envelope_u": 0.9,
+          "mounting_face": "nadir",
+          "avg_power_w": 5.5,
+          "peak_power_w": 7.8,
+          "nominal_data_rate_mbps": 72,
+          "spectral_band": "400-800nm",
+          "ground_resolution_m": 20,
+          "swath_km": 22,
+          "pointing_requirement_deg": 0.15,
+          "estimated_cost_usd": 145000
+        }
+      ]
+    },
+    {
+      "payload_group": "Scientific Instruments",
+      "payload_type": "Spectrometers",
+      "payload_variant": "UV Spectrometers",
+      "products": [
+        {
+          "payload_id": "RS-SCI-UVSPEC-001",
+          "vendor": "NASA CUVE Heritage",
+          "product_name": "Compact UV Spectrometer",
+          "mass_kg": 2.20,
+          "dimensions_mm": {
+            "length_x": 110,
+            "width_y": 110,
+            "height_z": 170
+          },
+          "payload_envelope_u": 2.0,
+          "mounting_face": "zenith",
+          "avg_power_w": 9.5,
+          "peak_power_w": 13.0,
+          "nominal_data_rate_mbps": 82,
+          "spectral_band": "190-570nm",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.08,
+          "estimated_cost_usd": 280000
+        },
+        {
+          "payload_id": "RS-SCI-UVSPEC-002",
+          "vendor": "ISRO Heritage",
+          "product_name": "Mini UV Observation Spectrometer",
+          "mass_kg": 2.00,
+          "dimensions_mm": {
+            "length_x": 105,
+            "width_y": 105,
+            "height_z": 160
+          },
+          "payload_envelope_u": 1.8,
+          "mounting_face": "zenith",
+          "avg_power_w": 8.8,
+          "peak_power_w": 12.0,
+          "nominal_data_rate_mbps": 75,
+          "spectral_band": "200-550nm",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.09,
+          "estimated_cost_usd": 250000
+        }
+      ]
+    },
+    {
+      "payload_group": "Scientific Instruments",
+      "payload_type": "Spectrometers",
+      "payload_variant": "Mass Spectrometers",
+      "products": [
+        {
+          "payload_id": "RS-SCI-MSPEC-001",
+          "vendor": "NASA Goddard Heritage",
+          "product_name": "INMS CubeSat Ion Neutral Mass Spectrometer",
+          "mass_kg": 0.57,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 130
+          },
+          "payload_envelope_u": 1.3,
+          "mounting_face": "ram",
+          "avg_power_w": 1.8,
+          "peak_power_w": 3.2,
+          "nominal_data_rate_mbps": 14,
+          "spectral_band": "1-40 amu mass analysis",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.20,
+          "estimated_cost_usd": 98000
+        },
+        {
+          "payload_id": "RS-SCI-MSPEC-002",
+          "vendor": "ESA MEMS Heritage",
+          "product_name": "Miniature MEMS Space Mass Spectrometer",
+          "mass_kg": 0.74,
+          "dimensions_mm": {
+            "length_x": 105,
+            "width_y": 105,
+            "height_z": 140
+          },
+          "payload_envelope_u": 1.4,
+          "mounting_face": "ram",
+          "avg_power_w": 2.4,
+          "peak_power_w": 3.8,
+          "nominal_data_rate_mbps": 16,
+          "spectral_band": "gas molecular analysis",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.22,
+          "estimated_cost_usd": 112000
+        },
+        {
+          "payload_id": "RS-SCI-MSPEC-003",
+          "vendor": "CSEM Space OEM",
+          "product_name": "Compact Quadrupole Orbital Mass Analyzer",
+          "mass_kg": 0.82,
+          "dimensions_mm": {
+            "length_x": 110,
+            "width_y": 110,
+            "height_z": 145
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "ram",
+          "avg_power_w": 2.8,
+          "peak_power_w": 4.1,
+          "nominal_data_rate_mbps": 18,
+          "spectral_band": "neutral and ion composition",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.22,
+          "estimated_cost_usd": 118000
+        }
+      ]
+    },
+    {
+      "payload_group": "Scientific Instruments",
+      "payload_type": "Spectrometers",
+      "payload_variant": "X-Ray Spectrometers",
+      "products": [
+        {
+          "payload_id": "RS-SCI-XSPEC-001",
+          "vendor": "Amptek",
+          "product_name": "X123 SDD Space Adapted",
+          "mass_kg": 0.324,
+          "dimensions_mm": {
+            "length_x": 68.6,
+            "width_y": 99.1,
+            "height_z": 25.4
+          },
+          "payload_envelope_u": 0.25,
+          "mounting_face": "zenith",
+          "avg_power_w": 2.5,
+          "peak_power_w": 4.0,
+          "nominal_data_rate_mbps": 18,
+          "spectral_band": "0.5-30 keV",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.12,
+          "estimated_cost_usd": 90000
+        },
+        {
+          "payload_id": "RS-SCI-XSPEC-002",
+          "vendor": "MinXSS Heritage",
+          "product_name": "Miniature Solar X-Ray Spectrometer",
+          "mass_kg": 0.45,
+          "dimensions_mm": {
+            "length_x": 75,
+            "width_y": 100,
+            "height_z": 35
+          },
+          "payload_envelope_u": 0.3,
+          "mounting_face": "zenith",
+          "avg_power_w": 2.8,
+          "peak_power_w": 4.5,
+          "nominal_data_rate_mbps": 20,
+          "spectral_band": "0.8-20 keV",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.10,
+          "estimated_cost_usd": 110000
+        }
+      ]
+    },
+    {
+      "payload_group": "Scientific Instruments",
+      "payload_type": "Spectrometers",
+      "payload_variant": "Gamma-Ray Spectrometers",
+      "products": [
+        {
+          "payload_id": "RS-SCI-GSPEC-001",
+          "vendor": "CZT Space OEM",
+          "product_name": "Gamma Photon Spectrometer",
+          "mass_kg": 0.95,
+          "dimensions_mm": {
+            "length_x": 80,
+            "width_y": 80,
+            "height_z": 60
+          },
+          "payload_envelope_u": 0.5,
+          "mounting_face": "zenith",
+          "avg_power_w": 3.8,
+          "peak_power_w": 6.0,
+          "nominal_data_rate_mbps": 22,
+          "spectral_band": "10-1000 keV",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.15,
+          "estimated_cost_usd": 130000
+        },
+        {
+          "payload_id": "RS-SCI-GSPEC-002",
+          "vendor": "ESA Heritage",
+          "product_name": "Mini Gamma Burst Detector",
+          "mass_kg": 1.10,
+          "dimensions_mm": {
+            "length_x": 85,
+            "width_y": 85,
+            "height_z": 65
+          },
+          "payload_envelope_u": 0.6,
+          "mounting_face": "zenith",
+          "avg_power_w": 4.2,
+          "peak_power_w": 6.5,
+          "nominal_data_rate_mbps": 25,
+          "spectral_band": "20-1500 keV",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.15,
+          "estimated_cost_usd": 145000
+        }
+      ]
+    },
+    {
+      "payload_group": "Scientific Instruments",
+      "payload_type": "Magnetometers",
+      "payload_variant": "Magnetometers",
+      "products": [
+        {
+          "payload_id": "RS-SCI-MAG-001",
+          "vendor": "AAC Clyde Space",
+          "product_name": "CubeMag Fluxgate",
+          "mass_kg": 0.28,
+          "dimensions_mm": {
+            "length_x": 60,
+            "width_y": 60,
+            "height_z": 30
+          },
+          "payload_envelope_u": 0.15,
+          "mounting_face": "side",
+          "avg_power_w": 1.5,
+          "peak_power_w": 2.5,
+          "nominal_data_rate_mbps": 5,
+          "spectral_band": "magnetic field",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.5,
+          "estimated_cost_usd": 40000
+        },
+        {
+          "payload_id": "RS-SCI-MAG-002",
+          "vendor": "ISISPACE OEM",
+          "product_name": "Nano Fluxgate Magnetometer",
+          "mass_kg": 0.25,
+          "dimensions_mm": {
+            "length_x": 55,
+            "width_y": 55,
+            "height_z": 28
+          },
+          "payload_envelope_u": 0.1,
+          "mounting_face": "side",
+          "avg_power_w": 1.3,
+          "peak_power_w": 2.1,
+          "nominal_data_rate_mbps": 4,
+          "spectral_band": "magnetic field",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.5,
+          "estimated_cost_usd": 36000
+        }
+      ]
+    },
+    {
+      "payload_group": "Scientific Instruments",
+      "payload_type": "Particle Detectors",
+      "payload_variant": "Particle Detectors",
+      "products": [
+        {
+          "payload_id": "RS-SCI-PDET-001",
+          "vendor": "Aalto-1 Heritage",
+          "product_name": "RADMON Particle Detector",
+          "mass_kg": 0.65,
+          "dimensions_mm": {
+            "length_x": 75,
+            "width_y": 75,
+            "height_z": 45
+          },
+          "payload_envelope_u": 0.4,
+          "mounting_face": "zenith",
+          "avg_power_w": 2.2,
+          "peak_power_w": 3.5,
+          "nominal_data_rate_mbps": 12,
+          "spectral_band": "energetic particles",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.2,
+          "estimated_cost_usd": 75000
+        },
+        {
+          "payload_id": "RS-SCI-PDET-002",
+          "vendor": "ESA OEM",
+          "product_name": "Charged Particle Monitor",
+          "mass_kg": 0.72,
+          "dimensions_mm": {
+            "length_x": 80,
+            "width_y": 80,
+            "height_z": 50
+          },
+          "payload_envelope_u": 0.45,
+          "mounting_face": "zenith",
+          "avg_power_w": 2.5,
+          "peak_power_w": 3.8,
+          "nominal_data_rate_mbps": 14,
+          "spectral_band": "charged particles",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.2,
+          "estimated_cost_usd": 82000
+        }
+      ]
+    },
+    {
+      "payload_group": "Scientific Instruments",
+      "payload_type": "Atmospheric Sensors",
+      "payload_variant": "Atmospheric Sensors",
+      "products": [
+        {
+          "payload_id": "RS-SCI-ATM-001",
+          "vendor": "NASA OEM",
+          "product_name": "Upper Atmosphere Composition Sensor",
+          "mass_kg": 1.40,
+          "dimensions_mm": {
+            "length_x": 90,
+            "width_y": 90,
+            "height_z": 130
+          },
+          "payload_envelope_u": 1.0,
+          "mounting_face": "ram",
+          "avg_power_w": 5.8,
+          "peak_power_w": 8.0,
+          "nominal_data_rate_mbps": 35,
+          "spectral_band": "gas composition",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.25,
+          "estimated_cost_usd": 160000
+        },
+        {
+          "payload_id": "RS-SCI-ATM-002",
+          "vendor": "ESA OEM",
+          "product_name": "Neutral Density Atmospheric Probe",
+          "mass_kg": 1.20,
+          "dimensions_mm": {
+            "length_x": 85,
+            "width_y": 85,
+            "height_z": 120
+          },
+          "payload_envelope_u": 0.9,
+          "mounting_face": "ram",
+          "avg_power_w": 5.0,
+          "peak_power_w": 7.0,
+          "nominal_data_rate_mbps": 30,
+          "spectral_band": "atmospheric chemistry",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.25,
+          "estimated_cost_usd": 145000
+        }
+      ]
+    }
+  ]
+}

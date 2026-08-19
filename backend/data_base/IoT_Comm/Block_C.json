@@ -1,0 +1,49 @@
+{
+  "mission_family": "IoT / Communication",
+  "block": "MASTER_BLOCK_C_DEFENSE_INTELLIGENCE_PAYLOADS",
+  "schema_version": "ONE_V3_PAYLOAD_DB_3.1",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+
+    {
+      "payload_group":"Defense / Intelligence Payloads",
+      "payload_type":"Communication-Domain Intelligence",
+      "payload_variant":"Communications Interceptors",
+      "products":[
+        {"payload_id":"IOT-DEF-CI-001","vendor":"OrbitalSIG OEM","product_name":"Wideband RF Communications Intercept Payload","mass_kg":1.85,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":130},"payload_envelope_u":1.2,"mounting_face":"internal","avg_power_w":8.5,"peak_power_w":13.0,"nominal_data_rate_mbps":48,"spectral_band":"30MHz-6GHz intercept","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.18,"estimated_cost_usd":175000},
+        {"payload_id":"IOT-DEF-CI-002","vendor":"SignalHawk OEM","product_name":"Adaptive RF Packet Capture Receiver","mass_kg":1.70,"dimensions_mm":{"length_x":96,"width_y":96,"height_z":126},"payload_envelope_u":1.1,"mounting_face":"internal","avg_power_w":7.9,"peak_power_w":12.0,"nominal_data_rate_mbps":44,"spectral_band":"wideband comm sniffing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.18,"estimated_cost_usd":168000},
+        {"payload_id":"IOT-DEF-CI-003","vendor":"SpectraGuard OEM","product_name":"Spectrum Surveillance Interceptor Node","mass_kg":1.95,"dimensions_mm":{"length_x":102,"width_y":102,"height_z":132},"payload_envelope_u":1.25,"mounting_face":"internal","avg_power_w":8.8,"peak_power_w":13.4,"nominal_data_rate_mbps":50,"spectral_band":"UHF to C-band intercept","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.18,"estimated_cost_usd":179000},
+        {"payload_id":"IOT-DEF-CI-004","vendor":"RFWatch OEM","product_name":"Persistent Orbital Communications Listener","mass_kg":1.78,"dimensions_mm":{"length_x":98,"width_y":98,"height_z":128},"payload_envelope_u":1.15,"mounting_face":"internal","avg_power_w":8.1,"peak_power_w":12.5,"nominal_data_rate_mbps":46,"spectral_band":"persistent signal monitoring","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.18,"estimated_cost_usd":171000}
+      ]
+    },
+
+    {
+      "payload_group":"Defense / Intelligence Payloads",
+      "payload_type":"Communication-Domain Intelligence",
+      "payload_variant":"Signals Intelligence Payloads",
+      "products":[
+        {"payload_id":"IOT-DEF-SIG-001","vendor":"COMINT Space OEM","product_name":"Wide Spectrum SIGINT Analysis Payload","mass_kg":2.20,"dimensions_mm":{"length_x":108,"width_y":108,"height_z":145},"payload_envelope_u":1.5,"mounting_face":"internal","avg_power_w":9.5,"peak_power_w":14.8,"nominal_data_rate_mbps":52,"spectral_band":"signal fingerprinting","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.16,"estimated_cost_usd":192000},
+        {"payload_id":"IOT-DEF-SIG-002","vendor":"SignalIntel OEM","product_name":"Emitter Identification SIGINT Processor","mass_kg":2.05,"dimensions_mm":{"length_x":105,"width_y":105,"height_z":142},"payload_envelope_u":1.4,"mounting_face":"internal","avg_power_w":9.0,"peak_power_w":14.0,"nominal_data_rate_mbps":50,"spectral_band":"RF fingerprint library","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.16,"estimated_cost_usd":186000},
+        {"payload_id":"IOT-DEF-SIG-003","vendor":"OrbitalELINT OEM","product_name":"Adaptive Electronic Emission Classifier","mass_kg":2.30,"dimensions_mm":{"length_x":110,"width_y":110,"height_z":148},"payload_envelope_u":1.6,"mounting_face":"internal","avg_power_w":9.8,"peak_power_w":15.2,"nominal_data_rate_mbps":54,"spectral_band":"ELINT/SIGINT hybrid","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.16,"estimated_cost_usd":198000},
+        {"payload_id":"IOT-DEF-SIG-004","vendor":"SkySIG OEM","product_name":"Persistent Signal Signature Mapper","mass_kg":2.12,"dimensions_mm":{"length_x":106,"width_y":106,"height_z":144},"payload_envelope_u":1.45,"mounting_face":"internal","avg_power_w":9.2,"peak_power_w":14.3,"nominal_data_rate_mbps":51,"spectral_band":"communications signal mapping","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.16,"estimated_cost_usd":189000}
+      ]
+    },
+
+    {
+      "payload_group":"Defense / Intelligence Payloads",
+      "payload_type":"Communication-Domain Intelligence",
+      "payload_variant":"Encryption Analysis Systems",
+      "products":[
+        {"payload_id":"IOT-DEF-EAS-001","vendor":"CryptoScan OEM","product_name":"Encrypted Packet Pattern Analysis Payload","mass_kg":1.55,"dimensions_mm":{"length_x":90,"width_y":90,"height_z":118},"payload_envelope_u":1.0,"mounting_face":"internal","avg_power_w":7.0,"peak_power_w":11.0,"nominal_data_rate_mbps":40,"spectral_band":"crypto traffic analysis","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":154000},
+        {"payload_id":"IOT-DEF-EAS-002","vendor":"CipherWatch OEM","product_name":"Secure Traffic Fingerprinting Engine","mass_kg":1.48,"dimensions_mm":{"length_x":88,"width_y":88,"height_z":115},"payload_envelope_u":0.95,"mounting_face":"internal","avg_power_w":6.8,"peak_power_w":10.6,"nominal_data_rate_mbps":38,"spectral_band":"encrypted link classifier","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":149000},
+        {"payload_id":"IOT-DEF-EAS-003","vendor":"DecryptIntel OEM","product_name":"Orbital Encryption Metadata Analyzer","mass_kg":1.62,"dimensions_mm":{"length_x":91,"width_y":91,"height_z":120},"payload_envelope_u":1.02,"mounting_face":"internal","avg_power_w":7.2,"peak_power_w":11.2,"nominal_data_rate_mbps":41,"spectral_band":"crypto metadata parsing","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":156000},
+        {"payload_id":"IOT-DEF-EAS-004","vendor":"PacketShield OEM","product_name":"Encrypted Communications Behavior Monitor","mass_kg":1.58,"dimensions_mm":{"length_x":89,"width_y":89,"height_z":117},"payload_envelope_u":0.98,"mounting_face":"internal","avg_power_w":7.1,"peak_power_w":10.8,"nominal_data_rate_mbps":39,"spectral_band":"traffic pattern analytics","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.20,"estimated_cost_usd":152000}
+      ]
+    }
+
+  ]
+}

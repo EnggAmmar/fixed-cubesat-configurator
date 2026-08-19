@@ -1,0 +1,73 @@
+{
+  "mission_family": "Remote Sensing",
+  "block": "MASTER_BLOCK_A_EARTH_OBSERVATION_PAYLOADS_PART2",
+  "schema_version": "ONE_V3_PAYLOAD_DB_2.0",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Infrared Imaging",
+      "payload_variant": "MWIR Sensors",
+      "products": [
+        {"payload_id":"RS-EO-MWIR-001","vendor":"Dragonfly Aerospace","product_name":"MWIR Gecko","mass_kg":2.80,"dimensions_mm":{"length_x":120,"width_y":120,"height_z":165},"payload_envelope_u":2.3,"mounting_face":"nadir","avg_power_w":13,"peak_power_w":18,"nominal_data_rate_mbps":135,"spectral_band":"3000-5000nm","ground_resolution_m":4.0,"swath_km":18,"pointing_requirement_deg":0.08,"estimated_cost_usd":390000},
+        {"payload_id":"RS-EO-MWIR-002","vendor":"Satlantis OEM","product_name":"MWIR Observation Payload","mass_kg":2.60,"dimensions_mm":{"length_x":115,"width_y":115,"height_z":160},"payload_envelope_u":2.1,"mounting_face":"nadir","avg_power_w":12.5,"peak_power_w":17,"nominal_data_rate_mbps":128,"spectral_band":"3200-4800nm","ground_resolution_m":4.5,"swath_km":19,"pointing_requirement_deg":0.08,"estimated_cost_usd":370000},
+        {"payload_id":"RS-EO-MWIR-003","vendor":"Specim OEM Space","product_name":"MWIR Imaging Module","mass_kg":3.10,"dimensions_mm":{"length_x":125,"width_y":125,"height_z":175},"payload_envelope_u":2.5,"mounting_face":"nadir","avg_power_w":14,"peak_power_w":19,"nominal_data_rate_mbps":142,"spectral_band":"3000-5000nm","ground_resolution_m":5.0,"swath_km":17,"pointing_requirement_deg":0.07,"estimated_cost_usd":420000},
+        {"payload_id":"RS-EO-MWIR-004","vendor":"Open Cosmos OEM","product_name":"MWIR Thermal Mapper","mass_kg":2.40,"dimensions_mm":{"length_x":110,"width_y":110,"height_z":155},"payload_envelope_u":2.0,"mounting_face":"nadir","avg_power_w":11.8,"peak_power_w":16.5,"nominal_data_rate_mbps":122,"spectral_band":"3100-4700nm","ground_resolution_m":5.2,"swath_km":18,"pointing_requirement_deg":0.09,"estimated_cost_usd":345000},
+        {"payload_id":"RS-EO-MWIR-005","vendor":"EnduroSat OEM","product_name":"CubeMWIR","mass_kg":2.10,"dimensions_mm":{"length_x":105,"width_y":105,"height_z":145},"payload_envelope_u":1.8,"mounting_face":"nadir","avg_power_w":10.9,"peak_power_w":15,"nominal_data_rate_mbps":116,"spectral_band":"3000-5000nm","ground_resolution_m":5.8,"swath_km":20,"pointing_requirement_deg":0.10,"estimated_cost_usd":310000}
+      ]
+    },
+
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Infrared Imaging",
+      "payload_variant": "LWIR Sensors",
+      "products": [
+        {"payload_id":"RS-EO-LWIR-001","vendor":"FLIR Space Adapted","product_name":"Tau2 LWIR Payload","mass_kg":1.90,"dimensions_mm":{"length_x":95,"width_y":95,"height_z":130},"payload_envelope_u":1.3,"mounting_face":"nadir","avg_power_w":8.2,"peak_power_w":12,"nominal_data_rate_mbps":88,"spectral_band":"8000-14000nm","ground_resolution_m":8.0,"swath_km":22,"pointing_requirement_deg":0.11,"estimated_cost_usd":185000},
+        {"payload_id":"RS-EO-LWIR-002","vendor":"Dragonfly Aerospace","product_name":"LWIR Gecko","mass_kg":2.20,"dimensions_mm":{"length_x":105,"width_y":105,"height_z":145},"payload_envelope_u":1.8,"mounting_face":"nadir","avg_power_w":9.4,"peak_power_w":13,"nominal_data_rate_mbps":98,"spectral_band":"8000-12000nm","ground_resolution_m":7.2,"swath_km":20,"pointing_requirement_deg":0.10,"estimated_cost_usd":220000},
+        {"payload_id":"RS-EO-LWIR-003","vendor":"Open Cosmos OEM","product_name":"LWIR Heat Mapper","mass_kg":2.00,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":138},"payload_envelope_u":1.5,"mounting_face":"nadir","avg_power_w":8.8,"peak_power_w":12.2,"nominal_data_rate_mbps":92,"spectral_band":"8000-14000nm","ground_resolution_m":7.8,"swath_km":21,"pointing_requirement_deg":0.10,"estimated_cost_usd":205000},
+        {"payload_id":"RS-EO-LWIR-004","vendor":"AAC Clyde Space OEM","product_name":"ThermalCube LWIR","mass_kg":1.85,"dimensions_mm":{"length_x":95,"width_y":95,"height_z":132},"payload_envelope_u":1.3,"mounting_face":"nadir","avg_power_w":8.0,"peak_power_w":11.5,"nominal_data_rate_mbps":86,"spectral_band":"8000-13500nm","ground_resolution_m":8.5,"swath_km":20,"pointing_requirement_deg":0.11,"estimated_cost_usd":178000},
+        {"payload_id":"RS-EO-LWIR-005","vendor":"EnduroSat OEM","product_name":"CubeTherm-LWIR","mass_kg":1.70,"dimensions_mm":{"length_x":90,"width_y":90,"height_z":125},"payload_envelope_u":1.2,"mounting_face":"nadir","avg_power_w":7.5,"peak_power_w":10.8,"nominal_data_rate_mbps":82,"spectral_band":"8000-14000nm","ground_resolution_m":9.0,"swath_km":23,"pointing_requirement_deg":0.12,"estimated_cost_usd":165000}
+      ]
+    },
+
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Spectral Imaging",
+      "payload_variant": "Hyperspectral Imagers",
+      "products": [
+        {"payload_id":"RS-EO-HSI-001","vendor":"Simera Sense","product_name":"HyperScape100","mass_kg":1.35,"dimensions_mm":{"length_x":98,"width_y":98,"height_z":176},"payload_envelope_u":1.5,"mounting_face":"nadir","avg_power_w":4.0,"peak_power_w":8.5,"nominal_data_rate_mbps":140,"spectral_band":"450-900nm hyperspectral","ground_resolution_m":9.0,"swath_km":23,"pointing_requirement_deg":0.08,"estimated_cost_usd":260000},
+        {"payload_id":"RS-EO-HSI-002","vendor":"Aalto Heritage","product_name":"AaSI Derived Payload","mass_kg":2.00,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":180},"payload_envelope_u":2.0,"mounting_face":"nadir","avg_power_w":10,"peak_power_w":14,"nominal_data_rate_mbps":150,"spectral_band":"500-900nm hyperspectral","ground_resolution_m":10.0,"swath_km":10,"pointing_requirement_deg":0.08,"estimated_cost_usd":280000},
+        {"payload_id":"RS-EO-HSI-003","vendor":"Specim Space OEM","product_name":"VNIR Pushbroom HSI","mass_kg":2.60,"dimensions_mm":{"length_x":120,"width_y":120,"height_z":185},"payload_envelope_u":2.5,"mounting_face":"nadir","avg_power_w":12.5,"peak_power_w":17,"nominal_data_rate_mbps":165,"spectral_band":"400-1000nm","ground_resolution_m":8.0,"swath_km":20,"pointing_requirement_deg":0.07,"estimated_cost_usd":340000},
+        {"payload_id":"RS-EO-HSI-004","vendor":"Satlantis OEM","product_name":"HSI Observation Payload","mass_kg":2.30,"dimensions_mm":{"length_x":110,"width_y":110,"height_z":175},"payload_envelope_u":2.2,"mounting_face":"nadir","avg_power_w":11,"peak_power_w":15.5,"nominal_data_rate_mbps":158,"spectral_band":"450-950nm","ground_resolution_m":7.5,"swath_km":18,"pointing_requirement_deg":0.07,"estimated_cost_usd":310000},
+        {"payload_id":"RS-EO-HSI-005","vendor":"EnduroSat OEM","product_name":"CubeHyper","mass_kg":1.95,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":165},"payload_envelope_u":1.8,"mounting_face":"nadir","avg_power_w":9.5,"peak_power_w":13.5,"nominal_data_rate_mbps":148,"spectral_band":"450-900nm","ground_resolution_m":9.5,"swath_km":19,"pointing_requirement_deg":0.08,"estimated_cost_usd":255000}
+      ]
+    },
+
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Synthetic Aperture Radar",
+      "payload_variant": "X-Band SAR",
+      "products": [
+        {"payload_id":"RS-EO-XSAR-001","vendor":"ICEYE Heritage","product_name":"Compact X-SAR","mass_kg":18.0,"dimensions_mm":{"length_x":300,"width_y":200,"height_z":450},"payload_envelope_u":12.0,"mounting_face":"side_deploy","avg_power_w":45,"peak_power_w":95,"nominal_data_rate_mbps":320,"spectral_band":"X-Band 9.65GHz","ground_resolution_m":1.0,"swath_km":30,"pointing_requirement_deg":0.03,"estimated_cost_usd":1500000},
+        {"payload_id":"RS-EO-XSAR-002","vendor":"Umbra Heritage","product_name":"Mini X-Band SAR","mass_kg":16.5,"dimensions_mm":{"length_x":280,"width_y":200,"height_z":420},"payload_envelope_u":10.5,"mounting_face":"side_deploy","avg_power_w":42,"peak_power_w":88,"nominal_data_rate_mbps":300,"spectral_band":"X-Band 9.6GHz","ground_resolution_m":0.9,"swath_km":28,"pointing_requirement_deg":0.03,"estimated_cost_usd":1380000},
+        {"payload_id":"RS-EO-XSAR-003","vendor":"Capella Heritage","product_name":"X-SAR Compact","mass_kg":19.0,"dimensions_mm":{"length_x":310,"width_y":210,"height_z":460},"payload_envelope_u":12.0,"mounting_face":"side_deploy","avg_power_w":48,"peak_power_w":100,"nominal_data_rate_mbps":340,"spectral_band":"X-Band","ground_resolution_m":0.5,"swath_km":25,"pointing_requirement_deg":0.02,"estimated_cost_usd":1600000}
+      ]
+    },
+
+    {
+      "payload_group": "Earth Observation Payloads",
+      "payload_type": "Synthetic Aperture Radar",
+      "payload_variant": "C-Band SAR",
+      "products": [
+        {"payload_id":"RS-EO-CSAR-001","vendor":"Airbus Heritage","product_name":"Mini C-SAR","mass_kg":22.0,"dimensions_mm":{"length_x":320,"width_y":220,"height_z":480},"payload_envelope_u":14.0,"mounting_face":"side_deploy","avg_power_w":52,"peak_power_w":110,"nominal_data_rate_mbps":350,"spectral_band":"C-Band 5.4GHz","ground_resolution_m":2.0,"swath_km":40,"pointing_requirement_deg":0.03,"estimated_cost_usd":1750000},
+        {"payload_id":"RS-EO-CSAR-002","vendor":"Thales Heritage","product_name":"Compact C-Band Mapper","mass_kg":20.0,"dimensions_mm":{"length_x":300,"width_y":210,"height_z":450},"payload_envelope_u":12.5,"mounting_face":"side_deploy","avg_power_w":48,"peak_power_w":102,"nominal_data_rate_mbps":330,"spectral_band":"C-Band","ground_resolution_m":2.5,"swath_km":42,"pointing_requirement_deg":0.03,"estimated_cost_usd":1620000}
+      ]
+    }
+
+  ]
+}

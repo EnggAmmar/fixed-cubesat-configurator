@@ -1,0 +1,172 @@
+{
+  "schema_version": "GLOBAL_ENGINEERING_ASSUMPTIONS_1.0",
+  "generated_on": "2026-04-29",
+  "scope_note": "Mission-independent preliminary design defaults for CubeSat-class studies. Values are conservative and intended for early trades only.",
+  "power_assumptions": {
+    "sunlight_fraction": {
+      "value": 0.62,
+      "unit": "fraction",
+      "description": "Typical LEO orbit-average sunlit fraction used for first-pass average power budgeting."
+    },
+    "eclipse_fraction": {
+      "value": 0.38,
+      "unit": "fraction",
+      "description": "Typical LEO orbit-average eclipse fraction (1 - sunlight_fraction). Used for battery sizing and eclipse operations."
+    },
+    "eps_efficiency": {
+      "value": 0.85,
+      "unit": "fraction",
+      "description": "End-to-end electrical power system efficiency from generation/storage to regulated payload bus (includes conversion and distribution losses)."
+    },
+    "solar_degradation_factor_eol": {
+      "value": 0.85,
+      "unit": "fraction",
+      "description": "End-of-life solar array performance factor relative to beginning-of-life for typical CubeSat missions (radiation/aging/contamination)."
+    },
+    "power_margin_factor": {
+      "value": 1.2,
+      "unit": "multiplier",
+      "description": "Preliminary design power margin multiplier applied to average power loads to account for modeling uncertainty."
+    },
+    "peak_power_headroom_factor": {
+      "value": 1.15,
+      "unit": "multiplier",
+      "description": "Additional headroom multiplier for peak loads (transients, startup, temperature effects)."
+    }
+  },
+  "solar_generation_assumptions": {
+    "Pdens_sunlit_W_per_m2": {
+      "value": 160,
+      "unit": "W/m^2",
+      "description": "Effective sunlit electrical generation density used with total available solar area (net of packing, angle, temperature, and operational losses)."
+    }
+  },
+  "orbit_assumptions": {
+    "nominal_orbit_period_hr": {
+      "value": 1.5,
+      "unit": "hr",
+      "description": "Nominal LEO orbit period used for first-pass eclipse energy closure and battery sizing proxies."
+    }
+  },
+  "thermal_assumptions": {
+    "thermal_margin_factor": {
+      "value": 1.2,
+      "unit": "multiplier",
+      "description": "Conservative thermal design margin for waste heat rejection capability (radiators, conductance paths)."
+    },
+    "internal_heat_fraction_default": {
+      "value": 0.9,
+      "unit": "fraction",
+      "description": "Default assumption that most electrical power consumed by payload electronics becomes internal waste heat."
+    },
+    "allowable_payload_temp_band_c": {
+      "value": [
+        -10,
+        40
+      ],
+      "unit": "degC",
+      "description": "Generic allowable payload electronics temperature band for preliminary trades when vendor-specific limits are unknown."
+    }
+  },
+  "mass_margin_assumptions": {
+    "mass_growth_margin": {
+      "value": 0.2,
+      "unit": "fraction",
+      "description": "Early-design mass growth allowance for unmodeled items, harness, fasteners, and iteration risk."
+    },
+    "payload_mass_fraction_max": {
+      "value": 0.4,
+      "unit": "fraction",
+      "description": "Heuristic upper bound for payload fraction of total wet mass used to avoid unrealistically payload-dominated spacecraft in early trades."
+    }
+  },
+  "volume_margin_assumptions": {
+    "volume_fill_limit": {
+      "value": 0.8,
+      "unit": "fraction",
+      "description": "Maximum recommended packaging fill fraction (remaining volume reserved for structure, harness, keep-outs, access, and late changes)."
+    },
+    "payload_volume_overhead_u": {
+      "value": 0.5,
+      "unit": "U",
+      "description": "Default integration overhead added to payload_envelope_u when estimating minimum bus size (mechanical integration, harness, keep-outs)."
+    }
+  },
+  "battery_assumptions": {
+    "battery_dod_limit": {
+      "value": 0.3,
+      "unit": "fraction",
+      "description": "Nominal maximum depth-of-discharge limit for routine cycling to preserve lifetime (Li-ion typical for CubeSats)."
+    },
+    "battery_round_trip_efficiency": {
+      "value": 0.9,
+      "unit": "fraction",
+      "description": "Charge/discharge round-trip efficiency for battery energy budgeting (excluding EPS conversion losses)."
+    },
+    "battery_capacity_derating_factor": {
+      "value": 0.85,
+      "unit": "fraction",
+      "description": "Usable capacity derating to account for temperature effects, aging, and rate capability in preliminary sizing."
+    }
+  },
+  "data_storage_assumptions": {
+    "storage_utilization_limit": {
+      "value": 0.8,
+      "unit": "fraction",
+      "description": "Maximum recommended fraction of onboard storage to plan to use (reserves space for filesystem overhead, retries, and contingencies)."
+    },
+    "daily_data_contingency_margin": {
+      "value": 1.25,
+      "unit": "multiplier",
+      "description": "Margin applied to estimated daily generated data to cover operational variability, retransmissions, and scheduling inefficiency."
+    },
+    "onboard_storage_days_default": {
+      "value": 3,
+      "unit": "day",
+      "description": "Default onboard storage buffering days used for preliminary sizing when payload onboard_storage_days is null/unknown."
+    }
+  },
+  "downlink_assumptions": {
+    "downlink_efficiency_factor": {
+      "value": 0.6,
+      "unit": "fraction",
+      "description": "Effective throughput factor applied to nominal link rate to account for protocol overhead, coding, pointing losses, and non-ideal pass geometry."
+    },
+    "nominal_contact_minutes_per_day": {
+      "value": 35,
+      "unit": "min/day",
+      "description": "Typical single-ground-station total daily contact time assumption for preliminary scheduling (varies strongly with orbit and station network)."
+    },
+    "usable_contact_fraction": {
+      "value": 0.85,
+      "unit": "fraction",
+      "description": "Fraction of scheduled contact time expected to be usable for downlink after acquisition, commanding, and dropouts."
+    },
+    "downlink_availability_target": {
+      "value": 0.95,
+      "unit": "fraction",
+      "description": "Target probability that the spacecraft achieves required daily downlink volume (represents early-requirement reliability level)."
+    }
+  },
+  "reliability_assumptions": {
+    "integration_risk_to_margin_map": {
+      "value": {
+        "low": 1.1,
+        "medium": 1.2,
+        "high": 1.35
+      },
+      "unit": "multiplier",
+      "description": "Default mapping from qualitative integration_risk to a sizing margin multiplier (applies to mass/power/data if the solver chooses)."
+    },
+    "single_string_architecture_default": {
+      "value": true,
+      "unit": "bool",
+      "description": "Assume single-string (non-redundant) architecture by default for CubeSat-class early trades unless mission requires redundancy."
+    },
+    "design_maturity_factor_default": {
+      "value": 0.7,
+      "unit": "fraction",
+      "description": "Generic design maturity factor used to down-weight aggressive assumptions in early trades (1.0 = mature/flight-proven, lower = less certain)."
+    }
+  }
+}

@@ -1,0 +1,1347 @@
+{
+  "meta": {
+    "subsystem": "THERMAL",
+    "schema_version": "ONE_V3_SUBSYSTEM_DB_THERMAL_1.0",
+    "created_utc": "2026-05-11T12:26:45Z",
+    "source_seed_file": "thermal_v2.json",
+    "notes": [
+      "Built from the user ontology and thermal_v2.json seed data.",
+      "Publicly documented values are used where available.",
+      "Missing mass/power/volume values are filled only as conservative engineering estimates and marked by source_type.",
+      "This file is intended for solver trade studies, not procurement or flight acceptance without vendor datasheet verification."
+    ],
+    "units": {
+      "mass": "kg",
+      "volume": "CubeSat U equivalent",
+      "power": "W",
+      "temperature": "deg_C unless otherwise noted",
+      "thermal_conductivity": "W/m-K"
+    },
+    "source_refs": [
+      {
+        "id": "SRC_THERMAL_SEED",
+        "kind": "uploaded_file",
+        "label": "thermal_v2.json"
+      },
+      {
+        "id": "SRC_NASA_SOA_THERMAL",
+        "kind": "web",
+        "url": "https://www.nasa.gov/smallsat-institute/sst-soa/thermal-control/"
+      },
+      {
+        "id": "SRC_NASA_LOUVER",
+        "kind": "web",
+        "url": "https://technology.nasa.gov/patent/GSC-TOPS-40"
+      },
+      {
+        "id": "SRC_DUNMORE_MLI",
+        "kind": "web",
+        "url": "https://www.dunmore.com/products/multi-layer-films.html"
+      },
+      {
+        "id": "SRC_DUNMORE_SIO2_KAPTON",
+        "kind": "web",
+        "url": "https://www.dunmore.com/products/sio2-aluminized-polyimide-film.html"
+      },
+      {
+        "id": "SRC_DUNMORE_FEP",
+        "kind": "web",
+        "url": "https://www.dunmore.com/products/aluminum-fep-film.html"
+      },
+      {
+        "id": "SRC_DUNMORE_REINFORCED_KAPTON",
+        "kind": "web",
+        "url": "https://www.dunmore.com/products/aluminized-polyimide-laminate.html"
+      },
+      {
+        "id": "SRC_AZ93",
+        "kind": "web",
+        "url": "https://www.aztechnology.com/product/1/az-93"
+      },
+      {
+        "id": "SRC_AZW_LA_II",
+        "kind": "web",
+        "url": "https://www.aztechnology.com/product/2/azw-la-ii"
+      },
+      {
+        "id": "SRC_AZ400_LSW",
+        "kind": "web",
+        "url": "https://www.aztechnology.com/product/9/az-400-lsw"
+      },
+      {
+        "id": "SRC_AZ1000_ECB",
+        "kind": "web",
+        "url": "https://www.aztechnology.com/product/12/az-1000-ecb"
+      },
+      {
+        "id": "SRC_AZ410",
+        "kind": "web",
+        "url": "https://www.aztechnology.com/product/38/az-410"
+      },
+      {
+        "id": "SRC_MINCO_HEATER",
+        "kind": "web",
+        "url": "https://www.minco.com/products/flexible-heaters/heater-selection-chart/"
+      },
+      {
+        "id": "SRC_TEMPCO_KAPTON",
+        "kind": "web",
+        "url": "https://www.tempco.com/Tempco/Resources/Engineering-Data/Wattage-and-Watt-Density-Information/Kapton-Heater-Wattage-and-Watt-Density-Information.htm"
+      },
+      {
+        "id": "SRC_HENKEL_TGP3000",
+        "kind": "web",
+        "url": "https://next.henkel-adhesives.com/us/en/products/thermal-management-materials/central-pdp.html/bergquist-gap-pad-tgp-3000/112647IB.html"
+      },
+      {
+        "id": "SRC_HENKEL_TGP3000ULM",
+        "kind": "web",
+        "url": "https://next.henkel-adhesives.com/us/en/products/thermal-management-materials/central-pdp.html/bergquist-gap-pad-tgp-3000ulm/120324IB.html"
+      },
+      {
+        "id": "SRC_INDIUM_FOIL",
+        "kind": "web",
+        "url": "https://www.indium.com/blog/indium-as-a-thermal-interface-material.php"
+      },
+      {
+        "id": "SRC_MCMASTER_INDIUM_VALUES",
+        "kind": "web",
+        "url": "https://www.mcmaster.com/products/thermal-interface-foil/"
+      }
+    ]
+  },
+  "taxonomy": {
+    "domains": [
+      "passive_thermal",
+      "active_thermal"
+    ],
+    "passive_thermal": {
+      "classes": [
+        "Multi-Layer Insulation (MLI)",
+        "Thermal Coatings",
+        "Heat Pipes / Thermal Straps",
+        "Thermal Interface Materials",
+        "Louvers"
+      ],
+      "roles": [
+        "insulation",
+        "thermal_coating",
+        "heat_pipe",
+        "thermal_strap",
+        "thermal_interface_material",
+        "louver"
+      ]
+    },
+    "active_thermal": {
+      "classes": [
+        "Resistive Heaters",
+        "Thermoelectric Coolers (TEC)",
+        "Heat Pumps / Fluid Loops",
+        "Heat Pumps / Cryocoolers"
+      ],
+      "roles": [
+        "heater",
+        "cooler",
+        "heat_pump"
+      ]
+    }
+  },
+  "products": [
+    {
+      "id": "thermal-heater-minco-polyimide-battery",
+      "domain": "active_thermal",
+      "role": "heater",
+      "category_name": "Active Thermal Control (1.7.2)",
+      "class_name": "Resistive Heaters",
+      "option_name": "Battery Survival Heater",
+      "product_name": "Minco Thermofoil Polyimide/Kapton Heater Patch",
+      "vendor": "Minco",
+      "source_type": "public_vendor_plus_seed",
+      "key_spec": "Flexible etched-foil polyimide heater suitable for battery/eclipse survival heating.",
+      "normalized": {
+        "mass_kg": 0.01,
+        "volume_U": 0.02,
+        "power_avg_W": 2.0,
+        "power_peak_W": 4.0
+      },
+      "performance": {
+        "heater_type": "polyimide_etched_foil",
+        "temperature_range_deg_C": [
+          -200,
+          260
+        ],
+        "turn_on_temp_deg_C": 5,
+        "watt_density_W_per_in2_nominal": 5.0
+      },
+      "integration": {
+        "mounting": "adhesive_patch",
+        "controller_required": true,
+        "typical_target": "battery_pack"
+      },
+      "mission_fit": [
+        "battery_survival",
+        "long_eclipse",
+        "cold_orbit"
+      ],
+      "tags": [
+        "heater",
+        "battery",
+        "eclipse",
+        "low_mass"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "thermal-heater-tempco-kapton-payload",
+      "domain": "active_thermal",
+      "role": "heater",
+      "category_name": "Active Thermal Control (1.7.2)",
+      "class_name": "Resistive Heaters",
+      "option_name": "Payload Heater",
+      "product_name": "Tempco Kapton Flexible Heater",
+      "vendor": "Tempco",
+      "source_type": "public_vendor_plus_engineering_estimate",
+      "key_spec": "Kapton flexible heater for localized optical/payload temperature maintenance.",
+      "normalized": {
+        "mass_kg": 0.02,
+        "volume_U": 0.02,
+        "power_avg_W": 4.0,
+        "power_peak_W": 8.0
+      },
+      "performance": {
+        "heater_type": "kapton_foil",
+        "watt_density_W_per_in2_nominal": 5.0,
+        "watt_density_W_per_in2_high": 7.5,
+        "control_mode": "thermostat_or_closed_loop"
+      },
+      "integration": {
+        "mounting": "bonded_to_payload_or_mount",
+        "controller_required": true,
+        "typical_target": "optics_or_ir_detector_mount"
+      },
+      "mission_fit": [
+        "optical_payload",
+        "ir_payload",
+        "temperature_stability"
+      ],
+      "tags": [
+        "heater",
+        "optics",
+        "focus_stability"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-heater-custom-flexible-survival-strip",
+      "domain": "active_thermal",
+      "role": "heater",
+      "category_name": "Active Thermal Control (1.7.2)",
+      "class_name": "Resistive Heaters",
+      "option_name": "General Survival Heater",
+      "product_name": "Custom Polyimide Survival Heater Strip",
+      "vendor": "Generic COTS-derived",
+      "source_type": "engineering_estimate_from_heater_guidelines",
+      "key_spec": "Generic heater strip model for solver sizing when exact heater datasheet is unavailable.",
+      "normalized": {
+        "mass_kg": 0.015,
+        "volume_U": 0.01,
+        "power_avg_W": 3.0,
+        "power_peak_W": 6.0
+      },
+      "performance": {
+        "heater_type": "polyimide_or_silicone_strip",
+        "watt_density_W_per_in2_nominal": 2.5,
+        "control_mode": "thermostat"
+      },
+      "integration": {
+        "mounting": "adhesive_or_mechanical_clamp",
+        "controller_required": true,
+        "typical_target": "valves_electronics_battery"
+      },
+      "mission_fit": [
+        "low_cost",
+        "battery_survival",
+        "general_electronics_survival"
+      ],
+      "tags": [
+        "heater",
+        "generic",
+        "survival"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-passive-mli-dunmore-blanket",
+      "domain": "passive_thermal",
+      "role": "insulation",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Multi-Layer Insulation (MLI)",
+      "option_name": "MLI Blanket",
+      "product_name": "Dunmore Aerospace MLI Blanket",
+      "vendor": "Dunmore Aerospace",
+      "source_type": "public_vendor_plus_seed",
+      "key_spec": "MLI blanket using multilayer films for passive spacecraft temperature control.",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 0.08,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "layer_count_typical": [
+          5,
+          30
+        ],
+        "emissivity_effective_estimate": 0.03,
+        "solar_reflection_percent_typical": 95
+      },
+      "integration": {
+        "mounting": "blanket_wrap",
+        "deployment_required": false,
+        "best_for": [
+          "battery",
+          "bus",
+          "cold_surfaces"
+        ]
+      },
+      "mission_fit": [
+        "cold_orbit",
+        "battery_survival",
+        "baseline_passive_control"
+      ],
+      "tags": [
+        "zero_power",
+        "mli",
+        "passive"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "thermal-passive-mli-dunmore-sio2-kapton",
+      "domain": "passive_thermal",
+      "role": "insulation",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Multi-Layer Insulation (MLI)",
+      "option_name": "Outer Layer Film",
+      "product_name": "Dunmore SiO2 Protected Aluminized Kapton Film",
+      "vendor": "Dunmore Aerospace",
+      "source_type": "public_vendor",
+      "key_spec": "SiO2-coated aluminized Kapton for MLI outer layers with atomic-oxygen protection.",
+      "normalized": {
+        "mass_kg": 0.03,
+        "volume_U": 0.03,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "atomic_oxygen_resistant": true,
+        "outer_layer_use": true,
+        "temperature_use_case": "low_to_high_temperature_mli"
+      },
+      "integration": {
+        "mounting": "mli_outer_layer",
+        "best_for": [
+          "leo_external_surfaces",
+          "mli_blankets"
+        ]
+      },
+      "mission_fit": [
+        "leo",
+        "atomic_oxygen_environment",
+        "mli_outer_layer"
+      ],
+      "tags": [
+        "mli",
+        "kapton",
+        "atomic_oxygen"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "thermal-passive-mli-dunmore-fep-aluminized",
+      "domain": "passive_thermal",
+      "role": "insulation",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Multi-Layer Insulation (MLI)",
+      "option_name": "Aluminized FEP Film",
+      "product_name": "Dunmore Aluminized FEP / Teflon Film",
+      "vendor": "Dunmore Aerospace",
+      "source_type": "public_vendor",
+      "key_spec": "Aluminized FEP film used for MLI blankets, FOSR, thermal radiators, and second-surface mirror behavior.",
+      "normalized": {
+        "mass_kg": 0.035,
+        "volume_U": 0.03,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "radiator_or_fosr_use": true,
+        "low_to_moderate_temperature": true
+      },
+      "integration": {
+        "mounting": "film_or_blanket_layer",
+        "best_for": [
+          "radiator_surface",
+          "mli_outer_layer",
+          "solar_reflector"
+        ]
+      },
+      "mission_fit": [
+        "radiator",
+        "thermal_balance",
+        "passive_heat_rejection"
+      ],
+      "tags": [
+        "fep",
+        "radiator",
+        "mli"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "thermal-passive-mli-reinforced-aluminized-kapton",
+      "domain": "passive_thermal",
+      "role": "insulation",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Multi-Layer Insulation (MLI)",
+      "option_name": "Reinforced Aluminized Kapton",
+      "product_name": "Dunmore Reinforced Aluminized Kapton Laminate",
+      "vendor": "Dunmore Aerospace",
+      "source_type": "public_vendor",
+      "key_spec": "Nomex-reinforced aluminized Kapton laminate for tear/puncture-resistant MLI applications.",
+      "normalized": {
+        "mass_kg": 0.045,
+        "volume_U": 0.04,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "operating_temperature_deg_C": [
+          -150,
+          232
+        ],
+        "thickness_um": 193,
+        "typical_alpha_over_epsilon": 2.8,
+        "surface_resistivity_ohm_per_sq_max": 1.0
+      },
+      "integration": {
+        "mounting": "reinforced_blanket_layer",
+        "best_for": [
+          "deployables",
+          "handling_sensitive_blankets"
+        ]
+      },
+      "mission_fit": [
+        "deployable_surfaces",
+        "mechanically_robust_mli"
+      ],
+      "tags": [
+        "mli",
+        "reinforced",
+        "kapton"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "thermal-coating-aztechnology-az93-white",
+      "domain": "passive_thermal",
+      "role": "thermal_coating",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Coatings",
+      "option_name": "White Radiative Coating",
+      "product_name": "AZ Technology AZ-93 White Thermal Control Coating",
+      "vendor": "AZ Technology",
+      "source_type": "public_vendor",
+      "key_spec": "Inorganic white coating with low solar absorptance and high thermal emittance.",
+      "normalized": {
+        "mass_kg": 0.02,
+        "volume_U": 0.0,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "solar_absorptance": [
+          0.13,
+          0.17
+        ],
+        "thermal_emittance": [
+          0.89,
+          0.93
+        ],
+        "temperature_range_deg_C": [
+          -180,
+          1400
+        ],
+        "color": "white"
+      },
+      "integration": {
+        "mounting": "painted_external_surface",
+        "best_for": [
+          "hot_surfaces",
+          "radiator_surfaces"
+        ]
+      },
+      "mission_fit": [
+        "passive_heat_rejection",
+        "high_solar_exposure",
+        "radiator"
+      ],
+      "tags": [
+        "coating",
+        "white",
+        "radiative"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "thermal-coating-aztechnology-azw-la-ii-white",
+      "domain": "passive_thermal",
+      "role": "thermal_coating",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Coatings",
+      "option_name": "Ultra-Low Absorptance White Coating",
+      "product_name": "AZ Technology AZW/LA-II White Thermal Control Coating",
+      "vendor": "AZ Technology",
+      "source_type": "public_vendor",
+      "key_spec": "Ultra-low solar absorptance white coating for spacecraft external surfaces.",
+      "normalized": {
+        "mass_kg": 0.02,
+        "volume_U": 0.0,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "solar_absorptance": [
+          0.07,
+          0.11
+        ],
+        "thermal_emittance": [
+          0.89,
+          0.93
+        ],
+        "temperature_range_deg_C": [
+          -180,
+          1400
+        ],
+        "color": "white"
+      },
+      "integration": {
+        "mounting": "painted_external_surface",
+        "best_for": [
+          "high_heat_rejection",
+          "low_absorptance_surface"
+        ]
+      },
+      "mission_fit": [
+        "high_solar_exposure",
+        "radiator",
+        "passive_heat_rejection"
+      ],
+      "tags": [
+        "coating",
+        "white",
+        "ultra_low_absorptance"
+      ],
+      "trl": 9
+    },
+    {
+      "id": "thermal-coating-aztechnology-az400-lsw-white",
+      "domain": "passive_thermal",
+      "role": "thermal_coating",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Coatings",
+      "option_name": "Low-Outgassing White Coating",
+      "product_name": "AZ Technology AZ-400-LSW White Thermal Control Coating",
+      "vendor": "AZ Technology",
+      "source_type": "public_vendor",
+      "key_spec": "Low-outgassing organic white thermal coating for satellite surfaces.",
+      "normalized": {
+        "mass_kg": 0.018,
+        "volume_U": 0.0,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "solar_absorptance": [
+          0.149,
+          0.189
+        ],
+        "thermal_emittance": [
+          0.87,
+          0.91
+        ],
+        "temperature_range_deg_C": [
+          -180,
+          700
+        ],
+        "color": "white"
+      },
+      "integration": {
+        "mounting": "painted_external_surface",
+        "best_for": [
+          "low_outgassing_surface",
+          "moderate_heat_rejection"
+        ]
+      },
+      "mission_fit": [
+        "passive_heat_rejection",
+        "low_outgassing"
+      ],
+      "tags": [
+        "coating",
+        "white",
+        "low_outgassing"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "thermal-coating-aztechnology-az1000-ecb-black",
+      "domain": "passive_thermal",
+      "role": "thermal_coating",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Coatings",
+      "option_name": "Black Conductive Coating",
+      "product_name": "AZ Technology AZ-1000-ECB Black Thermal Control Coating",
+      "vendor": "AZ Technology",
+      "source_type": "public_vendor",
+      "key_spec": "High absorptance conductive black thermal coating for surfaces that should absorb and radiate heat.",
+      "normalized": {
+        "mass_kg": 0.018,
+        "volume_U": 0.0,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "solar_absorptance": [
+          0.95,
+          0.99
+        ],
+        "thermal_emittance": [
+          0.87,
+          0.91
+        ],
+        "surface_resistivity_ohm_per_sq": [
+          100.0,
+          10000.0
+        ],
+        "temperature_range_deg_C": [
+          -180,
+          1100
+        ],
+        "color": "black"
+      },
+      "integration": {
+        "mounting": "painted_external_surface",
+        "best_for": [
+          "surfaces_requiring_high_absorptance",
+          "charge_dissipation"
+        ]
+      },
+      "mission_fit": [
+        "cold_biased_surfaces",
+        "charge_dissipation",
+        "thermal_balance"
+      ],
+      "tags": [
+        "coating",
+        "black",
+        "conductive"
+      ],
+      "trl": 8
+    },
+    {
+      "id": "thermal-coating-aztechnology-az410-ultra-white",
+      "domain": "passive_thermal",
+      "role": "thermal_coating",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Coatings",
+      "option_name": "Organic Ultra-White Coating",
+      "product_name": "AZ Technology AZ-410 Organic Ultra White Coating",
+      "vendor": "AZ Technology",
+      "source_type": "public_vendor",
+      "key_spec": "Vacuum/cryo-compatible ultra-white low solar absorptance coating.",
+      "normalized": {
+        "mass_kg": 0.02,
+        "volume_U": 0.0,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "solar_absorptance": [
+          0.06,
+          0.15
+        ],
+        "thermal_emittance": [
+          0.88,
+          0.94
+        ],
+        "temperature_range_deg_C": [
+          -190,
+          250
+        ],
+        "color": "white"
+      },
+      "integration": {
+        "mounting": "painted_external_surface",
+        "best_for": [
+          "high_reflectance",
+          "vacuum_cryo_compatible_surfaces"
+        ]
+      },
+      "mission_fit": [
+        "passive_heat_rejection",
+        "solar_reflection",
+        "cryo_compatible"
+      ],
+      "tags": [
+        "coating",
+        "ultra_white",
+        "low_absorptance"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-strap-techapps-graphite-flex",
+      "domain": "passive_thermal",
+      "role": "thermal_strap",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Heat Pipes / Thermal Straps",
+      "option_name": "Graphite Thermal Strap",
+      "product_name": "TechApps Graphite Thermal Strap",
+      "vendor": "Technology Applications",
+      "source_type": "seed_plus_public_category",
+      "key_spec": "Flexible passive thermal strap for moving heat from electronics or RF amplifiers to a chassis/radiator.",
+      "normalized": {
+        "mass_kg": 0.02,
+        "volume_U": 0.03,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "thermal_conductivity_W_mK_estimate": 500,
+        "heat_transport_W_estimate": 5.0
+      },
+      "integration": {
+        "mounting": "bolted_or_bonded_ends",
+        "best_for": [
+          "obc",
+          "rf_amplifier",
+          "payload_processor"
+        ]
+      },
+      "mission_fit": [
+        "high_power_electronics",
+        "rf_amplifiers",
+        "passive_heat_transport"
+      ],
+      "tags": [
+        "thermal_strap",
+        "passive",
+        "heat_transport"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-strap-apg-pyrolytic-graphite",
+      "domain": "passive_thermal",
+      "role": "thermal_strap",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Heat Pipes / Thermal Straps",
+      "option_name": "Pyrolytic Graphite Heat Spreader",
+      "product_name": "APG / Pyrolytic Graphite Heat Spreader",
+      "vendor": "Generic COTS-derived",
+      "source_type": "nasa_category_plus_engineering_estimate",
+      "key_spec": "Lightweight high-conductivity heat spreader for small spacecraft electronics.",
+      "normalized": {
+        "mass_kg": 0.015,
+        "volume_U": 0.02,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "thermal_conductivity_W_mK_estimate": 700,
+        "heat_spreading_class": "medium"
+      },
+      "integration": {
+        "mounting": "bonded_to_electronics_plate",
+        "best_for": [
+          "obc",
+          "payload_processor",
+          "imager_electronics"
+        ]
+      },
+      "mission_fit": [
+        "lightweight_heat_spreading",
+        "small_cubesat"
+      ],
+      "tags": [
+        "graphite",
+        "heat_spreader",
+        "passive"
+      ],
+      "trl": 6
+    },
+    {
+      "id": "thermal-heatpipe-act-miniature",
+      "domain": "passive_thermal",
+      "role": "heat_pipe",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Heat Pipes / Thermal Straps",
+      "option_name": "Miniature Heat Pipe",
+      "product_name": "Advanced Cooling Technologies Miniature Spacecraft Heat Pipe",
+      "vendor": "Advanced Cooling Technologies",
+      "source_type": "public_category_plus_engineering_estimate",
+      "key_spec": "Miniature heat pipe model for passive heat transport from payload/electronics to radiator surface.",
+      "normalized": {
+        "mass_kg": 0.08,
+        "volume_U": 0.08,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "heat_transport_W_estimate": 15.0,
+        "working_fluid": "ammonia_or_water_application_dependent"
+      },
+      "integration": {
+        "mounting": "embedded_or_clamped",
+        "best_for": [
+          "high_power_payload",
+          "radiator_coupling"
+        ]
+      },
+      "mission_fit": [
+        "passive_heat_transport",
+        "high_power_payload"
+      ],
+      "tags": [
+        "heat_pipe",
+        "passive",
+        "radiator_coupling"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-heatpipe-flat-vapor-chamber",
+      "domain": "passive_thermal",
+      "role": "heat_pipe",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Heat Pipes / Thermal Straps",
+      "option_name": "Flat Heat Pipe / Vapor Chamber",
+      "product_name": "Flat Vapor Chamber Heat Spreader",
+      "vendor": "Generic COTS-derived",
+      "source_type": "nasa_category_plus_engineering_estimate",
+      "key_spec": "Flat heat pipe/vapor chamber representation for high-power electronics heat spreading.",
+      "normalized": {
+        "mass_kg": 0.06,
+        "volume_U": 0.04,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "heat_transport_W_estimate": 10.0,
+        "heat_spreading_class": "high"
+      },
+      "integration": {
+        "mounting": "between_electronics_and_panel",
+        "best_for": [
+          "edge_computing",
+          "rf_power_amplifier"
+        ]
+      },
+      "mission_fit": [
+        "high_power_electronics",
+        "passive_heat_spreading"
+      ],
+      "tags": [
+        "vapor_chamber",
+        "flat_heat_pipe",
+        "passive"
+      ],
+      "trl": 6
+    },
+    {
+      "id": "thermal-tim-henkel-gap-pad-tgp3000",
+      "domain": "passive_thermal",
+      "role": "thermal_interface_material",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Interface Materials",
+      "option_name": "Gap Pad",
+      "product_name": "Henkel BERGQUIST GAP PAD TGP 3000",
+      "vendor": "Henkel",
+      "source_type": "public_vendor",
+      "key_spec": "Soft conformable gap pad with 3 W/m-K thermal conductivity for low-stress interfaces.",
+      "normalized": {
+        "mass_kg": 0.01,
+        "volume_U": 0.005,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "thermal_conductivity_W_mK": 3.0,
+        "operating_temperature_deg_C": [
+          -60,
+          200
+        ],
+        "density_g_cm3": 3.2,
+        "dielectric_breakdown_Vac": 3000
+      },
+      "integration": {
+        "mounting": "compressed_between_surfaces",
+        "best_for": [
+          "obc",
+          "payload_processor",
+          "rf_electronics"
+        ]
+      },
+      "mission_fit": [
+        "interface_conductance",
+        "low_stress_sensitive_electronics"
+      ],
+      "tags": [
+        "tim",
+        "gap_pad",
+        "electronics"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-tim-henkel-gap-pad-tgp3000ulm",
+      "domain": "passive_thermal",
+      "role": "thermal_interface_material",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Interface Materials",
+      "option_name": "Ultra-Low Modulus Gap Pad",
+      "product_name": "Henkel BERGQUIST GAP PAD TGP 3000ULM",
+      "vendor": "Henkel",
+      "source_type": "public_vendor",
+      "key_spec": "Very soft gap pad for low compression stress applications.",
+      "normalized": {
+        "mass_kg": 0.01,
+        "volume_U": 0.005,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "thermal_conductivity_W_mK": 3.0,
+        "operating_temperature_deg_C": [
+          -60,
+          200
+        ],
+        "low_compression_stress": true
+      },
+      "integration": {
+        "mounting": "compressed_between_surfaces",
+        "best_for": [
+          "sensitive_optics",
+          "pcb_to_chassis"
+        ]
+      },
+      "mission_fit": [
+        "low_stress_interface",
+        "electronics_heat_transfer"
+      ],
+      "tags": [
+        "tim",
+        "gap_pad",
+        "low_stress"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-tim-indium-foil",
+      "domain": "passive_thermal",
+      "role": "thermal_interface_material",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Interface Materials",
+      "option_name": "Indium Foil",
+      "product_name": "Indium Corporation Indium Foil TIM",
+      "vendor": "Indium Corporation",
+      "source_type": "public_vendor",
+      "key_spec": "Soft metallic foil TIM with high conductivity and low thermal resistance.",
+      "normalized": {
+        "mass_kg": 0.01,
+        "volume_U": 0.003,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "thermal_conductivity_W_mK": 86,
+        "max_temperature_deg_C_estimate": 124,
+        "pump_out_resistant": true
+      },
+      "integration": {
+        "mounting": "compressed_or_bonded_interface",
+        "best_for": [
+          "detector_mount",
+          "electronics_heat_sink"
+        ]
+      },
+      "mission_fit": [
+        "high_conductivity_interface",
+        "thermal_stability"
+      ],
+      "tags": [
+        "tim",
+        "indium",
+        "metal_foil"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-tim-silicone-grease-space-grade",
+      "domain": "passive_thermal",
+      "role": "thermal_interface_material",
+      "category_name": "Passive Thermal Control (1.7.1)",
+      "class_name": "Thermal Interface Materials",
+      "option_name": "Thermal Grease",
+      "product_name": "Space-Grade Silicone Thermal Grease Model",
+      "vendor": "Generic COTS-derived",
+      "source_type": "engineering_estimate",
+      "key_spec": "Generic low-mass thermal grease model for non-structural electronics interfaces.",
+      "normalized": {
+        "mass_kg": 0.005,
+        "volume_U": 0.001,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "thermal_conductivity_W_mK_estimate": 1.0,
+        "pump_out_risk": "medium"
+      },
+      "integration": {
+        "mounting": "thin_interface_layer",
+        "best_for": [
+          "prototype_electronics",
+          "short_mission"
+        ]
+      },
+      "mission_fit": [
+        "low_cost_interface",
+        "short_duration"
+      ],
+      "tags": [
+        "tim",
+        "grease",
+        "generic"
+      ],
+      "trl": 6
+    },
+    {
+      "id": "thermal-cooler-marlow-tec-ir",
+      "domain": "active_thermal",
+      "role": "cooler",
+      "category_name": "Active Thermal Control (1.7.2)",
+      "class_name": "Thermoelectric Coolers (TEC)",
+      "option_name": "Peltier Cooler",
+      "product_name": "Marlow / II-VI Thermoelectric Cooler Module",
+      "vendor": "Marlow / II-VI",
+      "source_type": "seed_plus_nasa_category",
+      "key_spec": "TEC model for localized detector cooling in SWIR/MWIR precision payloads.",
+      "normalized": {
+        "mass_kg": 0.05,
+        "volume_U": 0.04,
+        "power_avg_W": 5.0,
+        "power_peak_W": 8.0
+      },
+      "performance": {
+        "cooling_capacity_W": 2.0,
+        "temperature_lift_deg_C_estimate": 30,
+        "requires_heat_sink": true
+      },
+      "constraints": {
+        "min_eps_margin_W": 5,
+        "requires_radiator_or_heat_pipe": true
+      },
+      "integration": {
+        "mounting": "detector_to_heat_sink",
+        "controller_required": true,
+        "best_for": [
+          "ir_detector",
+          "precision_sensing"
+        ]
+      },
+      "mission_fit": [
+        "ir_payload",
+        "precision_sensing",
+        "temperature_stability"
+      ],
+      "tags": [
+        "tec",
+        "active",
+        "ir"
+      ],
+      "trl": 7
+    },
+    {
+      "id": "thermal-cooler-mini-tec-generic-lowpower",
+      "domain": "active_thermal",
+      "role": "cooler",
+      "category_name": "Active Thermal Control (1.7.2)",
+      "class_name": "Thermoelectric Coolers (TEC)",
+      "option_name": "Low-Power TEC",
+      "product_name": "Low-Power Miniature TEC Model",
+      "vendor": "Generic COTS-derived",
+      "source_type": "nasa_category_plus_engineering_estimate",
+      "key_spec": "Low-power TEC trade-study model for small optical sensors.",
+      "normalized": {
+        "mass_kg": 0.025,
+        "volume_U": 0.02,
+        "power_avg_W": 2.5,
+        "power_peak_W": 5.0
+      },
+      "performance": {
+        "cooling_capacity_W": 0.8,
+        "temperature_lift_deg_C_estimate": 20,
+        "requires_heat_sink": true
+      },
+      "constraints": {
+        "min_eps_margin_W": 3,
+        "requires_radiator_or_heat_pipe": true
+      },
+      "integration": {
+        "mounting": "sensor_mount",
+        "controller_required": true
+      },
+      "mission_fit": [
+        "small_ir_sensor",
+        "temperature_stability"
+      ],
+      "tags": [
+        "tec",
+        "low_power",
+        "active"
+      ],
+      "trl": 6
+    },
+    {
+      "id": "thermal-louver-nasa-cubesat-form-factor",
+      "domain": "passive_thermal",
+      "role": "louver",
+      "category_name": "Passive / Active-Boundary Thermal Control",
+      "class_name": "Louvers",
+      "option_name": "CubeSat Passive Thermal Louver",
+      "product_name": "NASA CubeSat Form-Factor Thermal Control Louver",
+      "vendor": "NASA Goddard / License Candidate",
+      "source_type": "public_nasa_technology",
+      "key_spec": "Bimetallic-spring passive louver concept for CubeSat thermal stabilization.",
+      "normalized": {
+        "mass_kg": 0.12,
+        "volume_U": 0.08,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "form_factor_in": [
+          4,
+          4
+        ],
+        "open_closed_heat_dissipation_delta_W": 3.0,
+        "powered_actuation": false
+      },
+      "integration": {
+        "mounting": "external_panel",
+        "deployment_required": false,
+        "best_for": [
+          "payload_panel",
+          "battery_panel",
+          "high_power_6u"
+        ]
+      },
+      "mission_fit": [
+        "thermal_stability",
+        "passive_heat_rejection",
+        "high_power_cubesat"
+      ],
+      "tags": [
+        "louver",
+        "passive",
+        "cubesat"
+      ],
+      "trl": 5
+    },
+    {
+      "id": "thermal-louver-generic-bimetallic-panel",
+      "domain": "passive_thermal",
+      "role": "louver",
+      "category_name": "Passive / Active-Boundary Thermal Control",
+      "class_name": "Louvers",
+      "option_name": "Bimetallic Louver Panel",
+      "product_name": "Bimetallic Thermal Louver Panel Model",
+      "vendor": "Generic COTS-derived",
+      "source_type": "nasa_category_plus_engineering_estimate",
+      "key_spec": "Generic louver option for advanced smallsat thermal trade studies.",
+      "normalized": {
+        "mass_kg": 0.18,
+        "volume_U": 0.1,
+        "power_avg_W": 0.0,
+        "power_peak_W": 0.0
+      },
+      "performance": {
+        "open_closed_heat_dissipation_delta_W": 5.0,
+        "powered_actuation": false
+      },
+      "integration": {
+        "mounting": "external_radiator_or_panel",
+        "best_for": [
+          "temperature_sensitive_payloads",
+          "variable_heat_load"
+        ]
+      },
+      "mission_fit": [
+        "advanced_thermal_control",
+        "variable_heat_load"
+      ],
+      "tags": [
+        "louver",
+        "advanced",
+        "passive"
+      ],
+      "trl": 4
+    },
+    {
+      "id": "thermal-heatpump-nasa-active-thermal-architecture",
+      "domain": "active_thermal",
+      "role": "heat_pump",
+      "category_name": "Active Thermal Control (1.7.2)",
+      "class_name": "Heat Pumps / Fluid Loops",
+      "option_name": "SmallSat Active Thermal Architecture",
+      "product_name": "NASA / Utah State Active Thermal Architecture Model",
+      "vendor": "NASA SST / Utah State / JPL-derived",
+      "source_type": "public_nasa_technology_plus_engineering_estimate",
+      "key_spec": "Sub-1U two-stage active thermal architecture concept for high-power thermal rejection and zonal control.",
+      "normalized": {
+        "mass_kg": 0.8,
+        "volume_U": 0.9,
+        "power_avg_W": 8.0,
+        "power_peak_W": 15.0
+      },
+      "performance": {
+        "heat_rejection_W_estimate": 30.0,
+        "active_fluid_loop": true,
+        "pid_control": true
+      },
+      "constraints": {
+        "recommended_bus_min_u": 6,
+        "requires_deployable_radiator": true,
+        "high_integration_complexity": true
+      },
+      "integration": {
+        "mounting": "internal_heat_exchanger_and_external_radiator",
+        "controller_required": true,
+        "best_for": [
+          "high_power_payload",
+          "deep_space",
+          "variable_thermal_zones"
+        ]
+      },
+      "mission_fit": [
+        "advanced_mission",
+        "high_power_payload",
+        "zonal_thermal_control"
+      ],
+      "tags": [
+        "heat_pump",
+        "fluid_loop",
+        "advanced",
+        "high_power"
+      ],
+      "trl": 4
+    },
+    {
+      "id": "thermal-cryo-cooler-miniature-model",
+      "domain": "active_thermal",
+      "role": "heat_pump",
+      "category_name": "Active Thermal Control (1.7.2)",
+      "class_name": "Heat Pumps / Cryocoolers",
+      "option_name": "Miniature Cryocooler",
+      "product_name": "Miniature Cryocooler Trade-Study Model",
+      "vendor": "Generic SmallSat-derived",
+      "source_type": "nasa_category_plus_engineering_estimate",
+      "key_spec": "Representative miniature cryocooler entry for demanding IR detector missions.",
+      "normalized": {
+        "mass_kg": 0.5,
+        "volume_U": 0.5,
+        "power_avg_W": 15.0,
+        "power_peak_W": 25.0
+      },
+      "performance": {
+        "cooling_capacity_W_estimate": 0.5,
+        "target_temperature_K_estimate": 150,
+        "vibration_risk": "medium"
+      },
+      "constraints": {
+        "recommended_bus_min_u": 6,
+        "requires_high_eps_margin_W": 20,
+        "requires_isolation": true
+      },
+      "integration": {
+        "mounting": "detector_cold_finger",
+        "controller_required": true,
+        "best_for": [
+          "mw_ir_detector",
+          "science_payload"
+        ]
+      },
+      "mission_fit": [
+        "mw_ir_payload",
+        "science_payload",
+        "high_precision_detector"
+      ],
+      "tags": [
+        "cryocooler",
+        "active",
+        "advanced"
+      ],
+      "trl": 5
+    }
+  ],
+  "selection_hooks": {
+    "hard_constraints": [
+      "sum(active_thermal.power_avg_W) <= mission.available_thermal_control_power_W",
+      "thermal_interface_materials require compatible mounting surfaces",
+      "thermoelectric_coolers require heat_sink_or_radiator == true",
+      "heat_pumps and cryocoolers require bus_size_u >= recommended_bus_min_u when specified",
+      "thermal_coatings are valid only for external surfaces or radiator surfaces",
+      "mli options may be limited by deployer clearance and external protrusions"
+    ],
+    "suggested_scoring_fields": [
+      {
+        "field": "normalized.mass_kg",
+        "goal": "minimize",
+        "weight_hint": 0.2
+      },
+      {
+        "field": "normalized.power_avg_W",
+        "goal": "minimize",
+        "weight_hint": 0.2
+      },
+      {
+        "field": "performance.thermal_emittance",
+        "goal": "match_required_heat_rejection",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "performance.solar_absorptance",
+        "goal": "match_hot_or_cold_bias",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "performance.heat_transport_W_estimate",
+        "goal": "maximize_if_high_heat_load",
+        "weight_hint": 0.15
+      },
+      {
+        "field": "trl",
+        "goal": "maximize",
+        "weight_hint": 0.15
+      }
+    ],
+    "rule_notes": [
+      "Start with passive options: coatings, MLI, straps, heat pipes, and TIMs.",
+      "Add heaters when eclipse survival or tight minimum temperature control is needed.",
+      "Add TECs only when a detector or payload needs local cooling and there is radiator margin.",
+      "Louvers and fluid-loop/heat-pump architectures should be treated as advanced options for high-power or variable-thermal-load missions.",
+      "For CubeSats, NASA notes that passive technologies dominate because mass, volume, and power are limited; active systems are useful for tighter temperature control but can be power/volume constrained."
+    ]
+  }
+}

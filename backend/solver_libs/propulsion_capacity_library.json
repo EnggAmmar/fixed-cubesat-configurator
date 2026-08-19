@@ -1,0 +1,79 @@
+{
+  "schema_version": "PROPULSION_CAPACITY_LIBRARY_1.0",
+  "generated_on": "2026-04-30",
+  "notes": [
+    "Conservative propulsion tier capacities for first-pass CubeSat optimization.",
+    "delta_v_support_mps is a proxy for achievable total delta-v capability for typical CubeSat-class systems in the tier.",
+    "propellant_volume_u is packaging volume proxy for tanks/feed system (not including keep-outs)."
+  ],
+  "propulsion_tiers": [
+    {
+      "propulsion_tier": "LOW",
+      "delta_v_support_mps": 0,
+      "thrust_class": "none",
+      "propellant_volume_u": 0.0,
+      "prop_avg_power_w": 0.0,
+      "prop_peak_power_w": 0.0,
+      "prop_mass_kg": 0.0,
+      "supported_bus_min": "1U",
+      "supported_bus_max": "50U+",
+      "supported_bus_range": {
+        "min": "1U",
+        "max": "50U+"
+      }
+    },
+    {
+      "propulsion_tier": "MEDIUM",
+      "delta_v_support_mps": 30,
+      "thrust_class": "cold_gas_or_simple_microprop",
+      "propellant_volume_u": 0.40,
+      "prop_avg_power_w": 1.0,
+      "prop_peak_power_w": 5.0,
+      "prop_mass_kg": 1.20,
+      "supported_bus_min": "3U",
+      "supported_bus_max": "12U",
+      "supported_bus_range": {
+        "min": "3U",
+        "max": "12U"
+      }
+    },
+    {
+      "propulsion_tier": "HIGH",
+      "delta_v_support_mps": 160,
+      "thrust_class": "electric_microprop",
+      "propellant_volume_u": 1.00,
+      "prop_avg_power_w": 12.0,
+      "prop_peak_power_w": 25.0,
+      "prop_mass_kg": 3.20,
+      "supported_bus_min": "6U",
+      "supported_bus_max": "27U",
+      "supported_bus_range": {
+        "min": "6U",
+        "max": "27U"
+      }
+    },
+    {
+      "propulsion_tier": "EXTREME",
+      "delta_v_support_mps": 500,
+      "thrust_class": "higher_impulse_dedicated_system",
+      "propellant_volume_u": 2.50,
+      "prop_avg_power_w": 8.0,
+      "prop_peak_power_w": 35.0,
+      "prop_mass_kg": 8.00,
+      "supported_bus_min": "12U",
+      "supported_bus_max": "50U+",
+      "supported_bus_range": {
+        "min": "12U",
+        "max": "50U+"
+      }
+    }
+  ],
+  "field_descriptions": {
+    "delta_v_support_mps": "Delta-v capability proxy used to satisfy propulsion need class mapping.",
+    "thrust_class": "Qualitative thruster architecture class.",
+    "propellant_volume_u": "Volume proxy for tanks/feed/valves (used for volume closure).",
+    "prop_avg_power_w": "Average propulsion subsystem power draw proxy (used in power closure when propulsion is active).",
+    "prop_peak_power_w": "Peak propulsion subsystem power draw proxy (used in peak-power feasibility).",
+    "prop_mass_kg": "Propulsion dry mass proxy (not including propellant mass in this first-pass library)."
+  }
+}

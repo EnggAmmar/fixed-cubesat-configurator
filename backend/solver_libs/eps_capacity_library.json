@@ -1,0 +1,64 @@
+{
+  "schema_version": "EPS_CAPACITY_LIBRARY_1.0",
+  "generated_on": "2026-04-30",
+  "notes": [
+    "Conservative EPS tier capacities for first-pass CubeSat optimization.",
+    "max_solar_generation_w is interpreted as achievable average sunlit generation capability at beginning-of-life with reasonable deployables for the supported bus range.",
+    "max_battery_capacity_wh is energy storage capacity available to the payload+bus loads (packaging and DoD/derating handled separately in the formulation)."
+  ],
+  "eps_tiers": [
+    {
+      "eps_tier": "LOW",
+      "max_solar_generation_w": 25,
+      "max_battery_capacity_wh": 30,
+      "max_peak_bus_power_w": 35,
+      "eps_avg_self_consumption_w": 1.0,
+      "eps_mass_kg": 0.30,
+      "eps_volume_u": 0.15,
+      "supported_bus_min": "1U",
+      "supported_bus_max": "3U"
+    },
+    {
+      "eps_tier": "MEDIUM",
+      "max_solar_generation_w": 70,
+      "max_battery_capacity_wh": 140,
+      "max_peak_bus_power_w": 90,
+      "eps_avg_self_consumption_w": 1.5,
+      "eps_mass_kg": 0.70,
+      "eps_volume_u": 0.35,
+      "supported_bus_min": "2U",
+      "supported_bus_max": "6U"
+    },
+    {
+      "eps_tier": "HIGH",
+      "max_solar_generation_w": 170,
+      "max_battery_capacity_wh": 320,
+      "max_peak_bus_power_w": 220,
+      "eps_avg_self_consumption_w": 2.5,
+      "eps_mass_kg": 1.60,
+      "eps_volume_u": 0.80,
+      "supported_bus_min": "3U",
+      "supported_bus_max": "12U"
+    },
+    {
+      "eps_tier": "EXTREME",
+      "max_solar_generation_w": 330,
+      "max_battery_capacity_wh": 850,
+      "max_peak_bus_power_w": 450,
+      "eps_avg_self_consumption_w": 4.0,
+      "eps_mass_kg": 3.20,
+      "eps_volume_u": 1.60,
+      "supported_bus_min": "6U",
+      "supported_bus_max": "50U+"
+    }
+  ],
+  "field_descriptions": {
+    "max_solar_generation_w": "Available electrical generation capability during sunlit portion (used for P_solar_available >= P_solar_req).",
+    "max_battery_capacity_wh": "Packaged battery capacity (used for C_batt_available >= C_batt_req).",
+    "max_peak_bus_power_w": "Maximum supported peak regulated bus power delivery (used for peak-power feasibility).",
+    "eps_avg_self_consumption_w": "Average EPS overhead consumption used in housekeeping power closure.",
+    "eps_mass_kg": "EPS dry mass proxy for system mass closure.",
+    "eps_volume_u": "EPS packaging volume proxy for system volume closure."
+  }
+}
+

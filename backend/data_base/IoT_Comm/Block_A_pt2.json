@@ -1,0 +1,60 @@
+
+   {
+      "payload_group":"Communication Payloads",
+      "payload_type":"RF Communication",
+      "payload_variant":"RF Transmitters",
+      "products":[
+        {"payload_id":"IOT-COM-TX-001","vendor":"SatRev","product_name":"Broadband RF Downlink Transmitter","mass_kg":0.72,"dimensions_mm":{"length_x":70,"width_y":70,"height_z":55},"payload_envelope_u":0.5,"mounting_face":"internal","avg_power_w":3.8,"peak_power_w":6.8,"nominal_data_rate_mbps":50,"spectral_band":"C-Band TX","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.22,"estimated_cost_usd":76000},
+        {"payload_id":"IOT-COM-TX-002","vendor":"NanoAvionics","product_name":"S/X High Throughput RF Beacon TX","mass_kg":0.68,"dimensions_mm":{"length_x":68,"width_y":68,"height_z":52},"payload_envelope_u":0.45,"mounting_face":"internal","avg_power_w":3.5,"peak_power_w":6.2,"nominal_data_rate_mbps":42,"spectral_band":"S/X TX","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.22,"estimated_cost_usd":71000},
+        {"payload_id":"IOT-COM-TX-003","vendor":"ISISPACE","product_name":"UHF/VHF Mission RF Transmitter","mass_kg":0.55,"dimensions_mm":{"length_x":60,"width_y":60,"height_z":45},"payload_envelope_u":0.35,"mounting_face":"internal","avg_power_w":2.9,"peak_power_w":5.0,"nominal_data_rate_mbps":15,"spectral_band":"UHF/VHF TX","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.24,"estimated_cost_usd":52000},
+        {"payload_id":"IOT-COM-TX-004","vendor":"AAC Clyde Space","product_name":"X-Band Burst Data Transmitter","mass_kg":0.82,"dimensions_mm":{"length_x":72,"width_y":72,"height_z":58},"payload_envelope_u":0.55,"mounting_face":"internal","avg_power_w":4.2,"peak_power_w":7.2,"nominal_data_rate_mbps":58,"spectral_band":"X-band payload TX","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.22,"estimated_cost_usd":79000}
+      ]
+    },
+
+    {
+      "payload_group":"Communication Payloads",
+      "payload_type":"RF Communication",
+      "payload_variant":"RF Receivers",
+      "products":[
+        {"payload_id":"IOT-COM-RX-001","vendor":"GomSpace","product_name":"Wideband RF Telecommand Receiver","mass_kg":0.52,"dimensions_mm":{"length_x":60,"width_y":60,"height_z":45},"payload_envelope_u":0.35,"mounting_face":"internal","avg_power_w":2.5,"peak_power_w":4.0,"nominal_data_rate_mbps":20,"spectral_band":"UHF/S command RX","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.25,"estimated_cost_usd":54000},
+        {"payload_id":"IOT-COM-RX-002","vendor":"ISISPACE","product_name":"MultiBand RF Acquisition Receiver","mass_kg":0.58,"dimensions_mm":{"length_x":62,"width_y":62,"height_z":48},"payload_envelope_u":0.38,"mounting_face":"internal","avg_power_w":2.8,"peak_power_w":4.2,"nominal_data_rate_mbps":24,"spectral_band":"S/X receive","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.25,"estimated_cost_usd":58000},
+        {"payload_id":"IOT-COM-RX-003","vendor":"NanoCom","product_name":"Low Noise RF Downlink Receiver","mass_kg":0.50,"dimensions_mm":{"length_x":58,"width_y":58,"height_z":44},"payload_envelope_u":0.33,"mounting_face":"internal","avg_power_w":2.4,"peak_power_w":3.8,"nominal_data_rate_mbps":18,"spectral_band":"L/S RX","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.25,"estimated_cost_usd":51000},
+        {"payload_id":"IOT-COM-RX-004","vendor":"EnduroSat","product_name":"X-Band Payload Receiver Frontend","mass_kg":0.64,"dimensions_mm":{"length_x":64,"width_y":64,"height_z":50},"payload_envelope_u":0.40,"mounting_face":"internal","avg_power_w":3.0,"peak_power_w":4.5,"nominal_data_rate_mbps":28,"spectral_band":"X receive frontend","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.24,"estimated_cost_usd":62000}
+      ]
+    },
+
+    {
+      "payload_group":"Communication Payloads",
+      "payload_type":"Optical Communication",
+      "payload_variant":"Laser Communication Terminals",
+      "products":[
+        {"payload_id":"IOT-COM-LCT-001","vendor":"DLR/TESAT","product_name":"OSIRIS4CubeSat Laser Comm Terminal","mass_kg":0.35,"dimensions_mm":{"length_x":34,"width_y":34,"height_z":100},"payload_envelope_u":0.33,"mounting_face":"zenith","avg_power_w":8.0,"peak_power_w":14.0,"nominal_data_rate_mbps":1000,"spectral_band":"1550nm optical laser","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.005,"estimated_cost_usd":240000},
+        {"payload_id":"IOT-COM-LCT-002","vendor":"CubeLCT","product_name":"Cube Laser Communication Terminal","mass_kg":0.42,"dimensions_mm":{"length_x":40,"width_y":40,"height_z":105},"payload_envelope_u":0.4,"mounting_face":"zenith","avg_power_w":8.8,"peak_power_w":15.0,"nominal_data_rate_mbps":1000,"spectral_band":"optical DTE laser","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.005,"estimated_cost_usd":255000},
+        {"payload_id":"IOT-COM-LCT-003","vendor":"Stellar Project","product_name":"LaserCube Optical Terminal","mass_kg":1.80,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":200},"payload_envelope_u":2.0,"mounting_face":"zenith","avg_power_w":15.0,"peak_power_w":24.0,"nominal_data_rate_mbps":2500,"spectral_band":"bidirectional lasercom","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.004,"estimated_cost_usd":330000},
+        {"payload_id":"IOT-COM-LCT-004","vendor":"Mynaric Derived","product_name":"Compact Space Laser Downlink Terminal","mass_kg":1.60,"dimensions_mm":{"length_x":92,"width_y":92,"height_z":185},"payload_envelope_u":1.8,"mounting_face":"zenith","avg_power_w":14.0,"peak_power_w":22.0,"nominal_data_rate_mbps":1800,"spectral_band":"1550nm high-rate downlink","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.004,"estimated_cost_usd":315000}
+      ]
+    },
+
+    {
+      "payload_group":"Communication Payloads",
+      "payload_type":"Optical Communication",
+      "payload_variant":"Optical Links",
+      "products":[
+        {"payload_id":"IOT-COM-OL-001","vendor":"Archangel Lightworks","product_name":"InterSat Optical Link Module","mass_kg":0.65,"dimensions_mm":{"length_x":70,"width_y":70,"height_z":90},"payload_envelope_u":0.7,"mounting_face":"zenith","avg_power_w":6.5,"peak_power_w":11.5,"nominal_data_rate_mbps":500,"spectral_band":"inter-satellite optical","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.008,"estimated_cost_usd":195000},
+        {"payload_id":"IOT-COM-OL-002","vendor":"Blue Cubed","product_name":"Compact Space Optical Backbone Link","mass_kg":0.72,"dimensions_mm":{"length_x":72,"width_y":72,"height_z":92},"payload_envelope_u":0.75,"mounting_face":"zenith","avg_power_w":7.0,"peak_power_w":12.0,"nominal_data_rate_mbps":600,"spectral_band":"optical relay crosslink","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.008,"estimated_cost_usd":205000},
+        {"payload_id":"IOT-COM-OL-003","vendor":"ALIGN Derived","product_name":"Gigabit Crosslink Optical Payload","mass_kg":0.88,"dimensions_mm":{"length_x":76,"width_y":76,"height_z":100},"payload_envelope_u":0.8,"mounting_face":"zenith","avg_power_w":8.2,"peak_power_w":13.0,"nominal_data_rate_mbps":1000,"spectral_band":"LEO-LEO optical link","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.007,"estimated_cost_usd":228000},
+        {"payload_id":"IOT-COM-OL-004","vendor":"Stellar Link OEM","product_name":"Full Duplex Optical Mesh Link","mass_kg":0.95,"dimensions_mm":{"length_x":78,"width_y":78,"height_z":102},"payload_envelope_u":0.9,"mounting_face":"zenith","avg_power_w":8.5,"peak_power_w":13.5,"nominal_data_rate_mbps":1200,"spectral_band":"mesh optical comm","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.007,"estimated_cost_usd":236000}
+      ]
+    },
+
+    {
+      "payload_group":"Communication Payloads",
+      "payload_type":"Optical Communication",
+      "payload_variant":"Quantum Communication Systems",
+      "products":[
+        {"payload_id":"IOT-COM-QC-001","vendor":"ROKS Heritage","product_name":"Quantum Key Distribution CubeSat Payload","mass_kg":2.80,"dimensions_mm":{"length_x":100,"width_y":100,"height_z":220},"payload_envelope_u":2.2,"mounting_face":"zenith","avg_power_w":11.0,"peak_power_w":18.0,"nominal_data_rate_mbps":0.08,"spectral_band":"single photon quantum","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.003,"estimated_cost_usd":420000},
+        {"payload_id":"IOT-COM-QC-002","vendor":"NanoBob Heritage","product_name":"Entangled Photon Quantum Comm Terminal","mass_kg":3.20,"dimensions_mm":{"length_x":110,"width_y":110,"height_z":240},"payload_envelope_u":2.5,"mounting_face":"zenith","avg_power_w":12.5,"peak_power_w":19.5,"nominal_data_rate_mbps":0.10,"spectral_band":"QKD photon exchange","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.003,"estimated_cost_usd":455000},
+        {"payload_id":"IOT-COM-QC-003","vendor":"QSpace Derived","product_name":"3U Quantum Optical Secure Link Payload","mass_kg":2.40,"dimensions_mm":{"length_x":95,"width_y":95,"height_z":205},"payload_envelope_u":2.0,"mounting_face":"zenith","avg_power_w":10.0,"peak_power_w":16.5,"nominal_data_rate_mbps":0.06,"spectral_band":"secure quantum optical downlink","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.003,"estimated_cost_usd":398000},
+        {"payload_id":"IOT-COM-QC-004","vendor":"PhotonShield OEM","product_name":"Orbital BB84 Quantum Terminal","mass_kg":2.65,"dimensions_mm":{"length_x":98,"width_y":98,"height_z":212},"payload_envelope_u":2.1,"mounting_face":"zenith","avg_power_w":10.8,"peak_power_w":17.0,"nominal_data_rate_mbps":0.07,"spectral_band":"BB84 secure photon link","ground_resolution_m":null,"swath_km":null,"pointing_requirement_deg":0.003,"estimated_cost_usd":410000}
+      ]
+    }

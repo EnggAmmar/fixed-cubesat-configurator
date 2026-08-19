@@ -1,0 +1,82 @@
+{
+  "version": "v1",
+  "units": {
+    "u_mm": 100.0,
+    "u_cm3": 1000.0
+  },
+  "structures": [
+    {
+      "size_u": 1.0,
+      "label": "1U",
+      "official": true,
+      "cross_section_mm": [100.0, 100.0],
+      "max_length_mm": 100.0,
+      "subsystem_reserve_fraction": 0.75,
+      "notes": ["Entry volume; tight for non-trivial payloads."]
+    },
+    {
+      "size_u": 1.5,
+      "label": "1.5U",
+      "official": true,
+      "cross_section_mm": [100.0, 100.0],
+      "max_length_mm": 150.0,
+      "subsystem_reserve_fraction": 0.70,
+      "notes": ["Common for compact missions; still tight margins."]
+    },
+    {
+      "size_u": 2.0,
+      "label": "2U",
+      "official": true,
+      "cross_section_mm": [100.0, 100.0],
+      "max_length_mm": 200.0,
+      "subsystem_reserve_fraction": 0.55,
+      "notes": ["More feasible payload volume than 1U/1.5U."]
+    },
+    {
+      "size_u": 3.0,
+      "label": "3U",
+      "official": true,
+      "cross_section_mm": [100.0, 100.0],
+      "max_length_mm": 300.0,
+      "subsystem_reserve_fraction": 0.45,
+      "notes": ["Classic CubeSat form factor for many payload classes."]
+    },
+    {
+      "size_u": 6.0,
+      "label": "6U",
+      "official": true,
+      "cross_section_mm": [100.0, 200.0],
+      "max_length_mm": 300.0,
+      "subsystem_reserve_fraction": 0.40,
+      "notes": ["Standard for many EO payloads; larger aperture options."]
+    },
+    {
+      "size_u": 8.0,
+      "label": "8U",
+      "official": false,
+      "cross_section_mm": [200.0, 200.0],
+      "max_length_mm": 200.0,
+      "subsystem_reserve_fraction": 0.40,
+      "notes": ["Commercially common extension for higher power/volume missions."]
+    },
+    {
+      "size_u": 12.0,
+      "label": "12U",
+      "official": true,
+      "cross_section_mm": [200.0, 200.0],
+      "max_length_mm": 300.0,
+      "subsystem_reserve_fraction": 0.35,
+      "notes": ["Large standard platform; more payload and subsystem flexibility."]
+    },
+    {
+      "size_u": 16.0,
+      "label": "16U",
+      "official": false,
+      "cross_section_mm": [200.0, 200.0],
+      "max_length_mm": 400.0,
+      "subsystem_reserve_fraction": 0.35,
+      "notes": ["Commercially common extension; high-capability missions."]
+    }
+  ]
+}
+
