@@ -19,11 +19,15 @@ S_RATE = 1000  # Mb/s -> kb/s
 S_DEG = 1_000_000  # deg -> microdeg
 
 # Prompt 12.9 calibration factors (engineering packaging realism; conservative but not overbinding).
-# NOTE(remediation step 4): left at their original values for now so step 2 (ordinal split)
-# and step 3 (supported_bus_max) can be validated in isolation first; reset happens in step 4.
-F_PACK_VOLUME = 0.72  # subsystem packaging concurrency factor for internal volume closure
-F_MASS_RESERVE = 0.86  # reduce non-payload reserve conservatism (structure/harness-like)
-F_RAD_UTIL = 1.15  # effective radiator utilization factor (bus-coupling)
+# Remediation step 4: reset to 1.0 (baseline). These were introduced to relax volume/mass/
+# thermal closures that looked too tight, but the review's own diagnostic showed
+# COMPATIBILITY_ORDINAL_FAIL still dominant after tuning them - they were compensating for
+# the ordinal-coupling bug (fixed above), not an independent packaging-realism need. Re-run
+# the sweep after this change; only reintroduce a factor if a genuine remaining closure
+# problem shows up that isn't explained by something else.
+F_PACK_VOLUME = 1.0  # subsystem packaging concurrency factor for internal volume closure
+F_MASS_RESERVE = 1.0  # reduce non-payload reserve conservatism (structure/harness-like)
+F_RAD_UTIL = 1.0  # effective radiator utilization factor (bus-coupling)
 
 # Integration-burden risk scoring (remediation): harness/EMI/contamination/radiation/
 # vibration/deployment ordinals describe how awkward a payload is to integrate, not how
@@ -305,15 +309,10 @@ def inject_constraints(
     )
     ord_req_prop_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_req_prop for pid in payload_ints)
 
-    # Compatibility semantic propagation burdens (Prompt 12.5).
-    ord_rad_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_rad for pid in payload_ints)
-    ord_vibe_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_vibe for pid in payload_ints)
-    ord_emi_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_emi for pid in payload_ints)
-    ord_contam_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_contam for pid in payload_ints)
-    ord_deploy_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_deploy for pid in payload_ints)
-    ord_harness_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_harness for pid in payload_ints)
-
     # Integration-burden risk score (see _BURDEN_RISK_PTS): additive, not a tier floor.
+    # (harness/EMI/contamination/radiation/vibration/deployment ordinals are read directly
+    # from payload_ints per-payload below - no separate selection expression needed since,
+    # unlike the ord_req_* capability ordinals, nothing else in the model reads them.)
     burden_risk_sel = sum(
         v.x_payload[pid]
         * (
