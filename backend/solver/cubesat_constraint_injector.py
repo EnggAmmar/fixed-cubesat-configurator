@@ -19,9 +19,24 @@ S_RATE = 1000  # Mb/s -> kb/s
 S_DEG = 1_000_000  # deg -> microdeg
 
 # Prompt 12.9 calibration factors (engineering packaging realism; conservative but not overbinding).
+# NOTE(remediation step 4): left at their original values for now so step 2 (ordinal split)
+# and step 3 (supported_bus_max) can be validated in isolation first; reset happens in step 4.
 F_PACK_VOLUME = 0.72  # subsystem packaging concurrency factor for internal volume closure
 F_MASS_RESERVE = 0.86  # reduce non-payload reserve conservatism (structure/harness-like)
 F_RAD_UTIL = 1.15  # effective radiator utilization factor (bus-coupling)
+
+# Integration-burden risk scoring (remediation): harness/EMI/contamination/radiation/
+# vibration/deployment ordinals describe how awkward a payload is to integrate, not how
+# capable a subsystem must be. They previously forced subsystem/bus tiers upward via hard
+# >= constraints (e.g. comms tier >= harness ordinal), which is a category error: it let
+# integration burden buy a payload a categorically more capable subsystem it never needed.
+# They are additive risk-score inputs instead, so the optimizer weighs them as a cost
+# rather than being forced to satisfy them as a feasibility wall.
+_BURDEN_RISK_PTS = {1: 0, 2: 5, 3: 15, 4: 30}  # keyed by ordinal (1=LOW .. 4=EXTREME)
+
+
+def burden_risk_pts(ordinal: int) -> int:
+    return _BURDEN_RISK_PTS[ordinal]
 
 
 def _ceil_scaled(value: float, scale: int) -> int:
@@ -298,6 +313,21 @@ def inject_constraints(
     ord_deploy_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_deploy for pid in payload_ints)
     ord_harness_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_harness for pid in payload_ints)
 
+    # Integration-burden risk score (see _BURDEN_RISK_PTS): additive, not a tier floor.
+    burden_risk_sel = sum(
+        v.x_payload[pid]
+        * (
+            burden_risk_pts(payload_ints[pid].ord_harness)
+            + burden_risk_pts(payload_ints[pid].ord_emi)
+            + burden_risk_pts(payload_ints[pid].ord_contam)
+            + burden_risk_pts(payload_ints[pid].ord_rad)
+            + burden_risk_pts(payload_ints[pid].ord_vibe)
+            + burden_risk_pts(payload_ints[pid].ord_deploy)
+        )
+        for pid in payload_ints
+    )
+    model.add(v.IntegrationBurdenRisk_total == burden_risk_sel)
+
     # ---- 4) Bus feasibility (volume + mass + minimums) ----
     U_over_mU = _ceil_scaled(U_over_u, S_VOL)
 
@@ -417,10 +447,8 @@ def inject_constraints(
     model.add(ord_bus_stiff_sel >= ord_req_struct_sel)
     model.add(ord_bus_cg_tol_sel >= cg_ord_sel)
 
-    # Compatibility semantic propagation: ruggedization and deployment burdens.
-    model.add(ord_bus_stiff_sel >= ord_rad_sel)
-    model.add(ord_bus_stiff_sel >= ord_vibe_sel)
-    model.add(ord_bus_stiff_sel >= ord_deploy_sel)
+    # Radiation/vibration/deployment ruggedization burdens are integration-burden risk
+    # inputs (see _BURDEN_RISK_PTS), not a hard floor on bus structural stiffness.
 
     # Bus oversize penalty (Prompt 11.5): U_bus - recommended_min_u
     model.add(v.BusOversize_mU == U_bus_sel_mU - bus_min_u_sel_mU)
@@ -568,9 +596,8 @@ def inject_constraints(
     ord_comms_tier = sum(v.c_comms[k] * _tier_ord(k) for k in TIERS)
     model.add(ord_comms_tier >= ord_req_comms_sel)
 
-    # Compatibility semantic propagation: EMI and harness burdens increase COMMS integration tier.
-    model.add(ord_comms_tier >= ord_emi_sel)
-    model.add(ord_comms_tier >= ord_harness_sel)
+    # EMI and harness burdens are integration-burden risk inputs, not a hard floor on the
+    # COMMS tier (see _BURDEN_RISK_PTS).
 
     # Supported bus range.
     for k in TIERS:
@@ -602,9 +629,8 @@ def inject_constraints(
     ord_obc_tier = sum(v.o_obc[k] * _tier_ord(k) for k in TIERS)
     model.add(ord_obc_tier >= ord_req_obc_sel)
 
-    # Compatibility semantic propagation: EMI and harness burdens increase OBC integration tier.
-    model.add(ord_obc_tier >= ord_emi_sel)
-    model.add(ord_obc_tier >= ord_harness_sel)
+    # EMI and harness burdens are integration-burden risk inputs, not a hard floor on the
+    # OBC tier (see _BURDEN_RISK_PTS).
 
     for k in TIERS:
         min_ord = _bus_ord(str(data.obc_library[k]["supported_bus_min"]))
@@ -659,8 +685,8 @@ def inject_constraints(
     ord_therm_tier = sum(v.t_thermal[k] * _tier_ord(k) for k in TIERS)
     model.add(ord_therm_tier >= ord_req_therm_sel)
 
-    # Compatibility semantic propagation: contamination cleanliness increases thermal tier.
-    model.add(ord_therm_tier >= ord_contam_sel)
+    # Contamination cleanliness is an integration-burden risk input, not a hard floor on
+    # the thermal tier (see _BURDEN_RISK_PTS).
 
     for k in TIERS:
         min_ord = _bus_ord(str(data.thermal_library[k]["supported_bus_min"]))
@@ -679,9 +705,8 @@ def inject_constraints(
     ord_prop_tier = sum(v.p_prop[k] * _tier_ord(k) for k in TIERS)
     model.add(ord_prop_tier >= ord_req_prop_sel)
 
-    # Compatibility semantic propagation: deployment burden increases propulsion tier (proxy).
-    # Enforce: prop_tier >= max(LOW, ord_deploy - 1).
-    model.add(ord_prop_tier >= ord_deploy_sel - 1)
+    # Deployment burden is an integration-burden risk input, not a hard floor on the
+    # propulsion tier (see _BURDEN_RISK_PTS).
 
     for k in TIERS:
         min_ord = _bus_ord(str(data.propulsion_library[k]["supported_bus_min"]))

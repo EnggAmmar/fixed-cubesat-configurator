@@ -63,6 +63,7 @@ def _define_cost_and_risk_totals(
         + sum(v.o_obc[k] * int(obc_risk[k]) for k in TIERS)
         + sum(v.t_thermal[k] * int(therm_risk[k]) for k in TIERS)
         + sum(v.p_prop[k] * int(prop_risk[k]) for k in TIERS)
+        + v.IntegrationBurdenRisk_total
     )
     model.add(v.Risk_total == risk_expr)
 

@@ -29,6 +29,7 @@ class CubeSatVars:
     U_total_mU: cp_model.IntVar
     Cost_total: cp_model.IntVar
     Risk_total: cp_model.IntVar
+    IntegrationBurdenRisk_total: cp_model.IntVar
     BusOversize_mU: cp_model.IntVar
 
 
@@ -66,6 +67,7 @@ def build_cp_model(payload_ids: list[str]) -> CubeSatModel:
     U_total_mU = m.new_int_var(0, 200_000, "U_total_mU")
     Cost_total = m.new_int_var(0, 5_000_000, "Cost_total_usd_proxy")
     Risk_total = m.new_int_var(0, 50_000, "Risk_total_points")
+    IntegrationBurdenRisk_total = m.new_int_var(0, 10_000, "IntegrationBurdenRisk_total_points")
     BusOversize_mU = m.new_int_var(0, 200_000, "BusOversize_mU")
 
     return CubeSatModel(
@@ -85,6 +87,7 @@ def build_cp_model(payload_ids: list[str]) -> CubeSatModel:
             U_total_mU=U_total_mU,
             Cost_total=Cost_total,
             Risk_total=Risk_total,
+            IntegrationBurdenRisk_total=IntegrationBurdenRisk_total,
             BusOversize_mU=BusOversize_mU,
         ),
     )

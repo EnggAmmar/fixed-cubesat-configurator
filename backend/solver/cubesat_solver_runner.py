@@ -5,7 +5,13 @@ from typing import Any, Iterable
 
 from ortools.sat.python import cp_model
 
-from .cubesat_constraint_injector import F_MASS_RESERVE, F_PACK_VOLUME, F_RAD_UTIL, inject_constraints
+from .cubesat_constraint_injector import (
+    F_MASS_RESERVE,
+    F_PACK_VOLUME,
+    F_RAD_UTIL,
+    burden_risk_pts,
+    inject_constraints,
+)
 from .cubesat_cp_model_builder import BUS_CLASSES, TIERS, build_cp_model
 from .cubesat_data_loader import load_all_data
 from .cubesat_objective_builder import attach_objective
@@ -285,26 +291,28 @@ def run_cubesat_diagnostic(selected_payload_id: str) -> dict[str, Any]:
         if _tier_ord(adcs) < ord_req_adcs:
             fails.append("COMPATIBILITY_ORDINAL_FAIL")
 
-        # Structural ruggedization: bus stiffness >= required structure and propagated burdens.
+        # Structural ruggedization: bus stiffness >= required structure class.
+        # (radiation/vibration/deployment burdens are integration-burden risk inputs,
+        # not a hard floor here — see _BURDEN_RISK_PTS in cubesat_constraint_injector.py)
         bus_stiff = ord_class[str(data.bus_library[bus]["structural_stiffness_class"])]
-        required_stiff = max(ord_req_struct, ord_rad, ord_vibe, ord_deploy)
-        if bus_stiff < required_stiff:
+        if bus_stiff < ord_req_struct:
             fails.append("COMPATIBILITY_ORDINAL_FAIL")
 
-        # Comms / OBC tier >= required + propagated
-        if _tier_ord(comms) < max(ord_req_comms, ord_emi, ord_harness):
+        # Comms / OBC tier >= required capability class.
+        # (EMI/harness burdens are integration-burden risk inputs, not a hard floor here)
+        if _tier_ord(comms) < ord_req_comms:
             fails.append("COMPATIBILITY_ORDINAL_FAIL")
-        if _tier_ord(obc) < max(ord_req_obc, ord_emi, ord_harness):
-            fails.append("COMPATIBILITY_ORDINAL_FAIL")
-
-        # Thermal tier >= required + contamination cleanliness
-        if _tier_ord(therm) < max(ord_req_therm, ord_contam):
+        if _tier_ord(obc) < ord_req_obc:
             fails.append("COMPATIBILITY_ORDINAL_FAIL")
 
-        # Prop tier >= required and deployment-driven minimum: prop >= ord_deploy-1
+        # Thermal tier >= required capability class.
+        # (contamination cleanliness is an integration-burden risk input, not a hard floor here)
+        if _tier_ord(therm) < ord_req_therm:
+            fails.append("COMPATIBILITY_ORDINAL_FAIL")
+
+        # Prop tier >= required capability class.
+        # (deployment burden is an integration-burden risk input, not a hard floor here)
         if _tier_ord(prop) < ord_req_prop:
-            fails.append("COMPATIBILITY_ORDINAL_FAIL")
-        if _tier_ord(prop) < max(1, ord_deploy - 1):
             fails.append("COMPATIBILITY_ORDINAL_FAIL")
 
         # --- ADCS pointing feasibility ---
@@ -603,6 +611,25 @@ def run_cubesat_diagnostic(selected_payload_id: str) -> dict[str, Any]:
             "product_name": payload_prod.get("product_name"),
             "recommended_bus_min_u": payload_prod.get("recommended_bus_min_u"),
             "recommended_bus_min_mass_kg": payload_prod.get("recommended_bus_min_mass_kg"),
+        },
+        "integration_burden": {
+            # Ordinals (1=LOW..4=EXTREME) contribute additive risk points to the objective
+            # instead of forcing subsystem tiers up; shown here for the same transparency
+            # the rest of this diagnostic already gives every other closure.
+            "ord_rad": ord_rad,
+            "ord_vibe": ord_vibe,
+            "ord_emi": ord_emi,
+            "ord_contam": ord_contam,
+            "ord_deploy": ord_deploy,
+            "ord_harness": ord_harness,
+            "risk_points_total": (
+                burden_risk_pts(ord_rad)
+                + burden_risk_pts(ord_vibe)
+                + burden_risk_pts(ord_emi)
+                + burden_risk_pts(ord_contam)
+                + burden_risk_pts(ord_deploy)
+                + burden_risk_pts(ord_harness)
+            ),
         },
         "bus_cases": bus_cases,
     }
