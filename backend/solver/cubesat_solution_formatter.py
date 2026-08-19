@@ -43,6 +43,31 @@ def format_solution(
     solver: cp_model.CpSolver,
     status: int,
 ) -> dict[str, Any]:
+    status_name = {
+        cp_model.OPTIMAL: "OPTIMAL",
+        cp_model.FEASIBLE: "FEASIBLE",
+        cp_model.INFEASIBLE: "INFEASIBLE",
+        cp_model.MODEL_INVALID: "MODEL_INVALID",
+        cp_model.UNKNOWN: "UNKNOWN",
+    }.get(status, str(status))
+
+    if status not in (cp_model.OPTIMAL, cp_model.FEASIBLE):
+        # No feasible assignment exists: solver variables hold no meaningful values.
+        # Do not read them (they previously surfaced as e.g. 2.1 GW of "peak power").
+        return {
+            "status": status_name,
+            "objective_value": None,
+            "selection": None,
+            "payload_metadata": None,
+            "totals": None,
+            "solver_stats": {
+                "wall_time_s": solver.wall_time,
+                "num_conflicts": solver.num_conflicts,
+                "num_branches": solver.num_branches,
+            },
+            "objective_weights": objective.weights_percent,
+        }
+
     v = sm.vars
 
     payload_id = _picked_one(v.x_payload, solver)
@@ -76,14 +101,6 @@ def format_solution(
             "vendor": record.product.get("vendor"),
             "product_name": record.product.get("product_name"),
         }
-
-    status_name = {
-        cp_model.OPTIMAL: "OPTIMAL",
-        cp_model.FEASIBLE: "FEASIBLE",
-        cp_model.INFEASIBLE: "INFEASIBLE",
-        cp_model.MODEL_INVALID: "MODEL_INVALID",
-        cp_model.UNKNOWN: "UNKNOWN",
-    }.get(status, str(status))
 
     result: dict[str, Any] = {
         "status": status_name,
