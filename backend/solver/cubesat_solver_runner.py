@@ -232,9 +232,10 @@ def run_cubesat_diagnostic(selected_payload_id: str) -> dict[str, Any]:
 
         # --- Supported-bus legality (treated as forbidden) ---
         def _supported(lib: dict[str, Any], key: str) -> bool:
+            # Lower bound only - no supported_bus_max cutoff (see
+            # cubesat_constraint_injector.py's supported-bus-range comments).
             min_u = str(lib[key]["supported_bus_min"])
-            max_u = str(lib[key]["supported_bus_max"])
-            return _bus_ord(min_u) <= _bus_ord(bus) <= _bus_ord(max_u)
+            return _bus_ord(min_u) <= _bus_ord(bus)
 
         if not _supported(data.eps_library, eps):
             fails.append("FORBIDDEN_NO_GOOD_FAIL")

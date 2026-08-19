@@ -529,14 +529,14 @@ def inject_constraints(
     ord_eps_tier = sum(v.e_eps[k] * _tier_ord(k) for k in TIERS)
     model.add(ord_eps_tier >= ord_req_eps_sel)
 
-    # EPS supported bus range: forbid unsupported (bus, tier) pairs.
+    # EPS supported bus range: forbid pairing a tier with a bus smaller than it can
+    # physically fit on. No upper cutoff - a larger bus can still carry a smaller EPS
+    # tier; let volume/mass/power physics decide, not a table lookup (supported_bus_max).
     for k in TIERS:
         min_u = str(data.eps_library[k]["supported_bus_min"])
-        max_u = str(data.eps_library[k]["supported_bus_max"])
         min_ord = _bus_ord(min_u)
-        max_ord = _bus_ord(max_u)
         for u in BUS_CLASSES:
-            if not (min_ord <= _bus_ord(u) <= max_ord):
+            if not (min_ord <= _bus_ord(u)):
                 model.add(v.e_eps[k] + v.b_bus[u] <= 1)
 
     # ---- 6) ADCS constraints ----
@@ -555,12 +555,11 @@ def inject_constraints(
     ord_adcs_tier = sum(v.a_adcs[k] * _tier_ord(k) for k in TIERS)
     model.add(ord_adcs_tier >= ord_req_adcs_sel)
 
-    # Supported bus range.
+    # Supported bus range: lower bound only (see EPS comment above for rationale).
     for k in TIERS:
         min_ord = _bus_ord(str(data.adcs_library[k]["supported_bus_min"]))
-        max_ord = _bus_ord(str(data.adcs_library[k]["supported_bus_max"]))
         for u in BUS_CLASSES:
-            if not (min_ord <= _bus_ord(u) <= max_ord):
+            if not (min_ord <= _bus_ord(u)):
                 model.add(v.a_adcs[k] + v.b_bus[u] <= 1)
 
     # Fine pointing no-goods.
@@ -599,12 +598,11 @@ def inject_constraints(
     # EMI and harness burdens are integration-burden risk inputs, not a hard floor on the
     # COMMS tier (see _BURDEN_RISK_PTS).
 
-    # Supported bus range.
+    # Supported bus range: lower bound only (see EPS comment above for rationale).
     for k in TIERS:
         min_ord = _bus_ord(str(data.comms_library[k]["supported_bus_min"]))
-        max_ord = _bus_ord(str(data.comms_library[k]["supported_bus_max"]))
         for u in BUS_CLASSES:
-            if not (min_ord <= _bus_ord(u) <= max_ord):
+            if not (min_ord <= _bus_ord(u)):
                 model.add(v.c_comms[k] + v.b_bus[u] <= 1)
 
     # Extreme data no-goods.
@@ -632,11 +630,11 @@ def inject_constraints(
     # EMI and harness burdens are integration-burden risk inputs, not a hard floor on the
     # OBC tier (see _BURDEN_RISK_PTS).
 
+    # Supported bus range: lower bound only (see EPS comment above for rationale).
     for k in TIERS:
         min_ord = _bus_ord(str(data.obc_library[k]["supported_bus_min"]))
-        max_ord = _bus_ord(str(data.obc_library[k]["supported_bus_max"]))
         for u in BUS_CLASSES:
-            if not (min_ord <= _bus_ord(u) <= max_ord):
+            if not (min_ord <= _bus_ord(u)):
                 model.add(v.o_obc[k] + v.b_bus[u] <= 1)
 
     # Extreme data no-goods (OBC).
@@ -688,11 +686,11 @@ def inject_constraints(
     # Contamination cleanliness is an integration-burden risk input, not a hard floor on
     # the thermal tier (see _BURDEN_RISK_PTS).
 
+    # Supported bus range: lower bound only (see EPS comment above for rationale).
     for k in TIERS:
         min_ord = _bus_ord(str(data.thermal_library[k]["supported_bus_min"]))
-        max_ord = _bus_ord(str(data.thermal_library[k]["supported_bus_max"]))
         for u in BUS_CLASSES:
-            if not (min_ord <= _bus_ord(u) <= max_ord):
+            if not (min_ord <= _bus_ord(u)):
                 model.add(v.t_thermal[k] + v.b_bus[u] <= 1)
 
     # High thermal no-good: forbid LOW thermal.
@@ -708,11 +706,11 @@ def inject_constraints(
     # Deployment burden is an integration-burden risk input, not a hard floor on the
     # propulsion tier (see _BURDEN_RISK_PTS).
 
+    # Supported bus range: lower bound only (see EPS comment above for rationale).
     for k in TIERS:
         min_ord = _bus_ord(str(data.propulsion_library[k]["supported_bus_min"]))
-        max_ord = _bus_ord(str(data.propulsion_library[k]["supported_bus_max"]))
         for u in BUS_CLASSES:
-            if not (min_ord <= _bus_ord(u) <= max_ord):
+            if not (min_ord <= _bus_ord(u)):
                 model.add(v.p_prop[k] + v.b_bus[u] <= 1)
 
     # ---- 11) Cross-subsystem forbidden combinations ----
