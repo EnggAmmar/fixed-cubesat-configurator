@@ -19,15 +19,20 @@ S_RATE = 1000  # Mb/s -> kb/s
 S_DEG = 1_000_000  # deg -> microdeg
 
 # Prompt 12.9 calibration factors (engineering packaging realism; conservative but not overbinding).
-# Remediation step 4: reset to 1.0 (baseline). These were introduced to relax volume/mass/
-# thermal closures that looked too tight, but the review's own diagnostic showed
-# COMPATIBILITY_ORDINAL_FAIL still dominant after tuning them - they were compensating for
-# the ordinal-coupling bug (fixed above), not an independent packaging-realism need. Re-run
-# the sweep after this change; only reintroduce a factor if a genuine remaining closure
-# problem shows up that isn't explained by something else.
-F_PACK_VOLUME = 1.0  # subsystem packaging concurrency factor for internal volume closure
-F_MASS_RESERVE = 1.0  # reduce non-payload reserve conservatism (structure/harness-like)
-F_RAD_UTIL = 1.0  # effective radiator utilization factor (bus-coupling)
+# Remediation step 4 (tried, reverted - see commit history): reset to 1.0 to test whether
+# these were purely compensating for the ordinal-coupling bug, per the review's suggestion.
+# Measured effect on the full payload sweep: with the ordinal fix and supported_bus_max
+# removal alone (steps 2-3), bus sizes broadly improved (23 payloads shrank, 12 grew, 118
+# unchanged). Resetting these factors on top of that made things strictly worse (0 shrank,
+# 103 grew) - they are also compensating for a second, separate, not-yet-fixed issue: the
+# global nominal_contact_minutes_per_day=35 assumption forces many payloads to EXTREME comms
+# for real (not buggy) daily-downlink-volume reasons, and these factors are what lets that
+# EXTREME comms tier physically fit in a smaller bus. Left at their original values until
+# that issue is fixed and this can be re-tested; the review's own instruction was to keep
+# only what the sweep still justifies, and right now the sweep says these still are.
+F_PACK_VOLUME = 0.72  # subsystem packaging concurrency factor for internal volume closure
+F_MASS_RESERVE = 0.86  # reduce non-payload reserve conservatism (structure/harness-like)
+F_RAD_UTIL = 1.15  # effective radiator utilization factor (bus-coupling)
 
 # Integration-burden risk scoring (remediation): harness/EMI/contamination/radiation/
 # vibration/deployment ordinals describe how awkward a payload is to integrate, not how

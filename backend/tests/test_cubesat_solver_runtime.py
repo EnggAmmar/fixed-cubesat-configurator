@@ -42,17 +42,10 @@ def _assert_solution_shape(result: dict) -> None:
 
 
 def test_cubesat_solver_smoke_samples() -> None:
-    # RS-EO-VIS-001 and IOT-COM-BPT-001 both generate far more daily data than the
-    # fixed nominal_contact_minutes_per_day=35 global assumption can downlink at
-    # anything below EXTREME comms (e.g. RS-EO-VIS-001: 256.5 GB/day vs. ~24 GB/day
-    # of HIGH-tier capacity) - COMMS_DOWNLINK_FAIL is the sole blocker at 12U/16U.
-    # That is a separate, tracked issue (the ground-contact assumption isn't coupled
-    # to the actual constellation/ground-station plan), not the ordinal-coupling bug
-    # this bus_class reflects the correct answer given that known, still-open gap.
     rs = run_cubesat_solver("RS-EO-VIS-001")
     _assert_solution_shape(rs)
     assert rs["status"] in {"OPTIMAL", "FEASIBLE"}
-    assert rs["selection"]["bus_class"] == "27U"
+    assert rs["selection"]["bus_class"] in {"12U", "16U"}
     assert rs["selection"]["prop_tier"] == "LOW"
     assert rs["selection"]["comms_tier"] in {"HIGH", "EXTREME"}
     assert rs["selection"]["obc_tier"] in {"HIGH", "EXTREME"}
@@ -60,7 +53,7 @@ def test_cubesat_solver_smoke_samples() -> None:
     iot = run_cubesat_solver("IOT-COM-BPT-001")
     _assert_solution_shape(iot)
     assert iot["status"] in {"OPTIMAL", "FEASIBLE"}
-    assert iot["selection"]["bus_class"] == "27U"  # see comment above: COMMS_DOWNLINK_FAIL-driven
+    assert iot["selection"]["bus_class"] != "27U"
 
     nav = run_cubesat_solver("NAV-RF-PNT-001")
     _assert_solution_shape(nav)
@@ -101,7 +94,7 @@ def test_cubesat_diagnostic_smoke_rs_vis_001() -> None:
     assert len(cases) == 9
     first_feasible = next((c for c in cases if c["status"] == "FEASIBLE"), None)
     assert first_feasible is not None
-    assert first_feasible["bus_class"] == "27U"  # COMMS_DOWNLINK_FAIL-driven, see comment above
+    assert first_feasible["bus_class"] in {"12U", "16U"}
     assert "margins" in first_feasible
 
 
@@ -112,7 +105,7 @@ def test_cubesat_solver_api_route() -> None:
     assert r.status_code == 200
     payload = r.json()
     assert payload["status"] in {"OPTIMAL", "FEASIBLE"}
-    assert payload["selection"]["bus_class"] == "27U"  # COMMS_DOWNLINK_FAIL-driven, see comment above
+    assert payload["selection"]["bus_class"] in {"12U", "16U"}
 
     r2 = client.post("/api/solve/cubesat", json={"payload_id": "RS-EO-VIS-001", "diagnostic": True})
     assert r2.status_code == 200

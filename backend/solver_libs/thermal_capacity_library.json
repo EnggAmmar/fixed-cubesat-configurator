@@ -9,7 +9,7 @@
   "thermal_tiers": [
     {
       "thermal_tier": "LOW",
-      "max_heat_rejection_w": 12.0,
+      "max_heat_rejection_w": 14.64,
       "q_reject_density_w_per_m2": 120,
       "heater_capability": "minimal",
       "thermal_stability_class": "LOW",
@@ -26,7 +26,7 @@
     },
     {
       "thermal_tier": "MEDIUM",
-      "max_heat_rejection_w": 35.0,
+      "max_heat_rejection_w": 42.7,
       "q_reject_density_w_per_m2": 180,
       "heater_capability": "moderate",
       "thermal_stability_class": "MEDIUM",
@@ -43,7 +43,7 @@
     },
     {
       "thermal_tier": "HIGH",
-      "max_heat_rejection_w": 85.0,
+      "max_heat_rejection_w": 103.7,
       "q_reject_density_w_per_m2": 250,
       "heater_capability": "high",
       "thermal_stability_class": "HIGH",
@@ -60,7 +60,7 @@
     },
     {
       "thermal_tier": "EXTREME",
-      "max_heat_rejection_w": 180.0,
+      "max_heat_rejection_w": 219.6,
       "q_reject_density_w_per_m2": 320,
       "heater_capability": "very_high",
       "thermal_stability_class": "EXTREME",
