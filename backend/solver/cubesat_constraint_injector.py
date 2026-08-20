@@ -19,17 +19,20 @@ S_RATE = 1000  # Mb/s -> kb/s
 S_DEG = 1_000_000  # deg -> microdeg
 
 # Prompt 12.9 calibration factors (engineering packaging realism; conservative but not overbinding).
-# Remediation step 4 (tried, reverted - see commit history): reset to 1.0 to test whether
-# these were purely compensating for the ordinal-coupling bug, per the review's suggestion.
-# Measured effect on the full payload sweep: with the ordinal fix and supported_bus_max
-# removal alone (steps 2-3), bus sizes broadly improved (23 payloads shrank, 12 grew, 118
-# unchanged). Resetting these factors on top of that made things strictly worse (0 shrank,
-# 103 grew) - they are also compensating for a second, separate, not-yet-fixed issue: the
-# global nominal_contact_minutes_per_day=35 assumption forces many payloads to EXTREME comms
-# for real (not buggy) daily-downlink-volume reasons, and these factors are what lets that
-# EXTREME comms tier physically fit in a smaller bus. Left at their original values until
-# that issue is fixed and this can be re-tested; the review's own instruction was to keep
-# only what the sweep still justifies, and right now the sweep says these still are.
+# Remediation step 4 (tried, reverted twice - see commit history): reset to 1.0 to test
+# whether these were purely compensating for the ordinal-coupling bug, per the review's
+# suggestion. Measured effect on the full payload sweep, twice:
+#   1) With only the ordinal fix + supported_bus_max removal (steps 2-3): resetting these
+#      made things strictly worse (0/198 payloads shrank, 103 grew). At the time,
+#      ground_station_count was still stuck at 1, so that alone didn't rule out the
+#      contact-minutes issue (below) as the real explanation.
+#   2) Re-tested after adding ground_station_count, at realistic values (3 and 8 stations):
+#      resetting these was still clearly worse at both (e.g. gs=8: 27U-bus count rose from
+#      17 to 52, 50U+ from 2 to 6, 6U dropped from 10 to 0).
+# Conclusion: not purely a symptom of either bug. They reflect real, independent
+# packaging/mass/thermal-closure conservatism the model needs regardless. Keeping them;
+# the review's own instruction was to keep only what the sweep still justifies, and the
+# sweep says these still are, under both fixes now in place.
 F_PACK_VOLUME = 0.72  # subsystem packaging concurrency factor for internal volume closure
 F_MASS_RESERVE = 0.86  # reduce non-payload reserve conservatism (structure/harness-like)
 F_RAD_UTIL = 1.15  # effective radiator utilization factor (bus-coupling)
