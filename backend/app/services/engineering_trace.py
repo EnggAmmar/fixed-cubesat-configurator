@@ -207,6 +207,7 @@ def build_engineering_trace(
             budgets=budgets,
             bus_volume_margin_u=vol_margin_u,
         )
+        meta = s.metadata or {}
         subsystems.append(
             EngineeringTraceSubsystem(
                 domain=s.domain,
@@ -215,11 +216,11 @@ def build_engineering_trace(
                 avg_power_w=s.avg_power_w,
                 peak_power_w=s.peak_power_w,
                 cost_kusd=s.cost_kusd,
-                tier=None,
+                tier=meta.get("tier") or None,
                 metadata=s.metadata,
                 selection_reason=selection_reason,
                 source_library=None,
-                source_database="catalog.json",
+                source_database=str(meta.get("source_database") or "catalog.json"),
                 capacity_basis=capacity_basis,
                 margin_basis=margin_basis,
             )

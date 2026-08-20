@@ -32,6 +32,10 @@ class OptionalUserConstraints(BaseModel):
     min_downlink_mbps: float | None = Field(default=None, gt=0)
     max_pointing_error_deg: float | None = Field(default=None, gt=0)
     optimization_priority: str | None = Field(default=None, min_length=1)
+    # Ground stations contributing daily contact time; only consumed by the
+    # backend/solver/-backed engine adapter (see cubesat_engine_adapter.py). Defaults
+    # to 1 there if unset - no behavior change for callers that don't set this.
+    ground_station_count: int | None = Field(default=None, ge=1)
 
 
 class DerivedSubsystemRequirements(BaseModel):
