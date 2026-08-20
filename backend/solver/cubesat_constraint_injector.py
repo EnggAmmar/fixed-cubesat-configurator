@@ -207,10 +207,17 @@ def _build_payload_ints(
 
 
 def inject_constraints(
-    sm: CubeSatModel, data: CubeSatData, precompute: PayloadPrecompute, selected_payload_id: str
+    sm: CubeSatModel,
+    data: CubeSatData,
+    precompute: PayloadPrecompute,
+    selected_payload_id: str,
+    ground_station_count: int = 1,
 ) -> None:
     model = sm.model
     v = sm.vars
+
+    if ground_station_count < 1:
+        raise ValueError(f"ground_station_count must be >= 1, got {ground_station_count}")
 
     payload_ints = _build_payload_ints(data, precompute)
     if selected_payload_id not in payload_ints:
@@ -249,7 +256,16 @@ def inject_constraints(
     M_data = _get_assumption(ass, "data_storage_assumptions", "daily_data_contingency_margin")
 
     eta_dl = _get_assumption(ass, "downlink_assumptions", "downlink_efficiency_factor")
-    T_contact_day_min = _get_assumption(ass, "downlink_assumptions", "nominal_contact_minutes_per_day")
+    # nominal_contact_minutes_per_day is a single-ground-station baseline (see
+    # global_engineering_assumptions.json). Preliminary-design-level approximation:
+    # additional, well-distributed ground stations roughly add independent contact
+    # windows, so scale linearly with the requested station count (default 1 preserves
+    # prior behavior exactly). Real pass-geometry overlap/scheduling is out of scope for
+    # this tool, same as its other proxy assumptions.
+    T_contact_day_min = (
+        _get_assumption(ass, "downlink_assumptions", "nominal_contact_minutes_per_day")
+        * ground_station_count
+    )
     f_contact_use = _get_assumption(ass, "downlink_assumptions", "usable_contact_fraction")
 
     f_heat_int = _get_assumption(ass, "thermal_assumptions", "internal_heat_fraction_default")

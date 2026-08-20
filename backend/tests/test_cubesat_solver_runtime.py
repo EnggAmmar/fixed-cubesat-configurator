@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import pytest
 from fastapi.testclient import TestClient
 
 from app.main import create_app
@@ -96,6 +97,32 @@ def test_cubesat_diagnostic_smoke_rs_vis_001() -> None:
     assert first_feasible is not None
     assert first_feasible["bus_class"] in {"12U", "16U"}
     assert "margins" in first_feasible
+
+
+def test_cubesat_solver_ground_station_count_relieves_downlink_bottleneck() -> None:
+    # RS-EO-VIS-001 generates 256.5 GB/day; nominal_contact_minutes_per_day=35 is a
+    # single-ground-station baseline (see cubesat_constraint_injector.py), so with the
+    # default ground_station_count=1 it needs EXTREME comms just to move that volume.
+    # More ground stations linearly increase daily contact time, which should let it
+    # drop to a cheaper comms tier and a smaller bus - the fix for issue #7.
+    baseline = run_cubesat_solver("RS-EO-VIS-001")
+    assert baseline["selection"]["comms_tier"] == "EXTREME"
+
+    r = run_cubesat_solver("RS-EO-VIS-001", ground_station_count=15)
+    assert r["status"] in {"OPTIMAL", "FEASIBLE"}
+    assert r["selection"]["comms_tier"] != "EXTREME"
+    assert r["selection"]["bus_class"] == "12U"
+
+    d = run_cubesat_diagnostic("RS-EO-VIS-001", ground_station_count=15)
+    case_6u = next(c for c in d["bus_cases"] if c["bus_class"] == "6U")
+    assert "COMMS_DOWNLINK_FAIL" not in case_6u["violated_families"]
+    assert d["ground_segment"] == {
+        "ground_station_count": 15,
+        "effective_contact_minutes_per_day": 35 * 15,
+    }
+
+    with pytest.raises(ValueError):
+        run_cubesat_solver("RS-EO-VIS-001", ground_station_count=0)
 
 
 def test_cubesat_solver_api_route() -> None:

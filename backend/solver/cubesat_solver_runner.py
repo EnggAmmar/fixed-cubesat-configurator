@@ -34,14 +34,16 @@ def _apply_solver_parameters_diagnostic(s: cp_model.CpSolver) -> None:
     s.parameters.log_search_progress = False
 
 
-def run_cubesat_solver(selected_payload_id: str) -> dict[str, Any]:
+def run_cubesat_solver(selected_payload_id: str, ground_station_count: int = 1) -> dict[str, Any]:
     data = load_all_data()
     pre = load_all_precompute()
 
     payload_ids = sorted(data.payloads.keys())
     sm = build_cp_model(payload_ids)
 
-    inject_constraints(sm, data, pre.payload_precompute, selected_payload_id)
+    inject_constraints(
+        sm, data, pre.payload_precompute, selected_payload_id, ground_station_count
+    )
 
     attach_objective(sm, data, pre.objective)
 
@@ -52,7 +54,9 @@ def run_cubesat_solver(selected_payload_id: str) -> dict[str, Any]:
     return format_solution(sm, data, pre.objective, solver, status)
 
 
-def run_family_solver(selected_payload_id: str, top_n: int = 5) -> dict[str, Any]:
+def run_family_solver(
+    selected_payload_id: str, top_n: int = 5, ground_station_count: int = 1
+) -> dict[str, Any]:
     if top_n <= 0:
         raise ValueError("top_n must be >= 1")
 
@@ -65,7 +69,9 @@ def run_family_solver(selected_payload_id: str, top_n: int = 5) -> dict[str, Any
 
     for _ in range(top_n):
         sm = build_cp_model(payload_ids)
-        inject_constraints(sm, data, pre.payload_precompute, selected_payload_id)
+        inject_constraints(
+            sm, data, pre.payload_precompute, selected_payload_id, ground_station_count
+        )
         attach_objective(sm, data, pre.objective)
 
         # Forbid previously found exact architecture tuples (bus + tier selections).
@@ -111,7 +117,9 @@ def run_family_solver(selected_payload_id: str, top_n: int = 5) -> dict[str, Any
     }
 
 
-def run_cubesat_diagnostic(selected_payload_id: str) -> dict[str, Any]:
+def run_cubesat_diagnostic(
+    selected_payload_id: str, ground_station_count: int = 1
+) -> dict[str, Any]:
     """
     Diagnostic mode: probe feasibility bus-by-bus.
 
@@ -123,6 +131,8 @@ def run_cubesat_diagnostic(selected_payload_id: str) -> dict[str, Any]:
     data = load_all_data()
     pre = load_all_precompute()
 
+    if ground_station_count < 1:
+        raise ValueError(f"ground_station_count must be >= 1, got {ground_station_count}")
     if selected_payload_id not in data.payloads:
         raise ValueError(f"Unknown selected_payload_id: {selected_payload_id}")
     if selected_payload_id not in pre.payload_precompute.payloads:
@@ -154,7 +164,10 @@ def run_cubesat_diagnostic(selected_payload_id: str) -> dict[str, Any]:
     M_data = _ass("data_storage_assumptions", "daily_data_contingency_margin")
 
     eta_dl = _ass("downlink_assumptions", "downlink_efficiency_factor")
-    T_contact_day_min = _ass("downlink_assumptions", "nominal_contact_minutes_per_day")
+    # See the matching comment in cubesat_constraint_injector.py's inject_constraints.
+    T_contact_day_min = (
+        _ass("downlink_assumptions", "nominal_contact_minutes_per_day") * ground_station_count
+    )
     f_contact_use = _ass("downlink_assumptions", "usable_contact_fraction")
 
     f_heat_int = _ass("thermal_assumptions", "internal_heat_fraction_default")
@@ -554,7 +567,9 @@ def run_cubesat_diagnostic(selected_payload_id: str) -> dict[str, Any]:
     for bus in BUS_CLASSES:
         payload_ids = sorted(data.payloads.keys())
         sm = build_cp_model(payload_ids)
-        inject_constraints(sm, data, pre.payload_precompute, selected_payload_id)
+        inject_constraints(
+            sm, data, pre.payload_precompute, selected_payload_id, ground_station_count
+        )
 
         # Force bus selection.
         for u, bv in sm.vars.b_bus.items():
@@ -612,6 +627,10 @@ def run_cubesat_diagnostic(selected_payload_id: str) -> dict[str, Any]:
             "product_name": payload_prod.get("product_name"),
             "recommended_bus_min_u": payload_prod.get("recommended_bus_min_u"),
             "recommended_bus_min_mass_kg": payload_prod.get("recommended_bus_min_mass_kg"),
+        },
+        "ground_segment": {
+            "ground_station_count": ground_station_count,
+            "effective_contact_minutes_per_day": T_contact_day_min,
         },
         "integration_burden": {
             # Ordinals (1=LOW..4=EXTREME) contribute additive risk points to the objective
