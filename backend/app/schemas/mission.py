@@ -70,6 +70,7 @@ class EngineeringPreferences(BaseModel):
 
     max_budget_usd: float | None = Field(default=None, gt=0)
     max_bus_u: float | None = Field(default=None, gt=0)
+    ground_station_count: int | None = Field(default=None, ge=1)
 
 
 class CatalogPayloadRef(BaseModel):
@@ -158,6 +159,7 @@ class PlatformSummary(BaseModel):
     max_payload_volume_cm3: float
     avg_power_gen_w: float
     peak_power_gen_w: float
+    cost_kusd: float | None = None
 
 
 class Budgets(BaseModel):

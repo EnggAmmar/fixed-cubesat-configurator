@@ -181,6 +181,17 @@ def optional_constraints_from_engineering_preferences(
             "lifetime is available for downstream risk/radiation heuristics",
         )
 
+    if prefs.ground_station_count is not None:
+        constraints.ground_station_count = int(prefs.ground_station_count)
+        _add(
+            applications,
+            "ground_station_count",
+            prefs.ground_station_count,
+            "applied_orbit_assumption",
+            f"daily ground-contact time scaled by {prefs.ground_station_count:g} station(s) "
+            "(backend/solver/-backed engine only)",
+        )
+
     return constraints, applications
 
 

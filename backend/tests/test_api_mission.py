@@ -579,7 +579,14 @@ def test_mission_report_engineering_sections_for_full_catalog_payload() -> None:
             "family": "remote_sensing",
             "payload": {"type": "catalog", "payload_id": "RS-EO-HSI-001"},
             "roi": {"type": "global"},
-            "parameters": {"revisit_time_hours": 24},
+            # RS-EO-HSI-001 generates 378 GB/day; backend/solver/'s rigorous daily-
+            # downlink-volume closure (unlike the discrete-catalog engine, which only
+            # ever checked nominal Mbps, never cumulative daily volume) needs more than
+            # the single-ground-station default to close this payload at any bus size.
+            "parameters": {
+                "revisit_time_hours": 24,
+                "engineering_preferences": {"ground_station_count": 5},
+            },
         }
     }
 

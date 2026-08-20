@@ -14,7 +14,7 @@ from app.schemas.solve_mission import (
 from app.services.bus_sizing import evaluate_bus_candidates
 from app.services.catalog import get_catalog
 from app.services.constellation_estimator import estimate_constellation_v1
-from app.services.optimization.cpsat_selection import solve_subsystems_cpsat
+from app.services.optimization.cubesat_engine_adapter import solve_subsystems_via_backend_solver
 from app.services.payload_resolver import resolve_payload_for_requirements
 from app.services.payload_synthesis import synthesize_confidential_payload
 from app.services.radiation_screening import screen_architecture_radiation
@@ -226,8 +226,13 @@ def solve_mission(req: SolveMissionRequest) -> SolveMissionResponse:
         warnings.append(f"Bus candidate evaluation failed: {e}")
 
     # ---- CP-SAT subsystem selection ----
+    # Routes catalog payloads to backend/solver/ (the fixed compatibility-ordinal
+    # engine); falls back to the discrete-catalog engine for custom "my_payload"
+    # input or any payload_id backend/solver/ doesn't know. See
+    # cubesat_engine_adapter.py for the routing rule and the compatibility contract
+    # this return shape has to satisfy.
     feasible, status, selected, optional_selected, totals, margins, s_warnings, s_trace = (
-        solve_subsystems_cpsat(mission_input, derived, req.constraints)
+        solve_subsystems_via_backend_solver(mission_input, derived, req.constraints)
     )
     warnings.extend(s_warnings)
     trace.extend(s_trace)

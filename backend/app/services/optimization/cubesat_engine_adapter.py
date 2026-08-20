@@ -139,13 +139,53 @@ def _subsystem_component(ctx: _Ctx, selection: dict[str, str]) -> list[SelectedC
     return out
 
 
-def _is_routable(mission_input, data: CubeSatData) -> str | None:
+# OptionalUserConstraints fields backend/solver/ has no way to honor, that also have a
+# *real* effect on solve_subsystems_cpsat's behavior (a hard model constraint, or a
+# tightened value baked into `derived` upstream of subsystem selection). If a caller
+# sets any of these, routing to backend/solver/ would silently ignore an explicit ask
+# (e.g. "no propulsion", a cost cap, a tightened downlink/pointing requirement) rather
+# than respecting or rejecting it - fall back to solve_subsystems_cpsat instead, which
+# does support them. ground_station_count is deliberately excluded: backend/solver/ is
+# the one engine that consumes it.
+#
+# altitude_band_km is deliberately excluded too, despite existing on
+# OptionalUserConstraints: confirmed by reading requirement_derivation.py, it only ever
+# appends a trace note ("Constraint noted: altitude_band_km=...") and changes no
+# requirement value for *either* engine - it's inert scaffolding for a not-yet-built
+# feature (the fixed review's issue #6), not a real ask either engine currently honors.
+# The frontend's altitude slider also always submits a default value (e.g. 500 km) even
+# when the user never touches it, so treating it as "unsupported" would make
+# backend/solver/ unreachable from the actual wizard - same failure mode
+# _has_real_optimization_priority already guards against for optimization_priority.
+_UNSUPPORTED_CONSTRAINT_FIELDS = (
+    "cost_cap_kusd",
+    "max_bus_size_u",
+    "preferred_propulsion",
+    "min_downlink_mbps",
+    "max_pointing_error_deg",
+)
+
+
+def _has_real_optimization_priority(constraints: OptionalUserConstraints | None) -> bool:
+    priority = getattr(constraints, "optimization_priority", None) if constraints else None
+    return priority is not None and priority != "balanced"
+
+
+def _is_routable(
+    mission_input, data: CubeSatData, constraints: OptionalUserConstraints | None
+) -> str | None:
     """Returns the payload_id to solve with backend/solver/, or None to fall back."""
     payload = mission_input.payload
     if getattr(payload, "type", None) != "catalog":
         return None
     payload_id = payload.payload_id
     if payload_id not in data.payloads:
+        return None
+    if _has_real_optimization_priority(constraints):
+        return None
+    if constraints is not None and any(
+        getattr(constraints, field, None) is not None for field in _UNSUPPORTED_CONSTRAINT_FIELDS
+    ):
         return None
     return payload_id
 
@@ -165,7 +205,7 @@ def solve_subsystems_via_backend_solver(
     list[str],
 ]:
     data = load_all_data()
-    payload_id = _is_routable(mission_input, data)
+    payload_id = _is_routable(mission_input, data, constraints)
     if payload_id is None:
         return solve_subsystems_cpsat(mission_input, derived, constraints)
 

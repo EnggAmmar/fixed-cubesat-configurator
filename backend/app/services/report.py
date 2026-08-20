@@ -468,7 +468,13 @@ def build_mission_report_payload(
     )
 
     platform_catalog = _catalog_platforms_by_id().get(solution.platform.platform_id)
-    platform_cost_kusd = platform_catalog.cost_kusd if platform_catalog is not None else None
+    # Prefer the actually-solved platform's own cost (present for any engine); the
+    # catalog.json lookup is a fallback for older responses that didn't carry it.
+    platform_cost_kusd = (
+        solution.platform.cost_kusd
+        if solution.platform.cost_kusd is not None
+        else (platform_catalog.cost_kusd if platform_catalog is not None else None)
+    )
     subsystem_cost_kusd = sum(float(item["cost_kusd"] or 0) for item in subsystems)
     visible_cost_kusd = subsystem_cost_kusd + (platform_cost_kusd or 0)
     cost_delta_kusd = solution.budgets.total_cost_kusd - visible_cost_kusd
@@ -509,6 +515,22 @@ def build_mission_report_payload(
                 "cost_kusd": platform.cost_kusd,
             }
         )
+
+    if platform_catalog is None:
+        # The selected platform isn't one of the seeded catalog.json entries this
+        # comparison table is built from (e.g. it came from a different solver engine
+        # with its own bus classes/IDs - see cubesat_engine_adapter.py). Represent the
+        # actual selection directly rather than silently showing no "selected" row.
+        bus_candidates.append(
+            {
+                "candidate_bus": solution.platform.name,
+                "bus_size_u": solution.platform.bus_size_u,
+                "status": "selected",
+                "reason": "Selected by CP-SAT minimum-cost objective under active constraints.",
+                "cost_kusd": platform_cost_kusd,
+            }
+        )
+        bus_candidates.sort(key=lambda item: item["bus_size_u"])
 
     base_constraints = list(trace.get("constraints", []))
     extra_constraints = [

@@ -117,6 +117,7 @@ def _solution_from_advanced(advanced_response) -> SolverSolution:
         max_payload_volume_cm3=float(structure.metadata["max_payload_volume_cm3"]),
         avg_power_gen_w=float(structure.metadata["avg_power_gen_w"]),
         peak_power_gen_w=float(structure.metadata["peak_power_gen_w"]),
+        cost_kusd=structure.cost_kusd,
     )
     selected = [
         SelectedSubsystem(
