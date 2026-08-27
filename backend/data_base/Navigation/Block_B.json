@@ -1,0 +1,15 @@
+{
+  "mission_family": "Navigation",
+  "block": "RESERVED_BLOCK_B_NOT_YET_AUTHORED",
+  "schema_version": "ONE_V3_PAYLOAD_DB_4.0",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [],
+  "notes": [
+    "See Block_A.json in this same directory for the full explanation - both files were 0 bytes before this audit, for the same reason.",
+    "MASTER_Navigation.json is complete and self-sufficient; it does not depend on this file. No code loads Block_*.json files at runtime."
+  ]
+}

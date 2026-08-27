@@ -126,6 +126,7 @@ def derive_subsystem_requirements(
             if p.thermal_class in ThermalClass._value2member_map_
             else ThermalClass.standard
         )
+        db_recommended_bus_min_u = p.recommended_bus_min_u
         trace.append(f"Payload input: catalog payload `{payload_id}` ({payload_name}).")
     else:
         p = mission_input.payload
@@ -138,6 +139,7 @@ def derive_subsystem_requirements(
         data_rate_mbps = p.data_rate_mbps
         pointing_accuracy_deg = p.pointing_accuracy_deg
         thermal_class = p.thermal_class or ThermalClass.standard
+        db_recommended_bus_min_u = None
         trace.append(f"Payload input: My Payload `{payload_name}`.")
         trace.append(f"Payload volume: {vol_cm3:g} cm^3 => {payload_vol_u:g} U (1U≈1000 cm^3).")
         if p.gpu_required_tops is not None:
@@ -157,6 +159,31 @@ def derive_subsystem_requirements(
     )
     recommended_bus_u = _snap_up_to_standard_u(required_bus_u)
     trace.append(f"Recommended standard bus size: {recommended_bus_u:g}U.")
+
+    if db_recommended_bus_min_u is not None:
+        trace.append(
+            "Cross-check: payload database recommends >= "
+            f"{db_recommended_bus_min_u:g}U for this payload; this pipeline's own packaging "
+            f"rule recommends {recommended_bus_u:g}U."
+        )
+        if recommended_bus_u < db_recommended_bus_min_u:
+            # Smaller than the database's own engineering judgment is the more
+            # actionable direction - surface it as a warning, not just a trace note.
+            warnings.append(
+                f"Computed bus size ({recommended_bus_u:g}U) is smaller than the payload "
+                f"database's own recommendation ({db_recommended_bus_min_u:g}U); review before "
+                "trusting this sizing."
+            )
+        elif recommended_bus_u > db_recommended_bus_min_u:
+            # Larger than the database's recommendation is the documented, systemic gap
+            # this project is already tracking (Phase C: orbit assumptions are fixed
+            # constants, not derived from the mission's actual altitude/inclination) -
+            # informational in the trace, not a per-request actionable warning.
+            trace.append(
+                "This pipeline's own recommendation is larger than the database's - a known, "
+                "tracked gap (see the project's Phase C remediation notes), not specific to "
+                "this payload."
+            )
 
     estimated_total_mass_budget_kg = max(1.0, payload_mass_kg * 1.25 + recommended_bus_u * 1.1)
     trace.append(

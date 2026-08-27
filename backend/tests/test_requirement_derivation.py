@@ -108,3 +108,49 @@ def test_constraints_warn_on_max_bus_size() -> None:
     derived = body["derived"]
     assert any("Max bus size constraint" in w for w in derived["warnings"])
     assert any("Constraint check: max_bus_size_u" in t for t in derived["trace"])
+
+
+def test_full_db_payload_recommended_bus_matches_own_rule_is_informational_only() -> None:
+    """RS-EO-HSI-001 carries recommended_bus_min_u=6 in the full-DB record, and this
+    pipeline's own packaging rule also lands on 6U for it - an exact match should
+    surface as a trace note only, never a warning."""
+    client = TestClient(create_app())
+    body = _post(
+        client,
+        {
+            "input": {
+                "family": "remote_sensing",
+                "payload": {"type": "catalog", "payload_id": "RS-EO-HSI-001"},
+                "roi": {"type": "global"},
+                "parameters": {"revisit_time_hours": 24},
+            }
+        },
+    )
+    derived = body["derived"]
+    assert any("Cross-check: payload database recommends" in t for t in derived["trace"])
+    assert not any("smaller than the payload database" in w for w in derived["warnings"])
+
+
+def test_full_db_payload_undersized_vs_database_recommendation_warns() -> None:
+    """NAV-RF-BEACON-001's own database record recommends >= 3U, but this pipeline's
+    simple packaging heuristic computes only 1.5U for such a small/light payload -
+    a real, currently-occurring gap (F-08) that should surface as an actionable
+    warning, not just a trace note, since it's the tool sizing *smaller* than the
+    database's own engineering judgment."""
+    client = TestClient(create_app())
+    body = _post(
+        client,
+        {
+            "input": {
+                "family": "navigation",
+                "payload": {"type": "catalog", "payload_id": "NAV-RF-BEACON-001"},
+                "roi": {"type": "global"},
+                "parameters": {"revisit_time_hours": 48},
+            }
+        },
+    )
+    derived = body["derived"]
+    assert derived["required_bus_volume_u"] < 3.0
+    assert any(
+        "smaller than the payload database's own recommendation" in w for w in derived["warnings"]
+    )

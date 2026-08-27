@@ -25,6 +25,15 @@ class CatalogPayload:
     data_rate_mbps: float | None
     pointing_accuracy_deg: float | None
     thermal_class: str | None
+    # Optional engineering-judgment fields, present only for full-database payloads
+    # (see payload_resolver.py::_normalize_full_db_product). Seeded catalog.json
+    # payloads simply don't have these keys, so they default to None.
+    recommended_bus_min_u: float | None = None
+    recommended_bus_min_mass_kg: float | None = None
+    daily_data_generation_gb: float | None = None
+    mission_duty_cycle_percent: float | None = None
+    integration_risk: str | None = None
+    radiation_sensitivity: str | None = None
 
 
 @dataclass(frozen=True)

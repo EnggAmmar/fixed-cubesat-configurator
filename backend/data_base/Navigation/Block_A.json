@@ -1,0 +1,17 @@
+{
+  "mission_family": "Navigation",
+  "block": "RESERVED_BLOCK_A_NOT_YET_AUTHORED",
+  "schema_version": "ONE_V3_PAYLOAD_DB_4.0",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [],
+  "notes": [
+    "This file was 0 bytes before this audit; it is not empty because data went missing.",
+    "Remote_Sensing and IoT_Comm needed multiple authoring batches (Block_A..Block_E / Block_A..Block_C) to cover their broader payload variety. Navigation's full payload set was authored in a single batch, labelled Block_C, whose variants and product count match MASTER_Navigation.json exactly.",
+    "Block_A and Block_B were reserved slots for a future Navigation payload expansion that was never authored. No code loads Block_*.json files at runtime (only the MASTER_*.json files are read); MASTER_Navigation.json is complete and self-sufficient on its own.",
+    "If Navigation's payload variety grows, new variants belong here (or in Block_B) rather than overloading Block_C, to keep the same batch structure the other two mission families use."
+  ]
+}

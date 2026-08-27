@@ -41,6 +41,10 @@ def _as_float(value: Any) -> float | None:
         return None
 
 
+def _as_str_or_none(value: Any) -> str | None:
+    return str(value) if value else None
+
+
 def _required_float(value: Any, *, field: str, payload_id: str) -> float:
     out = _as_float(value)
     if out is None:
@@ -125,6 +129,12 @@ def _normalize_full_db_product(
         data_rate_mbps=data_rate_mbps,
         pointing_accuracy_deg=pointing_accuracy_deg,
         thermal_class=thermal_class,
+        recommended_bus_min_u=_as_float(product.get("recommended_bus_min_u")),
+        recommended_bus_min_mass_kg=_as_float(product.get("recommended_bus_min_mass_kg")),
+        daily_data_generation_gb=_as_float(product.get("daily_data_generation_gb")),
+        mission_duty_cycle_percent=_as_float(product.get("mission_duty_cycle_percent")),
+        integration_risk=_as_str_or_none(product.get("integration_risk")),
+        radiation_sensitivity=_as_str_or_none(product.get("radiation_sensitivity")),
     )
 
 
