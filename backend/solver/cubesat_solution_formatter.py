@@ -9,6 +9,7 @@ from .cubesat_constraint_injector import F_PACK_VOLUME
 from .cubesat_cp_model_builder import TIERS, CubeSatModel, Tier
 from .cubesat_data_loader import CubeSatData
 from .cubesat_precompute_loader import ObjectiveCoefficients
+from .orbit_mechanics import orbit_assumptions_for_family
 
 
 @dataclass(frozen=True)
@@ -52,15 +53,16 @@ def _compute_capacities(data: CubeSatData, sel: _Selection) -> dict[str, float]:
     bus = data.bus_library[sel.bus_class]
     eps = data.eps_library[sel.eps_tier]
 
-    f_sun = _assumption(data, "power_assumptions", "sunlight_fraction")
-    f_ecl = _assumption(data, "power_assumptions", "eclipse_fraction")
     eta_eps = _assumption(data, "power_assumptions", "eps_efficiency")
     k_deg = _assumption(data, "power_assumptions", "solar_degradation_factor_eol")
     DoD_lim = _assumption(data, "battery_assumptions", "battery_dod_limit")
     eta_batt = _assumption(data, "battery_assumptions", "battery_round_trip_efficiency")
     k_batt = _assumption(data, "battery_assumptions", "battery_capacity_derating_factor")
     Pdens_sunlit = _assumption(data, "solar_generation_assumptions", "Pdens_sunlit_W_per_m2")
-    T_orbit_hr = _assumption(data, "orbit_assumptions", "nominal_orbit_period_hr")
+    # See the matching comment in cubesat_constraint_injector.py's inject_constraints (F-07).
+    T_orbit_hr, f_sun, f_ecl = orbit_assumptions_for_family(
+        data.payloads[sel.payload_id].mission_family
+    )
     U_over_u = _assumption(data, "volume_margin_assumptions", "payload_volume_overhead_u")
 
     def _pavg_cap_from_batt_wh(c_wh: float) -> float:

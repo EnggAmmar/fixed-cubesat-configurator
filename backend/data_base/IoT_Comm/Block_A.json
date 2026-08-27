@@ -1,0 +1,852 @@
+{
+  "mission_family": "IoT / Communication",
+  "block": "RECONSTRUCTED_BLOCK_A_COMMUNICATION_PAYLOADS",
+  "schema_version": "ONE_V3_PAYLOAD_DB_3.1",
+  "dimension_convention": {
+    "length_x": "payload longitudinal axis in mm",
+    "width_y": "payload lateral axis in mm",
+    "height_z": "payload stack depth / protrusion axis in mm"
+  },
+  "variants": [
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "RF Communication",
+      "payload_variant": "Bent-Pipe Transponders",
+      "products": [
+        {
+          "payload_id": "IOT-COM-BPT-001",
+          "vendor": "Paradigma Tech",
+          "product_name": "Ka-Band Transparent Bent Pipe Transponder",
+          "mass_kg": 1.9,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 160
+          },
+          "payload_envelope_u": 1.6,
+          "mounting_face": "internal",
+          "avg_power_w": 8.5,
+          "peak_power_w": 12.0,
+          "nominal_data_rate_mbps": 45,
+          "spectral_band": "Ka transparent relay",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.15,
+          "estimated_cost_usd": 165000
+        },
+        {
+          "payload_id": "IOT-COM-BPT-002",
+          "vendor": "OrbitalRF OEM",
+          "product_name": "S/X Band Bent Pipe Relay Payload",
+          "mass_kg": 1.6,
+          "dimensions_mm": {
+            "length_x": 95,
+            "width_y": 95,
+            "height_z": 145
+          },
+          "payload_envelope_u": 1.4,
+          "mounting_face": "internal",
+          "avg_power_w": 7.2,
+          "peak_power_w": 10.5,
+          "nominal_data_rate_mbps": 32,
+          "spectral_band": "S/X transparent forwarding",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.18,
+          "estimated_cost_usd": 142000
+        },
+        {
+          "payload_id": "IOT-COM-BPT-003",
+          "vendor": "AAC Clyde OEM",
+          "product_name": "UHF Transparent Relay Module",
+          "mass_kg": 1.1,
+          "dimensions_mm": {
+            "length_x": 82,
+            "width_y": 82,
+            "height_z": 120
+          },
+          "payload_envelope_u": 1.0,
+          "mounting_face": "internal",
+          "avg_power_w": 5.8,
+          "peak_power_w": 8.2,
+          "nominal_data_rate_mbps": 18,
+          "spectral_band": "UHF bent relay",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.18,
+          "estimated_cost_usd": 118000
+        },
+        {
+          "payload_id": "IOT-COM-BPT-004",
+          "vendor": "NanoLink OEM",
+          "product_name": "Low Orbit Bent Pipe Store Forward Repeater",
+          "mass_kg": 1.35,
+          "dimensions_mm": {
+            "length_x": 88,
+            "width_y": 88,
+            "height_z": 130
+          },
+          "payload_envelope_u": 1.1,
+          "mounting_face": "internal",
+          "avg_power_w": 6.4,
+          "peak_power_w": 9.0,
+          "nominal_data_rate_mbps": 24,
+          "spectral_band": "S-band relay",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.17,
+          "estimated_cost_usd": 126000
+        }
+      ]
+    },
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "RF Communication",
+      "payload_variant": "Regenerative Transponders",
+      "products": [
+        {
+          "payload_id": "IOT-COM-RGT-001",
+          "vendor": "JPL Iris Heritage",
+          "product_name": "Integrated Regenerative Deep Space Transponder",
+          "mass_kg": 1.2,
+          "dimensions_mm": {
+            "length_x": 90,
+            "width_y": 90,
+            "height_z": 120
+          },
+          "payload_envelope_u": 1.0,
+          "mounting_face": "internal",
+          "avg_power_w": 6.5,
+          "peak_power_w": 9.5,
+          "nominal_data_rate_mbps": 28,
+          "spectral_band": "X/Ka regenerative",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.12,
+          "estimated_cost_usd": 155000
+        },
+        {
+          "payload_id": "IOT-COM-RGT-002",
+          "vendor": "SatCore OEM",
+          "product_name": "Store-and-Forward Regenerative Comm Processor",
+          "mass_kg": 1.35,
+          "dimensions_mm": {
+            "length_x": 92,
+            "width_y": 92,
+            "height_z": 128
+          },
+          "payload_envelope_u": 1.1,
+          "mounting_face": "internal",
+          "avg_power_w": 6.8,
+          "peak_power_w": 9.8,
+          "nominal_data_rate_mbps": 30,
+          "spectral_band": "S/X decode-reencode",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.12,
+          "estimated_cost_usd": 148000
+        },
+        {
+          "payload_id": "IOT-COM-RGT-003",
+          "vendor": "GomSpace OEM",
+          "product_name": "Adaptive Packet Regeneration Unit",
+          "mass_kg": 1.1,
+          "dimensions_mm": {
+            "length_x": 85,
+            "width_y": 85,
+            "height_z": 118
+          },
+          "payload_envelope_u": 0.9,
+          "mounting_face": "internal",
+          "avg_power_w": 5.9,
+          "peak_power_w": 8.8,
+          "nominal_data_rate_mbps": 26,
+          "spectral_band": "packet decode route",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.13,
+          "estimated_cost_usd": 138000
+        },
+        {
+          "payload_id": "IOT-COM-RGT-004",
+          "vendor": "SatRoute OEM",
+          "product_name": "Autonomous Mesh Relay Regenerator",
+          "mass_kg": 1.45,
+          "dimensions_mm": {
+            "length_x": 94,
+            "width_y": 94,
+            "height_z": 132
+          },
+          "payload_envelope_u": 1.2,
+          "mounting_face": "internal",
+          "avg_power_w": 7.1,
+          "peak_power_w": 10.0,
+          "nominal_data_rate_mbps": 34,
+          "spectral_band": "multi-hop regenerative",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.12,
+          "estimated_cost_usd": 152000
+        }
+      ]
+    },
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "RF Communication",
+      "payload_variant": "Software-Defined Transponders",
+      "products": [
+        {
+          "payload_id": "IOT-COM-SDT-001",
+          "vendor": "Albor Space",
+          "product_name": "5G/6G SDR CubeSat Payload",
+          "mass_kg": 1.8,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 150
+          },
+          "payload_envelope_u": 1.5,
+          "mounting_face": "internal",
+          "avg_power_w": 9.0,
+          "peak_power_w": 13.5,
+          "nominal_data_rate_mbps": 80,
+          "spectral_band": "reconfigurable SDR comm",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.1,
+          "estimated_cost_usd": 188000
+        },
+        {
+          "payload_id": "IOT-COM-SDT-002",
+          "vendor": "GomSpace SDR OEM",
+          "product_name": "Adaptive Waveform SDR Transponder",
+          "mass_kg": 1.55,
+          "dimensions_mm": {
+            "length_x": 95,
+            "width_y": 95,
+            "height_z": 140
+          },
+          "payload_envelope_u": 1.4,
+          "mounting_face": "internal",
+          "avg_power_w": 8.2,
+          "peak_power_w": 12.2,
+          "nominal_data_rate_mbps": 72,
+          "spectral_band": "software radio payload",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.1,
+          "estimated_cost_usd": 176000
+        },
+        {
+          "payload_id": "IOT-COM-SDT-003",
+          "vendor": "Yttek SDRSpace",
+          "product_name": "SDRSpace-2 Orbital Radio",
+          "mass_kg": 1.42,
+          "dimensions_mm": {
+            "length_x": 90,
+            "width_y": 90,
+            "height_z": 135
+          },
+          "payload_envelope_u": 1.3,
+          "mounting_face": "internal",
+          "avg_power_w": 7.8,
+          "peak_power_w": 11.8,
+          "nominal_data_rate_mbps": 68,
+          "spectral_band": "reprogrammable waveform engine",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.1,
+          "estimated_cost_usd": 169000
+        },
+        {
+          "payload_id": "IOT-COM-SDT-004",
+          "vendor": "NanoCom OEM",
+          "product_name": "Wideband SDR Mesh Payload",
+          "mass_kg": 1.62,
+          "dimensions_mm": {
+            "length_x": 96,
+            "width_y": 96,
+            "height_z": 142
+          },
+          "payload_envelope_u": 1.4,
+          "mounting_face": "internal",
+          "avg_power_w": 8.5,
+          "peak_power_w": 12.5,
+          "nominal_data_rate_mbps": 74,
+          "spectral_band": "mesh SDR comm",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.1,
+          "estimated_cost_usd": 178000
+        },
+        {
+          "payload_id": "IOT-COM-SDT-005",
+          "vendor": "OpenSat OEM",
+          "product_name": "Dynamic Spectrum Software Radio Payload",
+          "mass_kg": 1.48,
+          "dimensions_mm": {
+            "length_x": 92,
+            "width_y": 92,
+            "height_z": 138
+          },
+          "payload_envelope_u": 1.3,
+          "mounting_face": "internal",
+          "avg_power_w": 8.0,
+          "peak_power_w": 12.0,
+          "nominal_data_rate_mbps": 70,
+          "spectral_band": "adaptive frequency SDR",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.1,
+          "estimated_cost_usd": 171000
+        }
+      ]
+    },
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "RF Communication",
+      "payload_variant": "Signal Processors",
+      "products": [
+        {
+          "payload_id": "IOT-COM-SP-001",
+          "vendor": "SpaceDSP OEM",
+          "product_name": "Adaptive Modem Signal Processor",
+          "mass_kg": 0.95,
+          "dimensions_mm": {
+            "length_x": 80,
+            "width_y": 80,
+            "height_z": 90
+          },
+          "payload_envelope_u": 0.8,
+          "mounting_face": "internal",
+          "avg_power_w": 4.5,
+          "peak_power_w": 6.5,
+          "nominal_data_rate_mbps": 60,
+          "spectral_band": "digital baseband processing",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.2,
+          "estimated_cost_usd": 98000
+        },
+        {
+          "payload_id": "IOT-COM-SP-002",
+          "vendor": "OrbitalLogic OEM",
+          "product_name": "Forward Error Correction Comm Processor",
+          "mass_kg": 0.88,
+          "dimensions_mm": {
+            "length_x": 78,
+            "width_y": 78,
+            "height_z": 85
+          },
+          "payload_envelope_u": 0.7,
+          "mounting_face": "internal",
+          "avg_power_w": 4.0,
+          "peak_power_w": 6.0,
+          "nominal_data_rate_mbps": 55,
+          "spectral_band": "packet correction engine",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.2,
+          "estimated_cost_usd": 92000
+        },
+        {
+          "payload_id": "IOT-COM-SP-003",
+          "vendor": "SignalMesh OEM",
+          "product_name": "Adaptive Beamforming Processor",
+          "mass_kg": 0.9,
+          "dimensions_mm": {
+            "length_x": 79,
+            "width_y": 79,
+            "height_z": 87
+          },
+          "payload_envelope_u": 0.75,
+          "mounting_face": "internal",
+          "avg_power_w": 4.2,
+          "peak_power_w": 6.2,
+          "nominal_data_rate_mbps": 58,
+          "spectral_band": "beam steering compute",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.2,
+          "estimated_cost_usd": 95000
+        },
+        {
+          "payload_id": "IOT-COM-SP-004",
+          "vendor": "RFCore OEM",
+          "product_name": "Adaptive Link Budget Processor",
+          "mass_kg": 0.86,
+          "dimensions_mm": {
+            "length_x": 77,
+            "width_y": 77,
+            "height_z": 84
+          },
+          "payload_envelope_u": 0.7,
+          "mounting_face": "internal",
+          "avg_power_w": 3.9,
+          "peak_power_w": 5.8,
+          "nominal_data_rate_mbps": 54,
+          "spectral_band": "link adaptation logic",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.2,
+          "estimated_cost_usd": 90500
+        }
+      ]
+    },
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "RF Communication",
+      "payload_variant": "RF Transmitters",
+      "products": [
+        {
+          "payload_id": "IOT-COM-TX-001",
+          "vendor": "SatRev",
+          "product_name": "Broadband RF Downlink Transmitter",
+          "mass_kg": 0.72,
+          "dimensions_mm": {
+            "length_x": 70,
+            "width_y": 70,
+            "height_z": 55
+          },
+          "payload_envelope_u": 0.5,
+          "mounting_face": "internal",
+          "avg_power_w": 3.8,
+          "peak_power_w": 6.8,
+          "nominal_data_rate_mbps": 50,
+          "spectral_band": "C-Band TX",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.22,
+          "estimated_cost_usd": 76000
+        },
+        {
+          "payload_id": "IOT-COM-TX-002",
+          "vendor": "NanoAvionics",
+          "product_name": "S/X High Throughput RF Beacon TX",
+          "mass_kg": 0.68,
+          "dimensions_mm": {
+            "length_x": 68,
+            "width_y": 68,
+            "height_z": 52
+          },
+          "payload_envelope_u": 0.45,
+          "mounting_face": "internal",
+          "avg_power_w": 3.5,
+          "peak_power_w": 6.2,
+          "nominal_data_rate_mbps": 42,
+          "spectral_band": "S/X TX",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.22,
+          "estimated_cost_usd": 71000
+        },
+        {
+          "payload_id": "IOT-COM-TX-003",
+          "vendor": "ISISPACE",
+          "product_name": "UHF/VHF Mission RF Transmitter",
+          "mass_kg": 0.55,
+          "dimensions_mm": {
+            "length_x": 60,
+            "width_y": 60,
+            "height_z": 45
+          },
+          "payload_envelope_u": 0.35,
+          "mounting_face": "internal",
+          "avg_power_w": 2.9,
+          "peak_power_w": 5.0,
+          "nominal_data_rate_mbps": 15,
+          "spectral_band": "UHF/VHF TX",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.24,
+          "estimated_cost_usd": 52000
+        },
+        {
+          "payload_id": "IOT-COM-TX-004",
+          "vendor": "AAC Clyde Space",
+          "product_name": "X-Band Burst Data Transmitter",
+          "mass_kg": 0.82,
+          "dimensions_mm": {
+            "length_x": 72,
+            "width_y": 72,
+            "height_z": 58
+          },
+          "payload_envelope_u": 0.55,
+          "mounting_face": "internal",
+          "avg_power_w": 4.2,
+          "peak_power_w": 7.2,
+          "nominal_data_rate_mbps": 58,
+          "spectral_band": "X-band payload TX",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.22,
+          "estimated_cost_usd": 79000
+        }
+      ]
+    },
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "RF Communication",
+      "payload_variant": "RF Receivers",
+      "products": [
+        {
+          "payload_id": "IOT-COM-RX-001",
+          "vendor": "GomSpace",
+          "product_name": "Wideband RF Telecommand Receiver",
+          "mass_kg": 0.52,
+          "dimensions_mm": {
+            "length_x": 60,
+            "width_y": 60,
+            "height_z": 45
+          },
+          "payload_envelope_u": 0.35,
+          "mounting_face": "internal",
+          "avg_power_w": 2.5,
+          "peak_power_w": 4.0,
+          "nominal_data_rate_mbps": 20,
+          "spectral_band": "UHF/S command RX",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.25,
+          "estimated_cost_usd": 54000
+        },
+        {
+          "payload_id": "IOT-COM-RX-002",
+          "vendor": "ISISPACE",
+          "product_name": "MultiBand RF Acquisition Receiver",
+          "mass_kg": 0.58,
+          "dimensions_mm": {
+            "length_x": 62,
+            "width_y": 62,
+            "height_z": 48
+          },
+          "payload_envelope_u": 0.38,
+          "mounting_face": "internal",
+          "avg_power_w": 2.8,
+          "peak_power_w": 4.2,
+          "nominal_data_rate_mbps": 24,
+          "spectral_band": "S/X receive",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.25,
+          "estimated_cost_usd": 58000
+        },
+        {
+          "payload_id": "IOT-COM-RX-003",
+          "vendor": "NanoCom",
+          "product_name": "Low Noise RF Downlink Receiver",
+          "mass_kg": 0.5,
+          "dimensions_mm": {
+            "length_x": 58,
+            "width_y": 58,
+            "height_z": 44
+          },
+          "payload_envelope_u": 0.33,
+          "mounting_face": "internal",
+          "avg_power_w": 2.4,
+          "peak_power_w": 3.8,
+          "nominal_data_rate_mbps": 18,
+          "spectral_band": "L/S RX",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.25,
+          "estimated_cost_usd": 51000
+        },
+        {
+          "payload_id": "IOT-COM-RX-004",
+          "vendor": "EnduroSat",
+          "product_name": "X-Band Payload Receiver Frontend",
+          "mass_kg": 0.64,
+          "dimensions_mm": {
+            "length_x": 64,
+            "width_y": 64,
+            "height_z": 50
+          },
+          "payload_envelope_u": 0.4,
+          "mounting_face": "internal",
+          "avg_power_w": 3.0,
+          "peak_power_w": 4.5,
+          "nominal_data_rate_mbps": 28,
+          "spectral_band": "X receive frontend",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.24,
+          "estimated_cost_usd": 62000
+        }
+      ]
+    },
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "Optical Communication",
+      "payload_variant": "Laser Communication Terminals",
+      "products": [
+        {
+          "payload_id": "IOT-COM-LCT-001",
+          "vendor": "DLR/TESAT",
+          "product_name": "OSIRIS4CubeSat Laser Comm Terminal",
+          "mass_kg": 0.35,
+          "dimensions_mm": {
+            "length_x": 34,
+            "width_y": 34,
+            "height_z": 100
+          },
+          "payload_envelope_u": 0.33,
+          "mounting_face": "zenith",
+          "avg_power_w": 8.0,
+          "peak_power_w": 14.0,
+          "nominal_data_rate_mbps": 1000,
+          "spectral_band": "1550nm optical laser",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.005,
+          "estimated_cost_usd": 240000
+        },
+        {
+          "payload_id": "IOT-COM-LCT-002",
+          "vendor": "CubeLCT",
+          "product_name": "Cube Laser Communication Terminal",
+          "mass_kg": 0.42,
+          "dimensions_mm": {
+            "length_x": 40,
+            "width_y": 40,
+            "height_z": 105
+          },
+          "payload_envelope_u": 0.4,
+          "mounting_face": "zenith",
+          "avg_power_w": 8.8,
+          "peak_power_w": 15.0,
+          "nominal_data_rate_mbps": 1000,
+          "spectral_band": "optical DTE laser",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.005,
+          "estimated_cost_usd": 255000
+        },
+        {
+          "payload_id": "IOT-COM-LCT-003",
+          "vendor": "Stellar Project",
+          "product_name": "LaserCube Optical Terminal",
+          "mass_kg": 1.8,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 200
+          },
+          "payload_envelope_u": 2.0,
+          "mounting_face": "zenith",
+          "avg_power_w": 15.0,
+          "peak_power_w": 24.0,
+          "nominal_data_rate_mbps": 2500,
+          "spectral_band": "bidirectional lasercom",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.004,
+          "estimated_cost_usd": 330000
+        },
+        {
+          "payload_id": "IOT-COM-LCT-004",
+          "vendor": "Mynaric Derived",
+          "product_name": "Compact Space Laser Downlink Terminal",
+          "mass_kg": 1.6,
+          "dimensions_mm": {
+            "length_x": 92,
+            "width_y": 92,
+            "height_z": 185
+          },
+          "payload_envelope_u": 1.8,
+          "mounting_face": "zenith",
+          "avg_power_w": 14.0,
+          "peak_power_w": 22.0,
+          "nominal_data_rate_mbps": 1800,
+          "spectral_band": "1550nm high-rate downlink",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.004,
+          "estimated_cost_usd": 315000
+        }
+      ]
+    },
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "Optical Communication",
+      "payload_variant": "Optical Links",
+      "products": [
+        {
+          "payload_id": "IOT-COM-OL-001",
+          "vendor": "Archangel Lightworks",
+          "product_name": "InterSat Optical Link Module",
+          "mass_kg": 0.65,
+          "dimensions_mm": {
+            "length_x": 70,
+            "width_y": 70,
+            "height_z": 90
+          },
+          "payload_envelope_u": 0.7,
+          "mounting_face": "zenith",
+          "avg_power_w": 6.5,
+          "peak_power_w": 11.5,
+          "nominal_data_rate_mbps": 500,
+          "spectral_band": "inter-satellite optical",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.008,
+          "estimated_cost_usd": 195000
+        },
+        {
+          "payload_id": "IOT-COM-OL-002",
+          "vendor": "Blue Cubed",
+          "product_name": "Compact Space Optical Backbone Link",
+          "mass_kg": 0.72,
+          "dimensions_mm": {
+            "length_x": 72,
+            "width_y": 72,
+            "height_z": 92
+          },
+          "payload_envelope_u": 0.75,
+          "mounting_face": "zenith",
+          "avg_power_w": 7.0,
+          "peak_power_w": 12.0,
+          "nominal_data_rate_mbps": 600,
+          "spectral_band": "optical relay crosslink",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.008,
+          "estimated_cost_usd": 205000
+        },
+        {
+          "payload_id": "IOT-COM-OL-003",
+          "vendor": "ALIGN Derived",
+          "product_name": "Gigabit Crosslink Optical Payload",
+          "mass_kg": 0.88,
+          "dimensions_mm": {
+            "length_x": 76,
+            "width_y": 76,
+            "height_z": 100
+          },
+          "payload_envelope_u": 0.8,
+          "mounting_face": "zenith",
+          "avg_power_w": 8.2,
+          "peak_power_w": 13.0,
+          "nominal_data_rate_mbps": 1000,
+          "spectral_band": "LEO-LEO optical link",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.007,
+          "estimated_cost_usd": 228000
+        },
+        {
+          "payload_id": "IOT-COM-OL-004",
+          "vendor": "Stellar Link OEM",
+          "product_name": "Full Duplex Optical Mesh Link",
+          "mass_kg": 0.95,
+          "dimensions_mm": {
+            "length_x": 78,
+            "width_y": 78,
+            "height_z": 102
+          },
+          "payload_envelope_u": 0.9,
+          "mounting_face": "zenith",
+          "avg_power_w": 8.5,
+          "peak_power_w": 13.5,
+          "nominal_data_rate_mbps": 1200,
+          "spectral_band": "mesh optical comm",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.007,
+          "estimated_cost_usd": 236000
+        }
+      ]
+    },
+    {
+      "payload_group": "Communication Payloads",
+      "payload_type": "Optical Communication",
+      "payload_variant": "Quantum Communication Systems",
+      "products": [
+        {
+          "payload_id": "IOT-COM-QC-001",
+          "vendor": "ROKS Heritage",
+          "product_name": "Quantum Key Distribution CubeSat Payload",
+          "mass_kg": 2.8,
+          "dimensions_mm": {
+            "length_x": 100,
+            "width_y": 100,
+            "height_z": 220
+          },
+          "payload_envelope_u": 2.2,
+          "mounting_face": "zenith",
+          "avg_power_w": 11.0,
+          "peak_power_w": 18.0,
+          "nominal_data_rate_mbps": 0.08,
+          "spectral_band": "single photon quantum",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.003,
+          "estimated_cost_usd": 420000
+        },
+        {
+          "payload_id": "IOT-COM-QC-002",
+          "vendor": "NanoBob Heritage",
+          "product_name": "Entangled Photon Quantum Comm Terminal",
+          "mass_kg": 3.2,
+          "dimensions_mm": {
+            "length_x": 110,
+            "width_y": 110,
+            "height_z": 240
+          },
+          "payload_envelope_u": 2.5,
+          "mounting_face": "zenith",
+          "avg_power_w": 12.5,
+          "peak_power_w": 19.5,
+          "nominal_data_rate_mbps": 0.1,
+          "spectral_band": "QKD photon exchange",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.003,
+          "estimated_cost_usd": 455000
+        },
+        {
+          "payload_id": "IOT-COM-QC-003",
+          "vendor": "QSpace Derived",
+          "product_name": "3U Quantum Optical Secure Link Payload",
+          "mass_kg": 2.4,
+          "dimensions_mm": {
+            "length_x": 95,
+            "width_y": 95,
+            "height_z": 205
+          },
+          "payload_envelope_u": 2.0,
+          "mounting_face": "zenith",
+          "avg_power_w": 10.0,
+          "peak_power_w": 16.5,
+          "nominal_data_rate_mbps": 0.06,
+          "spectral_band": "secure quantum optical downlink",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.003,
+          "estimated_cost_usd": 398000
+        },
+        {
+          "payload_id": "IOT-COM-QC-004",
+          "vendor": "PhotonShield OEM",
+          "product_name": "Orbital BB84 Quantum Terminal",
+          "mass_kg": 2.65,
+          "dimensions_mm": {
+            "length_x": 98,
+            "width_y": 98,
+            "height_z": 212
+          },
+          "payload_envelope_u": 2.1,
+          "mounting_face": "zenith",
+          "avg_power_w": 10.8,
+          "peak_power_w": 17.0,
+          "nominal_data_rate_mbps": 0.07,
+          "spectral_band": "BB84 secure photon link",
+          "ground_resolution_m": null,
+          "swath_km": null,
+          "pointing_requirement_deg": 0.003,
+          "estimated_cost_usd": 410000
+        }
+      ]
+    }
+  ]
+}

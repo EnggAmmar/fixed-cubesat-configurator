@@ -17,6 +17,7 @@ from .cubesat_data_loader import load_all_data
 from .cubesat_objective_builder import attach_objective
 from .cubesat_precompute_loader import load_all_precompute
 from .cubesat_solution_formatter import format_solution
+from .orbit_mechanics import orbit_assumptions_for_family
 
 
 def _apply_solver_parameters(s: cp_model.CpSolver) -> None:
@@ -147,8 +148,6 @@ def run_cubesat_diagnostic(
     def _ass(section: str, key: str) -> float:
         return float(ass[section][key]["value"])
 
-    f_sun = _ass("power_assumptions", "sunlight_fraction")
-    f_ecl = _ass("power_assumptions", "eclipse_fraction")
     eta_eps = _ass("power_assumptions", "eps_efficiency")
     k_deg = _ass("power_assumptions", "solar_degradation_factor_eol")
     M_pow = _ass("power_assumptions", "power_margin_factor")
@@ -174,7 +173,10 @@ def run_cubesat_diagnostic(
     M_th = _ass("thermal_assumptions", "thermal_margin_factor")
 
     Pdens_sunlit = _ass("solar_generation_assumptions", "Pdens_sunlit_W_per_m2")
-    T_orbit_hr = _ass("orbit_assumptions", "nominal_orbit_period_hr")
+    # See the matching comment in cubesat_constraint_injector.py's inject_constraints (F-07).
+    T_orbit_hr, f_sun, f_ecl = orbit_assumptions_for_family(
+        data.payloads[selected_payload_id].mission_family
+    )
 
     # Helpers for ordinals
     ord_class = {"LOW": 1, "MEDIUM": 2, "HIGH": 3, "EXTREME": 4}

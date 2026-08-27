@@ -6,6 +6,7 @@ from typing import NamedTuple
 from app.schemas.requirement_derivation import DerivedSubsystemRequirements, OptionalUserConstraints
 from app.schemas.subsystem_selection import Margins, SelectedComponent, Totals
 from app.services.optimization.cpsat_selection import solve_subsystems_cpsat
+from app.services.vendor_traceability import representative_product
 from solver.cubesat_data_loader import CubeSatData, load_all_data
 from solver.cubesat_precompute_loader import ObjectiveCoefficients, load_all_precompute
 from solver.cubesat_solver_runner import run_cubesat_solver
@@ -122,6 +123,9 @@ def _subsystem_component(ctx: _Ctx, selection: dict[str, str]) -> list[SelectedC
             metadata["downlink_mbps"] = float(lib_entry["nominal_supported_downlink_mbps"])
         if spec.domain == "adcs":
             metadata["pointing_error_deg"] = float(lib_entry["pointing_accuracy_deg"])
+        rep_product = representative_product(spec.domain, tier)
+        if rep_product is not None:
+            metadata["representative_product"] = rep_product
 
         out.append(
             SelectedComponent(

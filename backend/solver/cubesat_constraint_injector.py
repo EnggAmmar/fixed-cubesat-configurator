@@ -9,6 +9,7 @@ from ortools.sat.python import cp_model
 from .cubesat_cp_model_builder import BUS_CLASSES, TIERS, CubeSatModel, Tier
 from .cubesat_data_loader import CubeSatData
 from .cubesat_precompute_loader import PayloadPrecompute
+from .orbit_mechanics import orbit_assumptions_for_family
 
 S_MASS = 1000  # kg -> g
 S_POWER = 1000  # W -> mW
@@ -276,7 +277,12 @@ def inject_constraints(
     Pdens_sunlit_W_per_m2 = _get_assumption(
         ass, "solar_generation_assumptions", "Pdens_sunlit_W_per_m2"
     )
-    T_orbit_hr = _get_assumption(ass, "orbit_assumptions", "nominal_orbit_period_hr")
+    # Orbit period and sunlit/eclipse fractions derived from the selected payload's
+    # mission family reference altitude (F-07), replacing the fixed LEO-only globals
+    # above - see orbit_mechanics.py for why fixed 1.5h/38% eclipse is badly wrong for
+    # Navigation-family (MEO) missions.
+    mission_family = data.payloads[selected_payload_id].mission_family
+    T_orbit_hr, f_sun, f_ecl = orbit_assumptions_for_family(mission_family)
 
     # ---- Precompute selection expressions (linear) ----
     # Payload-selected scalars (only one payload is allowed, but keep it generic).
