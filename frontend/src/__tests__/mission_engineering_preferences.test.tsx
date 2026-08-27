@@ -78,7 +78,7 @@ test("setEngineeringPreferences merges and persists without erasing revisit_time
   await waitFor(() => {
     const raw = localStorage.getItem("mission_draft_v1");
     expect(raw).toBeTruthy();
-    const draft = JSON.parse(raw as string) as any;
+    const draft = JSON.parse(raw as string);
     expect(draft.parameters.revisit_time_hours).toBe(24);
     expect(draft.parameters.engineering_preferences.orbit_type).toBe("leo");
     expect(draft.parameters.engineering_preferences.altitude_km).toBe(500);

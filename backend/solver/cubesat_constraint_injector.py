@@ -10,7 +10,6 @@ from .cubesat_cp_model_builder import BUS_CLASSES, TIERS, CubeSatModel, Tier
 from .cubesat_data_loader import CubeSatData
 from .cubesat_precompute_loader import PayloadPrecompute
 
-
 S_MASS = 1000  # kg -> g
 S_POWER = 1000  # W -> mW
 S_VOL = 1000  # U -> mU
@@ -331,7 +330,9 @@ def inject_constraints(
     ord_req_struct_sel = sum(
         v.x_payload[pid] * payload_ints[pid].ord_req_struct for pid in payload_ints
     )
-    ord_req_prop_sel = sum(v.x_payload[pid] * payload_ints[pid].ord_req_prop for pid in payload_ints)
+    ord_req_prop_sel = sum(
+        v.x_payload[pid] * payload_ints[pid].ord_req_prop for pid in payload_ints
+    )
 
     # Integration-burden risk score (see _BURDEN_RISK_PTS): additive, not a tier floor.
     # (harness/EMI/contamination/radiation/vibration/deployment ordinals are read directly
@@ -363,12 +364,6 @@ def inject_constraints(
         * _floor_scaled(float(data.bus_library[u]["usable_internal_volume_u"]), S_VOL)
         for u in BUS_CLASSES
     )
-    U_bus_struct_sel_mU = sum(
-        v.b_bus[u]
-        * _ceil_scaled(float(data.bus_library[u]["bus_structure_volume_u"]), S_VOL)
-        for u in BUS_CLASSES
-    )
-
     M_dry_max_sel_g = sum(
         v.b_bus[u]
         * _floor_scaled(float(data.bus_library[u]["max_recommended_dry_mass_kg"]), S_MASS)
@@ -381,15 +376,25 @@ def inject_constraints(
     )
 
     # Subsystem volumes and masses (library-derived proxies).
-    def _tier_sum(var_map: dict[Tier, cp_model.IntVar], coeffs: dict[Tier, int]) -> cp_model.LinearExpr:
+    def _tier_sum(
+        var_map: dict[Tier, cp_model.IntVar], coeffs: dict[Tier, int]
+    ) -> cp_model.LinearExpr:
         return sum(var_map[k] * coeffs[k] for k in TIERS)
 
     U_eps_mU = {k: _ceil_scaled(float(data.eps_library[k]["eps_volume_u"]), S_VOL) for k in TIERS}
     m_eps_g = {k: _ceil_scaled(float(data.eps_library[k]["eps_mass_kg"]), S_MASS) for k in TIERS}
-    U_adcs_mU = {k: _ceil_scaled(float(data.adcs_library[k]["adcs_volume_u"]), S_VOL) for k in TIERS}
-    m_adcs_g = {k: _ceil_scaled(float(data.adcs_library[k]["adcs_mass_kg"]), S_MASS) for k in TIERS}
-    U_comms_mU = {k: _ceil_scaled(float(data.comms_library[k]["comms_volume_u"]), S_VOL) for k in TIERS}
-    m_comms_g = {k: _ceil_scaled(float(data.comms_library[k]["comms_mass_kg"]), S_MASS) for k in TIERS}
+    U_adcs_mU = {
+        k: _ceil_scaled(float(data.adcs_library[k]["adcs_volume_u"]), S_VOL) for k in TIERS
+    }
+    m_adcs_g = {
+        k: _ceil_scaled(float(data.adcs_library[k]["adcs_mass_kg"]), S_MASS) for k in TIERS
+    }
+    U_comms_mU = {
+        k: _ceil_scaled(float(data.comms_library[k]["comms_volume_u"]), S_VOL) for k in TIERS
+    }
+    m_comms_g = {
+        k: _ceil_scaled(float(data.comms_library[k]["comms_mass_kg"]), S_MASS) for k in TIERS
+    }
     U_obc_mU = {k: _ceil_scaled(float(data.obc_library[k]["obc_volume_u"]), S_VOL) for k in TIERS}
     m_obc_g = {k: _ceil_scaled(float(data.obc_library[k]["obc_mass_kg"]), S_MASS) for k in TIERS}
     U_therm_mU = {
@@ -402,7 +407,9 @@ def inject_constraints(
         k: _ceil_scaled(float(data.propulsion_library[k]["propellant_volume_u"]), S_VOL)
         for k in TIERS
     }
-    m_prop_g = {k: _ceil_scaled(float(data.propulsion_library[k]["prop_mass_kg"]), S_MASS) for k in TIERS}
+    m_prop_g = {
+        k: _ceil_scaled(float(data.propulsion_library[k]["prop_mass_kg"]), S_MASS) for k in TIERS
+    }
 
     U_sub_mU = (
         _tier_sum(v.e_eps, U_eps_mU)
@@ -426,7 +433,8 @@ def inject_constraints(
     # hardware. Model this via a conservative packaging concurrency factor applied to subsystem U.
     # Payload envelope and harness reserve are NOT reduced.
     #
-    # effective_subsystem_volume = F_PACK_VOLUME * (EPS_u + ADCS_u + COMMS_u + OBC_u + THERM_u + PROP_u)
+    # effective_subsystem_volume =
+    #   F_PACK_VOLUME * (EPS_u + ADCS_u + COMMS_u + OBC_u + THERM_u + PROP_u)
     # U_total = payload_envelope + harness_overhead + effective_subsystem_volume
     f_pack_num = int(round(F_PACK_VOLUME * 100))
     U_sub_eff_mU = model.new_int_var(0, 200_000, "U_sub_eff_mU")
@@ -442,12 +450,14 @@ def inject_constraints(
     model.add(v.U_total_mU * 1000 <= U_bus_sel_mU * f_fill_num)
 
     # Mass totals with growth margin.
-    # Prompt 12.9: reduce overbinding reserve conservatism by applying F_MASS_RESERVE only to
-    # non-payload reserve adders (structure/harness-like). Payload and subsystem masses remain unchanged.
+    # Prompt 12.9: reduce overbinding reserve conservatism by applying F_MASS_RESERVE
+    # only to non-payload reserve adders (structure/harness-like). Payload and
+    # subsystem masses remain unchanged.
     M_payload_sub_nom_g = m_payload_g + M_sub_g
     M_mass_ppm = int(round(M_mass * 1000))
     M_mass_bus_ppm = int(round((M_mass * F_MASS_RESERVE) * 1000))
-    # v.M_total_g = ceil( (1+M_mass)*(payload+subsystems) + (1+F_MASS_RESERVE*M_mass)*bus_structure )
+    # v.M_total_g =
+    #   ceil((1+M_mass)*(payload+subsystems) + (1+F_MASS_RESERVE*M_mass)*bus_structure)
     rhs_scaled = (
         M_payload_sub_nom_g * (1000 + M_mass_ppm) + m_bus_struct_sel_g * (1000 + M_mass_bus_ppm)
     )
@@ -478,12 +488,27 @@ def inject_constraints(
 
     # ---- 5) EPS constraints ----
     # Power closure (avg).
-    P_eps_self_mw = {k: _ceil_scaled(float(data.eps_library[k]["eps_avg_self_consumption_w"]), S_POWER) for k in TIERS}
-    P_adcs_avg_mw = {k: _ceil_scaled(float(data.adcs_library[k]["adcs_avg_power_w"]), S_POWER) for k in TIERS}
-    P_tx_avg_mw = {k: _ceil_scaled(float(data.comms_library[k]["tx_avg_power_w"]), S_POWER) for k in TIERS}
-    P_obc_avg_mw = {k: _ceil_scaled(float(data.obc_library[k]["obc_avg_power_w"]), S_POWER) for k in TIERS}
-    P_therm_avg_mw = {k: _ceil_scaled(float(data.thermal_library[k]["thermal_avg_power_w"]), S_POWER) for k in TIERS}
-    P_prop_avg_mw = {k: _ceil_scaled(float(data.propulsion_library[k]["prop_avg_power_w"]), S_POWER) for k in TIERS}
+    P_eps_self_mw = {
+        k: _ceil_scaled(float(data.eps_library[k]["eps_avg_self_consumption_w"]), S_POWER)
+        for k in TIERS
+    }
+    P_adcs_avg_mw = {
+        k: _ceil_scaled(float(data.adcs_library[k]["adcs_avg_power_w"]), S_POWER) for k in TIERS
+    }
+    P_tx_avg_mw = {
+        k: _ceil_scaled(float(data.comms_library[k]["tx_avg_power_w"]), S_POWER) for k in TIERS
+    }
+    P_obc_avg_mw = {
+        k: _ceil_scaled(float(data.obc_library[k]["obc_avg_power_w"]), S_POWER) for k in TIERS
+    }
+    P_therm_avg_mw = {
+        k: _ceil_scaled(float(data.thermal_library[k]["thermal_avg_power_w"]), S_POWER)
+        for k in TIERS
+    }
+    P_prop_avg_mw = {
+        k: _ceil_scaled(float(data.propulsion_library[k]["prop_avg_power_w"]), S_POWER)
+        for k in TIERS
+    }
 
     P_sub_avg_mw = (
         _tier_sum(v.e_eps, P_eps_self_mw)
@@ -520,18 +545,36 @@ def inject_constraints(
         cap_w = (C_wh * eta_eps * DoD_lim * k_batt * eta_batt) / (f_ecl * T_orbit_hr)
         return _floor_scaled(cap_w, S_POWER)
 
-    eps_batt_cap_mw = {k: _pavg_cap_from_batt_wh(float(data.eps_library[k]["max_battery_capacity_wh"])) for k in TIERS}
+    eps_batt_cap_mw = {
+        k: _pavg_cap_from_batt_wh(float(data.eps_library[k]["max_battery_capacity_wh"]))
+        for k in TIERS
+    }
     model.add(v.P_avg_total_mw <= _tier_sum(v.e_eps, eps_batt_cap_mw))
 
-    bus_pack_batt_cap_mw = {u: _pavg_cap_from_batt_wh(float(data.bus_library[u]["battery_packaging_limit_wh"])) for u in BUS_CLASSES}
+    bus_pack_batt_cap_mw = {
+        u: _pavg_cap_from_batt_wh(float(data.bus_library[u]["battery_packaging_limit_wh"]))
+        for u in BUS_CLASSES
+    }
     model.add(v.P_avg_total_mw <= sum(v.b_bus[u] * bus_pack_batt_cap_mw[u] for u in BUS_CLASSES))
 
     # Peak power feasibility.
-    P_adcs_peak_mw = {k: _ceil_scaled(float(data.adcs_library[k]["adcs_peak_power_w"]), S_POWER) for k in TIERS}
-    P_tx_peak_mw = {k: _ceil_scaled(float(data.comms_library[k]["tx_peak_power_w"]), S_POWER) for k in TIERS}
-    P_obc_peak_mw = {k: _ceil_scaled(float(data.obc_library[k]["obc_peak_power_w"]), S_POWER) for k in TIERS}
-    P_therm_peak_mw = {k: _ceil_scaled(float(data.thermal_library[k]["thermal_peak_power_w"]), S_POWER) for k in TIERS}
-    P_prop_peak_mw = {k: _ceil_scaled(float(data.propulsion_library[k]["prop_peak_power_w"]), S_POWER) for k in TIERS}
+    P_adcs_peak_mw = {
+        k: _ceil_scaled(float(data.adcs_library[k]["adcs_peak_power_w"]), S_POWER) for k in TIERS
+    }
+    P_tx_peak_mw = {
+        k: _ceil_scaled(float(data.comms_library[k]["tx_peak_power_w"]), S_POWER) for k in TIERS
+    }
+    P_obc_peak_mw = {
+        k: _ceil_scaled(float(data.obc_library[k]["obc_peak_power_w"]), S_POWER) for k in TIERS
+    }
+    P_therm_peak_mw = {
+        k: _ceil_scaled(float(data.thermal_library[k]["thermal_peak_power_w"]), S_POWER)
+        for k in TIERS
+    }
+    P_prop_peak_mw = {
+        k: _ceil_scaled(float(data.propulsion_library[k]["prop_peak_power_w"]), S_POWER)
+        for k in TIERS
+    }
 
     P_sub_peak_mw = (
         _tier_sum(v.a_adcs, P_adcs_peak_mw)
@@ -545,7 +588,10 @@ def inject_constraints(
     model.add(v.P_peak_total_mw * 1000 >= P_peak_base_mw * M_peak_num)
     model.add(v.P_peak_total_mw * 1000 <= P_peak_base_mw * M_peak_num + 999)
 
-    P_peak_bus_max_mw = {k: _floor_scaled(float(data.eps_library[k]["max_peak_bus_power_w"]), S_POWER) for k in TIERS}
+    P_peak_bus_max_mw = {
+        k: _floor_scaled(float(data.eps_library[k]["max_peak_bus_power_w"]), S_POWER)
+        for k in TIERS
+    }
     model.add(v.P_peak_total_mw <= _tier_sum(v.e_eps, P_peak_bus_max_mw))
 
     # EPS compatibility ordinal: selected EPS tier must meet required class.
@@ -564,7 +610,10 @@ def inject_constraints(
 
     # ---- 6) ADCS constraints ----
     # Pointing: achievable error must be <= required error.
-    point_acc_uDeg = {k: _floor_scaled(float(data.adcs_library[k]["pointing_accuracy_deg"]), S_DEG) for k in TIERS}
+    point_acc_uDeg = {
+        k: _floor_scaled(float(data.adcs_library[k]["pointing_accuracy_deg"]), S_DEG)
+        for k in TIERS
+    }
     point_acc_sel = _tier_sum(v.a_adcs, point_acc_uDeg)
     model.add(point_acc_sel <= pointing_req_uDeg)
 
@@ -590,8 +639,14 @@ def inject_constraints(
     model.add(ultra_fine_sel + v.a_adcs["MEDIUM"] <= 1)
 
     # ---- 7) COMMS constraints ----
-    R_comms_max_kbps = {k: _floor_scaled(float(data.comms_library[k]["nominal_supported_downlink_mbps"]), S_RATE) for k in TIERS}
-    model.add(sum(v.c_comms[k] * R_comms_max_kbps[k] for k in TIERS) >= sum(v.x_payload[pid] * payload_ints[pid].nominal_rate_kbps for pid in payload_ints))
+    R_comms_max_kbps = {
+        k: _floor_scaled(float(data.comms_library[k]["nominal_supported_downlink_mbps"]), S_RATE)
+        for k in TIERS
+    }
+    R_comms_req_kbps = sum(
+        v.x_payload[pid] * payload_ints[pid].nominal_rate_kbps for pid in payload_ints
+    )
+    model.add(sum(v.c_comms[k] * R_comms_max_kbps[k] for k in TIERS) >= R_comms_req_kbps)
 
     # Daily downlink closure.
     T_eff_day_min = T_contact_day_min * f_contact_use
@@ -602,8 +657,9 @@ def inject_constraints(
         D_day_cap_MB[k] = int(max(0, cap_mb))
 
     D_day_req_MB_by_payload = {}
-    for pid, p in payload_ints.items():
-        daily_mb = _ceil_scaled(float(data.payloads[pid].product.get("daily_data_generation_gb", 0.0) or 0.0), S_DATA)
+    for pid in payload_ints:
+        raw_gb = data.payloads[pid].product.get("daily_data_generation_gb", 0.0) or 0.0
+        daily_mb = _ceil_scaled(float(raw_gb), S_DATA)
         D_day_req_MB_by_payload[pid] = int(math.ceil(daily_mb * M_data - 1e-12))
     D_day_req_sel_MB = sum(v.x_payload[pid] * D_day_req_MB_by_payload[pid] for pid in payload_ints)
     model.add(D_day_req_sel_MB <= _tier_sum(v.c_comms, D_day_cap_MB))
@@ -637,11 +693,16 @@ def inject_constraints(
     model.add(v.c_comms["HIGH"] + v.a_adcs["LOW"] <= 1)
 
     # ---- 8) OBC constraints ----
-    S_store_max_MB = {k: _floor_scaled(float(data.obc_library[k]["max_storage_gb"]), S_DATA) for k in TIERS}
+    S_store_max_MB = {
+        k: _floor_scaled(float(data.obc_library[k]["max_storage_gb"]), S_DATA) for k in TIERS
+    }
     S_req_sel_MB = sum(v.x_payload[pid] * payload_ints[pid].pre_S_req_MB for pid in payload_ints)
     model.add(S_req_sel_MB <= _tier_sum(v.o_obc, S_store_max_MB))
 
-    R_ingest_max_kbps = {k: _floor_scaled(float(data.obc_library[k]["supported_ingest_mbps"]), S_RATE) for k in TIERS}
+    R_ingest_max_kbps = {
+        k: _floor_scaled(float(data.obc_library[k]["supported_ingest_mbps"]), S_RATE)
+        for k in TIERS
+    }
     R_ing_req_sel_kbps = sum(
         v.x_payload[pid] * payload_ints[pid].pre_R_ing_req_kbps for pid in payload_ints
     )
@@ -681,7 +742,10 @@ def inject_constraints(
     Q_req_mw = model.new_int_var(0, 10_000_000, "Q_req_mw")
     model.add(Q_req_mw == Q_payload_req_sel_mw + Q_sub_req_mw)
 
-    Q_tier_max_mw = {k: _floor_scaled(float(data.thermal_library[k]["max_heat_rejection_w"]), S_POWER) for k in TIERS}
+    Q_tier_max_mw = {
+        k: _floor_scaled(float(data.thermal_library[k]["max_heat_rejection_w"]), S_POWER)
+        for k in TIERS
+    }
     model.add(Q_req_mw <= _tier_sum(v.t_thermal, Q_tier_max_mw))
 
     # Bus radiator coupling cap via AND z_{u,k}.

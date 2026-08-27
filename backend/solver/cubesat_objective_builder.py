@@ -1,7 +1,5 @@
 from __future__ import annotations
 
-from ortools.sat.python import cp_model
-
 from .cubesat_cp_model_builder import BUS_CLASSES, TIERS, CubeSatModel
 from .cubesat_data_loader import CubeSatData
 from .cubesat_precompute_loader import ObjectiveCoefficients

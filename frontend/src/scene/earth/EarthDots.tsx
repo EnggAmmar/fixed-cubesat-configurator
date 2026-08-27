@@ -1,4 +1,5 @@
 import { useMemo } from "react";
+import type { FeatureCollection, Geometry } from "geojson";
 import worldCountries from "../../data/world-countries.geo.json";
 import { pointInGeometry } from "../../lib/geo/pointInCountry";
 import { latLonToVector3 } from "../../lib/geo/globeProjection";
@@ -8,20 +9,20 @@ type Props = {
 };
 
 type FeatureEntry = {
-  geometry: any;
+  geometry: Geometry;
   bbox: { minLon: number; minLat: number; maxLon: number; maxLat: number };
 };
 
-function computeBBox(geometry: any): FeatureEntry["bbox"] | null {
-  if (!geometry) return null;
+function computeBBox(geometry: Geometry | null | undefined): FeatureEntry["bbox"] | null {
+  if (!geometry || !("coordinates" in geometry)) return null;
 
   let minLon = Infinity;
   let minLat = Infinity;
   let maxLon = -Infinity;
   let maxLat = -Infinity;
 
-  const visit = (pos: any) => {
-    if (!Array.isArray(pos) || pos.length < 2) return;
+  const visit = (pos: unknown[]) => {
+    if (pos.length < 2) return;
     const lon = Number(pos[0]);
     const lat = Number(pos[1]);
     if (Number.isNaN(lon) || Number.isNaN(lat)) return;
@@ -31,7 +32,7 @@ function computeBBox(geometry: any): FeatureEntry["bbox"] | null {
     maxLat = Math.max(maxLat, lat);
   };
 
-  const walk = (node: any) => {
+  const walk = (node: unknown) => {
     if (!Array.isArray(node)) return;
     if (typeof node[0] === "number" && typeof node[1] === "number") {
       visit(node);
@@ -53,10 +54,10 @@ function inBBox(lon: number, lat: number, b: FeatureEntry["bbox"]) {
 export function EarthDots({ radius }: Props) {
   const positions = useMemo(() => {
     const pts: number[] = [];
-    const featuresRaw = ((worldCountries as any).features ?? []) as Array<{ geometry?: any }>;
+    const collection = worldCountries as unknown as FeatureCollection;
 
     const features: FeatureEntry[] = [];
-    for (const f of featuresRaw) {
+    for (const f of collection.features) {
       const g = f.geometry;
       const bbox = computeBBox(g);
       if (!bbox) continue;

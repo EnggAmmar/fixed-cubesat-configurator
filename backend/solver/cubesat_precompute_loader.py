@@ -54,11 +54,15 @@ def load_objective_coefficients() -> ObjectiveCoefficients:
     obj = _load_json(path)
     od = obj.get("objective_definition", {})
     if not isinstance(od, dict):
-        raise ValueError("objective_function_coefficients.json: expected 'objective_definition' dict")
+        raise ValueError(
+            "objective_function_coefficients.json: expected 'objective_definition' dict"
+        )
 
     rec = od.get("recommended_integer_objective", {})
     if not isinstance(rec, dict):
-        raise ValueError("objective_function_coefficients.json: missing recommended_integer_objective")
+        raise ValueError(
+            "objective_function_coefficients.json: missing recommended_integer_objective"
+        )
 
     return ObjectiveCoefficients(
         cost_proxy_tables=obj.get("cost_proxy_tables", {}),

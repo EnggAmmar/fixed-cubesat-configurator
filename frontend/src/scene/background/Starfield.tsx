@@ -37,8 +37,8 @@ export function Starfield() {
     rootRef.current.position.x = camera.position.x * 0.025;
     rootRef.current.position.y = camera.position.y * 0.025;
 
-    const mat = rootRef.current.material as any;
-    if (mat) {
+    const mat = rootRef.current.material;
+    if (mat && !Array.isArray(mat)) {
       mat.opacity = 0.82 + Math.sin(state.clock.getElapsedTime() * 1.8) * 0.08;
     }
   });

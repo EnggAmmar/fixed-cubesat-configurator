@@ -3,6 +3,7 @@ from __future__ import annotations
 from fastapi.testclient import TestClient
 
 from app.main import create_app
+from app.services.catalog import Catalog
 
 
 def _solve(client: TestClient, mission_input: dict, constraints: dict | None = None) -> dict:
@@ -92,6 +93,35 @@ def test_infeasible_case_returns_actionable_warnings() -> None:
     assert resp["feasible"] is False
     assert resp["status"] in {"precheck_infeasible", "infeasible"}
     assert any("storage" in w.lower() for w in resp["warnings"])
+
+
+def test_empty_radiation_domain_does_not_zero_mass_budget(monkeypatch) -> None:
+    """An operator-precedence bug used to make `if rad_choices else 0` bind to
+    the entire mass sum rather than just the (absent) radiation term, so an
+    empty radiation_support_components domain silently reported total_mass_kg
+    as 0.0 instead of payload + structure + subsystem mass."""
+    real_iter = Catalog.iter_subsystems
+
+    def _iter_without_radiation(self: Catalog, domain: str):
+        if domain == "radiation_support_components":
+            return []
+        return real_iter(self, domain)
+
+    monkeypatch.setattr(Catalog, "iter_subsystems", _iter_without_radiation)
+
+    client = TestClient(create_app())
+    resp = _solve(
+        client,
+        {
+            "family": "remote_sensing",
+            "payload": {"type": "catalog", "payload_id": "rs_vhr_optical_v1"},
+            "roi": {"type": "region", "query": "Pakistan"},
+            "parameters": {"revisit_time_hours": 48},
+        },
+    )
+    assert resp["feasible"] is True
+    # rs_vhr_optical_v1 alone is 2.2 kg; a collapsed sum would report 0.0.
+    assert resp["totals"]["total_mass_kg"] > 1.0
 
 
 def test_high_data_rate_requires_stronger_comms_and_storage() -> None:

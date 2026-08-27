@@ -171,10 +171,14 @@ def load_all_data() -> CubeSatData:
     # Cross-check coverage (zero-trust).
     missing = [pid for pid in payloads.keys() if pid not in compatibility]
     if missing:
-        raise ValueError(f"Compatibility map missing {len(missing)} payload_ids. Example: {missing[:5]}")
+        raise ValueError(
+            f"Compatibility map missing {len(missing)} payload_ids. Example: {missing[:5]}"
+        )
     orphan = [pid for pid in compatibility.keys() if pid not in payloads]
     if orphan:
-        raise ValueError(f"Compatibility map has {len(orphan)} orphan payload_ids. Example: {orphan[:5]}")
+        raise ValueError(
+            f"Compatibility map has {len(orphan)} orphan payload_ids. Example: {orphan[:5]}"
+        )
 
     return CubeSatData(
         payloads=payloads,

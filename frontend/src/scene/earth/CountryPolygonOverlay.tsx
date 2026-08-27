@@ -1,4 +1,5 @@
 import { useEffect, useMemo } from "react";
+import type { Feature, FeatureCollection, Geometry } from "geojson";
 import * as THREE from "three";
 import worldCountries from "../../data/world-countries.geo.json";
 import { useSceneStore } from "../../store/sceneStore";
@@ -8,13 +9,15 @@ type Props = {
   radius: number;
 };
 
-type AnyFeature = {
-  properties?: any;
-  geometry?: any;
+type CountryProperties = {
+  ISO_A3?: string;
+  iso_a3?: string;
 };
 
-function getCode(props: any): string {
-  return props.ISO_A3 ?? props.iso_a3 ?? "";
+type CountryFeature = Feature<Geometry, CountryProperties | null>;
+
+function getCode(props: CountryProperties | null | undefined): string {
+  return props?.ISO_A3 ?? props?.iso_a3 ?? "";
 }
 
 function sanitizeRing(ring: [number, number][]) {
@@ -66,12 +69,13 @@ export function CountryPolygonOverlay({ radius }: Props) {
     if (step !== "roi") return null;
     if (!selectedRegion?.id) return null;
     const id = selectedRegion.id.toUpperCase();
-    const fc = worldCountries as any;
-    return (fc.features as AnyFeature[]).find((f) => getCode(f.properties ?? {}).toUpperCase() === id) ?? null;
+    const fc = worldCountries as unknown as FeatureCollection<Geometry, CountryProperties | null>;
+    const found = fc.features.find((f) => getCode(f.properties).toUpperCase() === id);
+    return (found ?? null) as CountryFeature | null;
   }, [selectedRegion?.id, step]);
 
   if (!feature) return null;
-  const geometry = (feature as AnyFeature).geometry;
+  const geometry = feature.geometry;
   if (!geometry) return null;
 
   if (geometry.type === "Polygon") {
@@ -87,10 +91,10 @@ export function CountryPolygonOverlay({ radius }: Props) {
   if (geometry.type === "MultiPolygon") {
     return (
       <group>
-        {geometry.coordinates.map((poly: [number, number][][], idx: number) => (
+        {geometry.coordinates.map((poly, idx) => (
           <group key={idx}>
-            <PolygonLine ring={poly[0]} radius={radius * 1.003} glow />
-            <PolygonLine ring={poly[0]} radius={radius} />
+            <PolygonLine ring={poly[0] as [number, number][]} radius={radius * 1.003} glow />
+            <PolygonLine ring={poly[0] as [number, number][]} radius={radius} />
           </group>
         ))}
       </group>

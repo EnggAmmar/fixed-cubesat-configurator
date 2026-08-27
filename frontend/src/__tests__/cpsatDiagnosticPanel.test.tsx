@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { MissionProvider } from "../state/mission";
 import AnalysisPage from "../pages/AnalysisPage";
 import * as api from "../lib/api";
+import type { CubeSatDiagnosticResponse, MissionSolveResponse } from "../lib/api";
 
 function renderAtTrace() {
   return render(
@@ -89,7 +90,7 @@ function mockSolveMissionOk() {
       trace: ["ok"],
       warnings: [],
     },
-  } as any);
+  } as unknown as MissionSolveResponse);
 }
 
 test("Solver Trace shows Run CP-SAT Diagnostic button for catalog payloads", async () => {
@@ -154,7 +155,7 @@ test("Solver Trace renders diagnostic result after click", async () => {
     payload_id: "rs_vhr_optical_v1",
     payload_meta: { vendor: "ACME", product_name: "Camera" },
     bus_cases: [{ bus_class: "6U", status: "FEASIBLE", objective_value: 123, violated_families: [] }],
-  } as any);
+  } as unknown as CubeSatDiagnosticResponse);
 
   renderAtTrace();
   await screen.findByTestId("page-analysis");
@@ -183,7 +184,7 @@ test("Solver Trace shows informative error for 400 JSON detail from CP-SAT endpo
     status: 400,
     json: async () => ({ detail: "Unknown selected_payload_id: rs_vhr_optical_v1" }),
     text: async () => "",
-  } as any);
+  } as unknown as Response);
 
   renderAtTrace();
   await screen.findByTestId("page-analysis");

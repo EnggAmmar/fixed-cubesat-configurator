@@ -78,7 +78,7 @@ test("Finish persists engineering_preferences and revisit_time_hours; empty max 
   await waitFor(() => {
     const raw = localStorage.getItem("mission_draft_v1");
     expect(raw).toBeTruthy();
-    const draft = JSON.parse(raw as string) as any;
+    const draft = JSON.parse(raw as string);
     expect(draft.parameters.revisit_time_hours).toBe(24);
 
     const prefs = draft.parameters.engineering_preferences;

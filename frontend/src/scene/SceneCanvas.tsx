@@ -8,7 +8,7 @@ import { SceneErrorBoundary } from "./SceneErrorBoundary";
 import { SceneControls } from "./controls/SceneControls";
 
 export function SceneCanvas() {
-  const isAutomation = typeof navigator !== "undefined" && Boolean((navigator as any).webdriver);
+  const isAutomation = typeof navigator !== "undefined" && Boolean(navigator.webdriver);
   return (
     <div className="scene-root sceneLayer" aria-hidden>
       <SceneErrorBoundary fallback={null}>

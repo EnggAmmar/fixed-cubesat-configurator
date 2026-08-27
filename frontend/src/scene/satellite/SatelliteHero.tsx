@@ -44,19 +44,19 @@ function PayloadModule() {
   }
 }
 
+type TweakableMaterial = Material & { roughness?: number; metalness?: number };
+
 function tweakMaterial(m: Material) {
-  const mat = m as any;
-  if (mat && typeof mat === 'object') {
-    if ('roughness' in mat) mat.roughness = Math.min(1, Math.max(0, 0.9));
-    if ('metalness' in mat) mat.metalness = Math.min(1, Math.max(0, 0.1));
-  }
+  const mat = m as TweakableMaterial;
+  if ('roughness' in mat) mat.roughness = Math.min(1, Math.max(0, 0.9));
+  if ('metalness' in mat) mat.metalness = Math.min(1, Math.max(0, 0.1));
 }
 
 function NasaCubesatBus({ targetMaxDim = 0.9 }: { targetMaxDim?: number }) {
-  const gltf = useGLTF(NASA_CUBESAT_1RU_GLB_URL) as any;
+  const { scene } = useGLTF(NASA_CUBESAT_1RU_GLB_URL) as unknown as { scene: THREE.Group };
 
   // Clone to keep per-instance transforms safe even with GLTF cache.
-  const model = useMemo(() => gltf.scene.clone(true), [gltf.scene]);
+  const model = useMemo(() => scene.clone(true), [scene]);
 
   useLayoutEffect(() => {
     // Normalize the model so it behaves consistently with our scene poses.
@@ -75,10 +75,9 @@ function NasaCubesatBus({ targetMaxDim = 0.9 }: { targetMaxDim?: number }) {
 
     // Small material tweak to match our premium dark-space palette.
     model.traverse((obj: Object3D) => {
-      const o = obj as any;
-      if (!o.isMesh) return;
-      const mesh = o as Mesh;
-      const mat = mesh.material as any;
+      if (!(obj as Mesh).isMesh) return;
+      const mesh = obj as Mesh;
+      const mat = mesh.material;
       if (Array.isArray(mat)) mat.forEach(tweakMaterial);
       else if (mat) tweakMaterial(mat);
     });

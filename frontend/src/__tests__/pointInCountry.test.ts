@@ -1,9 +1,10 @@
+import type { Polygon } from "geojson";
 import { describe, expect, it } from "vitest";
 import { pointInGeometry } from "../lib/geo/pointInCountry";
 
 describe("pointInGeometry", () => {
   it("detects point inside polygon and outside polygon", () => {
-    const square = {
+    const square: Polygon = {
       type: "Polygon",
       coordinates: [
         [
@@ -21,7 +22,7 @@ describe("pointInGeometry", () => {
   });
 
   it("respects holes in polygon", () => {
-    const donut = {
+    const donut: Polygon = {
       type: "Polygon",
       coordinates: [
         [

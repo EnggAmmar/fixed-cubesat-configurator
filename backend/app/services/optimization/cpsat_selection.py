@@ -374,9 +374,7 @@ def solve_subsystems_cpsat(
             _weighted_sum(domain_vars[d], [c.mass_g for c in domain_choices[d]])
             for d in domains_required
         )
-        + _weighted_sum(rad_vars, [c.mass_g for c in rad_choices])
-        if rad_choices
-        else 0
+        + (_weighted_sum(rad_vars, [c.mass_g for c in rad_choices]) if rad_choices else 0)
     )
 
     total_avg_mw = (

@@ -63,6 +63,47 @@ def _severity(score: float) -> str:
     return "low"
 
 
+# Generic, tier-level radiation assumptions used only when a component has no
+# exact record in radiation_db.json. This keeps screening informative for the
+# backend/solver engine's tier-based components (e.g. "backend_solver_eps_HIGH"),
+# whose ids were never in that catalog-keyed database to begin with, instead of
+# silently reporting "no radiation record found" for every one of them.
+# Deliberately coarse and monotonic in tier - not a substitute for a real part record.
+_GENERIC_TIER_TID_KRAD: dict[str, float] = {
+    "LOW": 10.0,
+    "MEDIUM": 20.0,
+    "HIGH": 30.0,
+    "EXTREME": 50.0,
+}
+_GENERIC_TIER_RAD_CLASS: dict[str, RadClass] = {
+    "LOW": RadClass.cots,
+    "MEDIUM": RadClass.screened_cots,
+    "HIGH": RadClass.screened_cots,
+    "EXTREME": RadClass.rad_tolerant,
+}
+
+
+def _generic_tier_record(component: SelectedComponent) -> RadiationComponent | None:
+    tier = component.metadata.get("tier")
+    if not isinstance(tier, str) or tier not in _GENERIC_TIER_TID_KRAD:
+        return None
+    return RadiationComponent(
+        component_name=f"Generic {tier}-tier {component.domain} (no specific part record)",
+        vendor="Generic tier-based estimate",
+        component_type=component.domain,
+        part_family="unspecified (tier estimate)",
+        rad_class=_GENERIC_TIER_RAD_CLASS[tier],
+        tid_krad=_GENERIC_TIER_TID_KRAD[tier],
+        see_notes="Generic tier-level estimate; not a specific component record.",
+        latchup_notes="Unknown - generic tier estimate, no part-level test data.",
+        shielding_assumptions="Assumed ~2mm Al equivalent shielding.",
+        heritage_notes="No specific heritage - generic tier estimate.",
+        operating_voltage="unspecified",
+        package="unspecified",
+        verification_status=VerificationStatus.unverified,
+    )
+
+
 def screen_architecture_radiation(
     mission: RadiationMissionProfile,
     selected: list[SelectedComponent],
@@ -89,6 +130,11 @@ def screen_architecture_radiation(
     flags: list[RadiationFlag] = []
 
     def check(component: SelectedComponent, db: RadiationComponent | None) -> None:
+        used_generic_estimate = False
+        if db is None:
+            db = _generic_tier_record(component)
+            used_generic_estimate = db is not None
+
         if db is None:
             flags.append(
                 RadiationFlag(
@@ -123,10 +169,29 @@ def screen_architecture_radiation(
         score = min(1.0, deficit_ratio + class_penalty + ver_penalty)
 
         if score < 0.35:
+            if used_generic_estimate:
+                flags.append(
+                    RadiationFlag(
+                        component_id=None,
+                        item_id=component.item_id,
+                        domain=component.domain,
+                        component_name=db.component_name,
+                        severity="low",
+                        message=(
+                            f"Screened using a generic {component.metadata.get('tier')}-tier "
+                            "estimate (no specific part record available); no elevated risk "
+                            "indicated, but this is not a verified result."
+                        ),
+                        mitigations=["Add a real radiation record for this component/tier."],
+                    )
+                )
             return
 
+        prefix = (
+            "Generic tier-estimate radiation risk" if used_generic_estimate else "Radiation risk"
+        )
         message = (
-            f"Radiation risk: tid_krad={tid:g} vs required~{required_tid:.1f}; "
+            f"{prefix}: tid_krad={tid:g} vs required~{required_tid:.1f}; "
             f"class={db.rad_class.value}, verification={db.verification_status.value}."
         )
         mitigations = [
@@ -137,6 +202,11 @@ def screen_architecture_radiation(
             mitigations.append(
                 "Increase shielding, choose higher rad-class parts, or reduce mission duration/"
                 "environment severity."
+            )
+        if used_generic_estimate:
+            mitigations.append(
+                "This uses a generic tier-level estimate, not a verified part record - "
+                "add a real radiation record for this component/tier."
             )
 
         flags.append(

@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 import math
-from typing import Any, Iterable
+from typing import Any
 
 from ortools.sat.python import cp_model
 
@@ -312,6 +312,14 @@ def run_cubesat_diagnostic(
         if bus_stiff < ord_req_struct:
             fails.append("COMPATIBILITY_ORDINAL_FAIL")
 
+        # CG compatibility: bus CG tolerance >= payload CG sensitivity.
+        # Mirrors cubesat_constraint_injector.py's ord_bus_cg_tol_sel >= cg_ord_sel -
+        # previously computed here (ord_cg/payload_cg) but never checked, so this
+        # bus-by-bus scan could miss a CG-tolerance failure the real solver enforces.
+        bus_cg_tol = ord_class[str(data.bus_library[bus]["cg_tolerance_class"])]
+        if bus_cg_tol < ord_cg[payload_cg]:
+            fails.append("COMPATIBILITY_ORDINAL_FAIL")
+
         # Comms / OBC tier >= required capability class.
         # (EMI/harness burdens are integration-burden risk inputs, not a hard floor here)
         if _tier_ord(comms) < ord_req_comms:
@@ -399,7 +407,9 @@ def run_cubesat_diagnostic(
         )
         # Prompt 12.9 calibration: reduce reserve conservatism only for non-payload reserve adders.
         # Payload and subsystem masses remain unchanged.
-        M_total = (1.0 + M_mass) * (payload_mass_kg + m_sub) + (1.0 + (F_MASS_RESERVE * M_mass)) * m_bus_struct
+        M_total = (1.0 + M_mass) * (payload_mass_kg + m_sub) + (
+            1.0 + (F_MASS_RESERVE * M_mass)
+        ) * m_bus_struct
         mass_margin_kg = M_dry_max - M_total
         if mass_margin_kg < 0:
             fails.append("MASS_CLOSURE_FAIL")
@@ -488,9 +498,6 @@ def run_cubesat_diagnostic(
 
     def _diagnose_infeasible(bus: str) -> dict[str, Any]:
         # Enumerate tier combinations to identify irreducible failing families + margins.
-        tier_options: list[list[str]] = [list(TIERS)] * 6
-        keys = ["eps", "adcs", "comms", "obc", "thermal", "prop"]
-
         combos: list[tuple[dict[str, str], list[str], dict[str, float]]] = []
         for eps in TIERS:
             for adcs in TIERS:
@@ -509,7 +516,8 @@ def run_cubesat_diagnostic(
                                 fails, margins = _eval_case(bus, tiers)
                                 combos.append((tiers, fails, margins))
                                 if not fails:
-                                    # If we find a fully-feasible combo, CP-SAT should have been feasible.
+                                    # A fully-feasible combo here means CP-SAT
+                                    # should have found this bus feasible too.
                                     return {
                                         "diagnostic_note": "FOUND_FEASIBLE_COMBO_OUTSIDE_CPSAT",
                                         "tiers": tiers,
@@ -521,7 +529,8 @@ def run_cubesat_diagnostic(
         min_v = min(len(f) for _, f, _ in combos)
         best = [(t, f, m) for (t, f, m) in combos if len(f) == min_v]
 
-        # Choose representative "best effort" by minimizing total deficit magnitude across key margins.
+        # Choose representative "best effort" by minimizing total deficit
+        # magnitude across key margins.
         def _deficit_score(m: dict[str, float]) -> float:
             s = 0.0
             for k in (
@@ -543,8 +552,10 @@ def run_cubesat_diagnostic(
         rep = min(best, key=lambda x: _deficit_score(x[2]))
 
         # First-order families:
-        # - If a non-empty intersection exists across all min-violation combos, those are irreducible blockers.
-        # - If the intersection is empty (conflict-driven infeasibility), use the representative fail set.
+        # - If a non-empty intersection exists across all min-violation combos,
+        #   those are irreducible blockers.
+        # - If the intersection is empty (conflict-driven infeasibility), use
+        #   the representative fail set.
         irr = set(best[0][1])
         for _, f, _ in best[1:]:
             irr.intersection_update(f)

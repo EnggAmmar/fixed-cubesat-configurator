@@ -5,6 +5,7 @@ import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { MissionProvider } from "../state/mission";
 import PayloadPage from "../pages/PayloadPage";
 import * as api from "../lib/api";
+import type { TaxonomyResponse } from "../lib/api";
 
 function renderAtPayload() {
   return render(
@@ -95,7 +96,7 @@ beforeEach(() => {
         ],
       },
     ],
-  } as any);
+  } as unknown as TaxonomyResponse);
 });
 
 afterEach(() => {

@@ -75,6 +75,38 @@ def test_unknown_component_emits_low_severity_flag() -> None:
     assert MISSING_RECORD_MESSAGE in out.flags[0].message
 
 
+def test_tier_metadata_gets_generic_estimate_instead_of_missing_record() -> None:
+    """Regression test for the backend/solver radiation blind spot: components
+    from that engine carry a 'tier' in metadata but have no entry in
+    radiation_db.json (their ids look like 'backend_solver_eps_HIGH'). Screening
+    should use a generic tier-level estimate instead of reporting a missing
+    record for every one of them."""
+    mission = RadiationMissionProfile(orbit_family="leo", mission_duration_months=12)
+    out = screen_architecture_radiation(
+        mission=mission,
+        selected=[
+            SelectedComponent(
+                domain="eps",
+                item_id="backend_solver_eps_HIGH",
+                name="HIGH EPS",
+                mass_kg=1.0,
+                avg_power_w=5.0,
+                peak_power_w=8.0,
+                cost_kusd=10.0,
+                risk_points=1.0,
+                metadata={"tier": "HIGH"},
+            )
+        ],
+    )
+    assert all(MISSING_RECORD_MESSAGE not in flag.message for flag in out.flags)
+    # A tier-tagged component always produces exactly one flag now: either a
+    # low-severity "generic estimate, no elevated risk" note, or a genuine
+    # risk flag computed from the generic estimate - never silence and never
+    # the "no radiation record found" message checked above.
+    assert len(out.flags) == 1
+    assert "generic" in out.flags[0].message.lower()
+
+
 def test_selected_catalog_components_have_radiation_records() -> None:
     mission = RadiationMissionProfile(
         orbit_family="sun_synchronous_leo",

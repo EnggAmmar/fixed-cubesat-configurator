@@ -1,15 +1,20 @@
 import { test, expect } from "@playwright/test";
 import { mockTaxonomy, SOLVE_MOCK } from "./mocks";
 
+type SolveRequestBody = {
+  input?: { parameters?: { engineering_preferences?: Record<string, unknown> } };
+};
+
 test("parameters page persists engineering preferences (mocked backend)", async ({ page }) => {
   await mockTaxonomy(page);
 
   await page.route("**/api/v1/mission/solve", async (route) => {
     const req = route.request();
-    const body = req.postDataJSON() as any;
+    const body = req.postDataJSON() as SolveRequestBody;
 
     const prefs = body?.input?.parameters?.engineering_preferences;
     expect(prefs).toBeTruthy();
+    if (!prefs) throw new Error("engineering_preferences missing from request body");
     expect(prefs.altitude_km).toBe(600);
     expect(prefs.orbit_type).toBe("sso");
     expect(prefs.lifetime_years).toBe(3);

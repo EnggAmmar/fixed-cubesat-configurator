@@ -5,7 +5,6 @@ from typing import Literal
 
 from ortools.sat.python import cp_model
 
-
 Tier = Literal["LOW", "MEDIUM", "HIGH", "EXTREME"]
 BUS_CLASSES: list[str] = ["1U", "1.5U", "2U", "3U", "6U", "12U", "16U", "27U", "50U+"]
 TIERS: list[Tier] = ["LOW", "MEDIUM", "HIGH", "EXTREME"]

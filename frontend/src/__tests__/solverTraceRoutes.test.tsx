@@ -7,17 +7,21 @@ vi.mock("../scene/SceneCanvas", () => ({
     return <div data-testid="scene-canvas" />;
   },
 }));
+import type { MockInstance } from "vitest";
 import * as api from "../lib/api";
+import type { MissionSolveResponse } from "../lib/api";
 
 import App from "../App";
 import { MissionProvider } from "../state/mission";
 
-let solveSpy: any;
+let solveSpy: MockInstance<typeof api.solveMission>;
 
 beforeEach(() => {
   localStorage.clear();
   vi.restoreAllMocks();
-  solveSpy = vi.spyOn(api, "solveMission").mockImplementation(() => new Promise(() => {}) as any);
+  solveSpy = vi.spyOn(api, "solveMission").mockImplementation(
+    () => new Promise<MissionSolveResponse>(() => {}),
+  );
   localStorage.setItem(
     "mission_draft_v1",
     JSON.stringify({
